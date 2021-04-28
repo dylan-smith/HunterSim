@@ -4,7 +4,7 @@ using System.Text;
 
 namespace HunterSim
 {
-    public class EventInfo
+    public abstract class EventInfo
     {
         public double Timestamp { get; set; }
 
@@ -12,5 +12,7 @@ namespace HunterSim
         {
             Timestamp = timestamp;
         }
+
+        public abstract void ProcessEvent(IList<DamageEvent> damageEvents);
     }
 }

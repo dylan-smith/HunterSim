@@ -1,4 +1,5 @@
 using Microsoft.VisualStudio.TestTools.UnitTesting;
+using System;
 
 namespace HunterSim.Tests
 {
@@ -13,7 +14,7 @@ namespace HunterSim.Tests
 
             var dps = sim.Run();
 
-            Assert.AreEqual(0.0, dps);
+            Assert.AreEqual(Math.Floor(60 / 2.8) * 93.3, dps, 0.0001);
         }
     }
 }

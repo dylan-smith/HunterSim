@@ -6,7 +6,8 @@ namespace HunterSim
     public class Simulation
     {
         private SimulationConfig _config;
-        private List<EventInfo> _events;
+        private List<EventInfo> _events = new List<EventInfo>();
+        private List<DamageEvent> _damageEvents = new List<DamageEvent>();
 
         public Simulation(SimulationConfig config)
         {
@@ -15,26 +16,36 @@ namespace HunterSim
 
         public double Run()
         {
-            _events = new List<EventInfo>
-            {
-                new EventInfo(0.0)
-            };
-
             var currentTime = 0.0;
+            _events.Add(new StartFightEvent(currentTime));
 
-            while (currentTime <= _config.FightLength && _events.Any())
+            while (_events.Any())
             {
                 var nextEvent = GetNextEvent();
-                currentTime = nextEvent.Timestamp;
-                ProcessEvent(nextEvent);
+
+                if (nextEvent.Timestamp <= _config.FightLength)
+                {
+                    currentTime = nextEvent.Timestamp;
+                    ProcessEvent(currentTime, nextEvent);
+                }
+                else
+                {
+                    _events.Clear();
+                }
             }
 
-            return 0.0;
+            return _damageEvents.Sum(x => x.Damage);
         }
 
-        private void ProcessEvent(EventInfo nextEvent)
+        private void ProcessEvent(double currentTime, EventInfo nextEvent)
         {
             _events.Remove(nextEvent);
+            nextEvent.ProcessEvent(_damageEvents);
+
+            if (!AutoShot.OnCooldown)
+            {
+                AutoShot.Use(currentTime, _events);
+            }
         }
 
         private EventInfo GetNextEvent()
