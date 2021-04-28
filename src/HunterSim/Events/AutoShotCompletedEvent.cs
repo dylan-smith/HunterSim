@@ -15,22 +15,35 @@
 
             if (bossDefense - rangedWeaponSkill > 10)
             {
-                missChance = 7 + ((bossDefense - rangedWeaponSkill - 10) * 0.4);
+                missChance = 0.07 + ((bossDefense - rangedWeaponSkill - 10) * 0.004);
             }
             else
             {
-                missChance = 5 + ((bossDefense - rangedWeaponSkill) * 0.1);
+                missChance = 0.05 + ((bossDefense - rangedWeaponSkill) * 0.001);
             }
 
-            missChance /= 100;
+            // Assuming crit uses a 2-roll system as per this article:
+            // https://wowwiki-archive.fandom.com/wiki/Attack_table#Ranged_attacks
+            var critChance = 0.05;
 
             var missRoll = RandomGenerator.Roll();
 
-            if (missRoll > missChance)
+            if (missRoll <= missChance)
             {
+                autoShotDamage = 0.0;
+            }
+            else
+            {
+                var critRoll = RandomGenerator.Roll();
                 autoShotDamage = state.Config.Gear.Ranged.MaxDamage;
+
+                if (critRoll <= critChance)
+                {
+                    autoShotDamage *= 2;
+                }
             }
 
+            // TODO: Add extra metadata to DamageEvent
             state.DamageEvents.Add(new DamageEvent(base.Timestamp, autoShotDamage));
             AutoShot.OnCooldown = false;
         }
