@@ -4,8 +4,11 @@
     {
         public DefaultConfig()
         {
-            base.SimulationSettings = new SimulationSettings();
             base.SimulationSettings.FightLength = 60.0;
+
+            base.Gear.Ranged = new GearItem();
+            base.Gear.Ranged.MaxDamage = 93.3;
+            base.Gear.Ranged.Speed = 2.8;
         }
     }
 }

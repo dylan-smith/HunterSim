@@ -4,11 +4,11 @@ namespace HunterSim
 {
     public class SimulationConfig
     {
-        public IEnumerable<GearItem> Gear { get; set; }
-        public IEnumerable<Buff> Buffs { get; set; }
-        public PlayerSettings PlayerSettings { get; set; }
-        public BossSettings BossSettings { get; set; }
-        public SimulationSettings SimulationSettings { get; set; }
-        public IEnumerable<Talent> Talents { get; set; }
+        public readonly Gear Gear = new Gear();
+        public readonly IList<Buff> Buffs = new List<Buff>();
+        public readonly PlayerSettings PlayerSettings = new PlayerSettings();
+        public readonly BossSettings BossSettings = new BossSettings();
+        public readonly SimulationSettings SimulationSettings = new SimulationSettings();
+        public readonly IList<Talent> Talents = new List<Talent>();
     }
 }

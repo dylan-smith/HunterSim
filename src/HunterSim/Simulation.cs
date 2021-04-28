@@ -5,12 +5,11 @@ namespace HunterSim
 {
     public class Simulation
     {
-        private readonly SimulationConfig _config;
         private readonly SimulationState _state = new SimulationState();
 
         public Simulation(SimulationConfig config)
         {
-            _config = config;
+            _state.Config = config;
         }
 
         public double Run()
@@ -21,7 +20,7 @@ namespace HunterSim
             {
                 var nextEvent = GetNextEvent();
 
-                if (nextEvent.Timestamp <= _config.SimulationSettings.FightLength)
+                if (nextEvent.Timestamp <= _state.Config.SimulationSettings.FightLength)
                 {
                     _state.CurrentTime = nextEvent.Timestamp;
                     ProcessEvent(nextEvent);

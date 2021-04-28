@@ -7,5 +7,6 @@ namespace HunterSim
         public readonly List<EventInfo> Events = new List<EventInfo>();
         public readonly List<DamageEvent> DamageEvents = new List<DamageEvent>();
         public double CurrentTime = 0.0;
+        public SimulationConfig Config { get; set; }
     }
 }

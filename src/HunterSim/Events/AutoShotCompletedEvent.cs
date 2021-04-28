@@ -11,6 +11,8 @@ namespace HunterSim
 
         public override void ProcessEvent(SimulationState state)
         {
+            var autoShotDamage = state.Config.Gear.Ranged.MaxDamage;
+
             state.DamageEvents.Add(new DamageEvent(base.Timestamp, _autoShotDamage));
             AutoShot.OnCooldown = false;
         }
