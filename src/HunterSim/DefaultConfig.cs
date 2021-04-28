@@ -11,6 +11,8 @@
             base.Gear.Ranged.Speed = 2.8;
             base.Gear.Ranged.WeaponType = WeaponType.Gun;
 
+            base.PlayerSettings.Race = Race.NightElf;
+
             base.BossSettings.Defense = 315;
         }
     }

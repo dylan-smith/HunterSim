@@ -2,6 +2,7 @@
 {
     public enum WeaponType
     {
+        NotSet,
         Bow,
         Crossbow,
         Dagger,

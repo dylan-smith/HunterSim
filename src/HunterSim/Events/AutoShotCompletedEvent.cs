@@ -8,7 +8,7 @@
         public override void ProcessEvent(SimulationState state)
         {
             var bossDefense = state.Config.BossSettings.Defense;
-            var rangedWeaponSkill = state.Config.PlayerSettings.WeaponSkill[state.Config.Gear.Ranged.WeaponType];
+            var rangedWeaponSkill = WeaponSkillCalculator.Calculate(state.Config.Gear.Ranged.WeaponType, state);
             double missChance;
             double autoShotDamage;
             DamageType damageType;

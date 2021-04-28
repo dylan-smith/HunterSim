@@ -1,4 +1,6 @@
-﻿namespace HunterSim
+﻿using System.Collections.Generic;
+
+namespace HunterSim
 {
     public class GearItem
     {
@@ -15,5 +17,6 @@
         public double Crit { get; set; }
         public double Hit { get; set; }
         public WeaponType WeaponType { get; set; }
+        public IDictionary<WeaponType, int> WeaponSkill = new Dictionary<WeaponType, int>();
     }
 }
