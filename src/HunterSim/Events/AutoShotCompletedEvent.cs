@@ -28,6 +28,8 @@
                 autoShotDamage = state.Config.Gear.Ranged.MaxDamage + state.Config.Gear.Ammo.MaxDamage;
                 damageType = DamageType.Hit;
 
+                // TODO: Randomize damage across range
+
                 if (critRoll <= critChance)
                 {
                     autoShotDamage *= 2;
