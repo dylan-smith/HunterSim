@@ -7,26 +7,11 @@
 
         public override void ProcessEvent(SimulationState state)
         {
-            var bossDefense = state.Config.BossSettings.Defense;
-            var rangedWeaponSkill = WeaponSkillCalculator.Calculate(state.Config.Gear.Ranged.WeaponType, state);
-            double missChance;
             double autoShotDamage;
             DamageType damageType;
 
-            if (bossDefense - rangedWeaponSkill > 10)
-            {
-                missChance = 0.07 + ((bossDefense - rangedWeaponSkill - 10) * 0.004);
-            }
-            else
-            {
-                missChance = 0.05 + ((bossDefense - rangedWeaponSkill) * 0.001);
-            }
-
-            // TODO: Apply hit modifier
-
-            // Assuming crit uses a 2-roll system as per this article:
-            // https://wowwiki-archive.fandom.com/wiki/Attack_table#Ranged_attacks
-            var critChance = 0.05;
+            var missChance = MissChanceCalculator.Calculate(state.Config.Gear.Ranged.WeaponType, state);
+            var critChance = CritChanceCalculator.Calculate(state);
 
             var missRoll = RandomGenerator.Roll();
 
@@ -37,6 +22,8 @@
             }
             else
             {
+                // Assuming crit uses a 2-roll system as per this article:
+                // https://wowwiki-archive.fandom.com/wiki/Attack_table#Ranged_attacks
                 var critRoll = RandomGenerator.Roll();
                 autoShotDamage = state.Config.Gear.Ranged.MaxDamage;
                 damageType = DamageType.Hit;

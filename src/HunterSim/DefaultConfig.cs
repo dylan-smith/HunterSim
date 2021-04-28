@@ -13,7 +13,8 @@
 
             base.PlayerSettings.Race = Race.NightElf;
 
-            base.BossSettings.Defense = 315;
+            base.BossSettings.Level = 63;
+            base.PlayerSettings.Level = 60;
         }
     }
 }
