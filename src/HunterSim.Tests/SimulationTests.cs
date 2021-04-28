@@ -16,7 +16,7 @@ namespace HunterSim.Tests
 
             var dps = sim.Run();
 
-            Assert.AreEqual(1679.4, dps, 0.0001);
+            Assert.AreEqual(2052.6, dps, 0.0001);
         }
 
         // TODO: Mock out the rolls to always hit, always miss, etc
