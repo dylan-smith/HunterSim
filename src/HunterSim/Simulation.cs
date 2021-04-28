@@ -23,7 +23,7 @@ namespace HunterSim
             {
                 var nextEvent = GetNextEvent();
 
-                if (nextEvent.Timestamp <= _config.FightLength)
+                if (nextEvent.Timestamp <= _config.SimulationSettings.FightLength)
                 {
                     currentTime = nextEvent.Timestamp;
                     ProcessEvent(nextEvent);

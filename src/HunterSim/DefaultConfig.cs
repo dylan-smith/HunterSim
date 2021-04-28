@@ -4,7 +4,8 @@
     {
         public DefaultConfig()
         {
-            base.FightLength = 60.0;
+            base.SimulationSettings = new SimulationSettings();
+            base.SimulationSettings.FightLength = 60.0;
         }
     }
 }
