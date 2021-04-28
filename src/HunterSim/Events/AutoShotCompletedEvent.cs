@@ -7,11 +7,10 @@
 
         public override void ProcessEvent(SimulationState state)
         {
-            var autoShotDamage = 0.0;
-
             var bossDefense = state.Config.BossSettings.Defense;
             var rangedWeaponSkill = state.Config.PlayerSettings.WeaponSkill[state.Config.Gear.Ranged.WeaponType];
             double missChance;
+            double autoShotDamage;
 
             if (bossDefense - rangedWeaponSkill > 10)
             {
