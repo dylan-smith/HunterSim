@@ -26,7 +26,7 @@ namespace HunterSim
                 if (nextEvent.Timestamp <= _config.FightLength)
                 {
                     currentTime = nextEvent.Timestamp;
-                    ProcessEvent(currentTime, nextEvent);
+                    ProcessEvent(nextEvent);
                 }
                 else
                 {
@@ -37,14 +37,14 @@ namespace HunterSim
             return _damageEvents.Sum(x => x.Damage);
         }
 
-        private void ProcessEvent(double currentTime, EventInfo nextEvent)
+        private void ProcessEvent(EventInfo nextEvent)
         {
             _events.Remove(nextEvent);
             nextEvent.ProcessEvent(_damageEvents);
 
             if (!AutoShot.OnCooldown)
             {
-                AutoShot.Use(currentTime, _events);
+                AutoShot.Use(nextEvent.Timestamp, _events);
             }
         }
 
