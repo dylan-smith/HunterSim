@@ -11,7 +11,7 @@
             var rangedWeaponSkill = state.Config.PlayerSettings.WeaponSkill[state.Config.Gear.Ranged.WeaponType];
             double missChance;
             double autoShotDamage;
-            DamageTypes damageType;
+            DamageType damageType;
 
             if (bossDefense - rangedWeaponSkill > 10)
             {
@@ -22,6 +22,8 @@
                 missChance = 0.05 + ((bossDefense - rangedWeaponSkill) * 0.001);
             }
 
+            // TODO: Apply hit modifier
+
             // Assuming crit uses a 2-roll system as per this article:
             // https://wowwiki-archive.fandom.com/wiki/Attack_table#Ranged_attacks
             var critChance = 0.05;
@@ -31,18 +33,18 @@
             if (missRoll <= missChance)
             {
                 autoShotDamage = 0.0;
-                damageType = DamageTypes.Miss;
+                damageType = DamageType.Miss;
             }
             else
             {
                 var critRoll = RandomGenerator.Roll();
                 autoShotDamage = state.Config.Gear.Ranged.MaxDamage;
-                damageType = DamageTypes.Hit;
+                damageType = DamageType.Hit;
 
                 if (critRoll <= critChance)
                 {
                     autoShotDamage *= 2;
-                    damageType = DamageTypes.Crit;
+                    damageType = DamageType.Crit;
                 }
             }
 

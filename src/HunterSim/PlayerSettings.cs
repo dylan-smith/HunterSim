@@ -5,11 +5,11 @@ namespace HunterSim
 {
     public class PlayerSettings
     {
-        public IDictionary<WeaponTypes, int> WeaponSkill = new Dictionary<WeaponTypes, int>();
+        public IDictionary<WeaponType, int> WeaponSkill = new Dictionary<WeaponType, int>();
 
         public PlayerSettings()
         {
-            var weaponTypes = (WeaponTypes[])Enum.GetValues(typeof(WeaponTypes));
+            var weaponTypes = (WeaponType[])Enum.GetValues(typeof(WeaponType));
             
             foreach (var weaponType in weaponTypes)
             {

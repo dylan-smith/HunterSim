@@ -1,6 +1,6 @@
 ﻿namespace HunterSim
 {
-    public enum WeaponTypes
+    public enum WeaponType
     {
         Bow,
         Crossbow,

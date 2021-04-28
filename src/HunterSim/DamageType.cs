@@ -1,6 +1,6 @@
 ﻿namespace HunterSim
 {
-    public enum DamageTypes
+    public enum DamageType
     {
         Miss,
         Crit,
