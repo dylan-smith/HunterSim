@@ -15,9 +15,10 @@ namespace HunterSim
 
         public double Run()
         {
-            _events = new List<EventInfo>();
-
-            _events.Add(new EventInfo(0.0));
+            _events = new List<EventInfo>
+            {
+                new EventInfo(0.0)
+            };
 
             var currentTime = 0.0;
 
