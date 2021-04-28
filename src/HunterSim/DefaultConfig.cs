@@ -7,9 +7,12 @@
             base.SimulationSettings.FightLength = 60.0;
 
             base.Gear.Ranged = new GearItem();
-            base.Gear.Ranged.MaxDamage = 93.3;
+            base.Gear.Ranged.MaxDamage = 78.3;
             base.Gear.Ranged.Speed = 2.8;
             base.Gear.Ranged.WeaponType = WeaponType.Gun;
+
+            base.Gear.Ammo = new GearItem();
+            base.Gear.Ammo.MaxDamage = 15.0;
 
             base.PlayerSettings.Race = Race.NightElf;
 

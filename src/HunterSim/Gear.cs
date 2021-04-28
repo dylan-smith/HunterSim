@@ -21,6 +21,7 @@ namespace HunterSim
         public GearItem Trinket1 { get; set; }
         public GearItem Trinket2 { get; set; }
         public GearItem Ranged { get; set; }
+        public GearItem Ammo { get; set; }
 
         public IEnumerable<GearItem> GetAllGear()
         {

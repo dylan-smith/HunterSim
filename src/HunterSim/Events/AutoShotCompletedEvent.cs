@@ -25,7 +25,7 @@
                 // Assuming crit uses a 2-roll system as per this article:
                 // https://wowwiki-archive.fandom.com/wiki/Attack_table#Ranged_attacks
                 var critRoll = RandomGenerator.Roll();
-                autoShotDamage = state.Config.Gear.Ranged.MaxDamage;
+                autoShotDamage = state.Config.Gear.Ranged.MaxDamage + state.Config.Gear.Ammo.MaxDamage;
                 damageType = DamageType.Hit;
 
                 if (critRoll <= critChance)
