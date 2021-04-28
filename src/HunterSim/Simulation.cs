@@ -12,7 +12,7 @@ namespace HunterSim
             _state.Config = config;
         }
 
-        public double Run()
+        public SimulationState Run()
         {
             _state.Events.Add(new StartFightEvent(_state.CurrentTime));
 
@@ -31,7 +31,7 @@ namespace HunterSim
                 }
             }
 
-            return _state.DamageEvents.Sum(x => x.Damage);
+            return _state;
         }
 
         private void ProcessEvent(EventInfo nextEvent)

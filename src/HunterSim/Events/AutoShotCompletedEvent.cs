@@ -46,7 +46,7 @@
                 }
             }
 
-            state.DamageEvents.Add(new DamageEvent(base.Timestamp, autoShotDamage, damageType, missChance, critChance, 100 - critChance));
+            state.DamageEvents.Add(new DamageEvent(base.Timestamp, autoShotDamage, damageType, missChance, critChance, 1.0 - critChance));
             AutoShot.OnCooldown = false;
         }
     }
