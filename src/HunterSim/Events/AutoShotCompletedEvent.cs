@@ -1,7 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-
-namespace HunterSim
+﻿namespace HunterSim
 {
     public class AutoShotCompletedEvent : EventInfo
     {
@@ -12,17 +9,17 @@ namespace HunterSim
         {
             var autoShotDamage = 0.0;
 
-            var bossDefense = 315;
-            var playerWeaponSkill = 300;
+            var bossDefense = state.Config.BossSettings.Defense;
+            var rangedWeaponSkill = state.Config.PlayerSettings.WeaponSkill[state.Config.Gear.Ranged.WeaponType];
             double missChance;
 
-            if (bossDefense - playerWeaponSkill > 10)
+            if (bossDefense - rangedWeaponSkill > 10)
             {
-                missChance = 7 + ((bossDefense - playerWeaponSkill - 10) * 0.4);
+                missChance = 7 + ((bossDefense - rangedWeaponSkill - 10) * 0.4);
             }
             else
             {
-                missChance = 5 + ((bossDefense - playerWeaponSkill) * 0.1);
+                missChance = 5 + ((bossDefense - rangedWeaponSkill) * 0.1);
             }
 
             missChance /= 100;

@@ -9,6 +9,9 @@
             base.Gear.Ranged = new GearItem();
             base.Gear.Ranged.MaxDamage = 93.3;
             base.Gear.Ranged.Speed = 2.8;
+            base.Gear.Ranged.WeaponType = WeaponTypes.Gun;
+
+            base.BossSettings.Defense = 315;
         }
     }
 }

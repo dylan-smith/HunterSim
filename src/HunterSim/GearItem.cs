@@ -14,7 +14,6 @@
         public double Spirit { get; set; }
         public double AttackPower { get; set; }
         public double Hit { get; set; }
-
-
+        public WeaponTypes WeaponType { get; set; }
     }
 }
