@@ -4,8 +4,6 @@ namespace HunterSim
 {
     public class AutoShotCompletedEvent : EventInfo
     {
-        private readonly double _autoShotDamage = 93.3;
-
         public AutoShotCompletedEvent(double timestamp) : base(timestamp)
         { }
 
@@ -13,7 +11,7 @@ namespace HunterSim
         {
             var autoShotDamage = state.Config.Gear.Ranged.MaxDamage;
 
-            state.DamageEvents.Add(new DamageEvent(base.Timestamp, _autoShotDamage));
+            state.DamageEvents.Add(new DamageEvent(base.Timestamp, autoShotDamage));
             AutoShot.OnCooldown = false;
         }
     }
