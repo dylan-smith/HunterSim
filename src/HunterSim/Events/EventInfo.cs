@@ -13,6 +13,6 @@ namespace HunterSim
             Timestamp = timestamp;
         }
 
-        public abstract void ProcessEvent(IList<DamageEvent> damageEvents);
+        public abstract void ProcessEvent(SimulationState state);
     }
 }

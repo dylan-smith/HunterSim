@@ -5,9 +5,8 @@ namespace HunterSim
 {
     public class Simulation
     {
-        private SimulationConfig _config;
-        private List<EventInfo> _events = new List<EventInfo>();
-        private List<DamageEvent> _damageEvents = new List<DamageEvent>();
+        private readonly SimulationConfig _config;
+        private readonly SimulationState _state = new SimulationState();
 
         public Simulation(SimulationConfig config)
         {
@@ -16,41 +15,40 @@ namespace HunterSim
 
         public double Run()
         {
-            var currentTime = 0.0;
-            _events.Add(new StartFightEvent(currentTime));
+            _state.Events.Add(new StartFightEvent(_state.CurrentTime));
 
-            while (_events.Any())
+            while (_state.Events.Any())
             {
                 var nextEvent = GetNextEvent();
 
                 if (nextEvent.Timestamp <= _config.SimulationSettings.FightLength)
                 {
-                    currentTime = nextEvent.Timestamp;
+                    _state.CurrentTime = nextEvent.Timestamp;
                     ProcessEvent(nextEvent);
                 }
                 else
                 {
-                    _events.Clear();
+                    _state.Events.Clear();
                 }
             }
 
-            return _damageEvents.Sum(x => x.Damage);
+            return _state.DamageEvents.Sum(x => x.Damage);
         }
 
         private void ProcessEvent(EventInfo nextEvent)
         {
-            _events.Remove(nextEvent);
-            nextEvent.ProcessEvent(_damageEvents);
+            _state.Events.Remove(nextEvent);
+            nextEvent.ProcessEvent(_state);
 
             if (!AutoShot.OnCooldown)
             {
-                AutoShot.Use(nextEvent.Timestamp, _events);
+                AutoShot.Use(_state);
             }
         }
 
         private EventInfo GetNextEvent()
         {
-            return _events.OrderBy(e => e.Timestamp).First();
+            return _state.Events.OrderBy(e => e.Timestamp).First();
         }
     }
 }

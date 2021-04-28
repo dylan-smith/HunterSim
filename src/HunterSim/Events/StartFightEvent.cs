@@ -7,7 +7,7 @@ namespace HunterSim
         public StartFightEvent(double timestamp) : base(timestamp)
         { }
 
-        public override void ProcessEvent(IList<DamageEvent> damageEvents)
+        public override void ProcessEvent(SimulationState state)
         {
         }
     }

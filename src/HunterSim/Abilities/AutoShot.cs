@@ -7,9 +7,9 @@ namespace HunterSim
         public static bool OnCooldown { get; set; } = false;
         private static readonly double _autoShotCooldown = 2.8;
 
-        public static void Use(double timestamp, IList<EventInfo> events)
+        public static void Use(SimulationState state)
         {
-            events.Add(new AutoShotCompletedEvent(timestamp + _autoShotCooldown));
+            state.Events.Add(new AutoShotCompletedEvent(state.CurrentTime + _autoShotCooldown));
             OnCooldown = true;
         }
     }

@@ -9,9 +9,9 @@ namespace HunterSim
         public AutoShotCompletedEvent(double timestamp) : base(timestamp)
         { }
 
-        public override void ProcessEvent(IList<DamageEvent> damageEvents)
+        public override void ProcessEvent(SimulationState state)
         {
-            damageEvents.Add(new DamageEvent(base.Timestamp, _autoShotDamage));
+            state.DamageEvents.Add(new DamageEvent(base.Timestamp, _autoShotDamage));
             AutoShot.OnCooldown = false;
         }
     }
