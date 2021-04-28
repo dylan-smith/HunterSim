@@ -11,6 +11,7 @@
             var rangedWeaponSkill = state.Config.PlayerSettings.WeaponSkill[state.Config.Gear.Ranged.WeaponType];
             double missChance;
             double autoShotDamage;
+            DamageTypes damageType;
 
             if (bossDefense - rangedWeaponSkill > 10)
             {
@@ -30,20 +31,22 @@
             if (missRoll <= missChance)
             {
                 autoShotDamage = 0.0;
+                damageType = DamageTypes.Miss;
             }
             else
             {
                 var critRoll = RandomGenerator.Roll();
                 autoShotDamage = state.Config.Gear.Ranged.MaxDamage;
+                damageType = DamageTypes.Hit;
 
                 if (critRoll <= critChance)
                 {
                     autoShotDamage *= 2;
+                    damageType = DamageTypes.Crit;
                 }
             }
 
-            // TODO: Add extra metadata to DamageEvent
-            state.DamageEvents.Add(new DamageEvent(base.Timestamp, autoShotDamage));
+            state.DamageEvents.Add(new DamageEvent(base.Timestamp, autoShotDamage, damageType, missChance, critChance, 100 - critChance));
             AutoShot.OnCooldown = false;
         }
     }
