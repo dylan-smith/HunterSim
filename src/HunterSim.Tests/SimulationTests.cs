@@ -23,61 +23,61 @@ namespace HunterSim.Tests
                 System.Diagnostics.Debug.WriteLine(e);
             }
 
-            Assert.AreEqual(10270, totalDamage, 0.9);
+            Assert.AreEqual(12744, totalDamage, 0.9);
             Assert.AreEqual(18, result.DamageEvents.Count);
 
-            var expected = new DamageEvent(3.2, 868.46, DamageType.Crit, 0, 0.277, 0.723);
+            var expected = new DamageEvent(3.2, 1077.68, DamageType.Crit, 0, 0.292, 0.708);
             AssertDamageEvent(expected, result.DamageEvents[0]);
 
-            expected = new DamageEvent(6.4, 421.58, DamageType.Hit, 0, 0.277, 0.723);
+            expected = new DamageEvent(6.4, 523.15, DamageType.Hit, 0, 0.292, 0.708);
             AssertDamageEvent(expected, result.DamageEvents[1]);
 
-            expected = new DamageEvent(9.6, 421.58, DamageType.Hit, 0, 0.277, 0.723);
+            expected = new DamageEvent(9.6, 523.15, DamageType.Hit, 0, 0.292, 0.708);
             AssertDamageEvent(expected, result.DamageEvents[2]);
 
-            expected = new DamageEvent(12.8, 868.46, DamageType.Crit, 0, 0.277, 0.723);
+            expected = new DamageEvent(12.8, 1077.68, DamageType.Crit, 0, 0.292, 0.708);
             AssertDamageEvent(expected, result.DamageEvents[3]);
 
-            expected = new DamageEvent(16.0, 421.58, DamageType.Hit, 0, 0.277, 0.723);
+            expected = new DamageEvent(16.0, 523.15, DamageType.Hit, 0, 0.292, 0.708);
             AssertDamageEvent(expected, result.DamageEvents[4]);
 
-            expected = new DamageEvent(19.2, 421.58, DamageType.Hit, 0, 0.277, 0.723);
+            expected = new DamageEvent(19.2, 523.15, DamageType.Hit, 0, 0.292, 0.708);
             AssertDamageEvent(expected, result.DamageEvents[5]);
 
-            expected = new DamageEvent(22.4, 421.58, DamageType.Hit, 0, 0.277, 0.723);
+            expected = new DamageEvent(22.4, 523.15, DamageType.Hit, 0, 0.292, 0.708);
             AssertDamageEvent(expected, result.DamageEvents[6]);
 
-            expected = new DamageEvent(25.6, 868.46, DamageType.Crit, 0, 0.277, 0.723);
+            expected = new DamageEvent(25.6, 1077.68, DamageType.Crit, 0, 0.292, 0.708);
             AssertDamageEvent(expected, result.DamageEvents[7]);
 
-            expected = new DamageEvent(28.8, 421.58, DamageType.Hit, 0, 0.277, 0.723);
+            expected = new DamageEvent(28.8, 523.15, DamageType.Hit, 0, 0.292, 0.708);
             AssertDamageEvent(expected, result.DamageEvents[8]);
 
-            expected = new DamageEvent(32.0, 868.46, DamageType.Crit, 0, 0.277, 0.723);
+            expected = new DamageEvent(32.0, 1077.68, DamageType.Crit, 0, 0.292, 0.708);
             AssertDamageEvent(expected, result.DamageEvents[9]);
 
-            expected = new DamageEvent(35.2, 421.58, DamageType.Hit, 0, 0.277, 0.723);
+            expected = new DamageEvent(35.2, 523.15, DamageType.Hit, 0, 0.292, 0.708);
             AssertDamageEvent(expected, result.DamageEvents[10]);
 
-            expected = new DamageEvent(38.4, 421.58, DamageType.Hit, 0, 0.277, 0.723);
+            expected = new DamageEvent(38.4, 523.15, DamageType.Hit, 0, 0.292, 0.708);
             AssertDamageEvent(expected, result.DamageEvents[11]);
 
-            expected = new DamageEvent(41.6, 421.58, DamageType.Hit, 0, 0.277, 0.723);
+            expected = new DamageEvent(41.6, 523.15, DamageType.Hit, 0, 0.292, 0.708);
             AssertDamageEvent(expected, result.DamageEvents[12]);
 
-            expected = new DamageEvent(44.8, 868.46, DamageType.Crit, 0, 0.277, 0.723);
+            expected = new DamageEvent(44.8, 1077.68, DamageType.Crit, 0, 0.292, 0.708);
             AssertDamageEvent(expected, result.DamageEvents[13]);
 
-            expected = new DamageEvent(48.0, 421.58, DamageType.Hit, 0, 0.277, 0.723);
+            expected = new DamageEvent(48.0, 523.15, DamageType.Hit, 0, 0.292, 0.708);
             AssertDamageEvent(expected, result.DamageEvents[14]);
 
-            expected = new DamageEvent(51.2, 421.58, DamageType.Hit, 0, 0.277, 0.723);
+            expected = new DamageEvent(51.2, 523.15, DamageType.Hit, 0, 0.292, 0.708);
             AssertDamageEvent(expected, result.DamageEvents[15]);
 
-            expected = new DamageEvent(54.4, 421.58, DamageType.Hit, 0, 0.277, 0.723);
+            expected = new DamageEvent(54.4, 523.15, DamageType.Hit, 0, 0.292, 0.708);
             AssertDamageEvent(expected, result.DamageEvents[16]);
 
-            expected = new DamageEvent(57.6, 868.46, DamageType.Crit, 0, 0.277, 0.723);
+            expected = new DamageEvent(57.6, 1077.68, DamageType.Crit, 0, 0.292, 0.708);
             AssertDamageEvent(expected, result.DamageEvents[17]);
         }
 

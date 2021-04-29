@@ -6,7 +6,8 @@ namespace HunterSim
     {
         public static double Calculate(SimulationState state)
         {
-            var rangedAP = state.Config.Gear.GetAllGear().Sum(x => x.AttackPower + (x.Agility * 2));
+            var rangedAP = state.Config.Gear.GetAllGear().Sum(x => x.AttackPower);
+            rangedAP += AgilityCalculator.Calculate(state) * 2;
             
             if (state.Config.Talents.ContainsKey(Talent.SurvivalInstincts))
             {

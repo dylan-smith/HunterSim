@@ -8,8 +8,7 @@ namespace HunterSim
         {
             var critChance = 0.05;
             critChance += state.Config.Gear.GetAllGear().Sum(x => x.Crit);
-            critChance += state.Config.Gear.GetAllGear().Sum(x => x.Agility / 5300); // 53 Agi = 1% crit
-            critChance += state.Config.PlayerSettings.Agility / 5300;
+            critChance += AgilityCalculator.Calculate(state) / 5300; // 53 Agi = 0.01 crit
 
             if (state.Config.Talents.ContainsKey(Talent.KillerInstinct))
             {
