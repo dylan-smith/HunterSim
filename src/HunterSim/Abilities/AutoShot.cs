@@ -8,6 +8,7 @@ namespace HunterSim
 
         public static void Use(SimulationState state)
         {
+            // TODO: Haste
             var autoShotSpeed = state.Config.Gear.Ranged.Speed;
             state.Events.Add(new AutoShotCompletedEvent(state.CurrentTime + autoShotSpeed));
             OnCooldown = true;

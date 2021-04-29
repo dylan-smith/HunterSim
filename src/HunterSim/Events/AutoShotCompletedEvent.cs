@@ -30,8 +30,9 @@ namespace HunterSim
                 
                 autoShotDamage = (state.Config.Gear.Ranged.MinDamage + state.Config.Gear.Ranged.MaxDamage) / 2;
                 autoShotDamage += bonusDamage;
+                // TODO: Does this need to be modified by haste?
                 autoShotDamage += bonusDPS * state.Config.Gear.Ranged.Speed;
-                autoShotDamage += rangedAP / 14.0;
+                autoShotDamage += (rangedAP / 14.0) * state.Config.Gear.Ranged.Speed; // 14 RAP = 1 DPS
                 
                 damageType = DamageType.Hit;
 
