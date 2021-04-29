@@ -21,6 +21,11 @@ namespace HunterSim
             }
 
             missChance -= state.Config.Gear.GetAllGear().Sum(x => x.Hit);
+            
+            if (state.Config.Talents.ContainsKey(Talent.Surefooted))
+            {
+                missChance -= state.Config.Talents[Talent.Surefooted] * 0.01;
+            }
 
             missChance = Math.Max(missChance, 0.0);
 
