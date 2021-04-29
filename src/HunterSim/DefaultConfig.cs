@@ -30,6 +30,9 @@
 
             BossSettings.Level = 63;
             PlayerSettings.Level = 60;
+
+            // TODO: Buffs
+            // TODO: Talents
         }
     }
 }

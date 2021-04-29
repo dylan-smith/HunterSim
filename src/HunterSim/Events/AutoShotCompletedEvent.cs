@@ -24,6 +24,8 @@ namespace HunterSim
             }
             else
             {
+                // TODO: Agility
+                // TODO: Strength/AP
                 var bonusDamage = state.Config.Gear.GetAllGear().Sum(x => x.BonusDamage);
                 var bonusDPS = state.Config.Gear.GetAllGear().Sum(x => x.BonusDPS);
                 
