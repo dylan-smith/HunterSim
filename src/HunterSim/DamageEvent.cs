@@ -21,7 +21,7 @@
 
         public override string ToString()
         {
-            return $"[{Timestamp.ToString("F1")}] {DamageType} for {Damage.ToString("F2")} [Miss: {MissChance.ToString("F2")}, Crit: {CritChance.ToString("F2")}, Hit: {HitChance.ToString("F2")}]";
+            return $"[{Timestamp.ToString("F1")}] {DamageType} for {Damage.ToString("F2")} [Miss: {MissChance.ToString("F3")}, Crit: {CritChance.ToString("F3")}, Hit: {HitChance.ToString("F3")}]";
         }
     }
 }
