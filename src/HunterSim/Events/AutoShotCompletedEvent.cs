@@ -25,13 +25,15 @@ namespace HunterSim
             else
             {
                 // TODO: Agility
-                // TODO: Strength/AP
+                // TODO: Base Stats
                 var bonusDamage = state.Config.Gear.GetAllGear().Sum(x => x.BonusDamage);
                 var bonusDPS = state.Config.Gear.GetAllGear().Sum(x => x.BonusDPS);
+                var rangedAP = RangedAttackPowerCalculator.Calculate(state);
                 
                 autoShotDamage = (state.Config.Gear.Ranged.MinDamage + state.Config.Gear.Ranged.MaxDamage) / 2;
                 autoShotDamage += bonusDamage;
                 autoShotDamage += bonusDPS * state.Config.Gear.Ranged.Speed;
+                autoShotDamage += rangedAP / 14.0;
                 
                 damageType = DamageType.Hit;
 
@@ -47,7 +49,11 @@ namespace HunterSim
                 }
             }
 
-            state.DamageEvents.Add(new DamageEvent(base.Timestamp, autoShotDamage, damageType, missChance, critChance, 1.0 - critChance));
+            // TODO: If we do these calcs earlier we can do just one roll instead of 2
+            critChance *= (1 - missChance);
+            var hitChance = 1 - missChance - critChance;
+
+            state.DamageEvents.Add(new DamageEvent(base.Timestamp, autoShotDamage, damageType, missChance, critChance, hitChance));
             AutoShot.OnCooldown = false;
         }
     }

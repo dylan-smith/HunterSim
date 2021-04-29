@@ -18,5 +18,10 @@
             CritChance = critChance;
             HitChance = hitChance;
         }
+
+        public override string ToString()
+        {
+            return $"[{Timestamp.ToString("F1")}] {DamageType} for {Damage.ToString("F2")} [Miss: {MissChance.ToString("F2")}, Crit: {CritChance.ToString("F2")}, Hit: {HitChance.ToString("F2")}]";
+        }
     }
 }
