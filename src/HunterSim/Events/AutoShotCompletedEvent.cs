@@ -24,15 +24,12 @@ namespace HunterSim
             }
             else
             {
-                var bonusDamage = state.Config.Gear.GetAllGear().Sum(x => x.BonusDamage);
-                var bonusDPS = state.Config.Gear.GetAllGear().Sum(x => x.BonusDPS);
                 var rangedAP = RangedAttackPowerCalculator.Calculate(state);
                 
                 autoShotDamage = (state.Config.Gear.Ranged.MinDamage + state.Config.Gear.Ranged.MaxDamage) / 2;
-                autoShotDamage += bonusDamage;
-                // TODO: Does this need to be modified by haste?
-                autoShotDamage += bonusDPS * state.Config.Gear.Ranged.Speed;
-                autoShotDamage += (rangedAP / 14.0) * state.Config.Gear.Ranged.Speed; // 14 RAP = 1 DPS
+                autoShotDamage += BonusDamageCalculator.Calculate(state.Config.Gear.Ranged, state);
+                autoShotDamage += (rangedAP / 14) * state.Config.Gear.Ranged.Speed; // 14 RAP = 1 DPS
+                autoShotDamage *= DamageMultiplierCalculator.Calculate(state);
                 
                 damageType = DamageType.Hit;
 
@@ -44,6 +41,7 @@ namespace HunterSim
                 {
                     // TODO: is bonus damage (scope) and bonus dps (ammo) doubled when you crit? This assumes yes
                     autoShotDamage *= 2;
+                    autoShotDamage *= CritDamageMultiplierCalculator.Calculate(state);
                     damageType = DamageType.Crit;
                 }
             }

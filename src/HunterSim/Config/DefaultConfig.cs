@@ -26,9 +26,10 @@
             Gear.Ammo = GearItemFactory.LoadAmmo("Thorium Headed Arrow");
             Gear.Quiver = GearItemFactory.LoadQuiver("Ancient Sinew Wrapped Lamina");
 
-            PlayerSettings.Race = Race.NightElf;
-
             BossSettings.Level = 63;
+            BossSettings.BossType = BossType.Humanoid;
+
+            PlayerSettings.Race = Race.NightElf;
             PlayerSettings.Level = 60;
 
             // TODO: Buffs
