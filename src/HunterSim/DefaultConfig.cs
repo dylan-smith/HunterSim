@@ -4,20 +4,32 @@
     {
         public DefaultConfig()
         {
-            base.SimulationSettings.FightLength = 60.0;
+            SimulationSettings.FightLength = 60.0;
 
-            base.Gear.Ranged = new GearItem();
-            base.Gear.Ranged.MaxDamage = 78.3;
-            base.Gear.Ranged.Speed = 2.8;
-            base.Gear.Ranged.WeaponType = WeaponType.Gun;
+            Gear.Head = GearItemFactory.LoadHead("Cryptstalker Headpiece");
+            Gear.Neck = GearItemFactory.LoadNeck("Prestor's Talisman of Connivery");
+            Gear.Shoulder = GearItemFactory.LoadShoulder("Cryptstalker Spaulders");
+            Gear.Back = GearItemFactory.LoadBack("Cloak of the Fallen God");
+            Gear.Chest = GearItemFactory.LoadChest("Cryptstalker Tunic");
+            Gear.Wrist = GearItemFactory.LoadWrist("Cryptstalker Wristguards");
+            Gear.MainHand = GearItemFactory.LoadMainHand("Hatchet of Sundered Bone");
+            Gear.OffHand = GearItemFactory.LoadOffHand("Kingsfall");
+            Gear.Hands = GearItemFactory.LoadHands("General's Chain Gloves");
+            Gear.Waist = GearItemFactory.LoadWaist("Cryptstalker Girdle");
+            Gear.Legs = GearItemFactory.LoadLegs("Cryptstalker Legguards");
+            Gear.Feet = GearItemFactory.LoadFeet("Cryptstalker Boots");
+            Gear.Finger1 = GearItemFactory.LoadFinger("Ring of the Cryptstalker");
+            Gear.Finger2 = GearItemFactory.LoadFinger("Band of Reanimation");
+            Gear.Trinket1 = GearItemFactory.LoadTrinket("Slayer's Crest");
+            Gear.Trinket2 = GearItemFactory.LoadTrinket("Drake Fang Talisman");
+            Gear.Ranged = GearItemFactory.LoadRanged("Nerubian Slavemaker");
+            Gear.Ammo = GearItemFactory.LoadAmmo("Thorium Headed Arrow");
+            Gear.Quiver = GearItemFactory.LoadQuiver("Ancient Sinew Wrapped Lamina");
 
-            base.Gear.Ammo = new GearItem();
-            base.Gear.Ammo.MaxDamage = 15.0;
+            PlayerSettings.Race = Race.NightElf;
 
-            base.PlayerSettings.Race = Race.NightElf;
-
-            base.BossSettings.Level = 63;
-            base.PlayerSettings.Level = 60;
+            BossSettings.Level = 63;
+            PlayerSettings.Level = 60;
         }
     }
 }

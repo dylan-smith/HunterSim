@@ -6,10 +6,10 @@ namespace HunterSim
     {
         public GearItem Head { get; set; }
         public GearItem Neck { get; set; }
-        public GearItem Shoulders { get; set; }
+        public GearItem Shoulder { get; set; }
         public GearItem Back { get; set; }
         public GearItem Chest { get; set; }
-        public GearItem Wrists { get; set; }
+        public GearItem Wrist { get; set; }
         public GearItem MainHand { get; set; }
         public GearItem OffHand { get; set; }
         public GearItem Hands { get; set; }
@@ -22,15 +22,16 @@ namespace HunterSim
         public GearItem Trinket2 { get; set; }
         public GearItem Ranged { get; set; }
         public GearItem Ammo { get; set; }
+        public GearItem Quiver { get; set; }
 
         public IEnumerable<GearItem> GetAllGear()
         {
             if (Head != null) yield return Head;
             if (Neck != null) yield return Neck;
-            if (Shoulders != null) yield return Shoulders;
+            if (Shoulder != null) yield return Shoulder;
             if (Back != null) yield return Back;
             if (Chest != null) yield return Chest;
-            if (Wrists != null) yield return Wrists;
+            if (Wrist != null) yield return Wrist;
             if (MainHand != null) yield return MainHand;
             if (OffHand != null) yield return OffHand;
             if (Hands != null) yield return Hands;
@@ -42,6 +43,7 @@ namespace HunterSim
             if (Trinket1 != null) yield return Trinket1;
             if (Trinket2 != null) yield return Trinket2;
             if (Ranged != null) yield return Ranged;
+            if (Quiver != null) yield return Quiver;
         }
     }
 }
