@@ -9,6 +9,6 @@ namespace HunterSim
         public readonly PlayerSettings PlayerSettings = new PlayerSettings();
         public readonly BossSettings BossSettings = new BossSettings();
         public readonly SimulationSettings SimulationSettings = new SimulationSettings();
-        public readonly IList<Talent> Talents = new List<Talent>();
+        public readonly IDictionary<Talent, int> Talents = new Dictionary<Talent, int>();
     }
 }
