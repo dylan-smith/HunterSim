@@ -24,7 +24,6 @@ namespace HunterSim
             }
             else
             {
-                // TODO: Base Stats
                 var bonusDamage = state.Config.Gear.GetAllGear().Sum(x => x.BonusDamage);
                 var bonusDPS = state.Config.Gear.GetAllGear().Sum(x => x.BonusDPS);
                 var rangedAP = RangedAttackPowerCalculator.Calculate(state);
