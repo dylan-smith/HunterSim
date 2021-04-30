@@ -16,15 +16,23 @@ namespace HunterSim
         public double Intellect { get; set; }
         public double Spirit { get; set; }
         public double AttackPower { get; set; }
+        public double RangedAttackPower { get; set; }
         public double Crit { get; set; }
         public double Hit { get; set; }
         public double Dodge { get; set; }
         public double Haste { get; set; }
         public double MP5 { get; set; }
         public double Defense { get; set; }
+        public double FireResistance { get; set; }
+        public double FrostResistance { get; set; }
+        public double ArcaneResistance { get; set; }
+        public double NatureResistance { get; set; }
+        public double ShadowResistance { get; set; }
+        public double ThreatDecrease { get; set; }
         public double BonusDPS { get; set; } // Ammo
         public double BonusDamage { get; set; } // E.g. Might of Cenarius
         public WeaponType WeaponType { get; set; }
         public IDictionary<WeaponType, int> WeaponSkill = new Dictionary<WeaponType, int>();
+        public GearItem Enchant { get; set; }
     }
 }

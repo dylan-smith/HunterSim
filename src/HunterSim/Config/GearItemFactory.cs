@@ -12,8 +12,11 @@ namespace HunterSim
         private static IEnumerable<GearItem> _allGear;
         private static IEnumerable<GearItem> _equippableMainHand;
         private static IEnumerable<GearItem> _equippableOffHand;
+        private static IEnumerable<GearItem> _allEnchants;
+        private static IEnumerable<GearItem> _twoHandEnchants;
 
         private static IDictionary<GearType, IEnumerable<GearItem>> _gearByType;
+        private static IDictionary<GearType, IEnumerable<GearItem>> _enchantsByType;
 
         public static IEnumerable<GearItem> AllGear
         {
@@ -51,6 +54,32 @@ namespace HunterSim
                 }
 
                 return _equippableOffHand;
+            }
+        }
+
+        public static IEnumerable<GearItem> AllEnchants
+        {
+            get
+            {
+                if (_allEnchants == null)
+                {
+                    LoadAllGear();
+                }
+
+                return _allEnchants;
+            }
+        }
+
+        public static IEnumerable<GearItem> AllTwoHandEnchants
+        {
+            get
+            {
+                if (_twoHandEnchants == null)
+                {
+                    LoadAllGear();
+                }
+
+                return _twoHandEnchants;
             }
         }
 
@@ -190,6 +219,86 @@ namespace HunterSim
             }
         }
 
+        public static IEnumerable<GearItem> AllBackEnchants
+        {
+            get
+            {
+                return GetEnchantsByType(GearType.Back);
+            }
+        }
+
+        public static IEnumerable<GearItem> AllChestEnchants
+        {
+            get
+            {
+                return GetEnchantsByType(GearType.Chest);
+            }
+        }
+
+        public static IEnumerable<GearItem> AllFeetEnchants
+        {
+            get
+            {
+                return GetEnchantsByType(GearType.Feet);
+            }
+        }
+
+        public static IEnumerable<GearItem> AllHandEnchants
+        {
+            get
+            {
+                return GetEnchantsByType(GearType.Hands);
+            }
+        }
+
+        public static IEnumerable<GearItem> AllHeadEnchants
+        {
+            get
+            {
+                return GetEnchantsByType(GearType.Head);
+            }
+        }
+
+        public static IEnumerable<GearItem> AllLegEnchants
+        {
+            get
+            {
+                return GetEnchantsByType(GearType.Legs);
+            }
+        }
+
+        public static IEnumerable<GearItem> AllOneHandEnchants
+        {
+            get
+            {
+                return GetEnchantsByType(GearType.OneHand);
+            }
+        }
+
+        public static IEnumerable<GearItem> AllRangedEnchants
+        {
+            get
+            {
+                return GetEnchantsByType(GearType.Ranged);
+            }
+        }
+
+        public static IEnumerable<GearItem> AllShoulderEnchants
+        {
+            get
+            {
+                return GetEnchantsByType(GearType.Shoulder);
+            }
+        }
+
+        public static IEnumerable<GearItem> AllWristEnchants
+        {
+            get
+            {
+                return GetEnchantsByType(GearType.Wrist);
+            }
+        }
+
         public static GearItem Load(string itemName)
         {
             return AllGear.Single(x => x.Name == itemName);
@@ -280,6 +389,66 @@ namespace HunterSim
             return AllWrist.Single(x => x.Name == itemName);
         }
 
+        public static GearItem LoadEnchant(string enchantName)
+        {
+            return AllEnchants.Single(x => x.Name == enchantName);
+        }
+
+        public static GearItem LoadBackEnchant(string enchantName)
+        {
+            return AllBackEnchants.Single(x => x.Name == enchantName);
+        }
+
+        public static GearItem LoadChestEnchant(string enchantName)
+        {
+            return AllChestEnchants.Single(x => x.Name == enchantName);
+        }
+
+        public static GearItem LoadFeetEnchant(string enchantName)
+        {
+            return AllFeetEnchants.Single(x => x.Name == enchantName);
+        }
+
+        public static GearItem LoadHandEnchant(string enchantName)
+        {
+            return AllHandEnchants.Single(x => x.Name == enchantName);
+        }
+
+        public static GearItem LoadHeadEnchant(string enchantName)
+        {
+            return AllHeadEnchants.Single(x => x.Name == enchantName);
+        }
+
+        public static GearItem LoadLegEnchant(string enchantName)
+        {
+            return AllLegEnchants.Single(x => x.Name == enchantName);
+        }
+
+        public static GearItem LoadOneHandEnchant(string enchantName)
+        {
+            return AllOneHandEnchants.Single(x => x.Name == enchantName);
+        }
+
+        public static GearItem LoadTwoHandEnchant(string enchantName)
+        {
+            return AllTwoHandEnchants.Single(x => x.Name == enchantName);
+        }
+
+        public static GearItem LoadRangedEnchant(string enchantName)
+        {
+            return AllRangedEnchants.Single(x => x.Name == enchantName);
+        }
+
+        public static GearItem LoadShoulderEnchant(string enchantName)
+        {
+            return AllShoulderEnchants.Single(x => x.Name == enchantName);
+        }
+
+        public static GearItem LoadWristEnchant(string enchantName)
+        {
+            return AllWristEnchants.Single(x => x.Name == enchantName);
+        }
+
         private static IEnumerable<GearItem> GetGearByType(GearType gearType)
         {
             if (_allGear == null)
@@ -290,35 +459,59 @@ namespace HunterSim
             return _gearByType[gearType];
         }
 
+        private static IEnumerable<GearItem> GetEnchantsByType(GearType enchantType)
+        {
+            if (_allEnchants == null)
+            {
+                LoadAllGear();
+            }
+
+            return _enchantsByType[enchantType];
+        }
+
         private static void LoadAllGear()
         {
             var assemblyPath = Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location);
             var gearPath = Path.Join(assemblyPath, "Gear");
+            var enchantsPath = Path.Join(assemblyPath, "Enchants");
 
             _gearByType = new Dictionary<GearType, IEnumerable<GearItem>>();
             _allGear = new List<GearItem>();
+            _enchantsByType = new Dictionary<GearType, IEnumerable<GearItem>>();
+            _allEnchants = new List<GearItem>();
 
             foreach (var gearType in Enum.GetValues(typeof(GearType)).Cast<GearType>())
             {
                 var gear = LoadAllFromDir(gearPath, gearType);
                 _gearByType.Add(gearType, gear);
                 _allGear = _allGear.Union(gear);
+
+                var enchants = LoadAllFromDir(enchantsPath, gearType);
+                _enchantsByType.Add(gearType, enchants);
+                _allEnchants = _allEnchants.Union(enchants);
             }
 
             _allGear = _allGear.ToList();
+            _allEnchants = _allEnchants.ToList();
 
             _equippableMainHand = _gearByType[GearType.MainHand].Union(_gearByType[GearType.OneHand]).ToList();
             _equippableOffHand = _gearByType[GearType.OffHand].Union(_gearByType[GearType.OneHand]).ToList();
+
+            _twoHandEnchants = _enchantsByType[GearType.TwoHand].Union(_enchantsByType[GearType.OneHand]).ToList();
         }
 
         private static IEnumerable<GearItem> LoadAllFromDir(string gearPath, GearType gearType)
         {
             var path = Path.Join(gearPath, gearType.ToString());
-            var files = Directory.GetFiles(path, "*.yml");
 
-            foreach (var file in files)
+            if (Directory.Exists(path))
             {
-                yield return LoadGearItemFromFile(file, gearType);
+                var files = Directory.GetFiles(path, "*.yml");
+
+                foreach (var file in files)
+                {
+                    yield return LoadGearItemFromFile(file, gearType);
+                }
             }
         }
 
@@ -400,6 +593,12 @@ namespace HunterSim
                 dict.Remove("ap");
             }
 
+            if (dict.ContainsKey("rap"))
+            {
+                result.RangedAttackPower = double.Parse(dict["rap"]);
+                dict.Remove("rap");
+            }
+
             if (dict.ContainsKey("crit"))
             {
                 result.Crit = double.Parse(dict["crit"]) / 100;
@@ -434,6 +633,42 @@ namespace HunterSim
             {
                 result.Defense = double.Parse(dict["defense"]);
                 dict.Remove("defense");
+            }
+
+            if (dict.ContainsKey("fireresist"))
+            {
+                result.FireResistance = double.Parse(dict["fireresist"]);
+                dict.Remove("fireresist");
+            }
+
+            if (dict.ContainsKey("frostresist"))
+            {
+                result.FrostResistance = double.Parse(dict["frostresist"]);
+                dict.Remove("frostresist");
+            }
+
+            if (dict.ContainsKey("arcaneresist"))
+            {
+                result.ArcaneResistance = double.Parse(dict["arcaneresist"]);
+                dict.Remove("arcaneresist");
+            }
+
+            if (dict.ContainsKey("natureresist"))
+            {
+                result.NatureResistance = double.Parse(dict["natureresist"]);
+                dict.Remove("natureresist");
+            }
+
+            if (dict.ContainsKey("shadowresist"))
+            {
+                result.ShadowResistance = double.Parse(dict["shadowresist"]);
+                dict.Remove("shadowresist");
+            }
+
+            if (dict.ContainsKey("threat"))
+            {
+                result.ThreatDecrease = (0 - double.Parse(dict["threat"])) / 100;
+                dict.Remove("threat");
             }
 
             if (dict.ContainsKey("bonusdps"))
@@ -618,7 +853,5 @@ namespace HunterSim
 
             return result;
         }
-
-
     }
 }
