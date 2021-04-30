@@ -2,6 +2,7 @@
 {
     public enum Aura
     {
-        ExposeWeakness
+        ExposeWeakness,
+        AutoShotOnCooldown
     }
 }
