@@ -50,7 +50,7 @@ namespace HunterSim
             critChance *= (1 - missChance);
             var hitChance = 1 - missChance - critChance;
 
-            state.DamageEvents.Add(new DamageEvent(base.Timestamp, autoShotDamage, damageType, missChance, critChance, hitChance));
+            state.Events.Add(new DamageEvent(Timestamp, autoShotDamage, damageType, missChance, critChance, hitChance));
             AutoShot.OnCooldown = false;
         }
     }

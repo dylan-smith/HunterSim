@@ -14,6 +14,11 @@ namespace HunterSim
                 rangedAP *= 1 + (state.Config.Talents[Talent.SurvivalInstincts] * 0.02);
             }
 
+            if (state.Auras.Contains(Aura.ExposeWeakness))
+            {
+                rangedAP += AgilityCalculator.Calculate(state) * 0.25;
+            }
+
             return rangedAP;
         }
     }

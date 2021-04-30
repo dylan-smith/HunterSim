@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-
-namespace HunterSim
+﻿namespace HunterSim
 {
     public abstract class EventInfo
     {
@@ -14,5 +10,10 @@ namespace HunterSim
         }
 
         public abstract void ProcessEvent(SimulationState state);
+
+        public override string ToString()
+        {
+            return $"[{Timestamp.ToString("F1")}] {this.GetType().Name}";
+        }
     }
 }

@@ -1,22 +1,30 @@
 ﻿namespace HunterSim
 {
-    public class DamageEvent
+    public class DamageEvent : EventInfo
     {
-        public readonly double Timestamp;
         public readonly double Damage;
         public readonly DamageType DamageType;
         public readonly double MissChance;
         public readonly double CritChance;
         public readonly double HitChance;
 
-        public DamageEvent(double timestamp, double damage, DamageType damageType, double missChance, double critChance, double hitChance)
+        public DamageEvent(double timestamp, double damage, DamageType damageType, double missChance, double critChance, double hitChance) : base(timestamp)
         {
-            Timestamp = timestamp;
             Damage = damage;
             DamageType = damageType;
             MissChance = missChance;
             CritChance = critChance;
             HitChance = hitChance;
+        }
+
+        public override void ProcessEvent(SimulationState state)
+        {
+            // TODO: Might make sense to have separate HitEvent, MissEvent, CritEvents
+            if (DamageType == DamageType.Crit)
+            {
+                // TODO: This should only trigger off RANGED crits
+                state.Events.Add(new ExposeWeaknessAppliedEvent(Timestamp));
+            }
         }
 
         public override string ToString()
