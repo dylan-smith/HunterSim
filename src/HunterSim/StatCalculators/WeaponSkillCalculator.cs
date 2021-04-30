@@ -13,6 +13,15 @@
                     skill += gear.WeaponSkill[weaponType];
                 }
             }
+            
+            // This is probably useless code, no enchants give weapon skill AFAIK
+            foreach (var enchant in state.Config.Gear.GetAllEnchants())
+            {
+                if (enchant.WeaponSkill.ContainsKey(weaponType))
+                {
+                    skill += enchant.WeaponSkill[weaponType];
+                }
+            }
 
             if (weaponType == WeaponType.Gun && state.Config.PlayerSettings.Race == Race.Dwarf)
             {

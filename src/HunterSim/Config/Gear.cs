@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using System.Linq;
 
 namespace HunterSim
 {
@@ -44,6 +45,11 @@ namespace HunterSim
             if (Trinket2 != null) yield return Trinket2;
             if (Ranged != null) yield return Ranged;
             if (Quiver != null) yield return Quiver;
+        }
+
+        public IEnumerable<GearItem> GetAllEnchants()
+        {
+            return GetAllGear().Where(x => x.Enchant != null).Select(x => x.Enchant).ToList();
         }
     }
 }

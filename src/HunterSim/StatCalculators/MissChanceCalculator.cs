@@ -21,7 +21,8 @@ namespace HunterSim
             }
 
             missChance -= state.Config.Gear.GetAllGear().Sum(x => x.Hit);
-            
+            missChance -= state.Config.Gear.GetAllEnchants().Sum(x => x.Hit);
+
             if (state.Config.Talents.ContainsKey(Talent.Surefooted))
             {
                 missChance -= state.Config.Talents[Talent.Surefooted] * 0.01;

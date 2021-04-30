@@ -8,6 +8,7 @@ namespace HunterSim
         {
             var agility = state.Config.PlayerSettings.Agility;
             agility += state.Config.Gear.GetAllGear().Sum(x => x.Agility);
+            agility += state.Config.Gear.GetAllEnchants().Sum(x => x.Agility);
             
             if (state.Config.Talents.ContainsKey(Talent.LightningReflexes))
             {
