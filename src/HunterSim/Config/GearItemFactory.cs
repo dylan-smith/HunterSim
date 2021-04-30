@@ -3,7 +3,6 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Reflection;
-using System.Text;
 using YamlDotNet.Serialization;
 
 namespace HunterSim
@@ -14,24 +13,7 @@ namespace HunterSim
         private static IEnumerable<GearItem> _equippableMainHand;
         private static IEnumerable<GearItem> _equippableOffHand;
 
-        private static IEnumerable<GearItem> _ammo;
-        private static IEnumerable<GearItem> _back;
-        private static IEnumerable<GearItem> _chest;
-        private static IEnumerable<GearItem> _feet;
-        private static IEnumerable<GearItem> _finger;
-        private static IEnumerable<GearItem> _hands;
-        private static IEnumerable<GearItem> _head;
-        private static IEnumerable<GearItem> _legs;
-        private static IEnumerable<GearItem> _mainHand;
-        private static IEnumerable<GearItem> _neck;
-        private static IEnumerable<GearItem> _offHand;
-        private static IEnumerable<GearItem> _oneHand;
-        private static IEnumerable<GearItem> _quiver;
-        private static IEnumerable<GearItem> _ranged;
-        private static IEnumerable<GearItem> _shoulder;
-        private static IEnumerable<GearItem> _trinket;
-        private static IEnumerable<GearItem> _waist;
-        private static IEnumerable<GearItem> _wrist;
+        private static IDictionary<GearType, IEnumerable<GearItem>> _gearByType;
 
         public static IEnumerable<GearItem> AllGear
         {
@@ -46,111 +28,7 @@ namespace HunterSim
             }
         }
 
-        public static IEnumerable<GearItem> AllAmmo
-        {
-            get
-            {
-                if (_ammo == null)
-                {
-                    LoadAllGear();
-                }
-
-                return _ammo;
-            }
-        }
-
-        public static IEnumerable<GearItem> AllBack
-        {
-            get
-            {
-                if (_back == null)
-                {
-                    LoadAllGear();
-                }
-
-                return _back;
-            }
-        }
-
-        public static IEnumerable<GearItem> AllChest
-        {
-            get
-            {
-                if (_chest == null)
-                {
-                    LoadAllGear();
-                }
-
-                return _chest;
-            }
-        }
-
-        public static IEnumerable<GearItem> AllFeet
-        {
-            get
-            {
-                if (_feet == null)
-                {
-                    LoadAllGear();
-                }
-
-                return _feet;
-            }
-        }
-
-        public static IEnumerable<GearItem> AllFinger
-        {
-            get
-            {
-                if (_finger == null)
-                {
-                    LoadAllGear();
-                }
-
-                return _finger;
-            }
-        }
-
-        public static IEnumerable<GearItem> AllHands
-        {
-            get
-            {
-                if (_hands == null)
-                {
-                    LoadAllGear();
-                }
-
-                return _hands;
-            }
-        }
-
-        public static IEnumerable<GearItem> AllHead
-        {
-            get
-            {
-                if (_head == null)
-                {
-                    LoadAllGear();
-                }
-
-                return _head;
-            }
-        }
-
-        public static IEnumerable<GearItem> AllLegs
-        {
-            get
-            {
-                if (_legs == null)
-                {
-                    LoadAllGear();
-                }
-
-                return _legs;
-            }
-        }
-
-        public static IEnumerable<GearItem> AllMainHand
+        public static IEnumerable<GearItem> AllEquippableMainHands
         {
             get
             {
@@ -163,20 +41,7 @@ namespace HunterSim
             }
         }
 
-        public static IEnumerable<GearItem> AllNeck
-        {
-            get
-            {
-                if (_neck == null)
-                {
-                    LoadAllGear();
-                }
-
-                return _neck;
-            }
-        }
-
-        public static IEnumerable<GearItem> AllOffHand
+        public static IEnumerable<GearItem> AllEquippableOffHands
         {
             get
             {
@@ -189,16 +54,99 @@ namespace HunterSim
             }
         }
 
+        public static IEnumerable<GearItem> AllAmmo
+        {
+            get
+            {
+                return GetGearByType(GearType.Ammo);
+            }
+        }
+
+        public static IEnumerable<GearItem> AllBack
+        {
+            get
+            {
+                return GetGearByType(GearType.Back);
+            }
+        }
+
+        public static IEnumerable<GearItem> AllChest
+        {
+            get
+            {
+                return GetGearByType(GearType.Chest);
+            }
+        }
+
+        public static IEnumerable<GearItem> AllFeet
+        {
+            get
+            {
+                return GetGearByType(GearType.Feet);
+            }
+        }
+
+        public static IEnumerable<GearItem> AllFinger
+        {
+            get
+            {
+                return GetGearByType(GearType.Finger);
+            }
+        }
+
+        public static IEnumerable<GearItem> AllHands
+        {
+            get
+            {
+                return GetGearByType(GearType.Hands);
+            }
+        }
+
+        public static IEnumerable<GearItem> AllHead
+        {
+            get
+            {
+                return GetGearByType(GearType.Head);
+            }
+        }
+
+        public static IEnumerable<GearItem> AllLegs
+        {
+            get
+            {
+                return GetGearByType(GearType.Legs);
+            }
+        }
+
+        public static IEnumerable<GearItem> AllMainHand
+        {
+            get
+            {
+                return GetGearByType(GearType.MainHand);
+            }
+        }
+
+        public static IEnumerable<GearItem> AllNeck
+        {
+            get
+            {
+                return GetGearByType(GearType.Neck);
+            }
+        }
+
+        public static IEnumerable<GearItem> AllOffHand
+        {
+            get
+            {
+                return GetGearByType(GearType.OffHand);
+            }
+        }
+
         public static IEnumerable<GearItem> AllQuiver
         {
             get
             {
-                if (_quiver == null)
-                {
-                    LoadAllGear();
-                }
-
-                return _quiver;
+                return GetGearByType(GearType.Quiver);
             }
         }
 
@@ -206,12 +154,7 @@ namespace HunterSim
         {
             get
             {
-                if (_ranged == null)
-                {
-                    LoadAllGear();
-                }
-
-                return _ranged;
+                return GetGearByType(GearType.Ranged);
             }
         }
 
@@ -219,12 +162,7 @@ namespace HunterSim
         {
             get
             {
-                if (_shoulder == null)
-                {
-                    LoadAllGear();
-                }
-
-                return _shoulder;
+                return GetGearByType(GearType.Shoulder);
             }
         }
 
@@ -232,12 +170,7 @@ namespace HunterSim
         {
             get
             {
-                if (_trinket == null)
-                {
-                    LoadAllGear();
-                }
-
-                return _trinket;
+                return GetGearByType(GearType.Trinket);
             }
         }
 
@@ -245,12 +178,7 @@ namespace HunterSim
         {
             get
             {
-                if (_waist == null)
-                {
-                    LoadAllGear();
-                }
-
-                return _waist;
+                return GetGearByType(GearType.Waist);
             }
         }
 
@@ -258,12 +186,7 @@ namespace HunterSim
         {
             get
             {
-                if (_wrist == null)
-                {
-                    LoadAllGear();
-                }
-
-                return _wrist;
+                return GetGearByType(GearType.Wrist);
             }
         }
 
@@ -314,7 +237,7 @@ namespace HunterSim
 
         public static GearItem LoadMainHand(string itemName)
         {
-            return AllMainHand.Single(x => x.Name == itemName);
+            return AllEquippableMainHands.Single(x => x.Name == itemName);
         }
 
         public static GearItem LoadNeck(string itemName)
@@ -324,7 +247,7 @@ namespace HunterSim
 
         public static GearItem LoadOffHand(string itemName)
         {
-            return AllOffHand.Single(x => x.Name == itemName);
+            return AllEquippableOffHands.Single(x => x.Name == itemName);
         }
 
         public static GearItem LoadQuiver(string itemName)
@@ -357,70 +280,56 @@ namespace HunterSim
             return AllWrist.Single(x => x.Name == itemName);
         }
 
+        private static IEnumerable<GearItem> GetGearByType(GearType gearType)
+        {
+            if (_allGear == null)
+            {
+                LoadAllGear();
+            }
+
+            return _gearByType[gearType];
+        }
+
         private static void LoadAllGear()
         {
             var assemblyPath = Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location);
             var gearPath = Path.Join(assemblyPath, "Gear");
 
-            _ammo = LoadAllFromDir(Path.Join(gearPath, "Ammo"));
-            _back = LoadAllFromDir(Path.Join(gearPath, "Back"));
-            _chest = LoadAllFromDir(Path.Join(gearPath, "Chest"));
-            _feet = LoadAllFromDir(Path.Join(gearPath, "Feet"));
-            _finger = LoadAllFromDir(Path.Join(gearPath, "Finger"));
-            _hands = LoadAllFromDir(Path.Join(gearPath, "Hands"));
-            _head = LoadAllFromDir(Path.Join(gearPath, "Head"));
-            _legs = LoadAllFromDir(Path.Join(gearPath, "Legs"));
-            _mainHand = LoadAllFromDir(Path.Join(gearPath, "Main Hand"));
-            _neck = LoadAllFromDir(Path.Join(gearPath, "Neck"));
-            _offHand = LoadAllFromDir(Path.Join(gearPath, "Off Hand"));
-            _oneHand = LoadAllFromDir(Path.Join(gearPath, "One Hand"));
-            _quiver = LoadAllFromDir(Path.Join(gearPath, "Quiver"));
-            _ranged = LoadAllFromDir(Path.Join(gearPath, "Ranged"));
-            _shoulder = LoadAllFromDir(Path.Join(gearPath, "Shoulder"));
-            _trinket = LoadAllFromDir(Path.Join(gearPath, "Trinket"));
-            _waist = LoadAllFromDir(Path.Join(gearPath, "Waist"));
-            _wrist = LoadAllFromDir(Path.Join(gearPath, "Wrist"));
+            _gearByType = new Dictionary<GearType, IEnumerable<GearItem>>();
+            _allGear = new List<GearItem>();
 
-            _allGear = _ammo.Union(_back)
-                            .Union(_chest)
-                            .Union(_feet)
-                            .Union(_finger)
-                            .Union(_hands)
-                            .Union(_head)
-                            .Union(_legs)
-                            .Union(_mainHand)
-                            .Union(_neck)
-                            .Union(_offHand)
-                            .Union(_oneHand)
-                            .Union(_quiver)
-                            .Union(_ranged)
-                            .Union(_shoulder)
-                            .Union(_trinket)
-                            .Union(_waist)
-                            .Union(_wrist)
-                            .ToList();
+            foreach (var gearType in Enum.GetValues(typeof(GearType)).Cast<GearType>())
+            {
+                var gear = LoadAllFromDir(gearPath, gearType);
+                _gearByType.Add(gearType, gear);
+                _allGear = _allGear.Union(gear);
+            }
 
-            _equippableMainHand = _mainHand.Union(_oneHand).ToList();
-            _equippableOffHand = _offHand.Union(_oneHand).ToList();
+            _allGear = _allGear.ToList();
+
+            _equippableMainHand = _gearByType[GearType.MainHand].Union(_gearByType[GearType.OneHand]).ToList();
+            _equippableOffHand = _gearByType[GearType.OffHand].Union(_gearByType[GearType.OneHand]).ToList();
         }
 
-        private static IEnumerable<GearItem> LoadAllFromDir(string path)
+        private static IEnumerable<GearItem> LoadAllFromDir(string gearPath, GearType gearType)
         {
+            var path = Path.Join(gearPath, gearType.ToString());
             var files = Directory.GetFiles(path, "*.yml");
 
             foreach (var file in files)
             {
-                yield return LoadGearItemFromFile(file);
+                yield return LoadGearItemFromFile(file, gearType);
             }
         }
 
-        private static GearItem LoadGearItemFromFile(string path)
+        private static GearItem LoadGearItemFromFile(string path, GearType gearType)
         {
             var deserializer = new Deserializer();
             var fileContents = File.ReadAllText(path);
             var dict = deserializer.Deserialize<Dictionary<string, string>>(fileContents);
 
             var result = new GearItem();
+            result.GearType = gearType;
 
             // TODO: Do a bunch of validation here
             // TODO: Can probably use WithAttributeOverride feature in yaml deserializer to make this code simpler
