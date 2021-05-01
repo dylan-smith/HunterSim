@@ -44,6 +44,8 @@
             PlayerSettings.Level = 60;
 
             // TODO: Buffs
+            Buffs.Add(Buff.RallyingCryOfTheDragonSlayer);
+
             // TODO: Consumes
 
             // Survival Talents
