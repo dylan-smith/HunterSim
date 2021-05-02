@@ -13,6 +13,11 @@ namespace HunterSim
             bonusDamage += state.Config.Gear.GetAllEnchants().Sum(x => x.BonusDamage);
             bonusDamage += state.Config.Gear.GetAllEnchants().Sum(x => x.BonusDPS) * weapon.Speed;
 
+            if (state.Config.Buffs.Contains(Buff.BoglingRoot))
+            {
+                bonusDamage += 1;
+            }
+
             return bonusDamage;
         }
     }

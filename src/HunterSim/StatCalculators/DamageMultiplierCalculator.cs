@@ -5,12 +5,18 @@
         public static double Calculate(SimulationState state)
         {
             var bossType = state.Config.BossSettings.BossType;
+            var damageMultiplier = 1.0;
+
+            if (state.Config.Buffs.Contains(Buff.SaygesDarkFortuneOfDamage))
+            {
+                damageMultiplier *= 1.1;
+            }
 
             if (state.Config.Talents.ContainsKey(Talent.MonsterSlaying))
             {
                 if (bossType == BossType.Beast || bossType == BossType.Giant || bossType == BossType.Dragonkin)
                 {
-                    return 1 + (0.01 * state.Config.Talents[Talent.MonsterSlaying]);
+                    damageMultiplier *= 1 + (0.01 * state.Config.Talents[Talent.MonsterSlaying]);
                 }
             }
 
@@ -18,11 +24,11 @@
             {
                 if (bossType == BossType.Humanoid)
                 {
-                    return 1 + (0.01 * state.Config.Talents[Talent.HumanoidSlaying]);
+                    damageMultiplier *= 1 + (0.01 * state.Config.Talents[Talent.HumanoidSlaying]);
                 }
             }
 
-            return 1.0;
+            return damageMultiplier;
         }
     }
 }

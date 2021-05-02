@@ -12,6 +12,26 @@ namespace HunterSim
             rangedAP += state.Config.Gear.GetAllEnchants().Sum(x => x.RangedAttackPower);
             rangedAP += AgilityCalculator.Calculate(state) * 2;
             
+            if (state.Config.Buffs.Contains(Buff.RallyingCryOfTheDragonSlayer))
+            {
+                rangedAP += 140;
+            }
+
+            if (state.Config.Buffs.Contains(Buff.FengusFerocity))
+            {
+                rangedAP += 200;
+            }
+
+            if (state.Config.Buffs.Contains(Buff.TrueshotAura))
+            {
+                rangedAP += 50;
+            }
+
+            if (state.Config.Buffs.Contains(Buff.JujuMight))
+            {
+                rangedAP += 40;
+            }
+
             if (state.Config.Talents.ContainsKey(Talent.SurvivalInstincts))
             {
                 rangedAP *= 1 + (state.Config.Talents[Talent.SurvivalInstincts] * 0.02);
