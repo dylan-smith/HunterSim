@@ -51,7 +51,6 @@ namespace HunterSim
             var hitChance = 1 - missChance - critChance;
 
             state.Events.Add(new DamageEvent(Timestamp, autoShotDamage, damageType, missChance, critChance, hitChance));
-            state.Auras.Remove(Aura.AutoShotOnCooldown);
         }
     }
 }
