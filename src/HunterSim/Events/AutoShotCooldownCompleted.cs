@@ -1,8 +1,8 @@
 ﻿namespace HunterSim
 {
-    public class AutoShotCoodownCompleted : EventInfo
+    public class AutoShotCooldownCompleted : EventInfo
     {
-        public AutoShotCoodownCompleted(double timestamp) : base(timestamp)
+        public AutoShotCooldownCompleted(double timestamp) : base(timestamp)
         { }
 
         public override void ProcessEvent(SimulationState state)
