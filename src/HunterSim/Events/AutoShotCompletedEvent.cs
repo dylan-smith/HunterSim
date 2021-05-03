@@ -13,7 +13,7 @@ namespace HunterSim
             DamageType damageType;
 
             var missChance = MissChanceCalculator.Calculate(state.Config.Gear.Ranged.WeaponType, state);
-            var critChance = CritChanceCalculator.Calculate(state);
+            var critChance = RangedCritCalculator.Calculate(state);
 
             var missRoll = RandomGenerator.Roll();
 

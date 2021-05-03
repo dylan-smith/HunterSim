@@ -4,6 +4,7 @@ namespace HunterSim
 {
     public class GearItem
     {
+        // TODO: Gems
         public GearType GearType { get; set; }
         public string Name { get; set; }
         public double MinDamage { get; set; } // Weapons
