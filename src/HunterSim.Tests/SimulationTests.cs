@@ -8,7 +8,7 @@ namespace HunterSim.Tests
     public class SimulationTests
     {
         [TestMethod]
-        public void ZeroDps()
+        public void AutoShotRotation()
         {
             var config = new DefaultConfig();
             var sim = new Simulation(config);
