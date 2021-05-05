@@ -18,6 +18,8 @@ namespace HunterSim
         private static IDictionary<GearType, IEnumerable<GearItem>> _gearByType;
         private static IDictionary<GearType, IEnumerable<GearItem>> _enchantsByType;
 
+        // TODO: Gear Set bonuses
+
         public static IEnumerable<GearItem> AllGear
         {
             get
