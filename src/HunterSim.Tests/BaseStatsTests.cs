@@ -99,5 +99,32 @@ namespace HunterSim.Tests
 
             var agility = AgilityCalculator.Calculate(state);
         }
+
+        [TestMethod]
+        public void OtherStats()
+        {
+            var state = new SimulationState();
+            state.Config.PlayerSettings.Race = Race.Troll;
+
+            var rangedWeapon = GearItemFactory.LoadRanged("Nerubian Slavemaker");
+            var meleeWeapon = GearItemFactory.LoadMainHand("Hatchet of Sundered Bone");
+
+            Assert.AreEqual(0.0, BonusDamageCalculator.Calculate(rangedWeapon, state));
+            Assert.AreEqual(0.0, BonusDamageCalculator.Calculate(meleeWeapon, state));
+            Assert.AreEqual(1.0, CritDamageMultiplierCalculator.Calculate(state));
+            Assert.AreEqual(1.0, DamageMultiplierCalculator.Calculate(state));
+            Assert.AreEqual(0.0, HasteCalculator.Calculate(state));
+            // Base Strength + Base Agility
+            Assert.AreEqual(56 + 127, MeleeAttackPowerCalculator.Calculate(state));
+            Assert.AreEqual(0.05, MeleeCritCalculator.Calculate(state));
+            Assert.AreEqual(0.0, MissChanceCalculator.Calculate(WeaponType.Gun, state));
+            Assert.AreEqual(0.0, MissChanceCalculator.Calculate(WeaponType.OneHandedSword, state));
+            Assert.AreEqual(1.0, MovementSpeedCalculator.Calculate(state));
+            // Base Agility * 2
+            Assert.AreEqual(254, RangedAttackPowerCalculator.Calculate(state));
+            Assert.AreEqual(0.05, RangedCritCalculator.Calculate(state));
+            Assert.AreEqual(0.0, SpellCritCalculator.Calculate(state));
+            Assert.AreEqual(300, WeaponSkillCalculator.Calculate(WeaponType.Gun, state));
+        }
     }
 }
