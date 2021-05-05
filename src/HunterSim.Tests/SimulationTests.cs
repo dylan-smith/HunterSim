@@ -93,7 +93,5 @@ namespace HunterSim.Tests
             Assert.AreEqual(expected.HitChance, actual.HitChance, 0.001);
             Assert.AreEqual(expected.MissChance, actual.MissChance, 0.001);
         }
-
-        // TODO: Mock out the rolls to always hit, always miss, etc
     }
 }
