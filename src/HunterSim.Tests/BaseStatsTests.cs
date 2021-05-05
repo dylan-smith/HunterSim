@@ -1,4 +1,5 @@
 ﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
+using System;
 
 namespace HunterSim.Tests
 {
@@ -88,6 +89,15 @@ namespace HunterSim.Tests
             Assert.AreEqual(1467 + 910, HealthCalculator.Calculate(state));
             // Base Mana + Intellect * 15
             Assert.AreEqual(1720 + 915, ManaCalculator.Calculate(state));
+        }
+
+        [ExpectedException(typeof(Exception))]
+        [TestMethod]
+        public void NoRace()
+        {
+            var state = new SimulationState();
+
+            var agility = AgilityCalculator.Calculate(state);
         }
     }
 }
