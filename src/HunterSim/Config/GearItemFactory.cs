@@ -601,6 +601,12 @@ namespace HunterSim
                 dict.Remove("rap");
             }
 
+            if (dict.ContainsKey("map"))
+            {
+                result.MeleeAttackPower = double.Parse(dict["map"]);
+                dict.Remove("map");
+            }
+
             if (dict.ContainsKey("crit"))
             {
                 result.Crit = double.Parse(dict["crit"]) / 100;

@@ -18,6 +18,7 @@ namespace HunterSim
         public double Spirit { get; set; }
         public double AttackPower { get; set; }
         public double RangedAttackPower { get; set; }
+        public double MeleeAttackPower { get; set; }
         public double Crit { get; set; }
         public double Hit { get; set; }
         public double Dodge { get; set; }

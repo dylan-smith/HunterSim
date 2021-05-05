@@ -8,6 +8,11 @@ namespace HunterSim
         {
             var intellect = state.Config.PlayerSettings.Intellect;
 
+            if (state.Config.Buffs.Contains(Buff.SongflowerSerenade))
+            {
+                intellect += 15;
+            }
+
             return intellect;
         }
     }

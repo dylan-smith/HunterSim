@@ -8,6 +8,11 @@ namespace HunterSim
         {
             var stamina = state.Config.PlayerSettings.Stamina;
 
+            if (state.Config.Buffs.Contains(Buff.SongflowerSerenade))
+            {
+                stamina += 15;
+            }
+
             return stamina;
         }
     }

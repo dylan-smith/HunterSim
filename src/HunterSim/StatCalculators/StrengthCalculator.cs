@@ -8,6 +8,11 @@ namespace HunterSim
         {
             var strength = state.Config.PlayerSettings.Strength;
 
+            if (state.Config.Buffs.Contains(Buff.SongflowerSerenade))
+            {
+                strength += 15;
+            }
+
             return strength;
         }
     }
