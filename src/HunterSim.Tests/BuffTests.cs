@@ -12,7 +12,6 @@ namespace HunterSim.Tests
             state.Config.PlayerSettings.Race = Race.Dwarf;
             state.Config.Buffs.Add(Buff.RallyingCryOfTheDragonSlayer);
 
-            // TODO: Spell crit increased by 10%
             // 121 base agi * 2 + 140 buff
             Assert.AreEqual(242 + 140, RangedAttackPowerCalculator.Calculate(state));
             // 121 base agi * 1 + 57 base str + 140 buff
@@ -21,6 +20,8 @@ namespace HunterSim.Tests
             Assert.AreEqual(0.05 + 0.05, RangedCritCalculator.Calculate(state), 0.001);
             // 5% base crit + 5% buff
             Assert.AreEqual(0.05 + 0.05, MeleeCritCalculator.Calculate(state), 0.001);
+            // 0% base crit + 10% buff
+            Assert.AreEqual(0.1, SpellCritCalculator.Calculate(state), 0.01);
         }
 
         [TestMethod]
@@ -41,8 +42,6 @@ namespace HunterSim.Tests
             state.Config.PlayerSettings.Race = Race.Dwarf;
             state.Config.Buffs.Add(Buff.SongflowerSerenade);
 
-            // TODO: Spell Crit + 0.05
-
             // 121 base agi + 15 buff
             Assert.AreEqual(121 + 15, AgilityCalculator.Calculate(state), 0.001);
             // 57 base str + 15 buff
@@ -58,6 +57,8 @@ namespace HunterSim.Tests
             Assert.AreEqual(0.05 + 0.05 + 0.0028, RangedCritCalculator.Calculate(state), 0.0001);
             // 5% base crit + 5% buff + 15 buff agi
             Assert.AreEqual(0.05 + 0.05 + 0.0028, RangedCritCalculator.Calculate(state), 0.0001);
+            // 0% base crit + 5% buff
+            Assert.AreEqual(0.05, SpellCritCalculator.Calculate(state), 0.01);
         }
 
         [TestMethod]
