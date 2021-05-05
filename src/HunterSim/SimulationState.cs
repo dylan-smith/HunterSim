@@ -9,7 +9,7 @@ namespace HunterSim
         public readonly IList<EventInfo> ProcessedEvents = new List<EventInfo>();
         public double CurrentTime = 0.0;
         public readonly ISet<Aura> Auras = new HashSet<Aura>();
-        public SimulationConfig Config { get; set; }
+        public SimulationConfig Config { get; set; } = new SimulationConfig();
 
         public IEnumerable<DamageEvent> DamageEvents
         {
