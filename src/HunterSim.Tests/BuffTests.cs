@@ -267,7 +267,7 @@ namespace HunterSim.Tests
             state.Config.Buffs.Add(Buff.GraceOfAirTotem);
 
             // 121 base agi + 77 buff
-            Assert.AreEqual(121 + 77, AgilityCalculator.Calculate(state), 0.001);
+            Assert.AreEqual(121 + 77, AgilityCalculator.Calculate(state));
         }
 
         [TestMethod]
@@ -277,8 +277,19 @@ namespace HunterSim.Tests
             state.Config.PlayerSettings.Race = Race.Dwarf;
             state.Config.Buffs.Add(Buff.StrengthOfEarthTotem);
 
-            // 57 base agi + 77 buff
-            Assert.AreEqual(57 + 77, StrengthCalculator.Calculate(state), 0.001);
+            // 57 base str + 77 buff
+            Assert.AreEqual(57 + 77, StrengthCalculator.Calculate(state));
+        }
+
+        [TestMethod]
+        public void ROIDS()
+        {
+            var state = new SimulationState();
+            state.Config.PlayerSettings.Race = Race.Dwarf;
+            state.Config.Buffs.Add(Buff.ROIDS);
+
+            // 57 base str + 25 buff
+            Assert.AreEqual(57 + 25, StrengthCalculator.Calculate(state));
         }
     }
 }

@@ -23,6 +23,11 @@ namespace HunterSim
                 strength += 77;
             }
 
+            if (state.Config.Buffs.Contains(Buff.ROIDS))
+            {
+                strength += 25;
+            }
+
             if (state.Config.Buffs.Contains(Buff.SongflowerSerenade))
             {
                 strength += 15;
