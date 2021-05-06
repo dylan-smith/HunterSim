@@ -493,5 +493,15 @@ namespace HunterSim.Tests
 
             Assert.AreEqual(0.07, MissChanceCalculator.Calculate(WeaponType.Bow, state));
         }
+
+        [TestMethod]
+        public void EssenceOfTheRed()
+        {
+            var state = new SimulationState();
+            state.Config.PlayerSettings.Race = Race.Dwarf;
+            state.Config.Buffs.Add(Buff.EssenceOfTheRed);
+
+            Assert.AreEqual(2500, MP5Calculator.Calculate(state));
+        }
     }
 }

@@ -11,6 +11,11 @@
                 mp5 += 10;
             }
 
+            if (state.Config.Buffs.Contains(Buff.EssenceOfTheRed))
+            {
+                mp5 += 2500;
+            }
+
             return mp5;
         }
     }
