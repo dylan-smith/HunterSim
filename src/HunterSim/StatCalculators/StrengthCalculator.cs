@@ -38,7 +38,10 @@
                 }
             }
 
-            
+            if (state.Config.Buffs.Contains(Buff.SmokedDesertDumplings))
+            {
+                strength += 20;
+            }
 
             if (state.Config.Buffs.Contains(Buff.SongflowerSerenade))
             {

@@ -420,5 +420,16 @@ namespace HunterSim.Tests
             // 121 base agi * 2 + 40 buff
             Assert.AreEqual(242 + 40, RangedAttackPowerCalculator.Calculate(state));
         }
+
+        [TestMethod]
+        public void SmokedDesertDumplings()
+        {
+            var state = new SimulationState();
+            state.Config.PlayerSettings.Race = Race.Dwarf;
+            state.Config.Buffs.Add(Buff.SmokedDesertDumplings);
+
+            // 57 base str + 20 buff
+            Assert.AreEqual(57 + 20, StrengthCalculator.Calculate(state));
+        }
     }
 }
