@@ -291,5 +291,16 @@ namespace HunterSim.Tests
             // 57 base str + 25 buff
             Assert.AreEqual(57 + 25, StrengthCalculator.Calculate(state));
         }
+
+        [TestMethod]
+        public void GroundScorpokAssay()
+        {
+            var state = new SimulationState();
+            state.Config.PlayerSettings.Race = Race.Dwarf;
+            state.Config.Buffs.Add(Buff.GroundScorpokAssay);
+
+            // 121 base agi + 25 buff
+            Assert.AreEqual(121 + 25, AgilityCalculator.Calculate(state));
+        }
     }
 }
