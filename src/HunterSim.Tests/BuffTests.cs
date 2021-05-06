@@ -116,5 +116,15 @@ namespace HunterSim.Tests
 
             Assert.AreEqual(0.03, SpellCritCalculator.Calculate(state), 0.001);
         }
+
+        [TestMethod]
+        public void DarkFortuneOfDamage()
+        {
+            var state = new SimulationState();
+            state.Config.PlayerSettings.Race = Race.Dwarf;
+            state.Config.Buffs.Add(Buff.SaygesDarkFortuneOfDamage);
+
+            Assert.AreEqual(1.1, DamageMultiplierCalculator.Calculate(state), 0.001);
+        }
     }
 }
