@@ -201,5 +201,32 @@ namespace HunterSim.Tests
             // 5% base crit + 3% buff
             Assert.AreEqual(0.05 + 0.03, RangedCritCalculator.Calculate(state), 0.0001);
         }
+
+        [TestMethod]
+        public void MarkOfTheWild()
+        {
+            var state = new SimulationState();
+            state.Config.PlayerSettings.Race = Race.Dwarf;
+            state.Config.Buffs.Add(Buff.MarkOfTheWild);
+
+            Assert.AreEqual(285, ArmorCalculator.Calculate(state));
+            
+            // 121 base agi + 12 buff
+            Assert.AreEqual(121 + 12, AgilityCalculator.Calculate(state), 0.001);
+            // 57 base str + 12 buff
+            Assert.AreEqual(57 + 12, StrengthCalculator.Calculate(state), 0.001);
+            // 93 base sta + 12 buff
+            Assert.AreEqual(93 + 12, StaminaCalculator.Calculate(state), 0.001);
+            // 64 base int + 12 buff
+            Assert.AreEqual(64 + 12, IntellectCalculator.Calculate(state), 0.001);
+            // 69 base spi + 12 buff
+            Assert.AreEqual(69 + 12, SpiritCalculator.Calculate(state), 0.001);
+
+            Assert.AreEqual(20, ArcaneResistanceCalculator.Calculate(state));
+            Assert.AreEqual(20, FireResistanceCalculator.Calculate(state));
+            Assert.AreEqual(20, FrostResistanceCalculator.Calculate(state));
+            Assert.AreEqual(20, NatureResistanceCalculator.Calculate(state));
+            Assert.AreEqual(20, ShadowResistanceCalculator.Calculate(state));
+        }
     }
 }
