@@ -25,6 +25,8 @@
                 // TODO: This should only trigger off RANGED crits
                 state.Events.Add(new ExposeWeaknessAppliedEvent(Timestamp));
             }
+
+            // TODO: Windfury proc
         }
 
         public override string ToString()
