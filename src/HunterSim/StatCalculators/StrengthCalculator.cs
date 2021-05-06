@@ -1,6 +1,4 @@
-﻿using System;
-
-namespace HunterSim
+﻿namespace HunterSim
 {
     public static class StrengthCalculator
     {
@@ -32,6 +30,15 @@ namespace HunterSim
             {
                 strength += 30;
             }
+            else
+            {
+                if (state.Config.Buffs.Contains(Buff.ElixirOfGiants))
+                {
+                    strength += 25;
+                }
+            }
+
+            
 
             if (state.Config.Buffs.Contains(Buff.SongflowerSerenade))
             {

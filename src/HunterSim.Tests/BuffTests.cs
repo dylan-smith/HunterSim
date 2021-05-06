@@ -357,5 +357,28 @@ namespace HunterSim.Tests
             // 57 base str + 30 buff
             Assert.AreEqual(57 + 30, StrengthCalculator.Calculate(state));
         }
+
+        [TestMethod]
+        public void ElixirOfGiants()
+        {
+            var state = new SimulationState();
+            state.Config.PlayerSettings.Race = Race.Dwarf;
+            state.Config.Buffs.Add(Buff.ElixirOfGiants);
+
+            // 57 base str + 25 buff
+            Assert.AreEqual(57 + 25, StrengthCalculator.Calculate(state));
+        }
+
+        [TestMethod]
+        public void ElixirOfGiantsAndJujuPower()
+        {
+            var state = new SimulationState();
+            state.Config.PlayerSettings.Race = Race.Dwarf;
+            state.Config.Buffs.Add(Buff.ElixirOfGiants);
+            state.Config.Buffs.Add(Buff.JujuPower);
+
+            // 57 base str + 30 buff
+            Assert.AreEqual(57 + 30, StrengthCalculator.Calculate(state));
+        }
     }
 }
