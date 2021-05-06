@@ -82,5 +82,18 @@ namespace HunterSim.Tests
             Assert.AreEqual(0.15, HasteCalculator.Calculate(state), 0.01);
             Assert.AreEqual(10, MP5Calculator.Calculate(state));
         }
+
+        [TestMethod]
+        public void FengusFerocity()
+        {
+            var state = new SimulationState();
+            state.Config.PlayerSettings.Race = Race.Dwarf;
+            state.Config.Buffs.Add(Buff.FengusFerocity);
+
+            // 121 base agi * 1 + 57 base str + 200 buff
+            Assert.AreEqual(121 + 57 + 200, MeleeAttackPowerCalculator.Calculate(state));
+            // 121 base agi * 2 + 200 buff
+            Assert.AreEqual(242 + 200, RangedAttackPowerCalculator.Calculate(state));
+        }
     }
 }
