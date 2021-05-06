@@ -43,6 +43,11 @@
                 strength += 20;
             }
 
+            if (state.Config.Buffs.Contains(Buff.BlessedSunfruit))
+            {
+                strength += 10;
+            }
+
             if (state.Config.Buffs.Contains(Buff.SongflowerSerenade))
             {
                 strength += 15;

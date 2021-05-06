@@ -443,6 +443,17 @@ namespace HunterSim.Tests
             Assert.AreEqual(121 + 10, AgilityCalculator.Calculate(state));
         }
 
-        // TODO: Can't have both Grilled Squid and Smoked Desert Dumplings active at the same time
+        // TODO: Can only have one food buff active at a time
+
+        [TestMethod]
+        public void BlessedSunfruit()
+        {
+            var state = new SimulationState();
+            state.Config.PlayerSettings.Race = Race.Dwarf;
+            state.Config.Buffs.Add(Buff.BlessedSunfruit);
+
+            // 57 base str + 10 buff
+            Assert.AreEqual(57 + 10, StrengthCalculator.Calculate(state));
+        }
     }
 }
