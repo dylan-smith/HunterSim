@@ -481,5 +481,17 @@ namespace HunterSim.Tests
 
             Assert.AreEqual(0.07, MissChanceCalculator.Calculate(WeaponType.Bow, state));
         }
+
+        [TestMethod]
+        public void FireToastedBun()
+        {
+            var state = new SimulationState();
+            state.Config.PlayerSettings.Race = Race.Dwarf;
+            state.Config.PlayerSettings.Level = 60;
+            state.Config.BossSettings.Level = 63;
+            state.Config.Buffs.Add(Buff.FireToastedBun);
+
+            Assert.AreEqual(0.07, MissChanceCalculator.Calculate(WeaponType.Bow, state));
+        }
     }
 }
