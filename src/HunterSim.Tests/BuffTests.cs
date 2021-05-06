@@ -380,5 +380,18 @@ namespace HunterSim.Tests
             // 57 base str + 30 buff
             Assert.AreEqual(57 + 30, StrengthCalculator.Calculate(state));
         }
+
+        [TestMethod]
+        public void JujuMight()
+        {
+            var state = new SimulationState();
+            state.Config.PlayerSettings.Race = Race.Dwarf;
+            state.Config.Buffs.Add(Buff.JujuMight);
+
+            // 121 base agi * 1 + 57 base str + 40 buff
+            Assert.AreEqual(121 + 57 + 40, MeleeAttackPowerCalculator.Calculate(state));
+            // 121 base agi * 2 + 40 buff
+            Assert.AreEqual(242 + 40, RangedAttackPowerCalculator.Calculate(state));
+        }
     }
 }
