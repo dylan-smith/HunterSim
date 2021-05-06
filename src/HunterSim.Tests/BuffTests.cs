@@ -188,5 +188,18 @@ namespace HunterSim.Tests
             // 121 base agi * 2 + 100 buff
             Assert.AreEqual(242 + 100, RangedAttackPowerCalculator.Calculate(state));
         }
+
+        [TestMethod]
+        public void LeaderOfThePack()
+        {
+            var state = new SimulationState();
+            state.Config.PlayerSettings.Race = Race.Dwarf;
+            state.Config.Buffs.Add(Buff.LeaderOfThePack);
+
+            // 5% base crit + 3% buff
+            Assert.AreEqual(0.05 + 0.03, MeleeCritCalculator.Calculate(state), 0.0001);
+            // 5% base crit + 3% buff
+            Assert.AreEqual(0.05 + 0.03, RangedCritCalculator.Calculate(state), 0.0001);
+        }
     }
 }
