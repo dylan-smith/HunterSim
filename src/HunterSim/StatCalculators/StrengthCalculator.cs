@@ -18,6 +18,11 @@ namespace HunterSim
                 strength *= 1.1;
             }
 
+            if (state.Config.Buffs.Contains(Buff.StrengthOfEarthTotem))
+            {
+                strength += 77;
+            }
+
             if (state.Config.Buffs.Contains(Buff.SongflowerSerenade))
             {
                 strength += 15;

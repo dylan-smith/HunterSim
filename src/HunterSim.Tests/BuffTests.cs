@@ -269,5 +269,16 @@ namespace HunterSim.Tests
             // 121 base agi + 77 buff
             Assert.AreEqual(121 + 77, AgilityCalculator.Calculate(state), 0.001);
         }
+
+        [TestMethod]
+        public void StrengthOfEarthTotem()
+        {
+            var state = new SimulationState();
+            state.Config.PlayerSettings.Race = Race.Dwarf;
+            state.Config.Buffs.Add(Buff.StrengthOfEarthTotem);
+
+            // 57 base agi + 77 buff
+            Assert.AreEqual(57 + 77, StrengthCalculator.Calculate(state), 0.001);
+        }
     }
 }
