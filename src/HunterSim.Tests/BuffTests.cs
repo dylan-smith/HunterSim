@@ -95,5 +95,16 @@ namespace HunterSim.Tests
             // 121 base agi * 2 + 200 buff
             Assert.AreEqual(242 + 200, RangedAttackPowerCalculator.Calculate(state));
         }
+
+        [TestMethod]
+        public void MoldarsMoxie()
+        {
+            var state = new SimulationState();
+            state.Config.PlayerSettings.Race = Race.Dwarf;
+            state.Config.Buffs.Add(Buff.MoldarsMoxie);
+
+            // 93 base sta + 15% buff
+            Assert.AreEqual(93 * 1.15, StaminaCalculator.Calculate(state), 0.001);
+        }
     }
 }

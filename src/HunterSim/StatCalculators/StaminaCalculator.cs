@@ -18,6 +18,11 @@ namespace HunterSim
                 stamina *= 1.15;
             }
 
+            if (state.Config.Buffs.Contains(Buff.MoldarsMoxie))
+            {
+                stamina *= 1.15;
+            }
+
             return stamina;
         }
     }
