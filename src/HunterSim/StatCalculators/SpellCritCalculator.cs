@@ -18,6 +18,11 @@
                 spellCrit += 0.05;
             }
 
+            if (state.Config.Buffs.Contains(Buff.SlipkiksSavvy))
+            {
+                spellCrit += 0.03;
+            }
+
             return spellCrit;
         }
     }

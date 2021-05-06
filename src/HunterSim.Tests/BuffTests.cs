@@ -106,5 +106,15 @@ namespace HunterSim.Tests
             // 93 base sta + 15% buff
             Assert.AreEqual(93 * 1.15, StaminaCalculator.Calculate(state), 0.001);
         }
+
+        [TestMethod]
+        public void SlipkiksSavvy()
+        {
+            var state = new SimulationState();
+            state.Config.PlayerSettings.Race = Race.Dwarf;
+            state.Config.Buffs.Add(Buff.SlipkiksSavvy);
+
+            Assert.AreEqual(0.03, SpellCritCalculator.Calculate(state), 0.001);
+        }
     }
 }
