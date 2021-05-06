@@ -11,6 +11,7 @@
         SlipkiksSavvy,
         SaygesDarkFortuneOfDamage,
         BattleShout,
+        ImprovedBattleShout,
         TrueshotAura,
         LeaderOfThePack,
         MarkOfTheWild,
