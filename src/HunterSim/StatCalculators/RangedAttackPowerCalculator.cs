@@ -22,9 +22,9 @@ namespace HunterSim
                 rangedAP += 200;
             }
 
-            if (state.Config.Buffs.Contains(Buff.TrueshotAura))
+            if (state.Config.Talents.ContainsKey(Talent.TrueshotAura) || state.Config.Buffs.Contains(Buff.TrueshotAura))
             {
-                rangedAP += 50;
+                rangedAP += 100;
             }
 
             if (state.Config.Buffs.Contains(Buff.JujuMight))

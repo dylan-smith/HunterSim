@@ -24,9 +24,9 @@ namespace HunterSim
                 meleeAP += 200;
             }
 
-            if (state.Config.Buffs.Contains(Buff.TrueshotAura))
+            if (state.Config.Talents.ContainsKey(Talent.TrueshotAura) || state.Config.Buffs.Contains(Buff.TrueshotAura))
             {
-                meleeAP += 50;
+                meleeAP += 100;
             }
 
             if (state.Config.Buffs.Contains(Buff.BattleShout))
