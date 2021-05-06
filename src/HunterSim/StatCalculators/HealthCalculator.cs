@@ -9,6 +9,11 @@ namespace HunterSim
             var health = state.Config.PlayerSettings.Health;
             health += StaminaCalculator.Calculate(state) * 10;
 
+            if (state.Config.Buffs.Contains(Buff.WarchiefsBlessing))
+            {
+                health += 300;
+            }
+
             return health;
         }
     }

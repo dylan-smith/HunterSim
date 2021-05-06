@@ -13,6 +13,11 @@ namespace HunterSim
                 stamina += 15;
             }
 
+            if (state.Config.Buffs.Contains(Buff.SpiritOfZandalar))
+            {
+                stamina *= 1.15;
+            }
+
             return stamina;
         }
     }

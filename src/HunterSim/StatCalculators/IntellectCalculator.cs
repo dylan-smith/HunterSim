@@ -13,6 +13,11 @@ namespace HunterSim
                 intellect += 15;
             }
 
+            if (state.Config.Buffs.Contains(Buff.SpiritOfZandalar))
+            {
+                intellect *= 1.15;
+            }
+
             return intellect;
         }
     }

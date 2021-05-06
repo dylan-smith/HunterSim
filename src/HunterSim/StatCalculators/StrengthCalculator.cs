@@ -13,6 +13,11 @@ namespace HunterSim
                 strength += 15;
             }
 
+            if (state.Config.Buffs.Contains(Buff.SpiritOfZandalar))
+            {
+                strength *= 1.15;
+            }
+
             return strength;
         }
     }

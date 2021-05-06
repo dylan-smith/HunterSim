@@ -12,16 +12,16 @@ namespace HunterSim.Tests
             state.Config.PlayerSettings.Race = Race.Dwarf;
             state.Config.Buffs.Add(Buff.RallyingCryOfTheDragonSlayer);
 
-            // 121 base agi * 2 + 140 buff
-            Assert.AreEqual(242 + 140, RangedAttackPowerCalculator.Calculate(state));
-            // 121 base agi * 1 + 57 base str + 140 buff
-            Assert.AreEqual(121 + 57 + 140, MeleeAttackPowerCalculator.Calculate(state));
-            // 5% base crit + 5% buff
-            Assert.AreEqual(0.05 + 0.05, RangedCritCalculator.Calculate(state), 0.001);
-            // 5% base crit + 5% buff
-            Assert.AreEqual(0.05 + 0.05, MeleeCritCalculator.Calculate(state), 0.001);
             // 0% base crit + 10% buff
             Assert.AreEqual(0.1, SpellCritCalculator.Calculate(state), 0.01);
+            // 5% base crit + 5% buff
+            Assert.AreEqual(0.05 + 0.05, MeleeCritCalculator.Calculate(state), 0.001);
+            // 5% base crit + 5% buff
+            Assert.AreEqual(0.05 + 0.05, RangedCritCalculator.Calculate(state), 0.001);
+            // 121 base agi * 1 + 57 base str + 140 buff
+            Assert.AreEqual(121 + 57 + 140, MeleeAttackPowerCalculator.Calculate(state));
+            // 121 base agi * 2 + 140 buff
+            Assert.AreEqual(242 + 140, RangedAttackPowerCalculator.Calculate(state));
         }
 
         [TestMethod]
@@ -31,8 +31,17 @@ namespace HunterSim.Tests
             state.Config.PlayerSettings.Race = Race.Dwarf;
             state.Config.Buffs.Add(Buff.SpiritOfZandalar);
 
+            Assert.AreEqual(1.10, MovementSpeedCalculator.Calculate(state));
             // 121 base agi + 15% buff
             Assert.AreEqual(121 * 1.15, AgilityCalculator.Calculate(state), 0.001);
+            // 57 base str + 15% buff
+            Assert.AreEqual(57 * 1.15, StrengthCalculator.Calculate(state), 0.001);
+            // 93 base sta + 15% buff
+            Assert.AreEqual(93 * 1.15, StaminaCalculator.Calculate(state), 0.001);
+            // 64 base int + 15% buff
+            Assert.AreEqual(64 * 1.15, IntellectCalculator.Calculate(state), 0.001);
+            // 69 base spi + 15% buff
+            Assert.AreEqual(69 * 1.15, SpiritCalculator.Calculate(state), 0.001);
         }
 
         [TestMethod]
@@ -42,23 +51,23 @@ namespace HunterSim.Tests
             state.Config.PlayerSettings.Race = Race.Dwarf;
             state.Config.Buffs.Add(Buff.SongflowerSerenade);
 
+            // 5% base crit + 5% buff + 15 buff agi
+            Assert.AreEqual(0.05 + 0.05 + 0.0028, MeleeCritCalculator.Calculate(state), 0.0001);
+            // 5% base crit + 5% buff + 15 buff agi
+            Assert.AreEqual(0.05 + 0.05 + 0.0028, RangedCritCalculator.Calculate(state), 0.0001);
+            // 0% base crit + 5% buff
+            Assert.AreEqual(0.05, SpellCritCalculator.Calculate(state), 0.01);
+
             // 121 base agi + 15 buff
             Assert.AreEqual(121 + 15, AgilityCalculator.Calculate(state), 0.001);
             // 57 base str + 15 buff
             Assert.AreEqual(57 + 15, StrengthCalculator.Calculate(state), 0.001);
             // 93 base sta + 15 buff
             Assert.AreEqual(93 + 15, StaminaCalculator.Calculate(state), 0.001);
-            // 69 base spi + 15 buff
-            Assert.AreEqual(69 + 15, SpiritCalculator.Calculate(state), 0.001);
             // 64 base int + 15 buff
             Assert.AreEqual(64 + 15, IntellectCalculator.Calculate(state), 0.001);
-
-            // 5% base crit + 5% buff + 15 buff agi
-            Assert.AreEqual(0.05 + 0.05 + 0.0028, RangedCritCalculator.Calculate(state), 0.0001);
-            // 5% base crit + 5% buff + 15 buff agi
-            Assert.AreEqual(0.05 + 0.05 + 0.0028, RangedCritCalculator.Calculate(state), 0.0001);
-            // 0% base crit + 5% buff
-            Assert.AreEqual(0.05, SpellCritCalculator.Calculate(state), 0.01);
+            // 69 base spi + 15 buff
+            Assert.AreEqual(69 + 15, SpiritCalculator.Calculate(state), 0.001);
         }
 
         [TestMethod]
@@ -68,7 +77,10 @@ namespace HunterSim.Tests
             state.Config.PlayerSettings.Race = Race.Dwarf;
             state.Config.Buffs.Add(Buff.WarchiefsBlessing);
 
+            // 1467 base health + 93 sta + 300 buff
+            Assert.AreEqual(1467 + 930 + 300, HealthCalculator.Calculate(state));
             Assert.AreEqual(0.15, HasteCalculator.Calculate(state), 0.01);
+            Assert.AreEqual(10, MP5Calculator.Calculate(state));
         }
     }
 }
