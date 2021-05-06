@@ -503,5 +503,21 @@ namespace HunterSim.Tests
 
             Assert.AreEqual(2500, MP5Calculator.Calculate(state));
         }
+
+        // TODO: Test Dragonbreath Chili (4% proc rate, 60 magic damage, proc rate not normalized for weapon speed)
+
+        [TestMethod]
+        public void FireFestivalFury()
+        {
+            var state = new SimulationState();
+            state.Config.PlayerSettings.Race = Race.Dwarf;
+            state.Config.Buffs.Add(Buff.FireFestivalFury);
+
+            // 5% base crit + 3% buff
+            Assert.AreEqual(0.05 + 0.03, MeleeCritCalculator.Calculate(state), 0.0001);
+            // 5% base crit + 3% buff
+            Assert.AreEqual(0.05 + 0.03, RangedCritCalculator.Calculate(state), 0.0001);
+            Assert.AreEqual(0.03, SpellCritCalculator.Calculate(state), 0.0001);
+        }
     }
 }

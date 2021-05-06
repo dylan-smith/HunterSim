@@ -36,6 +36,11 @@ namespace HunterSim
                 critChance += 0.02;
             }
 
+            if (state.Config.Buffs.Contains(Buff.FireFestivalFury))
+            {
+                critChance += 0.03;
+            }
+
             if (state.Config.Talents.ContainsKey(Talent.KillerInstinct))
             {
                 critChance += state.Config.Talents[Talent.KillerInstinct] * 0.01;

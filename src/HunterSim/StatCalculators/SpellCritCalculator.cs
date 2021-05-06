@@ -23,6 +23,11 @@
                 spellCrit += 0.03;
             }
 
+            if (state.Config.Buffs.Contains(Buff.FireFestivalFury))
+            {
+                spellCrit += 0.03;
+            }
+
             return spellCrit;
         }
     }
