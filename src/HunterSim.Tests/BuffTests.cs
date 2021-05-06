@@ -258,5 +258,16 @@ namespace HunterSim.Tests
             // 121 base agi * 1 + 57 base str + 185 buff
             Assert.AreEqual(121 + 57 + 185, MeleeAttackPowerCalculator.Calculate(state));
         }
+
+        [TestMethod]
+        public void GraceOfAirTotem()
+        {
+            var state = new SimulationState();
+            state.Config.PlayerSettings.Race = Race.Dwarf;
+            state.Config.Buffs.Add(Buff.GraceOfAirTotem);
+
+            // 121 base agi + 77 buff
+            Assert.AreEqual(121 + 77, AgilityCalculator.Calculate(state), 0.001);
+        }
     }
 }

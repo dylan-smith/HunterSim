@@ -32,7 +32,7 @@ namespace HunterSim
 
             if (state.Config.Buffs.Contains(Buff.GraceOfAirTotem))
             {
-                agility += 67;
+                agility += 77;
             }
 
             if (state.Config.Buffs.Contains(Buff.GroundScorpokAssay))
