@@ -13,6 +13,11 @@ namespace HunterSim
                 stamina += 12;
             }
 
+            if (state.Config.Buffs.Contains(Buff.BlessingOfKings))
+            {
+                stamina *= 1.1;
+            }
+
             if (state.Config.Buffs.Contains(Buff.SongflowerSerenade))
             {
                 stamina += 15;

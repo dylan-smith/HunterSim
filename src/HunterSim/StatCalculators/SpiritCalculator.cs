@@ -13,6 +13,11 @@ namespace HunterSim
                 spirit += 12;
             }
 
+            if (state.Config.Buffs.Contains(Buff.BlessingOfKings))
+            {
+                spirit *= 1.1;
+            }
+
             if (state.Config.Buffs.Contains(Buff.SongflowerSerenade))
             {
                 spirit += 15;

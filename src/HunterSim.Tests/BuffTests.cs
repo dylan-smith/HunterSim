@@ -210,7 +210,7 @@ namespace HunterSim.Tests
             state.Config.Buffs.Add(Buff.MarkOfTheWild);
 
             Assert.AreEqual(285, ArmorCalculator.Calculate(state));
-            
+
             // 121 base agi + 12 buff
             Assert.AreEqual(121 + 12, AgilityCalculator.Calculate(state), 0.001);
             // 57 base str + 12 buff
@@ -227,6 +227,25 @@ namespace HunterSim.Tests
             Assert.AreEqual(20, FrostResistanceCalculator.Calculate(state));
             Assert.AreEqual(20, NatureResistanceCalculator.Calculate(state));
             Assert.AreEqual(20, ShadowResistanceCalculator.Calculate(state));
+        }
+
+        [TestMethod]
+        public void BlessingOfKings()
+        {
+            var state = new SimulationState();
+            state.Config.PlayerSettings.Race = Race.Dwarf;
+            state.Config.Buffs.Add(Buff.BlessingOfKings);
+
+            // 121 base agi + 10% buff
+            Assert.AreEqual(121 * 1.1, AgilityCalculator.Calculate(state), 0.001);
+            // 57 base str + 10% buff
+            Assert.AreEqual(57 * 1.1, StrengthCalculator.Calculate(state), 0.001);
+            // 93 base sta + 10% buff
+            Assert.AreEqual(93 * 1.1, StaminaCalculator.Calculate(state), 0.001);
+            // 64 base int + 10% buff
+            Assert.AreEqual(64 * 1.1, IntellectCalculator.Calculate(state), 0.001);
+            // 69 base spi + 10% buff
+            Assert.AreEqual(69 * 1.1, SpiritCalculator.Calculate(state), 0.001);
         }
     }
 }

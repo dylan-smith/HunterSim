@@ -13,6 +13,11 @@ namespace HunterSim
                 strength += 12;
             }
 
+            if (state.Config.Buffs.Contains(Buff.BlessingOfKings))
+            {
+                strength *= 1.1;
+            }
+
             if (state.Config.Buffs.Contains(Buff.SongflowerSerenade))
             {
                 strength += 15;
