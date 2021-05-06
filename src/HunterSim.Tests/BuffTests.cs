@@ -431,5 +431,18 @@ namespace HunterSim.Tests
             // 57 base str + 20 buff
             Assert.AreEqual(57 + 20, StrengthCalculator.Calculate(state));
         }
+
+        [TestMethod]
+        public void GrilledSquid()
+        {
+            var state = new SimulationState();
+            state.Config.PlayerSettings.Race = Race.Dwarf;
+            state.Config.Buffs.Add(Buff.GrilledSquid);
+
+            // 121 base agi + 10 buff
+            Assert.AreEqual(121 + 10, AgilityCalculator.Calculate(state));
+        }
+
+        // TODO: Can't have both Grilled Squid and Smoked Desert Dumplings active at the same time
     }
 }
