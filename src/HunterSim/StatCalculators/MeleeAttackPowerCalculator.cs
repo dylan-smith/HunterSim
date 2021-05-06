@@ -42,6 +42,11 @@ namespace HunterSim
                 meleeAP += 320;
             }
 
+            if (state.Config.Buffs.Contains(Buff.BlessingOfMight))
+            {
+                meleeAP += 185;
+            }
+
             if (state.Config.Buffs.Contains(Buff.JujuMight))
             {
                 meleeAP += 40;
