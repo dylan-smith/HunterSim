@@ -469,5 +469,17 @@ namespace HunterSim.Tests
 
             Assert.AreEqual(1, BonusDamageCalculator.Calculate(weapon, state));
         }
+
+        [TestMethod]
+        public void DarkDesire()
+        {
+            var state = new SimulationState();
+            state.Config.PlayerSettings.Race = Race.Dwarf;
+            state.Config.PlayerSettings.Level = 60;
+            state.Config.BossSettings.Level = 63;
+            state.Config.Buffs.Add(Buff.DarkDesire);
+
+            Assert.AreEqual(0.07, MissChanceCalculator.Calculate(WeaponType.Bow, state));
+        }
     }
 }
