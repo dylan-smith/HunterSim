@@ -17,6 +17,8 @@ namespace HunterSim
         {
             // TODO: Start MP5 events
             // TODO: Start Spirit events
+            // TODO: Raid DPS
+            // TODO: Generate Report/Analysis
 
             while (true)
             {
