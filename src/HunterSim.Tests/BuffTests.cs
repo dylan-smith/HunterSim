@@ -393,5 +393,32 @@ namespace HunterSim.Tests
             // 121 base agi * 2 + 40 buff
             Assert.AreEqual(242 + 40, RangedAttackPowerCalculator.Calculate(state));
         }
+
+        [TestMethod]
+        public void WinterfallFirewater()
+        {
+            var state = new SimulationState();
+            state.Config.PlayerSettings.Race = Race.Dwarf;
+            state.Config.Buffs.Add(Buff.WinterfallFirewater);
+
+            // 121 base agi * 1 + 57 base str + 35 buff
+            Assert.AreEqual(121 + 57 + 35, MeleeAttackPowerCalculator.Calculate(state));
+            // Firewater is melee ap only, check to make sure ranged ap didn't change
+            Assert.AreEqual(242, RangedAttackPowerCalculator.Calculate(state));
+        }
+
+        [TestMethod]
+        public void JujuMightAndWinterfallFirewater()
+        {
+            var state = new SimulationState();
+            state.Config.PlayerSettings.Race = Race.Dwarf;
+            state.Config.Buffs.Add(Buff.JujuMight);
+            state.Config.Buffs.Add(Buff.WinterfallFirewater);
+
+            // 121 base agi * 1 + 57 base str + 40 buff
+            Assert.AreEqual(121 + 57 + 40, MeleeAttackPowerCalculator.Calculate(state));
+            // 121 base agi * 2 + 40 buff
+            Assert.AreEqual(242 + 40, RangedAttackPowerCalculator.Calculate(state));
+        }
     }
 }

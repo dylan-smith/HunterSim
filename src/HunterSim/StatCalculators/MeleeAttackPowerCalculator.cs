@@ -51,6 +51,15 @@ namespace HunterSim
             {
                 meleeAP += 40;
             }
+            else
+            {
+                if (state.Config.Buffs.Contains(Buff.WinterfallFirewater))
+                {
+                    meleeAP += 35;
+                }
+            }
+
+            
 
             if (state.Config.Talents.ContainsKey(Talent.SurvivalInstincts))
             {
