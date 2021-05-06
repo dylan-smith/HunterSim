@@ -455,5 +455,19 @@ namespace HunterSim.Tests
             // 57 base str + 10 buff
             Assert.AreEqual(57 + 10, StrengthCalculator.Calculate(state));
         }
+
+        [TestMethod]
+        public void BoglingRoot()
+        {
+            var state = new SimulationState();
+            state.Config.PlayerSettings.Race = Race.Dwarf;
+            state.Config.Buffs.Add(Buff.BoglingRoot);
+            var weapon = new GearItem
+            {
+                GearType = GearType.Ranged
+            };
+
+            Assert.AreEqual(1, BonusDamageCalculator.Calculate(weapon, state));
+        }
     }
 }
