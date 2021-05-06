@@ -302,5 +302,21 @@ namespace HunterSim.Tests
             // 121 base agi + 25 buff
             Assert.AreEqual(121 + 25, AgilityCalculator.Calculate(state));
         }
+
+        [TestMethod]
+        public void ElixirOfTheMongoose()
+        {
+            var state = new SimulationState();
+            state.Config.PlayerSettings.Race = Race.Dwarf;
+            state.Config.Buffs.Add(Buff.ElixirOfTheMongoose);
+
+            // 121 base agi + 25 buff
+            Assert.AreEqual(121 + 25, AgilityCalculator.Calculate(state));
+
+            // 5% base crit + 2% buff + 25 agi
+            Assert.AreEqual(0.05 + 0.02 + (25.0 / 5300), MeleeCritCalculator.Calculate(state), 0.0001);
+            // 5% base crit + 2% buff + 25 agi
+            Assert.AreEqual(0.05 + 0.02 + (25.0 / 5300), RangedCritCalculator.Calculate(state), 0.0001);
+        }
     }
 }
