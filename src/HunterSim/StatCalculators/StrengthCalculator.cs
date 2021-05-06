@@ -28,6 +28,11 @@ namespace HunterSim
                 strength += 25;
             }
 
+            if (state.Config.Buffs.Contains(Buff.JujuPower))
+            {
+                strength += 30;
+            }
+
             if (state.Config.Buffs.Contains(Buff.SongflowerSerenade))
             {
                 strength += 15;

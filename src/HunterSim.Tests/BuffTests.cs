@@ -346,5 +346,16 @@ namespace HunterSim.Tests
             // 5% base crit + 2% buff + 25 agi
             Assert.AreEqual(0.05 + 0.02 + (25.0 / 5300), RangedCritCalculator.Calculate(state), 0.0001);
         }
+
+        [TestMethod]
+        public void JujuPower()
+        {
+            var state = new SimulationState();
+            state.Config.PlayerSettings.Race = Race.Dwarf;
+            state.Config.Buffs.Add(Buff.JujuPower);
+
+            // 57 base str + 30 buff
+            Assert.AreEqual(57 + 30, StrengthCalculator.Calculate(state));
+        }
     }
 }
