@@ -35,6 +35,13 @@ namespace HunterSim
                 meleeAP += 290;
             }
 
+            if (state.Config.Buffs.Contains(Buff.EnhancedBattleShout))
+            {
+                // Enhanced Battle Shout is from tier 2.5 3-piece bonus
+                // rank 7 battle shout gives 232 AP, assuming warrior has 5/5 improved battle shout for a 25% bonus AP
+                meleeAP += 320;
+            }
+
             if (state.Config.Buffs.Contains(Buff.JujuMight))
             {
                 meleeAP += 40;

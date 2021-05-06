@@ -137,5 +137,16 @@ namespace HunterSim.Tests
             // 121 base agi * 1 + 57 base str + 290 buff
             Assert.AreEqual(121 + 57 + 290, MeleeAttackPowerCalculator.Calculate(state));
         }
+
+        [TestMethod]
+        public void EnhancedBattleShout()
+        {
+            var state = new SimulationState();
+            state.Config.PlayerSettings.Race = Race.Dwarf;
+            state.Config.Buffs.Add(Buff.EnhancedBattleShout);
+
+            // 121 base agi * 1 + 57 base str + 320 buff
+            Assert.AreEqual(121 + 57 + 320, MeleeAttackPowerCalculator.Calculate(state));
+        }
     }
 }
