@@ -19,6 +19,7 @@ namespace HunterSim
             // TODO: Start Spirit events
             // TODO: Raid DPS
             // TODO: Generate Report/Analysis
+            // TODO: Pet DPS
 
             while (true)
             {

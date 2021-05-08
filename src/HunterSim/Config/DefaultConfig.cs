@@ -48,6 +48,8 @@
 
             // TODO: Consumes
 
+            // TODO: Change the talents to a vanilla build
+
             // Survival Talents
             Talents.Add(Talent.MonsterSlaying, 3);
             Talents.Add(Talent.HumanoidSlaying, 3);
