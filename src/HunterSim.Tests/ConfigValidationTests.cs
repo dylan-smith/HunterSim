@@ -65,7 +65,7 @@ namespace HunterSim.Tests
         }
 
         [TestMethod]
-        public void TooManyBlastedLandsBuffs()
+        public void TooManyBlastedLandsBuffsRoidsAndScorpok()
         {
             var state = new SimulationState
             {
@@ -74,6 +74,38 @@ namespace HunterSim.Tests
 
             state.Config.Buffs.Add(Buff.ROIDS);
             state.Config.Buffs.Add(Buff.GroundScorpokAssay);
+
+            Assert.IsTrue(state.Validate());
+            Assert.AreEqual(1, state.Warnings.Count);
+            Assert.AreEqual(SimulationWarnings.TooManyBlastedLandsBuffs, state.Warnings[0]);
+        }
+
+        [TestMethod]
+        public void TooManyBlastedLandsBuffsCerebralAndGizzard()
+        {
+            var state = new SimulationState
+            {
+                Config = new DefaultConfig()
+            };
+
+            state.Config.Buffs.Add(Buff.CerebralCortexCompound);
+            state.Config.Buffs.Add(Buff.GizzardGum);
+
+            Assert.IsTrue(state.Validate());
+            Assert.AreEqual(1, state.Warnings.Count);
+            Assert.AreEqual(SimulationWarnings.TooManyBlastedLandsBuffs, state.Warnings[0]);
+        }
+
+        [TestMethod]
+        public void TooManyBlastedLandsBuffsLungJuiceAndRoids()
+        {
+            var state = new SimulationState
+            {
+                Config = new DefaultConfig()
+            };
+
+            state.Config.Buffs.Add(Buff.LungJuiceCocktail);
+            state.Config.Buffs.Add(Buff.ROIDS);
 
             Assert.IsTrue(state.Validate());
             Assert.AreEqual(1, state.Warnings.Count);
