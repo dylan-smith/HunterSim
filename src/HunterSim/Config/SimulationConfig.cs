@@ -37,7 +37,17 @@ namespace HunterSim
                 warnings.Add(SimulationWarnings.MissingTalentPoints);
             }
 
+            if (!ValidateAllGearSelected())
+            {
+                warnings.Add(SimulationWarnings.MissingGear);
+            }
+
             return (warnings, errors);
+        }
+
+        private bool ValidateAllGearSelected()
+        {
+            return Gear.GetAllGear().Count() == 19;
         }
 
         private bool ValidateTooManyTalentPoints()

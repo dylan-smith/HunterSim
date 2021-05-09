@@ -33,5 +33,20 @@ namespace HunterSim.Tests
             Assert.AreEqual(1, state.Warnings.Count);
             Assert.AreEqual(SimulationWarnings.TooManyFoodBuffs, state.Warnings[0]);
         }
+
+        [TestMethod]
+        public void MissingGear()
+        {
+            var state = new SimulationState
+            {
+                Config = new DefaultConfig()
+            };
+
+            state.Config.Gear.Neck = null;
+
+            Assert.IsTrue(state.Validate());
+            Assert.AreEqual(1, state.Warnings.Count);
+            Assert.AreEqual(SimulationWarnings.MissingGear, state.Warnings[0]);
+        }
     }
 }

@@ -44,6 +44,7 @@ namespace HunterSim
             if (Trinket1 != null) yield return Trinket1;
             if (Trinket2 != null) yield return Trinket2;
             if (Ranged != null) yield return Ranged;
+            if (Ammo != null) yield return Ammo;
             if (Quiver != null) yield return Quiver;
         }
 
