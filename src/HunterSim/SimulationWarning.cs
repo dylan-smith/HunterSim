@@ -1,6 +1,6 @@
 ﻿namespace HunterSim
 {
-    static class SimulationWarnings
+    public static class SimulationWarnings
     {
         public const string TooManyFoodBuffs = "You can only have one food buff active at a time";
         public const string TooManyTalentPoints = "You have more than the max talent points for your level";

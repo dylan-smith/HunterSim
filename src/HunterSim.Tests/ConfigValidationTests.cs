@@ -19,7 +19,7 @@ namespace HunterSim.Tests
         }
 
         [TestMethod]
-        public void OnlyOneFoodBuff()
+        public void TooManyFoodBuffs()
         {
             var state = new SimulationState
             {
@@ -31,6 +31,7 @@ namespace HunterSim.Tests
 
             Assert.IsTrue(state.Validate());
             Assert.AreEqual(1, state.Warnings.Count);
+            Assert.AreEqual(SimulationWarnings.TooManyFoodBuffs, state.Warnings[0]);
         }
     }
 }
