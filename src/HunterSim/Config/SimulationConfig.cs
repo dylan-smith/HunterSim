@@ -42,7 +42,17 @@ namespace HunterSim
                 warnings.Add(SimulationWarnings.MissingGear);
             }
 
+            if (!ValidatePlayerMaxLevel())
+            {
+                warnings.Add(SimulationWarnings.PlayerNotMaxLevel);
+            }
+
             return (warnings, errors);
+        }
+
+        private bool ValidatePlayerMaxLevel()
+        {
+            return PlayerSettings.Level == 60;
         }
 
         private bool ValidateAllGearSelected()

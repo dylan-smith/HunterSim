@@ -48,5 +48,20 @@ namespace HunterSim.Tests
             Assert.AreEqual(1, state.Warnings.Count);
             Assert.AreEqual(SimulationWarnings.MissingGear, state.Warnings[0]);
         }
+
+        [TestMethod]
+        public void NotMaxLevel()
+        {
+            var state = new SimulationState
+            {
+                Config = new DefaultConfig()
+            };
+
+            state.Config.PlayerSettings.Level = 59;
+
+            Assert.IsTrue(state.Validate());
+            Assert.AreEqual(1, state.Warnings.Count);
+            Assert.AreEqual(SimulationWarnings.PlayerNotMaxLevel, state.Warnings[0]);
+        }
     }
 }
