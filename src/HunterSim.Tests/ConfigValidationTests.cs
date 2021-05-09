@@ -63,5 +63,21 @@ namespace HunterSim.Tests
             Assert.AreEqual(1, state.Warnings.Count);
             Assert.AreEqual(SimulationWarnings.PlayerNotMaxLevel, state.Warnings[0]);
         }
+
+        [TestMethod]
+        public void TooManyBlastedLandsBuffs()
+        {
+            var state = new SimulationState
+            {
+                Config = new DefaultConfig()
+            };
+
+            state.Config.Buffs.Add(Buff.ROIDS);
+            state.Config.Buffs.Add(Buff.GroundScorpokAssay);
+
+            Assert.IsTrue(state.Validate());
+            Assert.AreEqual(1, state.Warnings.Count);
+            Assert.AreEqual(SimulationWarnings.TooManyBlastedLandsBuffs, state.Warnings[0]);
+        }
     }
 }

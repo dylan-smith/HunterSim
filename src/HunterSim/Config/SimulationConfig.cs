@@ -47,7 +47,44 @@ namespace HunterSim
                 warnings.Add(SimulationWarnings.PlayerNotMaxLevel);
             }
 
+            if (!ValidateTooManyBlastedLandsBuffs())
+            {
+                warnings.Add(SimulationWarnings.TooManyBlastedLandsBuffs);
+            }
+
             return (warnings, errors);
+        }
+
+        private bool ValidateTooManyBlastedLandsBuffs()
+        {
+            var blastedLandsBuffs = 0;
+
+            if (Buffs.Contains(Buff.ROIDS))
+            {
+                blastedLandsBuffs++;
+            }
+
+            if (Buffs.Contains(Buff.GroundScorpokAssay))
+            {
+                blastedLandsBuffs++;
+            }
+
+            if (Buffs.Contains(Buff.LungJuiceCocktail))
+            {
+                blastedLandsBuffs++;
+            }
+
+            if (Buffs.Contains(Buff.CerebralCortexCompound))
+            {
+                blastedLandsBuffs++;
+            }
+
+            if (Buffs.Contains(Buff.GizzardGum))
+            {
+                blastedLandsBuffs++;
+            }
+
+            return blastedLandsBuffs <= 1;
         }
 
         private bool ValidatePlayerMaxLevel()

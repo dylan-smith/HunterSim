@@ -36,7 +36,10 @@
         FireToastedBun,
         EssenceOfTheRed,
         DragonbreathChili,
-        FireFestivalFury
+        FireFestivalFury,
+        LungJuiceCocktail, // TODO
+        CerebralCortexCompound, // TODO
+        GizzardGum // TODO
         // TODO: Dranaei Racial
         // TODO: Boomkin
         // TODO: Drums
