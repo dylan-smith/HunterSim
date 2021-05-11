@@ -59,7 +59,7 @@ namespace HunterSim.Tests
             expected = new DamageEvent(32.5, 653.34, DamageType.Hit, 0, 0.344, 0.656);
             AssertDamageEvent(expected, result.DamageEvents.ElementAt(10));
 
-            expected = new DamageEvent(35.7, 653.34, DamageType.Hit, 0, 0.344, 0.656); //
+            expected = new DamageEvent(35.7, 653.34, DamageType.Hit, 0, 0.344, 0.656);
             AssertDamageEvent(expected, result.DamageEvents.ElementAt(11));
 
             expected = new DamageEvent(38.9, 653.34, DamageType.Hit, 0, 0.344, 0.656);
