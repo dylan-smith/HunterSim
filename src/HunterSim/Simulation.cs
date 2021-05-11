@@ -20,6 +20,11 @@ namespace HunterSim
             // TODO: Generate Report/Analysis
             // TODO: Pet DPS
 
+            if (!_state.Validate())
+            {
+                return _state;
+            }
+
             while (true)
             {
                 ExecuteRotation();
