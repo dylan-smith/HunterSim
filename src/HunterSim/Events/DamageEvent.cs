@@ -19,14 +19,6 @@
 
         public override void ProcessEvent(SimulationState state)
         {
-            // TODO: Might make sense to have separate HitEvent, MissEvent, CritEvents
-            if (DamageType == DamageType.Crit)
-            {
-                // TODO: This should only trigger off RANGED crits
-                // TODO: Only happens if we have the Expose Weakness talent
-                state.Events.Add(new ExposeWeaknessAppliedEvent(Timestamp));
-            }
-
             // TODO: Windfury proc
         }
 

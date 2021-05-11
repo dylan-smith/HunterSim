@@ -59,16 +59,6 @@ namespace HunterSim
                 }
             }
 
-            //if (state.Config.Talents.ContainsKey(Talent.SurvivalInstincts))
-            //{
-            //    meleeAP *= 1 + (state.Config.Talents[Talent.SurvivalInstincts] * 0.02);
-            //}
-
-            if (state.Auras.Contains(Aura.ExposeWeakness))
-            {
-                meleeAP += AgilityCalculator.Calculate(state) * 0.25;
-            }
-
             return meleeAP;
         }
     }

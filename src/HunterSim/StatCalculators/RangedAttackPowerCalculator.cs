@@ -47,20 +47,10 @@ namespace HunterSim
                 rangedAP += 40;
             }
 
-            //if (state.Config.Talents.ContainsKey(Talent.SurvivalInstincts))
-            //{
-            //    rangedAP *= 1 + (state.Config.Talents[Talent.SurvivalInstincts] * 0.02);
-            //}
-
             if (state.Auras.Contains(Aura.AspectOfTheHawk))
             {
                 rangedAP += 120;
             }
-
-            //if (state.Auras.Contains(Aura.ExposeWeakness))
-            //{
-            //    rangedAP += AgilityCalculator.Calculate(state) * 0.25;
-            //}
 
             return rangedAP;
         }
