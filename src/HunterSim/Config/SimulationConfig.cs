@@ -27,10 +27,10 @@ namespace HunterSim
                 errors.Add(SimulationErrors.NoRaceSelected);
             }
 
-            //if (!ValidateTooManyTalentPoints())
-            //{
-            //    warnings.Add(SimulationWarnings.TooManyTalentPoints);
-            //}
+            if (!ValidateTooManyTalentPoints())
+            {
+                warnings.Add(SimulationWarnings.TooManyTalentPoints);
+            }
 
             if (!ValidateNotEnoughTalentPoints())
             {

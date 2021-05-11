@@ -57,6 +57,8 @@ namespace HunterSim.Tests
                 Config = new DefaultConfig()
             };
 
+            state.Config.Talents.Remove(Talent.TrueshotAura);
+
             state.Config.PlayerSettings.Level = 59;
 
             Assert.IsTrue(state.Validate());
@@ -110,6 +112,36 @@ namespace HunterSim.Tests
             Assert.IsTrue(state.Validate());
             Assert.AreEqual(1, state.Warnings.Count);
             Assert.AreEqual(SimulationWarnings.TooManyBlastedLandsBuffs, state.Warnings[0]);
+        }
+
+        [TestMethod]
+        public void MissingTalentPoints()
+        {
+            var state = new SimulationState
+            {
+                Config = new DefaultConfig()
+            };
+
+            state.Config.Talents.Remove(Talent.TrueshotAura);
+
+            Assert.IsTrue(state.Validate());
+            Assert.AreEqual(1, state.Warnings.Count);
+            Assert.AreEqual(SimulationWarnings.MissingTalentPoints, state.Warnings[0]);
+        }
+
+        [TestMethod]
+        public void TooManyTalentPoints()
+        {
+            var state = new SimulationState
+            {
+                Config = new DefaultConfig()
+            };
+
+            state.Config.Talents[Talent.ImprovedHuntersMark] = 3;
+
+            Assert.IsTrue(state.Validate());
+            Assert.AreEqual(1, state.Warnings.Count);
+            Assert.AreEqual(SimulationWarnings.TooManyTalentPoints, state.Warnings[0]);
         }
     }
 }
