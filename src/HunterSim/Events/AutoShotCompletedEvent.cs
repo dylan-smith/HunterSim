@@ -41,7 +41,7 @@ namespace HunterSim
                 {
                     // TODO: is bonus damage (scope) and bonus dps (ammo) doubled when you crit? This assumes yes
                     autoShotDamage *= 2;
-                    autoShotDamage *= CritDamageMultiplierCalculator.Calculate(state);
+                    autoShotDamage *= MeleeCritDamageMultiplierCalculator.Calculate(state);
                     damageType = DamageType.Crit;
                 }
             }

@@ -79,7 +79,8 @@ namespace HunterSim.Tests
 
             // 1467 base health + 93 sta + 300 buff
             Assert.AreEqual(1467 + 930 + 300, HealthCalculator.Calculate(state));
-            Assert.AreEqual(0.15, HasteCalculator.Calculate(state), 0.01);
+            Assert.AreEqual(0.15, MeleeHasteCalculator.Calculate(state), 0.01);
+            Assert.AreEqual(0.15, RangedHasteCalculator.Calculate(state), 0.01);
             Assert.AreEqual(10, MP5Calculator.Calculate(state));
         }
 

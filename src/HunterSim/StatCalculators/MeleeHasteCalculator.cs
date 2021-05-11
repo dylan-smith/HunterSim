@@ -2,7 +2,7 @@
 
 namespace HunterSim
 {
-    public static class HasteCalculator
+    public static class MeleeHasteCalculator
     {
         public static double Calculate(SimulationState state)
         {

@@ -111,9 +111,10 @@ namespace HunterSim.Tests
 
             Assert.AreEqual(0.0, BonusDamageCalculator.Calculate(rangedWeapon, state));
             Assert.AreEqual(0.0, BonusDamageCalculator.Calculate(meleeWeapon, state));
-            Assert.AreEqual(1.0, CritDamageMultiplierCalculator.Calculate(state));
+            Assert.AreEqual(1.0, MeleeCritDamageMultiplierCalculator.Calculate(state));
             Assert.AreEqual(1.0, DamageMultiplierCalculator.Calculate(state));
-            Assert.AreEqual(0.0, HasteCalculator.Calculate(state));
+            Assert.AreEqual(0.0, MeleeHasteCalculator.Calculate(state));
+            Assert.AreEqual(0.0, RangedHasteCalculator.Calculate(state));
             // Base Strength + Base Agility
             Assert.AreEqual(56 + 127, MeleeAttackPowerCalculator.Calculate(state));
             Assert.AreEqual(0.05, MeleeCritCalculator.Calculate(state));

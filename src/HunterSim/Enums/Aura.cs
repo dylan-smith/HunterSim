@@ -4,6 +4,11 @@
     {
         ExposeWeakness,
         AutoShotOnCooldown,
-        GlobalCooldown
+        GlobalCooldown,
+        AspectOfTheHawk,
+        AspectOfTheCheetah,
+        AspectOfThePack,
+        ImprovedAspectOfTheHawk,
+        // TODO: Other aspects
     }
 }

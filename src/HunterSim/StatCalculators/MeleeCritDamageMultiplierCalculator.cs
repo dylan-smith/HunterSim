@@ -1,16 +1,18 @@
 ﻿namespace HunterSim
 {
-    public static class CritDamageMultiplierCalculator
+    public static class MeleeCritDamageMultiplierCalculator
     {
         public static double Calculate(SimulationState state)
         {
             var bossType = state.Config.BossSettings.BossType;
 
+            var dmgMultiplier = 1.0;
+
             if (state.Config.Talents.ContainsKey(Talent.MonsterSlaying))
             {
                 if (bossType == BossType.Beast || bossType == BossType.Giant || bossType == BossType.Dragonkin)
                 {
-                    return 1 + (0.01 * state.Config.Talents[Talent.MonsterSlaying]);
+                    dmgMultiplier += (0.01 * state.Config.Talents[Talent.MonsterSlaying]);
                 }
             }
 
@@ -18,11 +20,11 @@
             {
                 if (bossType == BossType.Humanoid)
                 {
-                    return 1 + (0.01 * state.Config.Talents[Talent.HumanoidSlaying]);
+                    dmgMultiplier += (0.01 * state.Config.Talents[Talent.HumanoidSlaying]);
                 }
             }
 
-            return 1.0;
+            return dmgMultiplier;
         }
     }
 }

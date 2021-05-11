@@ -22,6 +22,21 @@ namespace HunterSim
                 rangedAP += 200;
             }
 
+            if (state.Config.Buffs.Contains(Buff.HuntersMark) || state.Config.Buffs.Contains(Buff.ImprovedHuntersMark))
+            {
+                rangedAP += 110;
+
+                if (state.Config.Buffs.Contains(Buff.ImprovedHuntersMark))
+                {
+                    rangedAP += 110 * 0.15;
+                }
+                else if (state.Config.Talents.ContainsKey(Talent.ImprovedHuntersMark))
+                {
+                    rangedAP += 110 * (0.03 * state.Config.Talents[Talent.ImprovedHuntersMark]);
+                }
+
+            }
+
             if (state.Config.Talents.ContainsKey(Talent.TrueshotAura) || state.Config.Buffs.Contains(Buff.TrueshotAura))
             {
                 rangedAP += 100;
@@ -32,15 +47,20 @@ namespace HunterSim
                 rangedAP += 40;
             }
 
-            if (state.Config.Talents.ContainsKey(Talent.SurvivalInstincts))
+            //if (state.Config.Talents.ContainsKey(Talent.SurvivalInstincts))
+            //{
+            //    rangedAP *= 1 + (state.Config.Talents[Talent.SurvivalInstincts] * 0.02);
+            //}
+
+            if (state.Auras.Contains(Aura.AspectOfTheHawk))
             {
-                rangedAP *= 1 + (state.Config.Talents[Talent.SurvivalInstincts] * 0.02);
+                rangedAP += 120;
             }
 
-            if (state.Auras.Contains(Aura.ExposeWeakness))
-            {
-                rangedAP += AgilityCalculator.Calculate(state) * 0.25;
-            }
+            //if (state.Auras.Contains(Aura.ExposeWeakness))
+            //{
+            //    rangedAP += AgilityCalculator.Calculate(state) * 0.25;
+            //}
 
             return rangedAP;
         }

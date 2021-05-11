@@ -20,6 +20,8 @@
         WindfuryTotem,
         GraceOfAirTotem,
         StrengthOfEarthTotem,
+        HuntersMark,
+        ImprovedHuntersMark,
         ROIDS,
         GroundScorpokAssay,
         ElixirOfTheMongoose,

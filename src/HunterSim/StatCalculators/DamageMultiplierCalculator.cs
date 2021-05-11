@@ -12,6 +12,11 @@
                 damageMultiplier *= 1.1;
             }
 
+            if (state.Config.Talents.ContainsKey(Talent.RangedWeaponSpecialization))
+            {
+                damageMultiplier += 0.01 * state.Config.Talents[Talent.RangedWeaponSpecialization];
+            }
+
             if (state.Config.Talents.ContainsKey(Talent.MonsterSlaying))
             {
                 if (bossType == BossType.Beast || bossType == BossType.Giant || bossType == BossType.Dragonkin)

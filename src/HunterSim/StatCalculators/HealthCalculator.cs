@@ -1,6 +1,4 @@
-﻿using System;
-
-namespace HunterSim
+﻿namespace HunterSim
 {
     public static class HealthCalculator
     {
@@ -12,6 +10,11 @@ namespace HunterSim
             if (state.Config.Buffs.Contains(Buff.WarchiefsBlessing))
             {
                 health += 300;
+            }
+
+            if (state.Config.Talents.ContainsKey(Talent.Survivalist))
+            {
+                health *= 1 + (state.Config.Talents[Talent.Survivalist] * 0.02);
             }
 
             return health;

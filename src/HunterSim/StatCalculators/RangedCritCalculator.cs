@@ -41,6 +41,11 @@ namespace HunterSim
                 critChance += 0.03;
             }
 
+            if (state.Config.Talents.ContainsKey(Talent.LethalShots))
+            {
+                critChance += state.Config.Talents[Talent.LethalShots] * 0.01;
+            }
+
             if (state.Config.Talents.ContainsKey(Talent.KillerInstinct))
             {
                 critChance += state.Config.Talents[Talent.KillerInstinct] * 0.01;

@@ -28,6 +28,11 @@
                 spellCrit += 0.03;
             }
 
+            if (state.Config.Talents.ContainsKey(Talent.KillerInstinct))
+            {
+                spellCrit += state.Config.Talents[Talent.KillerInstinct] * 0.01;
+            }
+
             return spellCrit;
         }
     }
