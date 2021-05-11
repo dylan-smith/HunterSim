@@ -43,10 +43,7 @@
             PlayerSettings.Race = Race.NightElf;
             PlayerSettings.Level = 60;
 
-            // TODO: Buffs
             Buffs.Add(Buff.RallyingCryOfTheDragonSlayer);
-
-            // TODO: Consumes
 
             // Beast Mastery Talents
             Talents.Add(Talent.ImprovedAspectOfTheHawk, 5);
