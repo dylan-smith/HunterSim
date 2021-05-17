@@ -46,6 +46,8 @@ namespace HunterSim
                 }
             }
 
+            // TODO: Boss armor reduction
+
             // TODO: If we do these calcs earlier we can do just one roll instead of 2
             critChance *= (1 - missChance);
             var hitChance = 1 - missChance - critChance;
