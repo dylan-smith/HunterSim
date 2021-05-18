@@ -1,8 +1,13 @@
 ﻿namespace HunterSim
 {
-    public static class RangedCritDamageMultiplierCalculator
+    public class RangedCritDamageMultiplierCalculator : BaseStatCalculator
     {
         public static double Calculate(SimulationState state)
+        {
+            return Calculate<RangedCritDamageMultiplierCalculator>(state);
+        }
+
+        protected override double InstanceCalculate(SimulationState state)
         {
             var bossType = state.Config.BossSettings.BossType;
             var critMultiplier = 1.0;

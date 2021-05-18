@@ -2,9 +2,14 @@
 
 namespace HunterSim
 {
-    public static class SpiritCalculator
+    public class SpiritCalculator : BaseStatCalculator
     {
         public static double Calculate(SimulationState state)
+        {
+            return Calculate<SpiritCalculator>(state);
+        }
+
+        protected override double InstanceCalculate(SimulationState state)
         {
             var spirit = state.Config.PlayerSettings.Spirit;
 

@@ -2,9 +2,14 @@
 
 namespace HunterSim
 {
-    public static class RangedAttackPowerCalculator
+    public class RangedAttackPowerCalculator : BaseStatCalculator
     {
         public static double Calculate(SimulationState state)
+        {
+            return Calculate<RangedAttackPowerCalculator>(state);
+        }
+
+        protected override double InstanceCalculate(SimulationState state)
         {
             var rangedAP = state.Config.Gear.GetAllGear().Sum(x => x.AttackPower);
             rangedAP += state.Config.Gear.GetAllEnchants().Sum(x => x.AttackPower);

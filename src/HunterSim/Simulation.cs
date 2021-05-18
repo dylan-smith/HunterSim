@@ -52,9 +52,9 @@ namespace HunterSim
 
         private void ExecuteRotation()
         {
-            if (!_state.Auras.Contains(Aura.AutoShotOnCooldown))
+            if (AutoShot.CanUse(_state))
             {
-                _state.Events.Add(new AutoShotCastEvent(_state.CurrentTime));
+                AutoShot.Use(_state);
             }
         }
 

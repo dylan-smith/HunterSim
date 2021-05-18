@@ -13,7 +13,7 @@ namespace HunterSim
             var autoShotSpeed = state.Config.Gear.Ranged.Speed;
             state.Events.Add(new AutoShotCompletedEvent(Timestamp + 0.5));
             state.Auras.Add(Aura.AutoShotOnCooldown);
-            state.Events.Add(new AutoShotCooldownCompleted(Timestamp + autoShotSpeed));
+            state.Events.Add(new AutoShotCooldownCompletedEvent(Timestamp + autoShotSpeed));
         }
     }
 }

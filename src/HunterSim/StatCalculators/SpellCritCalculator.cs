@@ -1,8 +1,13 @@
 ﻿namespace HunterSim
 {
-    public static class SpellCritCalculator
+    public class SpellCritCalculator : BaseStatCalculator
     {
         public static double Calculate(SimulationState state)
+        {
+            return Calculate<SpellCritCalculator>(state);
+        }
+
+        protected override double InstanceCalculate(SimulationState state)
         {
             // Hunters don't use spell crit, even abilities considered spells like Arcane Shot use ranged crit
             // https://classic.wowhead.com/guide=10453/classic-spell-power-hunter-the-little-arcane-shot-that-could

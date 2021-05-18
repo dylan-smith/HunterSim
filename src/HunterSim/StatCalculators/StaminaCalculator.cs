@@ -1,10 +1,13 @@
-﻿using System;
-
-namespace HunterSim
+﻿namespace HunterSim
 {
-    public static class StaminaCalculator
+    public class StaminaCalculator : BaseStatCalculator
     {
         public static double Calculate(SimulationState state)
+        {
+            return Calculate<StaminaCalculator>(state);
+        }
+
+        protected override double InstanceCalculate(SimulationState state)
         {
             var stamina = state.Config.PlayerSettings.Stamina;
 

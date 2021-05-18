@@ -2,14 +2,19 @@
 
 namespace HunterSim
 {
-    public static class AgilityCalculator
+    public class AgilityCalculator : BaseStatCalculator
     {
         public static double Calculate(SimulationState state)
+        {
+            return Calculate<AgilityCalculator>(state);
+        }
+
+        protected override double InstanceCalculate(SimulationState state)
         {
             var agility = state.Config.PlayerSettings.Agility;
             agility += state.Config.Gear.GetAllGear().Sum(x => x.Agility);
             agility += state.Config.Gear.GetAllEnchants().Sum(x => x.Agility);
-            
+
             if (state.Config.Buffs.Contains(Buff.SongflowerSerenade))
             {
                 agility += 15;

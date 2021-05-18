@@ -1,10 +1,16 @@
 ﻿namespace HunterSim
 {
-    public static class WeaponSkillCalculator
+    public class WeaponSkillCalculator : BaseStatCalculator
     {
-        public static int Calculate(WeaponType weaponType, SimulationState state)
+        public static double Calculate(GearItem weapon, SimulationState state)
+        {
+            return Calculate<WeaponSkillCalculator>(weapon, state);
+        }
+
+        protected override double InstanceCalculate(GearItem weapon, SimulationState state)
         {
             var skill = 300;
+            var weaponType = weapon.WeaponType;
 
             foreach (var gear in state.Config.Gear.GetAllGear())
             {

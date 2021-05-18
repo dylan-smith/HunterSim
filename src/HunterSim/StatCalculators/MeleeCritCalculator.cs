@@ -2,9 +2,14 @@
 
 namespace HunterSim
 {
-    public static class MeleeCritCalculator
+    public class MeleeCritCalculator : BaseStatCalculator
     {
         public static double Calculate(SimulationState state)
+        {
+            return Calculate<MeleeCritCalculator>(state);
+        }
+
+        protected override double InstanceCalculate(SimulationState state)
         {
             var critChance = 0.05;
             critChance += state.Config.Gear.GetAllGear().Sum(x => x.Crit);

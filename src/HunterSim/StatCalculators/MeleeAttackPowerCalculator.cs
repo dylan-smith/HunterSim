@@ -3,9 +3,14 @@ using System.Linq;
 
 namespace HunterSim
 {
-    public static class MeleeAttackPowerCalculator
+    public class MeleeAttackPowerCalculator : BaseStatCalculator
     {
         public static double Calculate(SimulationState state)
+        {
+            return Calculate<MeleeAttackPowerCalculator>(state);
+        }
+
+        protected override double InstanceCalculate(SimulationState state)
         {
             var meleeAP = state.Config.Gear.GetAllGear().Sum(x => x.AttackPower);
             meleeAP += state.Config.Gear.GetAllEnchants().Sum(x => x.AttackPower);

@@ -2,9 +2,14 @@
 
 namespace HunterSim
 {
-    public static class RangedCritCalculator
+    public class RangedCritCalculator : BaseStatCalculator
     {
         public static double Calculate(SimulationState state)
+        {
+            return Calculate<RangedCritCalculator>(state);
+        }
+
+        protected override double InstanceCalculate(SimulationState state)
         {
             
             var critChance = 0.05;

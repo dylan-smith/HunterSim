@@ -1,8 +1,13 @@
 ﻿namespace HunterSim
 {
-    public static class MovementSpeedCalculator
+    public class MovementSpeedCalculator : BaseStatCalculator
     {
         public static double Calculate(SimulationState state)
+        {
+            return Calculate<MovementSpeedCalculator>(state);
+        }
+
+        protected override double InstanceCalculate(SimulationState state)
         {
             var movementSpeed = 1.0;
 

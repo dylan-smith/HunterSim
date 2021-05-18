@@ -2,9 +2,14 @@
 
 namespace HunterSim
 {
-    public static class NatureResistanceCalculator
+    public class NatureResistanceCalculator : BaseStatCalculator
     {
         public static double Calculate(SimulationState state)
+        {
+            return Calculate<NatureResistanceCalculator>(state);
+        }
+
+        protected override double InstanceCalculate(SimulationState state)
         {
             var resist = state.Config.Gear.GetAllGear().Sum(x => x.NatureResistance);
             resist += state.Config.Gear.GetAllEnchants().Sum(x => x.NatureResistance);

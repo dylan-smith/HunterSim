@@ -480,7 +480,7 @@ namespace HunterSim.Tests
             state.Config.BossSettings.Level = 63;
             state.Config.Buffs.Add(Buff.DarkDesire);
 
-            Assert.AreEqual(0.07, MissChanceCalculator.Calculate(WeaponType.Bow, state));
+            Assert.AreEqual(0.07, MissChanceCalculator.Calculate(new GearItem() { WeaponType = WeaponType.Bow }, state));
         }
 
         [TestMethod]
@@ -492,7 +492,7 @@ namespace HunterSim.Tests
             state.Config.BossSettings.Level = 63;
             state.Config.Buffs.Add(Buff.FireToastedBun);
 
-            Assert.AreEqual(0.07, MissChanceCalculator.Calculate(WeaponType.Bow, state));
+            Assert.AreEqual(0.07, MissChanceCalculator.Calculate(new GearItem() { WeaponType = WeaponType.Bow }, state));
         }
 
         [TestMethod]

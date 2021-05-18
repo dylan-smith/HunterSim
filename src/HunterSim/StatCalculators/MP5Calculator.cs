@@ -1,8 +1,13 @@
 ﻿namespace HunterSim
 {
-    public static class MP5Calculator
+    public class MP5Calculator : BaseStatCalculator
     {
         public static double Calculate(SimulationState state)
+        {
+            return Calculate<MP5Calculator>(state);
+        }
+
+        protected override double InstanceCalculate(SimulationState state)
         {
             var mp5 = 0.0;
 

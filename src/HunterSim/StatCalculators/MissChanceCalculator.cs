@@ -3,12 +3,17 @@ using System.Linq;
 
 namespace HunterSim
 {
-    public static class MissChanceCalculator
+    public class MissChanceCalculator : BaseStatCalculator
     {
-        public static double Calculate(WeaponType weaponType, SimulationState state)
+        public static double Calculate(GearItem weapon, SimulationState state)
+        {
+            return Calculate<MissChanceCalculator>(weapon, state);
+        }
+
+        protected override double InstanceCalculate(GearItem weapon, SimulationState state)
         {
             var bossDefense = state.Config.BossSettings.Defense;
-            var weaponSkill = WeaponSkillCalculator.Calculate(weaponType, state);
+            var weaponSkill = WeaponSkillCalculator.Calculate(weapon, state);
             double missChance;
 
             if (bossDefense - weaponSkill > 10)

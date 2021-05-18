@@ -221,7 +221,7 @@ namespace HunterSim.Tests
             state.Config.Talents.Add(Talent.Surefooted, 3);
 
             // 9% base chance to miss - 3% from talent
-            Assert.AreEqual(0.06, MissChanceCalculator.Calculate(WeaponType.Bow, state), 0.001);
+            Assert.AreEqual(0.06, MissChanceCalculator.Calculate(new GearItem() { WeaponType = WeaponType.Bow }, state), 0.001);
         }
 
         [TestMethod]

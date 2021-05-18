@@ -1,8 +1,13 @@
 ﻿namespace HunterSim
 {
-    public static class StrengthCalculator
+    public class StrengthCalculator : BaseStatCalculator
     {
         public static double Calculate(SimulationState state)
+        {
+            return Calculate<StrengthCalculator>(state);
+        }
+
+        protected override double InstanceCalculate(SimulationState state)
         {
             var strength = state.Config.PlayerSettings.Strength;
 

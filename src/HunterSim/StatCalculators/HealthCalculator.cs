@@ -1,8 +1,13 @@
 ﻿namespace HunterSim
 {
-    public static class HealthCalculator
+    public class HealthCalculator : BaseStatCalculator
     {
         public static double Calculate(SimulationState state)
+        {
+            return Calculate<HealthCalculator>(state);
+        }
+
+        protected override double InstanceCalculate(SimulationState state)
         {
             var health = state.Config.PlayerSettings.Health;
             health += StaminaCalculator.Calculate(state) * 10;

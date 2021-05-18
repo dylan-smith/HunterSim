@@ -118,14 +118,14 @@ namespace HunterSim.Tests
             // Base Strength + Base Agility
             Assert.AreEqual(56 + 127, MeleeAttackPowerCalculator.Calculate(state));
             Assert.AreEqual(0.05, MeleeCritCalculator.Calculate(state));
-            Assert.AreEqual(0.0, MissChanceCalculator.Calculate(WeaponType.Gun, state));
-            Assert.AreEqual(0.0, MissChanceCalculator.Calculate(WeaponType.OneHandedSword, state));
+            Assert.AreEqual(0.0, MissChanceCalculator.Calculate(new GearItem() { WeaponType = WeaponType.Gun }, state));
+            Assert.AreEqual(0.0, MissChanceCalculator.Calculate(new GearItem() { WeaponType = WeaponType.OneHandedSword }, state));
             Assert.AreEqual(1.0, MovementSpeedCalculator.Calculate(state));
             // Base Agility * 2
             Assert.AreEqual(254, RangedAttackPowerCalculator.Calculate(state));
             Assert.AreEqual(0.05, RangedCritCalculator.Calculate(state));
             Assert.AreEqual(0.0, SpellCritCalculator.Calculate(state));
-            Assert.AreEqual(300, WeaponSkillCalculator.Calculate(WeaponType.Gun, state));
+            Assert.AreEqual(300, WeaponSkillCalculator.Calculate(new GearItem() { WeaponType = WeaponType.Gun }, state));
         }
     }
 }

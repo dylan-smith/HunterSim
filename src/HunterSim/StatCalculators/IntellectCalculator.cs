@@ -1,10 +1,13 @@
-﻿using System;
-
-namespace HunterSim
+﻿namespace HunterSim
 {
-    public static class IntellectCalculator
+    public class IntellectCalculator : BaseStatCalculator
     {
         public static double Calculate(SimulationState state)
+        {
+            return Calculate<IntellectCalculator>(state);
+        }
+
+        protected override double InstanceCalculate(SimulationState state)
         {
             var intellect = state.Config.PlayerSettings.Intellect;
 

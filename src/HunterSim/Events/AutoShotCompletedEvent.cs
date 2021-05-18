@@ -12,7 +12,7 @@ namespace HunterSim
             double autoShotDamage;
             DamageType damageType;
 
-            var missChance = MissChanceCalculator.Calculate(state.Config.Gear.Ranged.WeaponType, state);
+            var missChance = MissChanceCalculator.Calculate(state.Config.Gear.Ranged, state);
             var critChance = RangedCritCalculator.Calculate(state);
 
             var missRoll = RandomGenerator.Roll();

@@ -1,8 +1,13 @@
 ﻿namespace HunterSim
 {
-    public static class MeleeCritDamageMultiplierCalculator
+    public class MeleeCritDamageMultiplierCalculator : BaseStatCalculator
     {
         public static double Calculate(SimulationState state)
+        {
+            return Calculate<MeleeCritDamageMultiplierCalculator>(state);
+        }
+
+        protected override double InstanceCalculate(SimulationState state)
         {
             var bossType = state.Config.BossSettings.BossType;
 
