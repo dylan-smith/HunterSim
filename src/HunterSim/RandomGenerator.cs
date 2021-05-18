@@ -37,7 +37,7 @@ namespace HunterSim
             _instance = mock;
         }
 
-        public void ClearMock()
+        public static void ClearMock()
         {
             _instance = null;
         }

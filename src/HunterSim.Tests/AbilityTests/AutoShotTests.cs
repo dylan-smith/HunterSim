@@ -17,6 +17,7 @@ namespace HunterSim.Tests
         public void TestCleanup()
         {
             BaseStatCalculator.ClearMocks();
+            RandomGenerator.ClearMock();
         }
 
         [TestMethod]
@@ -32,7 +33,7 @@ namespace HunterSim.Tests
             HunterSim.AutoShot.Use(state);
 
             Assert.AreEqual(1, state.Events.Count);
-            Assert.AreEqual(7.2, state.Events[0].Timestamp);
+            Assert.AreEqual(7.2, state.Events[0].Timestamp, 0.001);
             Assert.AreEqual(typeof(AutoShotCastEvent), state.Events[0].GetType());
         }
 
@@ -68,8 +69,8 @@ namespace HunterSim.Tests
             Assert.AreEqual(typeof(AutoShotCompletedEvent), firstEvent.GetType());
             Assert.AreEqual(typeof(AutoShotCooldownCompletedEvent), secondEvent.GetType());
 
-            Assert.AreEqual(7.7, firstEvent.Timestamp); // 0.5 sec cast
-            Assert.AreEqual(10.1, secondEvent.Timestamp); // 2.9 sec weapon speed
+            Assert.AreEqual(7.7, firstEvent.Timestamp, 0.001); // 0.5 sec cast
+            Assert.AreEqual(10.1, secondEvent.Timestamp, 0.001); // 2.9 sec weapon speed
         }
 
         // TODO: Test that AutoShot takes haste into account
@@ -119,7 +120,7 @@ namespace HunterSim.Tests
 
             var dmg = (DamageEvent)state.Events[0];
 
-            Assert.AreEqual(7.7, dmg.Timestamp);
+            Assert.AreEqual(7.7, dmg.Timestamp, 0.001);
             Assert.AreEqual(150, dmg.Damage);
             Assert.AreEqual(DamageType.Hit, dmg.DamageType);
             Assert.AreEqual(0.00, dmg.MissChance);
@@ -151,12 +152,45 @@ namespace HunterSim.Tests
 
             var dmg = (DamageEvent)state.Events[0];
 
-            Assert.AreEqual(7.7, dmg.Timestamp);
+            Assert.AreEqual(7.7, dmg.Timestamp, 0.001);
             Assert.AreEqual(0, dmg.Damage);
             Assert.AreEqual(DamageType.Miss, dmg.DamageType);
-            Assert.AreEqual(0.09, dmg.MissChance);
-            Assert.AreEqual(0.00, dmg.CritChance);
-            Assert.AreEqual(0.91, dmg.HitChance);
+            Assert.AreEqual(0.09, dmg.MissChance, 0.001);
+            Assert.AreEqual(0.00, dmg.CritChance, 0.001);
+            Assert.AreEqual(0.91, dmg.HitChance, 0.001);
+        }
+
+        [TestMethod]
+        public void AutoShotCompletedEventCrit()
+        {
+            var state = new SimulationState();
+            state.Config.Gear.Ranged = new GearItem
+            {
+                Speed = 2.9,
+                WeaponType = WeaponType.Bow,
+                MinDamage = 100,
+                MaxDamage = 200,
+            };
+
+            BaseStatCalculator.InjectMock(typeof(MissChanceCalculator), new FakeStatCalculator(0.09));
+            BaseStatCalculator.InjectMock(typeof(RangedCritCalculator), new FakeStatCalculator(0.20));
+            RandomGenerator.InjectMock(new FakeRandomGenerator(0.091, 0.19));
+
+            var e = new AutoShotCompletedEvent(7.7);
+
+            e.ProcessEvent(state);
+
+            Assert.AreEqual(1, state.Events.Count);
+            Assert.AreEqual(typeof(DamageEvent), state.Events[0].GetType());
+
+            var dmg = (DamageEvent)state.Events[0];
+
+            Assert.AreEqual(7.7, dmg.Timestamp, 0.01);
+            Assert.AreEqual(300, dmg.Damage);
+            Assert.AreEqual(DamageType.Crit, dmg.DamageType);
+            Assert.AreEqual(0.09, dmg.MissChance, 0.001);
+            Assert.AreEqual(0.182, dmg.CritChance, 0.0001);
+            Assert.AreEqual(0.728, dmg.HitChance, 0.0001);
         }
 
         private void InjectZeroMocks()
