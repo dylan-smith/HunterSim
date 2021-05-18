@@ -13,7 +13,7 @@ namespace HunterSim.Tests
             var config = new DefaultConfig();
             var sim = new Simulation(config);
 
-            RandomGenerator.Instance = new RandomGenerator(64852147);
+            RandomGenerator.Seed(64852147);
 
             var result = sim.Run();
             var totalDamage = result.DamageEvents.Sum(x => x.Damage);

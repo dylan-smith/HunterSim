@@ -29,6 +29,11 @@ namespace HunterSim
 
         public static void InjectMock(Type type, BaseStatCalculator mock)
         {
+            if (_instances.ContainsKey(type))
+            {
+                _instances.Remove(type);
+            }
+
             _instances.Add(type, mock);
         }
 

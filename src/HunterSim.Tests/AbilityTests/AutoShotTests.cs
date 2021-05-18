@@ -99,10 +99,9 @@ namespace HunterSim.Tests
         }
 
         [TestMethod]
-        public void AutoShotCompletedEvent()
+        public void AutoShotCompletedEventHit()
         {
             var state = new SimulationState();
-            state.Config.PlayerSettings.Race = Race.Dwarf; // if we mock the stat calculators this won't be necessary
             state.Config.Gear.Ranged = new GearItem
             {
                 Speed = 2.9,
@@ -126,6 +125,38 @@ namespace HunterSim.Tests
             Assert.AreEqual(0.00, dmg.MissChance);
             Assert.AreEqual(0.00, dmg.CritChance);
             Assert.AreEqual(1.0, dmg.HitChance);
+        }
+
+        [TestMethod]
+        public void AutoShotCompletedEventMiss()
+        {
+            var state = new SimulationState();
+            state.Config.Gear.Ranged = new GearItem
+            {
+                Speed = 2.9,
+                WeaponType = WeaponType.Bow,
+                MinDamage = 100,
+                MaxDamage = 200,
+            };
+
+            BaseStatCalculator.InjectMock(typeof(MissChanceCalculator), new FakeStatCalculator(0.09));
+            RandomGenerator.InjectMock(new FakeRandomGenerator(0.089));
+
+            var e = new AutoShotCompletedEvent(7.7);
+
+            e.ProcessEvent(state);
+
+            Assert.AreEqual(1, state.Events.Count);
+            Assert.AreEqual(typeof(DamageEvent), state.Events[0].GetType());
+
+            var dmg = (DamageEvent)state.Events[0];
+
+            Assert.AreEqual(7.7, dmg.Timestamp);
+            Assert.AreEqual(0, dmg.Damage);
+            Assert.AreEqual(DamageType.Miss, dmg.DamageType);
+            Assert.AreEqual(0.09, dmg.MissChance);
+            Assert.AreEqual(0.00, dmg.CritChance);
+            Assert.AreEqual(0.91, dmg.HitChance);
         }
 
         private void InjectZeroMocks()
