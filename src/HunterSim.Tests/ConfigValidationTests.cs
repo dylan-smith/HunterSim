@@ -143,5 +143,51 @@ namespace HunterSim.Tests
             Assert.AreEqual(1, state.Warnings.Count);
             Assert.AreEqual(SimulationWarnings.TooManyTalentPoints, state.Warnings[0]);
         }
+
+        [TestMethod]
+        public void NoRaceSelected()
+        {
+            var state = new SimulationState
+            {
+                Config = new DefaultConfig()
+            };
+
+            state.Config.PlayerSettings.Race = Race.NotSet;
+
+            Assert.IsFalse(state.Validate());
+            Assert.AreEqual(1, state.Errors.Count);
+            Assert.AreEqual(SimulationErrors.NoRaceSelected, state.Errors[0]);
+        }
+
+        [TestMethod]
+        public void MissingRangedWeapon()
+        {
+            var state = new SimulationState
+            {
+                Config = new DefaultConfig()
+            };
+
+            state.Config.Gear.Ranged = null;
+
+            Assert.IsFalse(state.Validate());
+            Assert.AreEqual(1, state.Errors.Count);
+            Assert.AreEqual(SimulationErrors.MissingRangedWeapon, state.Errors[0]);
+        }
+
+        [TestMethod]
+        public void BlastedLandsAndZanzaPotDoNotStack()
+        {
+            var state = new SimulationState
+            {
+                Config = new DefaultConfig()
+            };
+
+            state.Config.Buffs.Add(Buff.ROIDS);
+            state.Config.Buffs.Add(Buff.spiri)
+
+            Assert.IsFalse(state.Validate());
+            Assert.AreEqual(1, state.Errors.Count);
+            Assert.AreEqual(SimulationErrors.MissingRangedWeapon, state.Errors[0]);
+        }
     }
 }
