@@ -52,10 +52,35 @@ namespace HunterSim
                 warnings.Add(SimulationWarnings.TooManyBlastedLandsBuffs);
             }
 
+            if (!ValidateTooManyBlastedLandsAndZanzaPotsDoNotStack())
+            {
+                warnings.Add(SimulationWarnings.BlastedLandsAndZanzaPotDoNotStack);
+            }
+
+            if (!ValidateMissingRangedWeapon())
+            {
+                errors.Add(SimulationErrors.MissingRangedWeapon);
+            }
+
             return (warnings, errors);
         }
 
+        private bool ValidateMissingRangedWeapon()
+        {
+            return Gear.Ranged != null;
+        }
+
+        private bool ValidateTooManyBlastedLandsAndZanzaPotsDoNotStack()
+        {
+            return CountBlastedLandsBuffs() == 0 || !Buffs.Contains(Buff.SpiritOfZandalar);
+        }
+
         private bool ValidateTooManyBlastedLandsBuffs()
+        {
+            return CountBlastedLandsBuffs() <= 1;
+        }
+
+        private int CountBlastedLandsBuffs()
         {
             var blastedLandsBuffs = 0;
 
@@ -84,7 +109,7 @@ namespace HunterSim
                 blastedLandsBuffs++;
             }
 
-            return blastedLandsBuffs <= 1;
+            return blastedLandsBuffs;
         }
 
         private bool ValidatePlayerMaxLevel()

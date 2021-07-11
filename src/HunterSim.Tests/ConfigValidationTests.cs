@@ -183,11 +183,11 @@ namespace HunterSim.Tests
             };
 
             state.Config.Buffs.Add(Buff.ROIDS);
-            state.Config.Buffs.Add(Buff.spiri)
+            state.Config.Buffs.Add(Buff.SpiritOfZandalar);
 
-            Assert.IsFalse(state.Validate());
-            Assert.AreEqual(1, state.Errors.Count);
-            Assert.AreEqual(SimulationErrors.MissingRangedWeapon, state.Errors[0]);
+            Assert.IsTrue(state.Validate());
+            Assert.AreEqual(1, state.Warnings.Count);
+            Assert.AreEqual(SimulationWarnings.BlastedLandsAndZanzaPotDoNotStack, state.Warnings[0]);
         }
     }
 }
