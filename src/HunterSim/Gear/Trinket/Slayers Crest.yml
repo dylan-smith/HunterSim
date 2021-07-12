@@ -1,6 +1,0 @@
-﻿name: Slayer's Crest
-ap: 64
-# Use: Increases Attack Power by 260 for 20 sec (2 Min Cooldown) - handled in code
-wowhead: 23041
-source: naxx
-phase: 6

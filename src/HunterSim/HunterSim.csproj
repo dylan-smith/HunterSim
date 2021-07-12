@@ -15,6 +15,30 @@
   </ItemGroup>
 
   <ItemGroup>
+    <None Remove="Gear\Ammo\Wardens Arrow.yml" />
+    <None Remove="Gear\Back\Blood Knight War Cloak.yml" />
+    <None Remove="Gear\Chest\Beast Lord Cuirass.yml" />
+    <None Remove="Gear\Feet\The Masters Treads.yml" />
+    <None Remove="Gear\Finger\Garonas Signet Ring.yml" />
+    <None Remove="Gear\Finger\Ring of the Recalcitrant.yml" />
+    <None Remove="Gear\Hands\Beast Lord Handguards.yml" />
+    <None Remove="Gear\Head\Beast Lord Helm.yml" />
+    <None Remove="Gear\Legs\Skulkers Greaves.yml" />
+    <None Remove="Gear\MainHand\Big Bad Wolfs Paw.yml" />
+    <None Remove="Gear\Neck\Jagged Bark Pendant.yml" />
+    <None Remove="Gear\OffHand\Void-Talon.yml" />
+    <None Remove="Gear\OneHand\Stellaris.yml" />
+    <None Remove="Gear\Quiver\Worg Hide Quiver.yml" />
+    <None Remove="Gear\Ranged\Wrathtide Longbow.yml" />
+    <None Remove="Gear\Shoulder\Beast Lord Mantle.yml" />
+    <None Remove="Gear\Trinket\Abacus of Violent Odds.yml" />
+    <None Remove="Gear\Trinket\Bloodlust Brooch.yml" />
+    <None Remove="Gear\TwoHand\Legacy.yml" />
+    <None Remove="Gear\Waist\Girdle of the Prowler.yml" />
+    <None Remove="Gear\Wrist\Felstalker Bracers.yml" />
+  </ItemGroup>
+
+  <ItemGroup>
     <PackageReference Include="YamlDotNet" Version="11.1.1" />
   </ItemGroup>
 
