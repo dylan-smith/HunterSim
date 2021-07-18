@@ -17,15 +17,19 @@ namespace HunterSim
                 switch (Race)
                 {
                     case Race.Dwarf:
-                        return 57.0;
+                        return 66.0;
                     case Race.NightElf:
-                        return 52.0;
+                        return 61.0;
                     case Race.Orc:
-                        return 58.0;
+                        return 67.0;
                     case Race.Tauren:
-                        return 60.0;
+                        return 69.0;
                     case Race.Troll:
-                        return 56.0;
+                        return 65.0;
+                    case Race.Draenei:
+                        return 65.0;
+                    case Race.BloodElf:
+                        return 61.0;
                     default:
                         // TODO: Richer exceptions
                         throw new Exception("Race not set");
@@ -40,15 +44,19 @@ namespace HunterSim
                 switch (Race)
                 {
                     case Race.Dwarf:
-                        return 121.0;
+                        return 147.0;
                     case Race.NightElf:
-                        return 130.0;
+                        return 156.0;
                     case Race.Orc:
-                        return 122.0;
+                        return 148.0;
                     case Race.Tauren:
-                        return 120.0;
+                        return 146.0;
                     case Race.Troll:
-                        return 127.0;
+                        return 153.0;
+                    case Race.Draenei:
+                        return 148.0;
+                    case Race.BloodElf:
+                        return 153.0;
                     default:
                         // TODO: Richer exceptions
                         throw new Exception("Race not set");
@@ -63,15 +71,19 @@ namespace HunterSim
                 switch (Race)
                 {
                     case Race.Dwarf:
-                        return 93.0;
+                        return 111.0;
                     case Race.NightElf:
-                        return 89.0;
+                        return 107.0;
                     case Race.Orc:
-                        return 92.0;
+                        return 110.0;
                     case Race.Tauren:
-                        return 92.0;
+                        return 110.0;
                     case Race.Troll:
-                        return 91.0;
+                        return 109.0;
+                    case Race.Draenei:
+                        return 107.0;
+                    case Race.BloodElf:
+                        return 106.0;
                     default:
                         // TODO: Richer exceptions
                         throw new Exception("Race not set");
@@ -86,15 +98,19 @@ namespace HunterSim
                 switch (Race)
                 {
                     case Race.Dwarf:
-                        return 64.0;
+                        return 76.0;
                     case Race.NightElf:
-                        return 65.0;
+                        return 77.0;
                     case Race.Orc:
-                        return 62.0;
+                        return 74.0;
                     case Race.Tauren:
-                        return 60.0;
+                        return 72.0;
                     case Race.Troll:
-                        return 61.0;
+                        return 73.0;
+                    case Race.Draenei:
+                        return 78.0;
+                    case Race.BloodElf:
+                        return 81.0;
                     default:
                         // TODO: Richer exceptions
                         throw new Exception("Race not set");
@@ -109,15 +125,19 @@ namespace HunterSim
                 switch (Race)
                 {
                     case Race.Dwarf:
-                        return 69.0;
+                        return 82.0;
                     case Race.NightElf:
-                        return 70.0;
+                        return 83.0;
                     case Race.Orc:
-                        return 73.0;
+                        return 86.0;
                     case Race.Tauren:
-                        return 72.0;
+                        return 85.0;
                     case Race.Troll:
-                        return 71.0;
+                        return 84.0;
+                    case Race.Draenei:
+                        return 85.0;
+                    case Race.BloodElf:
+                        return 82.0;
                     default:
                         // TODO: Richer exceptions
                         throw new Exception("Race not set");
@@ -129,7 +149,7 @@ namespace HunterSim
         {
             get
             {
-                return 1467.0;
+                return 3488.0;
             }
         }
 
@@ -137,7 +157,7 @@ namespace HunterSim
         {
             get
             {
-                return 1720.0;
+                return 3253.0;
             }
         }
     }

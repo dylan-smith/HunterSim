@@ -1,4 +1,5 @@
-﻿using System.Linq;
+﻿using System;
+using System.Linq;
 
 namespace HunterSim
 {
@@ -11,38 +12,18 @@ namespace HunterSim
 
         protected override double InstanceCalculate(SimulationState state)
         {
-            var critChance = 0.05;
+            // base crit for hunters is oddly -1.53%
+            // TODO: Include link
+            var critChance = -0.0153;
+            critChance += GetCritSuppressionBasedOnBossLevel(state);
+            critChance += GetCritSuppressionAura();
             critChance += state.Config.Gear.GetAllGear().Sum(x => x.Crit);
             critChance += state.Config.Gear.GetAllEnchants().Sum(x => x.Crit);
-            critChance += AgilityCalculator.Calculate(state) / 5300; // 53 Agi = 0.01 crit
-
-            // Apparantly the 5% base crit is due to the base agi, we need to subtract it out so we don't double-count it
-            // https://vanilla-wow-archive.fandom.com/wiki/Critical_strike
-            critChance -= state.Config.PlayerSettings.Agility / 5300;
-
-            if (state.Config.Buffs.Contains(Buff.RallyingCryOfTheDragonSlayer))
-            {
-                critChance += 0.05;
-            }
-
-            if (state.Config.Buffs.Contains(Buff.SongflowerSerenade))
-            {
-                critChance += 0.05;
-            }
+            critChance += AgilityCalculator.Calculate(state) / 4000; // 40 Agi = 0.01 crit
 
             if (state.Config.Buffs.Contains(Buff.LeaderOfThePack))
             {
-                critChance += 0.03;
-            }
-
-            if (state.Config.Buffs.Contains(Buff.ElixirOfTheMongoose))
-            {
-                critChance += 0.02;
-            }
-
-            if (state.Config.Buffs.Contains(Buff.FireFestivalFury))
-            {
-                critChance += 0.03;
+                critChance += 0.05;
             }
 
             if (state.Config.Talents.ContainsKey(Talent.KillerInstinct))
@@ -50,7 +31,22 @@ namespace HunterSim
                 critChance += state.Config.Talents[Talent.KillerInstinct] * 0.01;
             }
 
+            critChance = Math.Max(critChance, 0);
+            critChance = Math.Min(critChance, 1.0);
+
             return critChance;
+        }
+
+        private double GetCritSuppressionAura()
+        {
+            // https://classic.wowhead.com/news/berserker-stance-and-modifiers-to-critical-strike-clarifications-293749
+            return -0.018;
+        }
+
+        private double GetCritSuppressionBasedOnBossLevel(SimulationState state)
+        {
+            // TODO: Include link to details
+            return -0.01 * (state.Config.BossSettings.Level - state.Config.PlayerSettings.Level);
         }
     }
 }

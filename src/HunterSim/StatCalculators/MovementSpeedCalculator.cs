@@ -11,11 +11,6 @@
         {
             var movementSpeed = 1.0;
 
-            if (state.Config.Buffs.Contains(Buff.SpiritOfZandalar))
-            {
-                movementSpeed += 0.1;
-            }
-
             if (state.Auras.Contains(Aura.AspectOfTheCheetah) || state.Auras.Contains(Aura.AspectOfThePack))
             {
                 movementSpeed += 0.3;

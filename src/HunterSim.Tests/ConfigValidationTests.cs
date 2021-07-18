@@ -19,22 +19,6 @@ namespace HunterSim.Tests
         }
 
         [TestMethod]
-        public void TooManyFoodBuffs()
-        {
-            var state = new SimulationState
-            {
-                Config = new DefaultConfig()
-            };
-
-            state.Config.Buffs.Add(Buff.BlessedSunfruit);
-            state.Config.Buffs.Add(Buff.SmokedDesertDumplings);
-
-            Assert.IsTrue(state.Validate());
-            Assert.AreEqual(1, state.Warnings.Count);
-            Assert.AreEqual(SimulationWarnings.TooManyFoodBuffs, state.Warnings[0]);
-        }
-
-        [TestMethod]
         public void MissingGear()
         {
             var state = new SimulationState
@@ -64,54 +48,6 @@ namespace HunterSim.Tests
             Assert.IsTrue(state.Validate());
             Assert.AreEqual(1, state.Warnings.Count);
             Assert.AreEqual(SimulationWarnings.PlayerNotMaxLevel, state.Warnings[0]);
-        }
-
-        [TestMethod]
-        public void TooManyBlastedLandsBuffsRoidsAndScorpok()
-        {
-            var state = new SimulationState
-            {
-                Config = new DefaultConfig()
-            };
-
-            state.Config.Buffs.Add(Buff.ROIDS);
-            state.Config.Buffs.Add(Buff.GroundScorpokAssay);
-
-            Assert.IsTrue(state.Validate());
-            Assert.AreEqual(1, state.Warnings.Count);
-            Assert.AreEqual(SimulationWarnings.TooManyBlastedLandsBuffs, state.Warnings[0]);
-        }
-
-        [TestMethod]
-        public void TooManyBlastedLandsBuffsCerebralAndGizzard()
-        {
-            var state = new SimulationState
-            {
-                Config = new DefaultConfig()
-            };
-
-            state.Config.Buffs.Add(Buff.CerebralCortexCompound);
-            state.Config.Buffs.Add(Buff.GizzardGum);
-
-            Assert.IsTrue(state.Validate());
-            Assert.AreEqual(1, state.Warnings.Count);
-            Assert.AreEqual(SimulationWarnings.TooManyBlastedLandsBuffs, state.Warnings[0]);
-        }
-
-        [TestMethod]
-        public void TooManyBlastedLandsBuffsLungJuiceAndRoids()
-        {
-            var state = new SimulationState
-            {
-                Config = new DefaultConfig()
-            };
-
-            state.Config.Buffs.Add(Buff.LungJuiceCocktail);
-            state.Config.Buffs.Add(Buff.ROIDS);
-
-            Assert.IsTrue(state.Validate());
-            Assert.AreEqual(1, state.Warnings.Count);
-            Assert.AreEqual(SimulationWarnings.TooManyBlastedLandsBuffs, state.Warnings[0]);
         }
 
         [TestMethod]
@@ -172,22 +108,6 @@ namespace HunterSim.Tests
             Assert.IsFalse(state.Validate());
             Assert.AreEqual(1, state.Errors.Count);
             Assert.AreEqual(SimulationErrors.MissingRangedWeapon, state.Errors[0]);
-        }
-
-        [TestMethod]
-        public void BlastedLandsAndZanzaPotDoNotStack()
-        {
-            var state = new SimulationState
-            {
-                Config = new DefaultConfig()
-            };
-
-            state.Config.Buffs.Add(Buff.ROIDS);
-            state.Config.Buffs.Add(Buff.SpiritOfZandalar);
-
-            Assert.IsTrue(state.Validate());
-            Assert.AreEqual(1, state.Warnings.Count);
-            Assert.AreEqual(SimulationWarnings.BlastedLandsAndZanzaPotDoNotStack, state.Warnings[0]);
         }
     }
 }

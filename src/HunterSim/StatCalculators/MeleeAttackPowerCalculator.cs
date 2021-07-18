@@ -16,52 +16,36 @@ namespace HunterSim
             meleeAP += state.Config.Gear.GetAllEnchants().Sum(x => x.AttackPower);
             meleeAP += state.Config.Gear.GetAllGear().Sum(x => x.MeleeAttackPower);
             meleeAP += state.Config.Gear.GetAllEnchants().Sum(x => x.MeleeAttackPower);
-            meleeAP += AgilityCalculator.Calculate(state);
             meleeAP += StrengthCalculator.Calculate(state);
 
-            if (state.Config.Buffs.Contains(Buff.RallyingCryOfTheDragonSlayer))
+            if (state.Config.Buffs.Contains(Buff.ImprovedHuntersMark))
             {
-                meleeAP += 140;
+                meleeAP += 110;
             }
-
-            if (state.Config.Buffs.Contains(Buff.FengusFerocity))
+            else if (state.Config.Talents.ContainsKey(Talent.ImprovedHuntersMark))
             {
-                meleeAP += 200;
+                meleeAP += 110 * (0.2 * state.Config.Talents[Talent.ImprovedHuntersMark]);
             }
 
             if (state.Config.Talents.ContainsKey(Talent.TrueshotAura) || state.Config.Buffs.Contains(Buff.TrueshotAura))
             {
-                meleeAP += 100;
+                meleeAP += 125;
             }
 
             if (state.Config.Buffs.Contains(Buff.BattleShout))
             {
-                // rank 7 battle shout gives 232 AP, assuming warrior has 5/5 improved battle shout for a 25% bonus AP
-                meleeAP += 290;
+                meleeAP += 305;
             }
 
-            if (state.Config.Buffs.Contains(Buff.EnhancedBattleShout))
+            if (state.Config.Buffs.Contains(Buff.ImprovedBattleShout))
             {
-                // Enhanced Battle Shout is from tier 2.5 3-piece bonus
-                // rank 7 battle shout gives 232 AP, assuming warrior has 5/5 improved battle shout for a 25% bonus AP
-                meleeAP += 320;
+                // Warrior talent Commanding Presence (at 5/5) gives a 25% bonus to battle shout buff
+                meleeAP += 381;
             }
 
             if (state.Config.Buffs.Contains(Buff.BlessingOfMight))
             {
-                meleeAP += 185;
-            }
-
-            if (state.Config.Buffs.Contains(Buff.JujuMight))
-            {
-                meleeAP += 40;
-            }
-            else
-            {
-                if (state.Config.Buffs.Contains(Buff.WinterfallFirewater))
-                {
-                    meleeAP += 35;
-                }
+                meleeAP += 220;
             }
 
             return meleeAP;

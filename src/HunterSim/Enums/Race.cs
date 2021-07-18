@@ -5,8 +5,10 @@
         NotSet,
         Dwarf,
         NightElf,
+        Draenei,
         Orc,
         Tauren,
-        Troll
+        Troll,
+        BloodElf
     }
 }

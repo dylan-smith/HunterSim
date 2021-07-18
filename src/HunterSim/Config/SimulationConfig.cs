@@ -47,16 +47,6 @@ namespace HunterSim
                 warnings.Add(SimulationWarnings.PlayerNotMaxLevel);
             }
 
-            if (!ValidateTooManyBlastedLandsBuffs())
-            {
-                warnings.Add(SimulationWarnings.TooManyBlastedLandsBuffs);
-            }
-
-            if (!ValidateTooManyBlastedLandsAndZanzaPotsDoNotStack())
-            {
-                warnings.Add(SimulationWarnings.BlastedLandsAndZanzaPotDoNotStack);
-            }
-
             if (!ValidateMissingRangedWeapon())
             {
                 errors.Add(SimulationErrors.MissingRangedWeapon);
@@ -68,48 +58,6 @@ namespace HunterSim
         private bool ValidateMissingRangedWeapon()
         {
             return Gear.Ranged != null;
-        }
-
-        private bool ValidateTooManyBlastedLandsAndZanzaPotsDoNotStack()
-        {
-            return CountBlastedLandsBuffs() == 0 || !Buffs.Contains(Buff.SpiritOfZandalar);
-        }
-
-        private bool ValidateTooManyBlastedLandsBuffs()
-        {
-            return CountBlastedLandsBuffs() <= 1;
-        }
-
-        private int CountBlastedLandsBuffs()
-        {
-            var blastedLandsBuffs = 0;
-
-            if (Buffs.Contains(Buff.ROIDS))
-            {
-                blastedLandsBuffs++;
-            }
-
-            if (Buffs.Contains(Buff.GroundScorpokAssay))
-            {
-                blastedLandsBuffs++;
-            }
-
-            if (Buffs.Contains(Buff.LungJuiceCocktail))
-            {
-                blastedLandsBuffs++;
-            }
-
-            if (Buffs.Contains(Buff.CerebralCortexCompound))
-            {
-                blastedLandsBuffs++;
-            }
-
-            if (Buffs.Contains(Buff.GizzardGum))
-            {
-                blastedLandsBuffs++;
-            }
-
-            return blastedLandsBuffs;
         }
 
         private bool ValidatePlayerMaxLevel()
@@ -145,22 +93,7 @@ namespace HunterSim
         {
             var foodBuffCount = 0;
 
-            if (Buffs.Contains(Buff.SmokedDesertDumplings))
-            {
-                foodBuffCount++;
-            }
-
-            if (Buffs.Contains(Buff.BlessedSunfruit))
-            {
-                foodBuffCount++;
-            }
-
-            if (Buffs.Contains(Buff.GrilledSquid))
-            {
-                foodBuffCount++;
-            }
-
-            // TODO: What else counts as a food buff? Does Dragonbreath Chili? Fire Toasted Bun?
+            // TODO: Add various food buffs
 
             return foodBuffCount <= 1;
         }

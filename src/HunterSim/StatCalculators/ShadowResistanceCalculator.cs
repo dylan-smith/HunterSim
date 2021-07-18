@@ -16,7 +16,7 @@ namespace HunterSim
 
             if (state.Config.Buffs.Contains(Buff.MarkOfTheWild))
             {
-                resist += 20;
+                resist += 25;
             }
 
             return resist;

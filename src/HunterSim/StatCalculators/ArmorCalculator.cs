@@ -14,9 +14,11 @@ namespace HunterSim
             var armor = state.Config.Gear.GetAllGear().Sum(x => x.Armor);
             armor += state.Config.Gear.GetAllEnchants().Sum(x => x.Armor);
 
+            armor += AgilityCalculator.Calculate(state) * 2;
+
             if (state.Config.Buffs.Contains(Buff.MarkOfTheWild))
             {
-                armor += 285;
+                armor += 340;
             }
 
             return armor;

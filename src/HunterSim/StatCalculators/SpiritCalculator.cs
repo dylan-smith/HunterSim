@@ -15,22 +15,12 @@ namespace HunterSim
 
             if (state.Config.Buffs.Contains(Buff.MarkOfTheWild))
             {
-                spirit += 12;
+                spirit += 14;
             }
 
             if (state.Config.Buffs.Contains(Buff.BlessingOfKings))
             {
                 spirit *= 1.1;
-            }
-
-            if (state.Config.Buffs.Contains(Buff.SongflowerSerenade))
-            {
-                spirit += 15;
-            }
-
-            if (state.Config.Buffs.Contains(Buff.SpiritOfZandalar))
-            {
-                spirit *= 1.15;
             }
 
             return spirit;

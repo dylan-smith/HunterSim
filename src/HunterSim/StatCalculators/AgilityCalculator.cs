@@ -15,19 +15,9 @@ namespace HunterSim
             agility += state.Config.Gear.GetAllGear().Sum(x => x.Agility);
             agility += state.Config.Gear.GetAllEnchants().Sum(x => x.Agility);
 
-            if (state.Config.Buffs.Contains(Buff.SongflowerSerenade))
-            {
-                agility += 15;
-            }
-
             if (state.Config.Buffs.Contains(Buff.MarkOfTheWild))
             {
-                agility += 12;
-            }
-
-            if (state.Config.Buffs.Contains(Buff.SpiritOfZandalar))
-            {
-                agility *= 1.15;
+                agility += 14;
             }
 
             if (state.Config.Buffs.Contains(Buff.BlessingOfKings))
@@ -38,22 +28,6 @@ namespace HunterSim
             if (state.Config.Buffs.Contains(Buff.GraceOfAirTotem))
             {
                 agility += 77;
-            }
-
-            if (state.Config.Buffs.Contains(Buff.GroundScorpokAssay))
-            {
-                agility += 25;
-            }
-
-            // Mongoose and Agi elixirs don't stack
-            if (state.Config.Buffs.Contains(Buff.ElixirOfTheMongoose) || state.Config.Buffs.Contains(Buff.ElixirOfGreaterAgility))
-            {
-                agility += 25;
-            }
-
-            if (state.Config.Buffs.Contains(Buff.GrilledSquid))
-            {
-                agility += 10;
             }
 
             if (state.Config.Talents.ContainsKey(Talent.LightningReflexes))

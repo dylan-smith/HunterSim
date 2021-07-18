@@ -11,24 +11,14 @@
         {
             var intellect = state.Config.PlayerSettings.Intellect;
 
-            if (state.Config.Buffs.Contains(Buff.SongflowerSerenade))
-            {
-                intellect += 15;
-            }
-
             if (state.Config.Buffs.Contains(Buff.MarkOfTheWild))
             {
-                intellect += 12;
+                intellect += 14;
             }
 
             if (state.Config.Buffs.Contains(Buff.BlessingOfKings))
             {
                 intellect *= 1.1;
-            }
-
-            if (state.Config.Buffs.Contains(Buff.SpiritOfZandalar))
-            {
-                intellect *= 1.15;
             }
 
             return intellect;

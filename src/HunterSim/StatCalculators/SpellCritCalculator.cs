@@ -13,26 +13,6 @@
             // https://classic.wowhead.com/guide=10453/classic-spell-power-hunter-the-little-arcane-shot-that-could
             var spellCrit = 0.0;
 
-            if (state.Config.Buffs.Contains(Buff.RallyingCryOfTheDragonSlayer))
-            {
-                spellCrit += 0.1;
-            }
-
-            if (state.Config.Buffs.Contains(Buff.SongflowerSerenade))
-            {
-                spellCrit += 0.05;
-            }
-
-            if (state.Config.Buffs.Contains(Buff.SlipkiksSavvy))
-            {
-                spellCrit += 0.03;
-            }
-
-            if (state.Config.Buffs.Contains(Buff.FireFestivalFury))
-            {
-                spellCrit += 0.03;
-            }
-
             if (state.Config.Talents.ContainsKey(Talent.KillerInstinct))
             {
                 spellCrit += state.Config.Talents[Talent.KillerInstinct] * 0.01;

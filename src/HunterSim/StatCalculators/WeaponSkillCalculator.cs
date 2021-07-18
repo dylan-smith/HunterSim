@@ -9,7 +9,7 @@
 
         protected override double InstanceCalculate(GearItem weapon, SimulationState state)
         {
-            var skill = 300;
+            var skill = state.Config.PlayerSettings.Level * 5;
             var weaponType = weapon.WeaponType;
 
             foreach (var gear in state.Config.Gear.GetAllGear())

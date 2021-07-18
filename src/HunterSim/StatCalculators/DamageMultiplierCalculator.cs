@@ -12,11 +12,6 @@
             var bossType = state.Config.BossSettings.BossType;
             var damageMultiplier = 1.0;
 
-            if (state.Config.Buffs.Contains(Buff.SaygesDarkFortuneOfDamage))
-            {
-                damageMultiplier *= 1.1;
-            }
-
             if (state.Config.Talents.ContainsKey(Talent.RangedWeaponSpecialization))
             {
                 damageMultiplier += 0.01 * state.Config.Talents[Talent.RangedWeaponSpecialization];
