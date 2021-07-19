@@ -17,8 +17,7 @@ namespace HunterSim
             var critChance = -0.0153;
             critChance += GetCritSuppressionBasedOnBossLevel(state);
             critChance += GetCritSuppressionAura();
-            critChance += state.Config.Gear.GetAllGear().Sum(x => x.CritRating);
-            critChance += state.Config.Gear.GetAllEnchants().Sum(x => x.CritRating);
+            critChance += state.Config.Gear.GetStatTotal(x => x.CritRating);
             critChance += AgilityCalculator.Calculate(state) / 4000; // 40 Agi = 0.01 crit
 
             if (state.Config.Buffs.Contains(Buff.LeaderOfThePack))

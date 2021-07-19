@@ -11,8 +11,7 @@ namespace HunterSim
 
         protected override double InstanceCalculate(SimulationState state)
         {
-            var haste = state.Config.Gear.GetAllGear().Sum(x => x.HasteRating);
-            haste += state.Config.Gear.GetAllEnchants().Sum(x => x.HasteRating);
+            var haste = state.Config.Gear.GetStatTotal(x => x.HasteRating);
             
             return haste;
         }

@@ -9,11 +9,10 @@
 
         protected override double InstanceCalculate(SimulationState state)
         {
-            var mp5 = 0.0;
+            var mp5 = state.Config.Gear.GetStatTotal(x => x.MP5);
 
             // TODO: Does spirit affect this?
-            // TODO: Get from gear and enchants
-
+            
             return mp5;
         }
     }

@@ -11,10 +11,8 @@ namespace HunterSim
 
         protected override double InstanceCalculate(SimulationState state)
         {
-            var rangedAP = state.Config.Gear.GetAllGear().Sum(x => x.AttackPower);
-            rangedAP += state.Config.Gear.GetAllEnchants().Sum(x => x.AttackPower);
-            rangedAP += state.Config.Gear.GetAllGear().Sum(x => x.RangedAttackPower);
-            rangedAP += state.Config.Gear.GetAllEnchants().Sum(x => x.RangedAttackPower);
+            var rangedAP = state.Config.Gear.GetStatTotal(x => x.AttackPower);
+            rangedAP += state.Config.Gear.GetStatTotal(x => x.RangedAttackPower);
             rangedAP += AgilityCalculator.Calculate(state);
             
             if (state.Config.Buffs.Contains(Buff.HuntersMark) || state.Config.Buffs.Contains(Buff.ImprovedHuntersMark))

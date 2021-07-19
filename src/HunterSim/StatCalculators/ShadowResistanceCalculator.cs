@@ -11,8 +11,7 @@ namespace HunterSim
 
         protected override double InstanceCalculate(SimulationState state)
         {
-            var resist = state.Config.Gear.GetAllGear().Sum(x => x.ShadowResistance);
-            resist += state.Config.Gear.GetAllEnchants().Sum(x => x.ShadowResistance);
+            var resist = state.Config.Gear.GetStatTotal(x => x.ShadowResistance);
 
             if (state.Config.Buffs.Contains(Buff.MarkOfTheWild))
             {

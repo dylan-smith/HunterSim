@@ -10,8 +10,7 @@
         protected override double InstanceCalculate(SimulationState state)
         {
             var intellect = state.Config.PlayerSettings.Intellect;
-
-            // TODO: Get from gear and enchants
+            intellect += state.Config.Gear.GetStatTotal(x => x.Intellect);
 
             if (state.Config.Buffs.Contains(Buff.MarkOfTheWild))
             {

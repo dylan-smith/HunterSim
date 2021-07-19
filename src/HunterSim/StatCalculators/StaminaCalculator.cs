@@ -10,8 +10,7 @@
         protected override double InstanceCalculate(SimulationState state)
         {
             var stamina = state.Config.PlayerSettings.Stamina;
-
-            // TODO: Get from gear and enchants
+            stamina += state.Config.Gear.GetStatTotal(x => x.Stamina);
 
             if (state.Config.Buffs.Contains(Buff.MarkOfTheWild))
             {

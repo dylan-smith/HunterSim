@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 
 namespace HunterSim
@@ -51,6 +52,17 @@ namespace HunterSim
         public IEnumerable<GearItem> GetAllEnchants()
         {
             return GetAllGear().Where(x => x.Enchant != null).Select(x => x.Enchant).ToList();
+        }
+
+        public double GetStatTotal(Func<GearItem, double> stat)
+        {
+            var result = GetAllGear().Sum(g => g.GetStatWithSockets(stat));
+            result += GetAllEnchants().Sum(e => e.GetStatWithSockets(stat));
+
+            // TODO: Gear set bonuses
+            // TODO: Meta gems
+
+            return result;
         }
     }
 }

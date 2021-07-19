@@ -12,8 +12,7 @@ namespace HunterSim
         protected override double InstanceCalculate(SimulationState state)
         {
             var spirit = state.Config.PlayerSettings.Spirit;
-
-            // TODO: Get from gear and enchants
+            spirit += state.Config.Gear.GetStatTotal(x => x.Spirit);
 
             if (state.Config.Buffs.Contains(Buff.MarkOfTheWild))
             {

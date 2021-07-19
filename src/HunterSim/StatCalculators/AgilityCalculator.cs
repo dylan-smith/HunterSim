@@ -12,8 +12,7 @@ namespace HunterSim
         protected override double InstanceCalculate(SimulationState state)
         {
             var agility = state.Config.PlayerSettings.Agility;
-            agility += state.Config.Gear.GetAllGear().Sum(x => x.Agility);
-            agility += state.Config.Gear.GetAllEnchants().Sum(x => x.Agility);
+            agility += state.Config.Gear.GetStatTotal(x => x.Agility);
 
             if (state.Config.Buffs.Contains(Buff.MarkOfTheWild))
             {

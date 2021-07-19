@@ -11,8 +11,7 @@ namespace HunterSim
 
         protected override double InstanceCalculate(SimulationState state)
         {
-            var armor = state.Config.Gear.GetAllGear().Sum(x => x.Armor);
-            armor += state.Config.Gear.GetAllEnchants().Sum(x => x.Armor);
+            var armor = state.Config.Gear.GetStatTotal(x => x.Armor);
 
             armor += AgilityCalculator.Calculate(state) * 2;
 

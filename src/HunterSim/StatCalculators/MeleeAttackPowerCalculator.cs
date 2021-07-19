@@ -12,10 +12,8 @@ namespace HunterSim
 
         protected override double InstanceCalculate(SimulationState state)
         {
-            var meleeAP = state.Config.Gear.GetAllGear().Sum(x => x.AttackPower);
-            meleeAP += state.Config.Gear.GetAllEnchants().Sum(x => x.AttackPower);
-            meleeAP += state.Config.Gear.GetAllGear().Sum(x => x.MeleeAttackPower);
-            meleeAP += state.Config.Gear.GetAllEnchants().Sum(x => x.MeleeAttackPower);
+            var meleeAP = state.Config.Gear.GetStatTotal(x => x.AttackPower);
+            meleeAP += state.Config.Gear.GetStatTotal(x => x.MeleeAttackPower);
             meleeAP += StrengthCalculator.Calculate(state);
 
             if (state.Config.Buffs.Contains(Buff.ImprovedHuntersMark))
