@@ -513,19 +513,19 @@ namespace HunterSim
 
                 foreach (var file in files)
                 {
-                    yield return LoadGearItemFromFile(file, gearType);
+                    yield return LoadGearItem(File.ReadAllText(file), gearType);
                 }
             }
         }
 
-        public static GearItem LoadGearItemFromFile(string path, GearType gearType)
+        private static GearItem LoadGearItem(string yaml, GearType gearType)
         {
             // TODO: Create a yaml schema and validate against it
-            using var yamlStream = new StringReader(File.ReadAllText(path));
-            var yaml = new YamlStream();
-            yaml.Load(yamlStream);
+            using var yamlReader = new StringReader(yaml);
+            var yamlStream = new YamlStream();
+            yamlStream.Load(yamlReader);
 
-            var rootNode = (YamlMappingNode)yaml.Documents[0].RootNode;
+            var rootNode = (YamlMappingNode)yamlStream.Documents[0].RootNode;
 
             return LoadGearItem(rootNode, gearType);
         }
