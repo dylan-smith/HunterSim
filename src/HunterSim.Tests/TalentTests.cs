@@ -16,7 +16,7 @@ namespace HunterSim.Tests
             state.Auras.Add(Aura.AspectOfTheHawk);
             state.Auras.Add(Aura.ImprovedAspectOfTheHawk);
 
-            // 148 base agi + 120 talent
+            // 148 base agi + 155 talent
             Assert.AreEqual(148 + 155, RangedAttackPowerCalculator.Calculate(state));
             Assert.AreEqual(0.15, RangedHasteCalculator.Calculate(state), 0.0001);
         }
