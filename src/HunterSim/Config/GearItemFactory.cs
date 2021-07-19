@@ -518,7 +518,7 @@ namespace HunterSim
             }
         }
 
-        private static GearItem LoadGearItem(string yaml, GearType gearType)
+        public static GearItem LoadGearItem(string yaml, GearType gearType)
         {
             // TODO: Create a yaml schema and validate against it
             using var yamlReader = new StringReader(yaml);

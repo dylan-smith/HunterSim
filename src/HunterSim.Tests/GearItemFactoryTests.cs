@@ -1,0 +1,158 @@
+﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+
+namespace HunterSim.Tests
+{
+    [TestClass]
+    public class GearItemFactoryTests
+    {
+        [TestMethod]
+        [ExpectedException(typeof(ArgumentOutOfRangeException))]
+        public void EmptyYaml()
+        {
+            var yaml = "";
+            GearItemFactory.LoadGearItem(yaml, GearType.Head);
+        }
+
+        [TestMethod]
+        public void MinimalYaml()
+        {
+            var yaml = "name: Beast Lord Helm";
+            var result = GearItemFactory.LoadGearItem(yaml, GearType.Head);
+            Assert.AreEqual("Beast Lord Helm", result.Name);
+        }
+
+        [TestMethod]
+        public void EverythingYaml()
+        {
+            var yaml = @"
+name: Test Helmet
+mindmg: 1
+maxdmg: 2
+speed: 3
+armor: 4
+
+fireresist: 5
+frostresist: 6
+arcaneresist: 7
+natureresist: 8
+shadowresist: 9
+
+
+strength: 10
+stamina: 11
+agility: 12
+# random comment
+intellect: 13
+spirit: 14
+ap: 15
+rap: 16
+map: 17
+crit: 18
+hit: 19
+dodge: 20
+haste: 21
+mp5: 22
+defense: 23
+
+threat: 24
+stealth: 25
+bonusdps: 26
+bonusdmg: 27
+type: dagger
+bow-skill: 28
+crossbow-skill: 29
+dagger-skill: 30
+fist-skill: 31
+gun-skill: 32
+axe-skill: 33
+mace-skill: 34
+sword-skill: 35
+polearm-skill: 36
+staff-skill: 37
+thrown-skill: 38
+two-handed-axe-skill: 39
+two-handed-mace-skill: 40
+two-handed-sword-skill: 41
+wand-skill: 42
+
+sockets:
+  red: 3
+  blue: 7
+  yellow: 1
+  meta: 1
+  bonus:
+    gun-skill: 3
+    spirit: 7
+    bonusdmg: 17
+wowhead: 123987
+phase: 1
+source: gruul
+";
+
+            var result = GearItemFactory.LoadGearItem(yaml, GearType.Head);
+            
+            Assert.AreEqual("Test Helmet", result.Name);
+            Assert.AreEqual(1.0, result.MinDamage);
+            Assert.AreEqual(2.0, result.MaxDamage);
+            Assert.AreEqual(3.0, result.Speed);
+            Assert.AreEqual(4.0, result.Armor);
+            Assert.AreEqual(5.0, result.FireResistance);
+            Assert.AreEqual(6.0, result.FrostResistance);
+            Assert.AreEqual(7.0, result.ArcaneResistance);
+            Assert.AreEqual(8.0, result.NatureResistance);
+            Assert.AreEqual(9.0, result.ShadowResistance);
+            Assert.AreEqual(10.0, result.Strength);
+            Assert.AreEqual(11.0, result.Stamina);
+            Assert.AreEqual(12.0, result.Agility);
+            Assert.AreEqual(13.0, result.Intellect);
+            Assert.AreEqual(14.0, result.Spirit);
+            Assert.AreEqual(15.0, result.AttackPower);
+            Assert.AreEqual(16.0, result.RangedAttackPower);
+            Assert.AreEqual(17.0, result.MeleeAttackPower);
+            Assert.AreEqual(18.0, result.CritRating);
+            Assert.AreEqual(19.0, result.HitRating);
+            Assert.AreEqual(20.0, result.DodgeRating);
+            Assert.AreEqual(21.0, result.HasteRating);
+            Assert.AreEqual(22.0, result.MP5);
+            Assert.AreEqual(23.0, result.Defense);
+            
+            Assert.AreEqual(-0.24, result.ThreatDecrease);
+            Assert.AreEqual(25.0, result.Stealth);
+            Assert.AreEqual(26.0, result.BonusDPS);
+            Assert.AreEqual(27.0, result.BonusDamage);
+            Assert.AreEqual(WeaponType.Dagger, result.WeaponType);
+            Assert.AreEqual(28.0, result.WeaponSkill[WeaponType.Bow]);
+            Assert.AreEqual(29.0, result.WeaponSkill[WeaponType.Crossbow]);
+            Assert.AreEqual(30.0, result.WeaponSkill[WeaponType.Dagger]);
+            Assert.AreEqual(31.0, result.WeaponSkill[WeaponType.Fist]);
+            Assert.AreEqual(32.0, result.WeaponSkill[WeaponType.Gun]);
+            Assert.AreEqual(33.0, result.WeaponSkill[WeaponType.OneHandedAxe]);
+            Assert.AreEqual(34.0, result.WeaponSkill[WeaponType.OneHandedMace]);
+            Assert.AreEqual(35.0, result.WeaponSkill[WeaponType.OneHandedSword]);
+            Assert.AreEqual(36.0, result.WeaponSkill[WeaponType.Polearm]);
+            Assert.AreEqual(37.0, result.WeaponSkill[WeaponType.Staff]);
+            Assert.AreEqual(38.0, result.WeaponSkill[WeaponType.Thrown]);
+            Assert.AreEqual(39.0, result.WeaponSkill[WeaponType.TwoHandedAxe]);
+            Assert.AreEqual(40.0, result.WeaponSkill[WeaponType.TwoHandedMace]);
+            Assert.AreEqual(41.0, result.WeaponSkill[WeaponType.TwoHandedSword]);
+            Assert.AreEqual(42.0, result.WeaponSkill[WeaponType.Wand]);
+            // TODO: Wowhead
+            // TODO: Phase
+            // TODO: Source
+
+            Assert.AreEqual(12, result.Sockets.Count);
+            Assert.AreEqual(3, result.Sockets.Count(s => s.Color == SocketColor.Red));
+            Assert.AreEqual(7, result.Sockets.Count(s => s.Color == SocketColor.Blue));
+            Assert.AreEqual(1, result.Sockets.Count(s => s.Color == SocketColor.Yellow));
+            Assert.AreEqual(1, result.Sockets.Count(s => s.Color == SocketColor.Meta));
+
+            Assert.AreEqual(3, result.SocketBonus.WeaponSkill[WeaponType.Gun]);
+            Assert.AreEqual(7, result.SocketBonus.Spirit);
+            Assert.AreEqual(17, result.SocketBonus.BonusDamage);
+        }
+    }
+}
