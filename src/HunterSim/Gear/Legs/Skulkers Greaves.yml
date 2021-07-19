@@ -8,7 +8,7 @@ sockets:
   red: 2
   blue: 1
   bonus:
-	dodge: 4
+    dodge: 4
 wowhead: 28741
 source: karazhan
 phase: 1

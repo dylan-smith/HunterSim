@@ -41,9 +41,10 @@ namespace HunterSim.Tests
                 Config = new DefaultConfig()
             };
 
-            state.Config.Talents.Remove(Talent.TrueshotAura);
+            state.Config.PlayerSettings.Level = 69;
 
-            state.Config.PlayerSettings.Level = 59;
+            // TODO: Need to remove a talent point otherwise we'll get a 2nd warning about too many talent points
+            state.Config.Talents.Remove(Talent.Readiness);
 
             Assert.IsTrue(state.Validate());
             Assert.AreEqual(1, state.Warnings.Count);
@@ -58,7 +59,7 @@ namespace HunterSim.Tests
                 Config = new DefaultConfig()
             };
 
-            state.Config.Talents.Remove(Talent.TrueshotAura);
+            state.Config.Talents.Remove(Talent.Readiness);
 
             Assert.IsTrue(state.Validate());
             Assert.AreEqual(1, state.Warnings.Count);
@@ -73,7 +74,7 @@ namespace HunterSim.Tests
                 Config = new DefaultConfig()
             };
 
-            state.Config.Talents[Talent.ImprovedHuntersMark] = 3;
+            state.Config.Talents[Talent.Survivalist] = 3;
 
             Assert.IsTrue(state.Validate());
             Assert.AreEqual(1, state.Warnings.Count);

@@ -30,14 +30,14 @@ namespace HunterSim
         public double TotalRangedAttackPower { get { return GetStatWithSockets(x => x.RangedAttackPower); } }
         public double MeleeAttackPower { get; set; }
         public double TotalMeleeAttackPower { get { return GetStatWithSockets(x => x.MeleeAttackPower); } }
-        public double Crit { get; set; }
-        public double TotalCrit { get { return GetStatWithSockets(x => x.Crit); } }
-        public double Hit { get; set; }
-        public double TotalHit { get { return GetStatWithSockets(x => x.Hit); } }
-        public double Dodge { get; set; }
-        public double TotalDodge { get { return GetStatWithSockets(x => x.Dodge); } }
-        public double Haste { get; set; }
-        public double TotalHaste { get { return GetStatWithSockets(x => x.Haste); } }
+        public double CritRating { get; set; }
+        public double TotalCritRating { get { return GetStatWithSockets(x => x.CritRating); } }
+        public double HitRating { get; set; }
+        public double TotalHitRating { get { return GetStatWithSockets(x => x.HitRating); } }
+        public double DodgeRating { get; set; }
+        public double TotalDodgeRating { get { return GetStatWithSockets(x => x.DodgeRating); } }
+        public double HasteRating { get; set; }
+        public double TotalHasteRating { get { return GetStatWithSockets(x => x.HasteRating); } }
         public double MP5 { get; set; }
         public double TotalMP5 { get { return GetStatWithSockets(x => x.MP5); } }
         public double Defense { get; set; }
@@ -54,6 +54,8 @@ namespace HunterSim
         public double TotalShadowResistance { get { return GetStatWithSockets(x => x.ShadowResistance); } }
         public double ThreatDecrease { get; set; }
         public double TotalThreatDecrease { get { return GetStatWithSockets(x => x.ThreatDecrease); } }
+        public double Stealth { get; set; }
+        public double TotalStealth { get { return GetStatWithSockets(x => x.Stealth); } }
         public double BonusDPS { get; set; } // Ammo
         public double TotalBonusDPS { get { return GetStatWithSockets(x => x.BonusDPS); } }
         public double BonusDamage { get; set; } // E.g. Might of Cenarius

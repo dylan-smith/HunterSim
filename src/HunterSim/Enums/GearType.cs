@@ -20,6 +20,8 @@
         TwoHand,
         Ranged,
         Ammo,
-        Quiver
+        Quiver,
+        SocketBonus,
+        Gem
     }
 }

@@ -5,7 +5,7 @@ intellect: 11
 sockets:
   blue: 1
   bonus:
-	stamina: 3
+    stamina: 3
 wowhead: 25697
 source: dungeon
 phase: 1

@@ -25,8 +25,8 @@ namespace HunterSim
                 missChance = 0.05 + ((bossDefense - weaponSkill) * 0.001);
             }
 
-            missChance -= state.Config.Gear.GetAllGear().Sum(x => x.Hit);
-            missChance -= state.Config.Gear.GetAllEnchants().Sum(x => x.Hit);
+            missChance -= state.Config.Gear.GetAllGear().Sum(x => x.HitRating);
+            missChance -= state.Config.Gear.GetAllEnchants().Sum(x => x.HitRating);
 
             if (state.Config.Talents.ContainsKey(Talent.Surefooted))
             {

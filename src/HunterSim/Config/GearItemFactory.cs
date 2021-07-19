@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Reflection;
+using YamlDotNet.RepresentationModel;
 using YamlDotNet.Serialization;
 
 namespace HunterSim
@@ -517,346 +518,436 @@ namespace HunterSim
             }
         }
 
-        private static GearItem LoadGearItemFromFile(string path, GearType gearType)
+        public static GearItem LoadGearItemFromFile(string path, GearType gearType)
         {
-            var deserializer = new Deserializer();
-            var fileContents = File.ReadAllText(path);
-            var dict = deserializer.Deserialize<Dictionary<string, string>>(fileContents);
+            // TODO: Create a yaml schema and validate against it
+            using var yamlStream = new StringReader(File.ReadAllText(path));
+            var yaml = new YamlStream();
+            yaml.Load(yamlStream);
 
+            var rootNode = (YamlMappingNode)yaml.Documents[0].RootNode;
+
+            return LoadGearItem(rootNode, gearType);
+        }
+
+        private static GearItem LoadGearItem(YamlMappingNode yamlNode, GearType gearType)
+        {
             var result = new GearItem();
             result.GearType = gearType;
 
-            // TODO: Do a bunch of validation here
-            // TODO: Can probably use WithAttributeOverride feature in yaml deserializer to make this code simpler
-
-            if (dict.ContainsKey("name"))
+            foreach (var statItem in yamlNode.Children)
             {
-                result.Name = dict["name"];
-                dict.Remove("name");
-            }
+                var statName = ((YamlScalarNode)statItem.Key).Value;
 
-            if (dict.ContainsKey("mindmg"))
-            {
-                result.MinDamage = double.Parse(dict["mindmg"]);
-                dict.Remove("mindmg");
-            }
-
-            if (dict.ContainsKey("maxdmg"))
-            {
-                result.MaxDamage = double.Parse(dict["maxdmg"]);
-                dict.Remove("maxdmg");
-            }
-
-            if (dict.ContainsKey("speed"))
-            {
-                result.Speed = double.Parse(dict["speed"]);
-                dict.Remove("speed");
-            }
-
-            if (dict.ContainsKey("armor"))
-            {
-                result.Armor = double.Parse(dict["armor"]);
-                dict.Remove("armor");
-            }
-
-            if (dict.ContainsKey("strength"))
-            {
-                result.Strength = double.Parse(dict["strength"]);
-                dict.Remove("strength");
-            }
-
-            if (dict.ContainsKey("stamina"))
-            {
-                result.Stamina = double.Parse(dict["stamina"]);
-                dict.Remove("stamina");
-            }
-
-            if (dict.ContainsKey("agility"))
-            {
-                result.Agility = double.Parse(dict["agility"]);
-                dict.Remove("agility");
-            }
-
-            if (dict.ContainsKey("intellect"))
-            {
-                result.Intellect = double.Parse(dict["intellect"]);
-                dict.Remove("intellect");
-            }
-
-            if (dict.ContainsKey("spirit"))
-            {
-                result.Spirit = double.Parse(dict["spirit"]);
-                dict.Remove("spirit");
-            }
-
-            if (dict.ContainsKey("ap"))
-            {
-                result.AttackPower = double.Parse(dict["ap"]);
-                dict.Remove("ap");
-            }
-
-            if (dict.ContainsKey("rap"))
-            {
-                result.RangedAttackPower = double.Parse(dict["rap"]);
-                dict.Remove("rap");
-            }
-
-            if (dict.ContainsKey("map"))
-            {
-                result.MeleeAttackPower = double.Parse(dict["map"]);
-                dict.Remove("map");
-            }
-
-            if (dict.ContainsKey("crit"))
-            {
-                result.Crit = double.Parse(dict["crit"]) / 100;
-                dict.Remove("crit");
-            }
-
-            if (dict.ContainsKey("hit"))
-            {
-                result.Hit = double.Parse(dict["hit"]) / 100;
-                dict.Remove("hit");
-            }
-
-            if (dict.ContainsKey("dodge"))
-            {
-                result.Dodge = double.Parse(dict["dodge"]) / 100;
-                dict.Remove("dodge");
-            }
-
-            if (dict.ContainsKey("haste"))
-            {
-                result.Haste = double.Parse(dict["haste"]) / 100;
-                dict.Remove("haste");
-            }
-
-            if (dict.ContainsKey("mp5"))
-            {
-                result.MP5 = double.Parse(dict["mp5"]);
-                dict.Remove("mp5");
-            }
-
-            if (dict.ContainsKey("defense"))
-            {
-                result.Defense = double.Parse(dict["defense"]);
-                dict.Remove("defense");
-            }
-
-            if (dict.ContainsKey("fireresist"))
-            {
-                result.FireResistance = double.Parse(dict["fireresist"]);
-                dict.Remove("fireresist");
-            }
-
-            if (dict.ContainsKey("frostresist"))
-            {
-                result.FrostResistance = double.Parse(dict["frostresist"]);
-                dict.Remove("frostresist");
-            }
-
-            if (dict.ContainsKey("arcaneresist"))
-            {
-                result.ArcaneResistance = double.Parse(dict["arcaneresist"]);
-                dict.Remove("arcaneresist");
-            }
-
-            if (dict.ContainsKey("natureresist"))
-            {
-                result.NatureResistance = double.Parse(dict["natureresist"]);
-                dict.Remove("natureresist");
-            }
-
-            if (dict.ContainsKey("shadowresist"))
-            {
-                result.ShadowResistance = double.Parse(dict["shadowresist"]);
-                dict.Remove("shadowresist");
-            }
-
-            if (dict.ContainsKey("threat"))
-            {
-                result.ThreatDecrease = (0 - double.Parse(dict["threat"])) / 100;
-                dict.Remove("threat");
-            }
-
-            if (dict.ContainsKey("bonusdps"))
-            {
-                result.BonusDPS = double.Parse(dict["bonusdps"]);
-                dict.Remove("bonusdps");
-            }
-
-            if (dict.ContainsKey("bonusdmg"))
-            {
-                result.BonusDamage = double.Parse(dict["bonusdmg"]);
-                dict.Remove("bonusdmg");
-            }
-
-            if (dict.ContainsKey("type"))
-            {
-                switch (dict["type"])
+                // TODO: Use custom attributes on GearItem so we can do this mapping dynamically
+                if (statName == "name")
                 {
-                    case "bow":
-                        result.WeaponType = WeaponType.Bow;
-                        break;
-                    case "crossbow":
-                        result.WeaponType = WeaponType.Crossbow;
-                        break;
-                    case "dagger":
-                        result.WeaponType = WeaponType.Dagger;
-                        break;
-                    case "fist":
-                        result.WeaponType = WeaponType.Fist;
-                        break;
-                    case "gun":
-                        result.WeaponType = WeaponType.Gun;
-                        break;
-                    case "axe":
-                        result.WeaponType = WeaponType.OneHandedAxe;
-                        break;
-                    case "mace":
-                        result.WeaponType = WeaponType.OneHandedMace;
-                        break;
-                    case "sword":
-                        result.WeaponType = WeaponType.OneHandedSword;
-                        break;
-                    case "polearm":
-                        result.WeaponType = WeaponType.Polearm;
-                        break;
-                    case "staff":
-                        result.WeaponType = WeaponType.Staff;
-                        break;
-                    case "thrown":
-                        result.WeaponType = WeaponType.Thrown;
-                        break;
-                    case "two-handed-axe":
-                        result.WeaponType = WeaponType.TwoHandedAxe;
-                        break;
-                    case "two-handed-mace":
-                        result.WeaponType = WeaponType.TwoHandedMace;
-                        break;
-                    case "two-handed-sword":
-                        result.WeaponType = WeaponType.TwoHandedSword;
-                        break;
-                    case "wand":
-                        result.WeaponType = WeaponType.Wand;
-                        break;
-                    default:
-                        // TODO: Richer exceptions
-                        throw new Exception("Unrecognized weapon type");
+                    result.Name = ((YamlScalarNode)statItem.Value).Value;
+                    continue;
                 }
 
-                dict.Remove("type");
-            }
+                if (statName == "mindmg")
+                {
+                    result.MinDamage = double.Parse(((YamlScalarNode)statItem.Value).Value);
+                    continue;
+                }
 
-            if (dict.ContainsKey("bow-skill"))
-            {
-                result.WeaponSkill.Add(WeaponType.Bow, int.Parse(dict["bow-skill"]));
-                dict.Remove("bow-skill");
-            }
+                if (statName == "maxdmg")
+                {
+                    result.MaxDamage = double.Parse(((YamlScalarNode)statItem.Value).Value);
+                    continue;
+                }
 
-            if (dict.ContainsKey("crossbow-skill"))
-            {
-                result.WeaponSkill.Add(WeaponType.Crossbow, int.Parse(dict["crossbow-skill"]));
-                dict.Remove("crossbow-skill");
-            }
+                if (statName == "speed")
+                {
+                    result.Speed = double.Parse(((YamlScalarNode)statItem.Value).Value);
+                    continue;
+                }
 
-            if (dict.ContainsKey("dagger-skill"))
-            {
-                result.WeaponSkill.Add(WeaponType.Dagger, int.Parse(dict["dagger-skill"]));
-                dict.Remove("dagger-skill");
-            }
+                if (statName == "armor")
+                {
+                    result.Armor = double.Parse(((YamlScalarNode)statItem.Value).Value);
+                    continue;
+                }
 
-            if (dict.ContainsKey("fist-skill"))
-            {
-                result.WeaponSkill.Add(WeaponType.Fist, int.Parse(dict["fist-skill"]));
-                dict.Remove("fist-skill");
-            }
+                if (statName == "strength")
+                {
+                    result.Strength = double.Parse(((YamlScalarNode)statItem.Value).Value);
+                    continue;
+                }
 
-            if (dict.ContainsKey("gun-skill"))
-            {
-                result.WeaponSkill.Add(WeaponType.Gun, int.Parse(dict["gun-skill"]));
-                dict.Remove("gun-skill");
-            }
+                if (statName == "stamina")
+                {
+                    result.Stamina = double.Parse(((YamlScalarNode)statItem.Value).Value);
+                    continue;
+                }
 
-            if (dict.ContainsKey("axe-skill"))
-            {
-                result.WeaponSkill.Add(WeaponType.OneHandedAxe, int.Parse(dict["axe-skill"]));
-                dict.Remove("axe-skill");
-            }
+                if (statName == "agility")
+                {
+                    result.Agility = double.Parse(((YamlScalarNode)statItem.Value).Value);
+                    continue;
+                }
 
-            if (dict.ContainsKey("mace-skill"))
-            {
-                result.WeaponSkill.Add(WeaponType.OneHandedSword, int.Parse(dict["mace-skill"]));
-                dict.Remove("mace-skill");
-            }
+                if (statName == "intellect")
+                {
+                    result.Intellect = double.Parse(((YamlScalarNode)statItem.Value).Value);
+                    continue;
+                }
 
-            if (dict.ContainsKey("sword-skill"))
-            {
-                result.WeaponSkill.Add(WeaponType.OneHandedSword, int.Parse(dict["sword-skill"]));
-                dict.Remove("sword-skill");
-            }
+                if (statName == "spirit")
+                {
+                    result.Spirit = double.Parse(((YamlScalarNode)statItem.Value).Value);
+                    continue;
+                }
 
-            if (dict.ContainsKey("polearm-skill"))
-            {
-                result.WeaponSkill.Add(WeaponType.Polearm, int.Parse(dict["polearm-skill"]));
-                dict.Remove("polearm-skill");
-            }
+                if (statName == "ap")
+                {
+                    result.AttackPower = double.Parse(((YamlScalarNode)statItem.Value).Value);
+                    continue;
+                }
 
-            if (dict.ContainsKey("staff-skill"))
-            {
-                result.WeaponSkill.Add(WeaponType.Staff, int.Parse(dict["staff-skill"]));
-                dict.Remove("staff-skill");
-            }
+                if (statName == "rap")
+                {
+                    result.RangedAttackPower = double.Parse(((YamlScalarNode)statItem.Value).Value);
+                    continue;
+                }
 
-            if (dict.ContainsKey("thrown-skill"))
-            {
-                result.WeaponSkill.Add(WeaponType.Thrown, int.Parse(dict["thrown-skill"]));
-                dict.Remove("thrown-skill");
-            }
+                if (statName == "map")
+                {
+                    result.MeleeAttackPower = double.Parse(((YamlScalarNode)statItem.Value).Value);
+                    continue;
+                }
 
-            if (dict.ContainsKey("two-handed-axe-skill"))
-            {
-                result.WeaponSkill.Add(WeaponType.TwoHandedAxe, int.Parse(dict["two-handed-axe-skill"]));
-                dict.Remove("two-handed-axe-skill");
-            }
+                if (statName == "crit")
+                {
+                    result.CritRating = double.Parse(((YamlScalarNode)statItem.Value).Value);
+                    continue;
+                }
 
-            if (dict.ContainsKey("two-handed-mace-skill"))
-            {
-                result.WeaponSkill.Add(WeaponType.TwoHandedMace, int.Parse(dict["two-handed-mace-skill"]));
-                dict.Remove("two-handed-mace-skill");
-            }
+                if (statName == "hit")
+                {
+                    result.HitRating = double.Parse(((YamlScalarNode)statItem.Value).Value);
+                    continue;
+                }
 
-            if (dict.ContainsKey("two-handed-sword-skill"))
-            {
-                result.WeaponSkill.Add(WeaponType.TwoHandedSword, int.Parse(dict["two-handed-sword-skill"]));
-                dict.Remove("two-handed-sword-skill");
-            }
+                if (statName == "dodge")
+                {
+                    result.DodgeRating = double.Parse(((YamlScalarNode)statItem.Value).Value);
+                    continue;
+                }
 
-            if (dict.ContainsKey("wand-skill"))
-            {
-                result.WeaponSkill.Add(WeaponType.Wand, int.Parse(dict["wand-skill"]));
-                dict.Remove("wand-skill");
-            }
+                if (statName == "haste")
+                {
+                    result.HasteRating = double.Parse(((YamlScalarNode)statItem.Value).Value);
+                    continue;
+                }
 
-            if (dict.ContainsKey("wowhead"))
-            {
-                dict.Remove("wowhead");
-            }
+                if (statName == "mp5")
+                {
+                    result.MP5 = double.Parse(((YamlScalarNode)statItem.Value).Value);
+                    continue;
+                }
 
-            if (dict.ContainsKey("phase"))
-            {
-                dict.Remove("phase");
-            }
+                if (statName == "defense")
+                {
+                    result.Defense = double.Parse(((YamlScalarNode)statItem.Value).Value);
+                    continue;
+                }
 
-            if (dict.ContainsKey("source"))
-            {
-                dict.Remove("source");
-            }
+                if (statName == "fireresist")
+                {
+                    result.FireResistance = double.Parse(((YamlScalarNode)statItem.Value).Value);
+                    continue;
+                }
 
-            if (dict.Count > 0)
-            {
-                // TODO: Richer exceptions
-                throw new Exception("Unrecognized attributes in YAML");
+                if (statName == "frostresist")
+                {
+                    result.FrostResistance = double.Parse(((YamlScalarNode)statItem.Value).Value);
+                    continue;
+                }
+
+                if (statName == "arcaneresist")
+                {
+                    result.ArcaneResistance = double.Parse(((YamlScalarNode)statItem.Value).Value);
+                    continue;
+                }
+
+                if (statName == "natureresist")
+                {
+                    result.NatureResistance = double.Parse(((YamlScalarNode)statItem.Value).Value);
+                    continue;
+                }
+
+                if (statName == "shadowresist")
+                {
+                    result.ShadowResistance = double.Parse(((YamlScalarNode)statItem.Value).Value);
+                    continue;
+                }
+
+                if (statName == "threat")
+                {
+                    result.ThreatDecrease = (0.0 - double.Parse(((YamlScalarNode)statItem.Value).Value)) / 100.0;
+                    continue;
+                }
+
+                if (statName == "stealth")
+                {
+                    result.Stealth = double.Parse(((YamlScalarNode)statItem.Value).Value);
+                    continue;
+                }
+
+                if (statName == "bonusdps")
+                {
+                    result.BonusDPS = double.Parse(((YamlScalarNode)statItem.Value).Value);
+                    continue;
+                }
+
+                if (statName == "bonusdmg")
+                {
+                    result.BonusDamage = double.Parse(((YamlScalarNode)statItem.Value).Value);
+                    continue;
+                }
+
+                if (statName == "type")
+                {
+                    var typeValue = ((YamlScalarNode)statItem.Value).Value;
+
+                    // TODO: Should move this to the Enum class
+                    switch (typeValue)
+                    {
+                        case "bow":
+                            result.WeaponType = WeaponType.Bow;
+                            break;
+                        case "crossbow":
+                            result.WeaponType = WeaponType.Crossbow;
+                            break;
+                        case "dagger":
+                            result.WeaponType = WeaponType.Dagger;
+                            break;
+                        case "fist":
+                            result.WeaponType = WeaponType.Fist;
+                            break;
+                        case "gun":
+                            result.WeaponType = WeaponType.Gun;
+                            break;
+                        case "axe":
+                            result.WeaponType = WeaponType.OneHandedAxe;
+                            break;
+                        case "mace":
+                            result.WeaponType = WeaponType.OneHandedMace;
+                            break;
+                        case "sword":
+                            result.WeaponType = WeaponType.OneHandedSword;
+                            break;
+                        case "polearm":
+                            result.WeaponType = WeaponType.Polearm;
+                            break;
+                        case "staff":
+                            result.WeaponType = WeaponType.Staff;
+                            break;
+                        case "thrown":
+                            result.WeaponType = WeaponType.Thrown;
+                            break;
+                        case "two-handed-axe":
+                            result.WeaponType = WeaponType.TwoHandedAxe;
+                            break;
+                        case "two-handed-mace":
+                            result.WeaponType = WeaponType.TwoHandedMace;
+                            break;
+                        case "two-handed-sword":
+                            result.WeaponType = WeaponType.TwoHandedSword;
+                            break;
+                        case "wand":
+                            result.WeaponType = WeaponType.Wand;
+                            break;
+                        default:
+                            // TODO: Richer exceptions
+                            throw new Exception("Unrecognized weapon type");
+                    }
+
+                    continue;
+                }
+
+                if (statName == "bow-skill")
+                {
+                    result.WeaponSkill.Add(WeaponType.Bow, int.Parse(((YamlScalarNode)statItem.Value).Value));
+                    continue;
+                }
+
+                if (statName == "crossbow-skill")
+                {
+                    result.WeaponSkill.Add(WeaponType.Crossbow, int.Parse(((YamlScalarNode)statItem.Value).Value));
+                    continue;
+                }
+
+                if (statName == "dagger-skill")
+                {
+                    result.WeaponSkill.Add(WeaponType.Dagger, int.Parse(((YamlScalarNode)statItem.Value).Value));
+                    continue;
+                }
+
+                if (statName == "fist-skill")
+                {
+                    result.WeaponSkill.Add(WeaponType.Fist, int.Parse(((YamlScalarNode)statItem.Value).Value));
+                    continue;
+                }
+
+                if (statName == "gun-skill")
+                {
+                    result.WeaponSkill.Add(WeaponType.Gun, int.Parse(((YamlScalarNode)statItem.Value).Value));
+                    continue;
+                }
+
+                if (statName == "axe-skill")
+                {
+                    result.WeaponSkill.Add(WeaponType.OneHandedAxe, int.Parse(((YamlScalarNode)statItem.Value).Value));
+                    continue;
+                }
+
+                if (statName == "mace-skill")
+                {
+                    result.WeaponSkill.Add(WeaponType.OneHandedMace, int.Parse(((YamlScalarNode)statItem.Value).Value));
+                    continue;
+                }
+
+                if (statName == "sword-skill")
+                {
+                    result.WeaponSkill.Add(WeaponType.OneHandedSword, int.Parse(((YamlScalarNode)statItem.Value).Value));
+                    continue;
+                }
+
+                if (statName == "polearm-skill")
+                {
+                    result.WeaponSkill.Add(WeaponType.Polearm, int.Parse(((YamlScalarNode)statItem.Value).Value));
+                    continue;
+                }
+
+                if (statName == "staff-skill")
+                {
+                    result.WeaponSkill.Add(WeaponType.Staff, int.Parse(((YamlScalarNode)statItem.Value).Value));
+                    continue;
+                }
+
+                if (statName == "thrown-skill")
+                {
+                    result.WeaponSkill.Add(WeaponType.Thrown, int.Parse(((YamlScalarNode)statItem.Value).Value));
+                    continue;
+                }
+
+                if (statName == "two-handed-axe-skill")
+                {
+                    result.WeaponSkill.Add(WeaponType.TwoHandedAxe, int.Parse(((YamlScalarNode)statItem.Value).Value));
+                    continue;
+                }
+
+                if (statName == "two-handed-mace-skill")
+                {
+                    result.WeaponSkill.Add(WeaponType.TwoHandedMace, int.Parse(((YamlScalarNode)statItem.Value).Value));
+                    continue;
+                }
+
+                if (statName == "two-handed-sword-skill")
+                {
+                    result.WeaponSkill.Add(WeaponType.TwoHandedSword, int.Parse(((YamlScalarNode)statItem.Value).Value));
+                    continue;
+                }
+
+                if (statName == "wand-skill")
+                {
+                    result.WeaponSkill.Add(WeaponType.Wand, int.Parse(((YamlScalarNode)statItem.Value).Value));
+                    continue;
+                }
+
+                if (statName == "wowhead")
+                {
+                    // TODO
+                    continue;
+                }
+
+                if (statName == "phase")
+                {
+                    // TODO
+                    continue;
+                }
+
+                if (statName == "source")
+                {
+                    // TODO
+                    continue;
+                }
+
+                if (statName == "sockets")
+                {
+                    var socketsNode = (YamlMappingNode)statItem.Value;
+
+                    foreach (var socketItem in socketsNode.Children)
+                    {
+                        var socketName = ((YamlScalarNode)socketItem.Key).Value;
+
+                        // TODO: Can probably simplify these ifs by having the SocketColor enum have a FromString
+                        if (socketName == "red")
+                        {
+                            var socketCount = int.Parse(((YamlScalarNode)socketItem.Value).Value);
+
+                            for (var i = 0; i < socketCount; i++)
+                            {
+                                result.Sockets.Add(new Socket() { Color = SocketColor.Red });
+                            }
+
+                            continue;
+                        }
+
+                        if (socketName == "blue")
+                        {
+                            var socketCount = int.Parse(((YamlScalarNode)socketItem.Value).Value);
+
+                            for (var i = 0; i < socketCount; i++)
+                            {
+                                result.Sockets.Add(new Socket() { Color = SocketColor.Blue });
+                            }
+
+                            continue;
+                        }
+
+                        if (socketName == "yellow")
+                        {
+                            var socketCount = int.Parse(((YamlScalarNode)socketItem.Value).Value);
+
+                            for (var i = 0; i < socketCount; i++)
+                            {
+                                result.Sockets.Add(new Socket() { Color = SocketColor.Yellow });
+                            }
+
+                            continue;
+                        }
+
+                        if (socketName == "meta")
+                        {
+                            var socketCount = int.Parse(((YamlScalarNode)socketItem.Value).Value);
+
+                            for (var i = 0; i < socketCount; i++)
+                            {
+                                result.Sockets.Add(new Socket() { Color = SocketColor.Meta });
+                            }
+
+                            continue;
+                        }
+
+                        if (socketName == "bonus")
+                        {
+                            var bonusNode = (YamlMappingNode)socketItem.Value;
+
+                            result.SocketBonus = LoadGearItem(bonusNode, GearType.SocketBonus);
+                            continue;
+                        }
+
+                        throw new Exception($"Unrecognized attribute in YAML ({socketName})");
+                    }
+
+                    continue;
+                }
+
+                throw new Exception($"Unrecognized attribute in YAML ({statName})");
             }
 
             return result;

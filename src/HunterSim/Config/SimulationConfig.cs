@@ -62,7 +62,7 @@ namespace HunterSim
 
         private bool ValidatePlayerMaxLevel()
         {
-            return PlayerSettings.Level == 60;
+            return PlayerSettings.Level == 70;
         }
 
         private bool ValidateAllGearSelected()
