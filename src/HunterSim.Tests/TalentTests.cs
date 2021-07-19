@@ -11,14 +11,14 @@ namespace HunterSim.Tests
         public void ImprovedAspectOfTheHawk()
         {
             var state = new SimulationState();
-            state.Config.PlayerSettings.Race = Race.Dwarf;
+            state.Config.PlayerSettings.Race = Race.Draenei;
             state.Config.Talents.Add(Talent.ImprovedAspectOfTheHawk, 5);
             state.Auras.Add(Aura.AspectOfTheHawk);
             state.Auras.Add(Aura.ImprovedAspectOfTheHawk);
 
-            // 121 base agi * 2 + 120 talent
-            Assert.AreEqual(242 + 120, RangedAttackPowerCalculator.Calculate(state));
-            Assert.AreEqual(0.30, RangedHasteCalculator.Calculate(state), 0.01);
+            // 148 base agi + 120 talent
+            Assert.AreEqual(148 + 155, RangedAttackPowerCalculator.Calculate(state));
+            Assert.AreEqual(0.15, RangedHasteCalculator.Calculate(state), 0.0001);
         }
 
         // TODO: Test the proc and the 5% chance for improved aspect of the hawk once we have rotations modelled (could probably do now with just auto-shot, assuming hawk is the default aspect)
@@ -33,7 +33,7 @@ namespace HunterSim.Tests
         public void PathfindingCheetah()
         {
             var state = new SimulationState();
-            state.Config.PlayerSettings.Race = Race.Dwarf;
+            state.Config.PlayerSettings.Race = Race.Draenei;
             state.Config.Talents.Add(Talent.Pathfinding, 2);
             state.Auras.Add(Aura.AspectOfTheCheetah);
 
@@ -44,7 +44,7 @@ namespace HunterSim.Tests
         public void PathfindingPack()
         {
             var state = new SimulationState();
-            state.Config.PlayerSettings.Race = Race.Dwarf;
+            state.Config.PlayerSettings.Race = Race.Draenei;
             state.Config.Talents.Add(Talent.Pathfinding, 2);
             state.Auras.Add(Aura.AspectOfThePack);
 
@@ -57,7 +57,7 @@ namespace HunterSim.Tests
         public void ImprovedHuntersMark()
         {
             var state = new SimulationState();
-            state.Config.PlayerSettings.Race = Race.Dwarf;
+            state.Config.PlayerSettings.Race = Race.Draenei;
             state.Config.Buffs.Add(Buff.HuntersMark);
             state.Config.Talents.Add(Talent.ImprovedHuntersMark, 5);
 
@@ -69,7 +69,7 @@ namespace HunterSim.Tests
         public void ImprovedHuntersMarkTalentAndBuff()
         {
             var state = new SimulationState();
-            state.Config.PlayerSettings.Race = Race.Dwarf;
+            state.Config.PlayerSettings.Race = Race.Draenei;
             state.Config.Talents.Add(Talent.ImprovedHuntersMark, 3);
             state.Config.Buffs.Add(Buff.ImprovedHuntersMark);
 
@@ -81,7 +81,7 @@ namespace HunterSim.Tests
         public void LethalShots()
         {
             var state = new SimulationState();
-            state.Config.PlayerSettings.Race = Race.Dwarf;
+            state.Config.PlayerSettings.Race = Race.Draenei;
             state.Config.Talents.Add(Talent.LethalShots, 5);
 
             // 5% base crit + 5% buff
@@ -99,7 +99,7 @@ namespace HunterSim.Tests
         public void MortalShots()
         {
             var state = new SimulationState();
-            state.Config.PlayerSettings.Race = Race.Dwarf;
+            state.Config.PlayerSettings.Race = Race.Draenei;
             state.Config.Talents.Add(Talent.MortalShots, 5);
 
             // Mortal shots only increases the BONUS crit damage by 30%, so overall damage is multiplied by 15%
@@ -110,7 +110,7 @@ namespace HunterSim.Tests
         public void RangedWeaponSpecialization()
         {
             var state = new SimulationState();
-            state.Config.PlayerSettings.Race = Race.Dwarf;
+            state.Config.PlayerSettings.Race = Race.Draenei;
             state.Config.Talents.Add(Talent.RangedWeaponSpecialization, 5);
 
             Assert.AreEqual(1.05, DamageMultiplierCalculator.Calculate(state), 0.001);
@@ -120,7 +120,7 @@ namespace HunterSim.Tests
         public void TrueShotAura()
         {
             var state = new SimulationState();
-            state.Config.PlayerSettings.Race = Race.Dwarf;
+            state.Config.PlayerSettings.Race = Race.Draenei;
             state.Config.Talents.Add(Talent.TrueshotAura, 1);
 
             // 121 base agi * 1 + 57 base str + 100 talent
@@ -133,7 +133,7 @@ namespace HunterSim.Tests
         public void TrueShotAuraFromTalentAndBuff()
         {
             var state = new SimulationState();
-            state.Config.PlayerSettings.Race = Race.Dwarf;
+            state.Config.PlayerSettings.Race = Race.Draenei;
             state.Config.Talents.Add(Talent.TrueshotAura, 1);
             state.Config.Buffs.Add(Buff.TrueshotAura);
 
@@ -152,7 +152,7 @@ namespace HunterSim.Tests
         public void MonsterSlayingBeast()
         {
             var state = new SimulationState();
-            state.Config.PlayerSettings.Race = Race.Dwarf;
+            state.Config.PlayerSettings.Race = Race.Draenei;
             state.Config.BossSettings.BossType = BossType.Beast;
             state.Config.Talents.Add(Talent.MonsterSlaying, 3);
 
@@ -165,7 +165,7 @@ namespace HunterSim.Tests
         public void MonsterSlayingGiant()
         {
             var state = new SimulationState();
-            state.Config.PlayerSettings.Race = Race.Dwarf;
+            state.Config.PlayerSettings.Race = Race.Draenei;
             state.Config.BossSettings.BossType = BossType.Giant;
             state.Config.Talents.Add(Talent.MonsterSlaying, 3);
 
@@ -178,7 +178,7 @@ namespace HunterSim.Tests
         public void MonsterSlayingDragonkin()
         {
             var state = new SimulationState();
-            state.Config.PlayerSettings.Race = Race.Dwarf;
+            state.Config.PlayerSettings.Race = Race.Draenei;
             state.Config.BossSettings.BossType = BossType.Dragonkin;
             state.Config.Talents.Add(Talent.MonsterSlaying, 3);
 
@@ -191,7 +191,7 @@ namespace HunterSim.Tests
         public void HumanoidSlaying()
         {
             var state = new SimulationState();
-            state.Config.PlayerSettings.Race = Race.Dwarf;
+            state.Config.PlayerSettings.Race = Race.Draenei;
             state.Config.BossSettings.BossType = BossType.Humanoid;
             state.Config.Talents.Add(Talent.HumanoidSlaying, 3);
 
@@ -204,7 +204,7 @@ namespace HunterSim.Tests
         public void Survivalist()
         {
             var state = new SimulationState();
-            state.Config.PlayerSettings.Race = Race.Dwarf;
+            state.Config.PlayerSettings.Race = Race.Draenei;
             state.Config.Talents.Add(Talent.Survivalist, 5);
 
             // Base Health + Stamina * 10 * 1.1
@@ -215,7 +215,7 @@ namespace HunterSim.Tests
         public void Surefooted()
         {
             var state = new SimulationState();
-            state.Config.PlayerSettings.Race = Race.Dwarf;
+            state.Config.PlayerSettings.Race = Race.Draenei;
             state.Config.PlayerSettings.Level = 60;
             state.Config.BossSettings.Level = 63;
             state.Config.Talents.Add(Talent.Surefooted, 3);
@@ -228,7 +228,7 @@ namespace HunterSim.Tests
         public void KillerInstinct()
         {
             var state = new SimulationState();
-            state.Config.PlayerSettings.Race = Race.Dwarf;
+            state.Config.PlayerSettings.Race = Race.Draenei;
             state.Config.Talents.Add(Talent.KillerInstinct, 3);
 
             // 5% base crit + 3% talent
@@ -243,7 +243,7 @@ namespace HunterSim.Tests
         public void LightningReflexes()
         {
             var state = new SimulationState();
-            state.Config.PlayerSettings.Race = Race.Dwarf;
+            state.Config.PlayerSettings.Race = Race.Draenei;
             state.Config.Talents.Add(Talent.LightningReflexes, 5);
 
             // 121 base agi + 15% talent

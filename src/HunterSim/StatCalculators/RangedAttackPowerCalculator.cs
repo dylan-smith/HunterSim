@@ -29,7 +29,7 @@ namespace HunterSim
 
             if (state.Auras.Contains(Aura.AspectOfTheHawk))
             {
-                rangedAP += 120;
+                rangedAP += 155;
             }
 
             if (state.Config.Buffs.Contains(Buff.BlessingOfMight))

@@ -16,7 +16,7 @@ namespace HunterSim
             
             if (state.Auras.Contains(Aura.ImprovedAspectOfTheHawk))
             {
-                haste += 0.30;
+                haste += 0.03 * state.Config.Talents[Talent.ImprovedAspectOfTheHawk];
             }
 
             return haste;
