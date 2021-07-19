@@ -11,6 +11,8 @@
         {
             var stamina = state.Config.PlayerSettings.Stamina;
 
+            // TODO: Get from gear and enchants
+
             if (state.Config.Buffs.Contains(Buff.MarkOfTheWild))
             {
                 stamina += 14;

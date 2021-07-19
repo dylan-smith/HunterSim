@@ -9,6 +9,7 @@
 
         protected override double InstanceCalculate(GearItem weapon, SimulationState state)
         {
+            // TODO: Is weapon skill completely gone in TBC?
             var skill = state.Config.PlayerSettings.Level * 5;
             var weaponType = weapon.WeaponType;
 

@@ -13,6 +13,8 @@ namespace HunterSim
         {
             var spirit = state.Config.PlayerSettings.Spirit;
 
+            // TODO: Get from gear and enchants
+
             if (state.Config.Buffs.Contains(Buff.MarkOfTheWild))
             {
                 spirit += 14;

@@ -1,4 +1,6 @@
-﻿namespace HunterSim
+﻿using System.Linq;
+
+namespace HunterSim
 {
     public class StrengthCalculator : BaseStatCalculator
     {
@@ -10,6 +12,9 @@
         protected override double InstanceCalculate(SimulationState state)
         {
             var strength = state.Config.PlayerSettings.Strength;
+
+            strength += state.Config.Gear.GetAllGear().Sum(x => x.TotalStrength);
+            strength += state.Config.Gear.GetAllEnchants().Sum(x => x.TotalStrength);
 
             if (state.Config.Buffs.Contains(Buff.MarkOfTheWild))
             {

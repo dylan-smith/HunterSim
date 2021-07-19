@@ -12,6 +12,7 @@
             var mp5 = 0.0;
 
             // TODO: Does spirit affect this?
+            // TODO: Get from gear and enchants
 
             return mp5;
         }

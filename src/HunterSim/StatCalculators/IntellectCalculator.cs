@@ -11,6 +11,8 @@
         {
             var intellect = state.Config.PlayerSettings.Intellect;
 
+            // TODO: Get from gear and enchants
+
             if (state.Config.Buffs.Contains(Buff.MarkOfTheWild))
             {
                 intellect += 14;
