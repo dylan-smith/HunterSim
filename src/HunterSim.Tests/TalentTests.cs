@@ -59,10 +59,12 @@ namespace HunterSim.Tests
             var state = new SimulationState();
             state.Config.PlayerSettings.Race = Race.Draenei;
             state.Config.Buffs.Add(Buff.HuntersMark);
-            state.Config.Talents.Add(Talent.ImprovedHuntersMark, 5);
+            state.Config.Talents.Add(Talent.ImprovedHuntersMark, 3);
 
-            // 121 base agi * 2 + 110 hunters mark * 15% improved
-            Assert.AreEqual(242 + (110 * 1.15), RangedAttackPowerCalculator.Calculate(state));
+            // 148 base agi + 440 hunters mark
+            Assert.AreEqual(148 + 440, RangedAttackPowerCalculator.Calculate(state));
+            // 65 base str + 110 * 60% improved hunters mark
+            Assert.AreEqual(65 + (110 * 0.6), MeleeAttackPowerCalculator.Calculate(state));
         }
 
         [TestMethod]
@@ -73,8 +75,10 @@ namespace HunterSim.Tests
             state.Config.Talents.Add(Talent.ImprovedHuntersMark, 3);
             state.Config.Buffs.Add(Buff.ImprovedHuntersMark);
 
-            // 121 base agi * 2 + 110 hunters mark * 15% improved
-            Assert.AreEqual(242 + (110 * 1.15), RangedAttackPowerCalculator.Calculate(state));
+            // 148 base agi + 440 hunters mark
+            Assert.AreEqual(148 + 440, RangedAttackPowerCalculator.Calculate(state));
+            // 65 base str + 110 improved hunters mark
+            Assert.AreEqual(65 + 110, MeleeAttackPowerCalculator.Calculate(state));
         }
 
         [TestMethod]
