@@ -17,7 +17,7 @@
 
                 if (state.Config.Talents.ContainsKey(Talent.Pathfinding))
                 {
-                    movementSpeed += 0.03 * state.Config.Talents[Talent.Pathfinding];
+                    movementSpeed += 0.04 * state.Config.Talents[Talent.Pathfinding];
                 }
             }
 

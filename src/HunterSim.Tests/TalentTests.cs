@@ -21,7 +21,7 @@ namespace HunterSim.Tests
             Assert.AreEqual(0.15, RangedHasteCalculator.Calculate(state), 0.0001);
         }
 
-        // TODO: Test the proc and the 5% chance for improved aspect of the hawk once we have rotations modelled (could probably do now with just auto-shot, assuming hawk is the default aspect)
+        // TODO: Test the proc and the 10% chance for improved aspect of the hawk once we have rotations modelled (could probably do now with just auto-shot, assuming hawk is the default aspect)
 
         // TODO: Test Unleashed Fury once we have pet damage modelled
         // TODO: Test Ferocity once we have pet damage modelled
@@ -37,7 +37,7 @@ namespace HunterSim.Tests
             state.Config.Talents.Add(Talent.Pathfinding, 2);
             state.Auras.Add(Aura.AspectOfTheCheetah);
 
-            Assert.AreEqual(1.36, MovementSpeedCalculator.Calculate(state), 0.001);
+            Assert.AreEqual(1.38, MovementSpeedCalculator.Calculate(state), 0.00001);
         }
 
         [TestMethod]
@@ -45,10 +45,10 @@ namespace HunterSim.Tests
         {
             var state = new SimulationState();
             state.Config.PlayerSettings.Race = Race.Draenei;
-            state.Config.Talents.Add(Talent.Pathfinding, 2);
+            state.Config.Talents.Add(Talent.Pathfinding, 1);
             state.Auras.Add(Aura.AspectOfThePack);
 
-            Assert.AreEqual(1.36, MovementSpeedCalculator.Calculate(state), 0.001);
+            Assert.AreEqual(1.34, MovementSpeedCalculator.Calculate(state), 0.001);
         }
 
         // Marksmanship Talents
