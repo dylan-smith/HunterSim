@@ -9,11 +9,14 @@ namespace HunterSim
         Magtheridon,
         Karazhan,
         Badges,
-        Crafted,
+        Crafting,
         Reputation,
         AuctionHouse,
         Vendor,
-        Heroic
+        Heroic,
+        WorldBoss,
+        ZulGurub,
+        Naxxramas
     }
 
     public static class GearSourceExtensions
@@ -27,11 +30,14 @@ namespace HunterSim
                 "magtheridon" => GearSource.Magtheridon,
                 "karazhan" => GearSource.Karazhan,
                 "badges" => GearSource.Badges,
-                "crafted" => GearSource.Crafted,
+                "crafting" => GearSource.Crafting,
                 "rep" => GearSource.Reputation,
                 "ah" => GearSource.AuctionHouse,
                 "vendor" => GearSource.Vendor,
                 "heroic" => GearSource.Heroic,
+                "worldboss" => GearSource.WorldBoss,
+                "zg" => GearSource.ZulGurub,
+                "naxx" => GearSource.Naxxramas,
                 _ => throw new ArgumentException($"Unrecognized gear source {value}"),
             };
         }
