@@ -1,4 +1,5 @@
 ﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
+using Newtonsoft.Json.Schema;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -10,7 +11,7 @@ namespace HunterSim.Tests
     public class GearItemFactoryTests
     {
         [TestMethod]
-        [ExpectedException(typeof(ArgumentOutOfRangeException))]
+        [ExpectedException(typeof(Exception))]
         public void EmptyYaml()
         {
             var yaml = "";
@@ -23,6 +24,20 @@ namespace HunterSim.Tests
             var yaml = "name: Beast Lord Helm";
             var result = GearItemFactory.LoadGearItem(yaml, GearType.Head);
             Assert.AreEqual("Beast Lord Helm", result.Name);
+        }
+
+        [TestMethod]
+        [ExpectedException(typeof(JSchemaValidationException))]
+        public void InvalidPropertyInYaml()
+        {
+            var yaml = "name: Beast Lord Helm\nattackpower: 12";
+            GearItemFactory.LoadGearItem(yaml, GearType.Head);
+        }
+
+        [TestMethod]
+        public void ValidateAllYamlFiles()
+        {
+            var _ = GearItemFactory.AllGear;
         }
 
         [TestMethod]

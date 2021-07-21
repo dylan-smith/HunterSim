@@ -15,6 +15,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <None Remove="Config\GearItem-Schema.json" />
     <None Remove="Gear\Ammo\Wardens Arrow.yml" />
     <None Remove="Gear\Back\Blood Knight War Cloak.yml" />
     <None Remove="Gear\Chest\Beast Lord Cuirass.yml" />
@@ -39,6 +40,13 @@
   </ItemGroup>
 
   <ItemGroup>
+    <Content Include="Config\GearItem-Schema.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Newtonsoft.Json.Schema" Version="3.0.14" />
     <PackageReference Include="YamlDotNet" Version="11.1.1" />
   </ItemGroup>
 

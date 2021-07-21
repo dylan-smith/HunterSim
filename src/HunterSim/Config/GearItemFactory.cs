@@ -1,9 +1,15 @@
-﻿using System;
+﻿using Newtonsoft.Json;
+using Newtonsoft.Json.Linq;
+using Newtonsoft.Json.Schema;
+using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Reflection;
+using System.Text;
+using YamlDotNet.Core.Events;
 using YamlDotNet.RepresentationModel;
+using YamlDotNet.Serialization;
 
 namespace HunterSim
 {
@@ -517,7 +523,8 @@ namespace HunterSim
 
         public static GearItem LoadGearItem(string yaml, GearType gearType)
         {
-            // TODO: Create a yaml schema and validate against it
+            ValidateYamlAgainstSchema(yaml);
+
             using var yamlReader = new StringReader(yaml);
             var yamlStream = new YamlStream();
             yamlStream.Load(yamlReader);
@@ -525,6 +532,61 @@ namespace HunterSim
             var rootNode = (YamlMappingNode)yamlStream.Documents[0].RootNode;
 
             return LoadGearItem(rootNode, gearType);
+        }
+
+        private static void ValidateYamlAgainstSchema(string yaml)
+        {
+            if (string.IsNullOrWhiteSpace(yaml))
+            {
+                throw new Exception("Empty YAML file");
+            }
+
+            var assemblyPath = Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location);
+            var schemaPath = Path.Join(assemblyPath, "Config", "GearItem-Schema.json");
+            var schemaJson = File.ReadAllText(schemaPath);
+            var schema = JSchema.Load(new JsonTextReader(new StringReader(schemaJson)));
+
+            var deserializer = new DeserializerBuilder()
+                                   .WithNodeTypeResolver(new InferTypeFromValue())
+                                   .Build();
+            var data = deserializer.Deserialize(new StringReader(yaml));
+
+            var sb = new StringBuilder();
+            var sw = new StringWriter(sb);
+
+            var serializer = new JsonSerializer();
+            serializer.Serialize(sw, data);
+
+            JObject.Parse(sb.ToString()).Validate(schema);
+        }
+
+        private class InferTypeFromValue : INodeTypeResolver
+        {
+            public bool Resolve(NodeEvent nodeEvent, ref Type currentType)
+            {
+                if (nodeEvent is Scalar scalar)
+                {
+                    if (int.TryParse(scalar.Value, out _))
+                    {
+                        currentType = typeof(int);
+                        return true;
+                    }
+
+                    if (decimal.TryParse(scalar.Value, out _))
+                    {
+                        currentType = typeof(decimal);
+                        return true;
+                    }
+
+                    if (bool.TryParse(scalar.Value, out _))
+                    {
+                        currentType = typeof(bool);
+                        return true;
+                    }
+                }
+
+                return false;
+            }
         }
 
         private static GearItem LoadGearItem(YamlMappingNode yamlNode, GearType gearType)
@@ -710,58 +772,25 @@ namespace HunterSim
                     var typeValue = ((YamlScalarNode)statItem.Value).Value;
 
                     // TODO: Should move this to the Enum class
-                    switch (typeValue)
+                    result.WeaponType = typeValue switch
                     {
-                        case "bow":
-                            result.WeaponType = WeaponType.Bow;
-                            break;
-                        case "crossbow":
-                            result.WeaponType = WeaponType.Crossbow;
-                            break;
-                        case "dagger":
-                            result.WeaponType = WeaponType.Dagger;
-                            break;
-                        case "fist":
-                            result.WeaponType = WeaponType.Fist;
-                            break;
-                        case "gun":
-                            result.WeaponType = WeaponType.Gun;
-                            break;
-                        case "axe":
-                            result.WeaponType = WeaponType.OneHandedAxe;
-                            break;
-                        case "mace":
-                            result.WeaponType = WeaponType.OneHandedMace;
-                            break;
-                        case "sword":
-                            result.WeaponType = WeaponType.OneHandedSword;
-                            break;
-                        case "polearm":
-                            result.WeaponType = WeaponType.Polearm;
-                            break;
-                        case "staff":
-                            result.WeaponType = WeaponType.Staff;
-                            break;
-                        case "thrown":
-                            result.WeaponType = WeaponType.Thrown;
-                            break;
-                        case "two-handed-axe":
-                            result.WeaponType = WeaponType.TwoHandedAxe;
-                            break;
-                        case "two-handed-mace":
-                            result.WeaponType = WeaponType.TwoHandedMace;
-                            break;
-                        case "two-handed-sword":
-                            result.WeaponType = WeaponType.TwoHandedSword;
-                            break;
-                        case "wand":
-                            result.WeaponType = WeaponType.Wand;
-                            break;
-                        default:
-                            // TODO: Richer exceptions
-                            throw new Exception("Unrecognized weapon type");
-                    }
-
+                        "bow" => WeaponType.Bow,
+                        "crossbow" => WeaponType.Crossbow,
+                        "dagger" => WeaponType.Dagger,
+                        "fist" => WeaponType.Fist,
+                        "gun" => WeaponType.Gun,
+                        "axe" => WeaponType.OneHandedAxe,
+                        "mace" => WeaponType.OneHandedMace,
+                        "sword" => WeaponType.OneHandedSword,
+                        "polearm" => WeaponType.Polearm,
+                        "staff" => WeaponType.Staff,
+                        "thrown" => WeaponType.Thrown,
+                        "two-handed-axe" => WeaponType.TwoHandedAxe,
+                        "two-handed-mace" => WeaponType.TwoHandedMace,
+                        "two-handed-sword" => WeaponType.TwoHandedSword,
+                        "wand" => WeaponType.Wand,
+                        _ => throw new Exception("Unrecognized weapon type"),// TODO: Richer exceptions
+                    };
                     continue;
                 }
 
