@@ -1,6 +1,4 @@
-﻿using System.Linq;
-
-namespace HunterSim
+﻿namespace HunterSim
 {
     public class AutoShotCompletedEvent : EventInfo
     {

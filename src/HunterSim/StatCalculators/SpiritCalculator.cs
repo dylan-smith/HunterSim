@@ -1,6 +1,4 @@
-﻿using System;
-
-namespace HunterSim
+﻿namespace HunterSim
 {
     public class SpiritCalculator : BaseStatCalculator
     {
