@@ -530,7 +530,7 @@ namespace HunterSim
             yamlStream.Load(yamlReader);
 
             var rootNode = (YamlMappingNode)yamlStream.Documents[0].RootNode;
-            
+
             return LoadGearItem(rootNode, gearType);
         }
 
@@ -642,7 +642,7 @@ namespace HunterSim
                 }
 
                 var prop = result.GetType().GetProperties().Single(p => p.GetCustomAttributes<YamlProperty>().Any(a => a.PropertyName == statName));
-                
+
                 if (prop.PropertyType == typeof(string))
                 {
                     prop.SetValue(result, ((YamlScalarNode)statItem.Value).Value);

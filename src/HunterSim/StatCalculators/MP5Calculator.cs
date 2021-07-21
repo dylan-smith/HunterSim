@@ -12,7 +12,7 @@
             var mp5 = state.Config.Gear.GetStatTotal(x => x.MP5);
 
             // TODO: Does spirit affect this?
-            
+
             return mp5;
         }
     }

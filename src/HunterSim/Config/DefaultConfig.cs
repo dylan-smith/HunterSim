@@ -1,6 +1,6 @@
 ﻿namespace HunterSim
 {
-    public class DefaultConfig: SimulationConfig
+    public class DefaultConfig : SimulationConfig
     {
         public DefaultConfig()
         {

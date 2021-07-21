@@ -42,7 +42,7 @@ namespace HunterSim
             _instances = new Dictionary<Type, BaseStatCalculator>();
         }
 
-        protected virtual double InstanceCalculate(SimulationState state) 
+        protected virtual double InstanceCalculate(SimulationState state)
         {
             return 0.0;
         }

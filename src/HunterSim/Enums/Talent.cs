@@ -24,7 +24,7 @@
         CatlikeReflexes, // Increases your chance to dodge by 1% and your pet's chance to dodge by an additional 3%
         SerpentsSwiftness, // Increases ranged combat attack speed by 4% and your pet's melee attack speed by 4%
         TheBeastWithin, // When your pet is under the effects of Bestial Wrath, you also go into a rage causing 10% additional damage and reducing mana costs of all spells by 20% for 18 seconds. While enraged, you do not feel pity or remorse or fear and you cannot be stopped unless killed
-        
+
         // Marksmanship
         ImprovedConcussiveShot, // Gives your Concussive Shot a 4% chance to stun the target for 3 sec (4% proc chance)
         LethalShots, // Increases your critical strike chance with ranged weapons by 1%
@@ -46,7 +46,7 @@
         ImprovedBarrage, // Increases the critical strike chance of your Multi-Shot ability by 4% and gives you a 33% chance to avoid interruption caused by damage while channeling Volley
         MasterMarksman, // Increases your ranged attack power by 2%
         SilencingShot, // A shot that deals 50% weapon damage and Silences the target for 3 sec (20 sec CD)
-        
+
         // Survival
         MonsterSlaying, // Increases all damage caused against Beasts, Giants and Dragonkin targets by 1% and increases critical damage caused by an additional 1%
         HumanoidSlaying, // Increases all damaage caused against Humanoid targets by 1% and increases critical damage by an additional 1%

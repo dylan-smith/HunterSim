@@ -12,7 +12,7 @@
             var rangedAP = state.Config.Gear.GetStatTotal(x => x.AttackPower);
             rangedAP += state.Config.Gear.GetStatTotal(x => x.RangedAttackPower);
             rangedAP += AgilityCalculator.Calculate(state);
-            
+
             if (state.Config.Buffs.Contains(Buff.HuntersMark) || state.Config.Buffs.Contains(Buff.ImprovedHuntersMark))
             {
                 rangedAP += 440;

@@ -145,7 +145,7 @@ source: gruul
 ";
 
             var result = GearItemFactory.LoadGearItem(yaml, GearType.Head);
-            
+
             Assert.AreEqual("Test Helmet", result.Name);
             Assert.AreEqual(1.0, result.MinDamage);
             Assert.AreEqual(2.0, result.MaxDamage);
@@ -170,7 +170,7 @@ source: gruul
             Assert.AreEqual(21.0, result.HasteRating);
             Assert.AreEqual(22.0, result.MP5);
             Assert.AreEqual(23.0, result.Defense);
-            
+
             Assert.AreEqual(-0.24, result.ThreatDecrease);
             Assert.AreEqual(25.0, result.Stealth);
             Assert.AreEqual(26.0, result.BonusDPS);

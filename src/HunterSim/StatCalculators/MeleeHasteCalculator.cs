@@ -10,7 +10,7 @@
         protected override double InstanceCalculate(SimulationState state)
         {
             var haste = state.Config.Gear.GetStatTotal(x => x.HasteRating);
-            
+
             return haste;
         }
     }

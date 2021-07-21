@@ -10,7 +10,7 @@
         protected override double InstanceCalculate(SimulationState state)
         {
             var haste = state.Config.Gear.GetStatTotal(x => x.HasteRating);
-            
+
             if (state.Auras.Contains(Aura.ImprovedAspectOfTheHawk))
             {
                 haste += 0.03 * state.Config.Talents[Talent.ImprovedAspectOfTheHawk];

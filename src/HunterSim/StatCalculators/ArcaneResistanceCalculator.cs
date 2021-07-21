@@ -1,6 +1,6 @@
 ﻿namespace HunterSim
 {
-    public class ArcaneResistanceCalculator: BaseStatCalculator
+    public class ArcaneResistanceCalculator : BaseStatCalculator
     {
         public static double Calculate(SimulationState state)
         {
