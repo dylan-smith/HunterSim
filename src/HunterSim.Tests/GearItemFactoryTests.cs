@@ -27,6 +27,44 @@ namespace HunterSim.Tests
         }
 
         [TestMethod]
+        public void BeastLordCuirass()
+        {
+            var yaml = @"
+name: Beast Lord Cuirass
+armor: 652
+agility: 20
+stamina: 30
+intellect: 24
+ap: 40
+mp5: 4
+sockets:
+  red: 2
+  blue: 1
+  bonus:
+    agility: 4
+wowhead: 22436
+source: dungeon
+phase: 1
+# Part of Beast Lord Armor set";
+
+            var result = GearItemFactory.LoadGearItem(yaml, GearType.Head);
+            Assert.AreEqual(GearType.Head, result.GearType);
+            Assert.AreEqual("Beast Lord Cuirass", result.Name);
+            Assert.AreEqual(652, result.Armor);
+            Assert.AreEqual(20, result.Agility);
+            Assert.AreEqual(30, result.Stamina);
+            Assert.AreEqual(24, result.Intellect);
+            Assert.AreEqual(40, result.AttackPower);
+            Assert.AreEqual(4, result.MP5);
+            Assert.AreEqual(2, result.Sockets.Count(s => s.Color == SocketColor.Red));
+            Assert.AreEqual(1, result.Sockets.Count(s => s.Color == SocketColor.Blue));
+            Assert.AreEqual(4, result.SocketBonus.Agility);
+            Assert.AreEqual(22436, result.Wowhead);
+            Assert.AreEqual(GearSource.Dungeon, result.Source);
+            Assert.AreEqual(1, result.Phase);
+        }
+
+        [TestMethod]
         [ExpectedException(typeof(JSchemaValidationException))]
         public void InvalidPropertyInYaml()
         {

@@ -11,6 +11,6 @@ sockets:
   bonus:
     agility: 4
 wowhead: 22436
-source: naxx
-phase: 6
+source: dungeon
+phase: 1
 # Part of Beast Lord Armor set

@@ -530,7 +530,7 @@ namespace HunterSim
             yamlStream.Load(yamlReader);
 
             var rootNode = (YamlMappingNode)yamlStream.Documents[0].RootNode;
-
+            
             return LoadGearItem(rootNode, gearType);
         }
 
@@ -591,314 +591,26 @@ namespace HunterSim
 
         private static GearItem LoadGearItem(YamlMappingNode yamlNode, GearType gearType)
         {
-            var result = new GearItem();
-            result.GearType = gearType;
+            var result = new GearItem
+            {
+                GearType = gearType
+            };
 
             foreach (var statItem in yamlNode.Children)
             {
                 var statName = ((YamlScalarNode)statItem.Key).Value;
 
-                // TODO: Use custom attributes on GearItem so we can do this mapping dynamically
-                if (statName == "name")
+                if (statName.EndsWith("-skill"))
                 {
-                    result.Name = ((YamlScalarNode)statItem.Value).Value;
-                    continue;
-                }
+                    var weaponType = statName.ShaveRight("-skill");
+                    result.WeaponSkill.Add(weaponType.ToWeaponType(), int.Parse(((YamlScalarNode)statItem.Value).Value));
 
-                if (statName == "mindmg")
-                {
-                    result.MinDamage = double.Parse(((YamlScalarNode)statItem.Value).Value);
-                    continue;
-                }
-
-                if (statName == "maxdmg")
-                {
-                    result.MaxDamage = double.Parse(((YamlScalarNode)statItem.Value).Value);
-                    continue;
-                }
-
-                if (statName == "speed")
-                {
-                    result.Speed = double.Parse(((YamlScalarNode)statItem.Value).Value);
-                    continue;
-                }
-
-                if (statName == "armor")
-                {
-                    result.Armor = double.Parse(((YamlScalarNode)statItem.Value).Value);
-                    continue;
-                }
-
-                if (statName == "strength")
-                {
-                    result.Strength = double.Parse(((YamlScalarNode)statItem.Value).Value);
-                    continue;
-                }
-
-                if (statName == "stamina")
-                {
-                    result.Stamina = double.Parse(((YamlScalarNode)statItem.Value).Value);
-                    continue;
-                }
-
-                if (statName == "agility")
-                {
-                    result.Agility = double.Parse(((YamlScalarNode)statItem.Value).Value);
-                    continue;
-                }
-
-                if (statName == "intellect")
-                {
-                    result.Intellect = double.Parse(((YamlScalarNode)statItem.Value).Value);
-                    continue;
-                }
-
-                if (statName == "spirit")
-                {
-                    result.Spirit = double.Parse(((YamlScalarNode)statItem.Value).Value);
-                    continue;
-                }
-
-                if (statName == "ap")
-                {
-                    result.AttackPower = double.Parse(((YamlScalarNode)statItem.Value).Value);
-                    continue;
-                }
-
-                if (statName == "rap")
-                {
-                    result.RangedAttackPower = double.Parse(((YamlScalarNode)statItem.Value).Value);
-                    continue;
-                }
-
-                if (statName == "map")
-                {
-                    result.MeleeAttackPower = double.Parse(((YamlScalarNode)statItem.Value).Value);
-                    continue;
-                }
-
-                if (statName == "crit")
-                {
-                    result.CritRating = double.Parse(((YamlScalarNode)statItem.Value).Value);
-                    continue;
-                }
-
-                if (statName == "hit")
-                {
-                    result.HitRating = double.Parse(((YamlScalarNode)statItem.Value).Value);
-                    continue;
-                }
-
-                if (statName == "dodge")
-                {
-                    result.DodgeRating = double.Parse(((YamlScalarNode)statItem.Value).Value);
-                    continue;
-                }
-
-                if (statName == "haste")
-                {
-                    result.HasteRating = double.Parse(((YamlScalarNode)statItem.Value).Value);
-                    continue;
-                }
-
-                if (statName == "mp5")
-                {
-                    result.MP5 = double.Parse(((YamlScalarNode)statItem.Value).Value);
-                    continue;
-                }
-
-                if (statName == "defense")
-                {
-                    result.Defense = double.Parse(((YamlScalarNode)statItem.Value).Value);
-                    continue;
-                }
-
-                if (statName == "fireresist")
-                {
-                    result.FireResistance = double.Parse(((YamlScalarNode)statItem.Value).Value);
-                    continue;
-                }
-
-                if (statName == "frostresist")
-                {
-                    result.FrostResistance = double.Parse(((YamlScalarNode)statItem.Value).Value);
-                    continue;
-                }
-
-                if (statName == "arcaneresist")
-                {
-                    result.ArcaneResistance = double.Parse(((YamlScalarNode)statItem.Value).Value);
-                    continue;
-                }
-
-                if (statName == "natureresist")
-                {
-                    result.NatureResistance = double.Parse(((YamlScalarNode)statItem.Value).Value);
-                    continue;
-                }
-
-                if (statName == "shadowresist")
-                {
-                    result.ShadowResistance = double.Parse(((YamlScalarNode)statItem.Value).Value);
                     continue;
                 }
 
                 if (statName == "threat")
                 {
                     result.ThreatDecrease = (0.0 - double.Parse(((YamlScalarNode)statItem.Value).Value)) / 100.0;
-                    continue;
-                }
-
-                if (statName == "stealth")
-                {
-                    result.Stealth = double.Parse(((YamlScalarNode)statItem.Value).Value);
-                    continue;
-                }
-
-                if (statName == "bonusdps")
-                {
-                    result.BonusDPS = double.Parse(((YamlScalarNode)statItem.Value).Value);
-                    continue;
-                }
-
-                if (statName == "bonusdmg")
-                {
-                    result.BonusDamage = double.Parse(((YamlScalarNode)statItem.Value).Value);
-                    continue;
-                }
-
-                if (statName == "type")
-                {
-                    var typeValue = ((YamlScalarNode)statItem.Value).Value;
-
-                    // TODO: Should move this to the Enum class
-                    result.WeaponType = typeValue switch
-                    {
-                        "bow" => WeaponType.Bow,
-                        "crossbow" => WeaponType.Crossbow,
-                        "dagger" => WeaponType.Dagger,
-                        "fist" => WeaponType.Fist,
-                        "gun" => WeaponType.Gun,
-                        "axe" => WeaponType.OneHandedAxe,
-                        "mace" => WeaponType.OneHandedMace,
-                        "sword" => WeaponType.OneHandedSword,
-                        "polearm" => WeaponType.Polearm,
-                        "staff" => WeaponType.Staff,
-                        "thrown" => WeaponType.Thrown,
-                        "two-handed-axe" => WeaponType.TwoHandedAxe,
-                        "two-handed-mace" => WeaponType.TwoHandedMace,
-                        "two-handed-sword" => WeaponType.TwoHandedSword,
-                        "wand" => WeaponType.Wand,
-                        _ => throw new Exception("Unrecognized weapon type"),// TODO: Richer exceptions
-                    };
-                    continue;
-                }
-
-                if (statName == "bow-skill")
-                {
-                    result.WeaponSkill.Add(WeaponType.Bow, int.Parse(((YamlScalarNode)statItem.Value).Value));
-                    continue;
-                }
-
-                if (statName == "crossbow-skill")
-                {
-                    result.WeaponSkill.Add(WeaponType.Crossbow, int.Parse(((YamlScalarNode)statItem.Value).Value));
-                    continue;
-                }
-
-                if (statName == "dagger-skill")
-                {
-                    result.WeaponSkill.Add(WeaponType.Dagger, int.Parse(((YamlScalarNode)statItem.Value).Value));
-                    continue;
-                }
-
-                if (statName == "fist-skill")
-                {
-                    result.WeaponSkill.Add(WeaponType.Fist, int.Parse(((YamlScalarNode)statItem.Value).Value));
-                    continue;
-                }
-
-                if (statName == "gun-skill")
-                {
-                    result.WeaponSkill.Add(WeaponType.Gun, int.Parse(((YamlScalarNode)statItem.Value).Value));
-                    continue;
-                }
-
-                if (statName == "axe-skill")
-                {
-                    result.WeaponSkill.Add(WeaponType.OneHandedAxe, int.Parse(((YamlScalarNode)statItem.Value).Value));
-                    continue;
-                }
-
-                if (statName == "mace-skill")
-                {
-                    result.WeaponSkill.Add(WeaponType.OneHandedMace, int.Parse(((YamlScalarNode)statItem.Value).Value));
-                    continue;
-                }
-
-                if (statName == "sword-skill")
-                {
-                    result.WeaponSkill.Add(WeaponType.OneHandedSword, int.Parse(((YamlScalarNode)statItem.Value).Value));
-                    continue;
-                }
-
-                if (statName == "polearm-skill")
-                {
-                    result.WeaponSkill.Add(WeaponType.Polearm, int.Parse(((YamlScalarNode)statItem.Value).Value));
-                    continue;
-                }
-
-                if (statName == "staff-skill")
-                {
-                    result.WeaponSkill.Add(WeaponType.Staff, int.Parse(((YamlScalarNode)statItem.Value).Value));
-                    continue;
-                }
-
-                if (statName == "thrown-skill")
-                {
-                    result.WeaponSkill.Add(WeaponType.Thrown, int.Parse(((YamlScalarNode)statItem.Value).Value));
-                    continue;
-                }
-
-                if (statName == "two-handed-axe-skill")
-                {
-                    result.WeaponSkill.Add(WeaponType.TwoHandedAxe, int.Parse(((YamlScalarNode)statItem.Value).Value));
-                    continue;
-                }
-
-                if (statName == "two-handed-mace-skill")
-                {
-                    result.WeaponSkill.Add(WeaponType.TwoHandedMace, int.Parse(((YamlScalarNode)statItem.Value).Value));
-                    continue;
-                }
-
-                if (statName == "two-handed-sword-skill")
-                {
-                    result.WeaponSkill.Add(WeaponType.TwoHandedSword, int.Parse(((YamlScalarNode)statItem.Value).Value));
-                    continue;
-                }
-
-                if (statName == "wand-skill")
-                {
-                    result.WeaponSkill.Add(WeaponType.Wand, int.Parse(((YamlScalarNode)statItem.Value).Value));
-                    continue;
-                }
-
-                if (statName == "wowhead")
-                {
-                    // TODO
-                    continue;
-                }
-
-                if (statName == "phase")
-                {
-                    // TODO
-                    continue;
-                }
-
-                if (statName == "source")
-                {
-                    // TODO
                     continue;
                 }
 
@@ -910,70 +622,49 @@ namespace HunterSim
                     {
                         var socketName = ((YamlScalarNode)socketItem.Key).Value;
 
-                        // TODO: Can probably simplify these ifs by having the SocketColor enum have a FromString
-                        if (socketName == "red")
-                        {
-                            var socketCount = int.Parse(((YamlScalarNode)socketItem.Value).Value);
-
-                            for (var i = 0; i < socketCount; i++)
-                            {
-                                result.Sockets.Add(new Socket() { Color = SocketColor.Red });
-                            }
-
-                            continue;
-                        }
-
-                        if (socketName == "blue")
-                        {
-                            var socketCount = int.Parse(((YamlScalarNode)socketItem.Value).Value);
-
-                            for (var i = 0; i < socketCount; i++)
-                            {
-                                result.Sockets.Add(new Socket() { Color = SocketColor.Blue });
-                            }
-
-                            continue;
-                        }
-
-                        if (socketName == "yellow")
-                        {
-                            var socketCount = int.Parse(((YamlScalarNode)socketItem.Value).Value);
-
-                            for (var i = 0; i < socketCount; i++)
-                            {
-                                result.Sockets.Add(new Socket() { Color = SocketColor.Yellow });
-                            }
-
-                            continue;
-                        }
-
-                        if (socketName == "meta")
-                        {
-                            var socketCount = int.Parse(((YamlScalarNode)socketItem.Value).Value);
-
-                            for (var i = 0; i < socketCount; i++)
-                            {
-                                result.Sockets.Add(new Socket() { Color = SocketColor.Meta });
-                            }
-
-                            continue;
-                        }
-
                         if (socketName == "bonus")
                         {
                             var bonusNode = (YamlMappingNode)socketItem.Value;
-
                             result.SocketBonus = LoadGearItem(bonusNode, GearType.SocketBonus);
                             continue;
                         }
 
-                        throw new Exception($"Unrecognized attribute in YAML ({socketName})");
+                        var socketColor = socketName.ToSocketColor();
+                        var socketCount = int.Parse(((YamlScalarNode)socketItem.Value).Value);
+
+                        for (var i = 0; i < socketCount; i++)
+                        {
+                            result.Sockets.Add(new Socket() { Color = socketColor });
+                        }
                     }
 
                     continue;
                 }
 
-                throw new Exception($"Unrecognized attribute in YAML ({statName})");
+                var prop = result.GetType().GetProperties().Single(p => p.GetCustomAttributes<YamlProperty>().Any(a => a.PropertyName == statName));
+                
+                if (prop.PropertyType == typeof(string))
+                {
+                    prop.SetValue(result, ((YamlScalarNode)statItem.Value).Value);
+                }
+
+                if (prop.PropertyType == typeof(double))
+                {
+                    prop.SetValue(result, double.Parse(((YamlScalarNode)statItem.Value).Value));
+                }
+
+                if (prop.PropertyType == typeof(int))
+                {
+                    prop.SetValue(result, int.Parse(((YamlScalarNode)statItem.Value).Value));
+                }
+
+                if (prop.PropertyType == typeof(WeaponType))
+                {
+                    var typeValue = ((YamlScalarNode)statItem.Value).Value;
+                    prop.SetValue(result, typeValue.ToWeaponType());
+                }
+
+                // TODO: in schema specify allowed values for type, source, phase, color, etc
             }
 
             return result;

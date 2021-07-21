@@ -17,5 +17,61 @@ namespace HunterSim
                 action(item);
             }
         }
+
+        public static string ShaveLeft(this string a, int characters)
+        {
+            return a.Substring(characters);
+        }
+
+        public static string ShaveLeft(this string a, string shave)
+        {
+            var result = a;
+
+            while (result.StartsWith(shave))
+            {
+                result = result.Substring(shave.Length);
+            }
+
+            return result;
+        }
+
+        public static string ShaveRight(this string a, int characters)
+        {
+            return a.Substring(0, a.Length - characters);
+        }
+
+        public static string ShaveRight(this string a, string shave)
+        {
+            var result = a;
+
+            while (result.EndsWith(shave))
+            {
+                result = result.Substring(0, result.Length - shave.Length);
+            }
+
+            return result;
+        }
+
+        public static string Shave(this string a, int characters)
+        {
+            return a.Substring(characters, a.Length - (characters * 2));
+        }
+
+        public static string Shave(this string a, string shave)
+        {
+            var result = a;
+
+            while (result.StartsWith(shave))
+            {
+                result = result.Substring(shave.Length);
+            }
+
+            while (result.EndsWith(shave))
+            {
+                result = result.Substring(0, result.Length - shave.Length);
+            }
+
+            return result;
+        }
     }
 }
