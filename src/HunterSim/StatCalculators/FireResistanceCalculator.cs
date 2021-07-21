@@ -2,10 +2,7 @@
 {
     public class FireResistanceCalculator : BaseStatCalculator
     {
-        public static double Calculate(SimulationState state)
-        {
-            return Calculate<FireResistanceCalculator>(state);
-        }
+        public static double Calculate(SimulationState state) => Calculate<FireResistanceCalculator>(state);
 
         protected override double InstanceCalculate(SimulationState state)
         {

@@ -2,10 +2,7 @@
 {
     public class MeleeCritDamageMultiplierCalculator : BaseStatCalculator
     {
-        public static double Calculate(SimulationState state)
-        {
-            return Calculate<MeleeCritDamageMultiplierCalculator>(state);
-        }
+        public static double Calculate(SimulationState state) => Calculate<MeleeCritDamageMultiplierCalculator>(state);
 
         protected override double InstanceCalculate(SimulationState state)
         {

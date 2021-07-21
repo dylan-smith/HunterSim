@@ -2,10 +2,7 @@
 {
     public class MP5Calculator : BaseStatCalculator
     {
-        public static double Calculate(SimulationState state)
-        {
-            return Calculate<MP5Calculator>(state);
-        }
+        public static double Calculate(SimulationState state) => Calculate<MP5Calculator>(state);
 
         protected override double InstanceCalculate(SimulationState state)
         {

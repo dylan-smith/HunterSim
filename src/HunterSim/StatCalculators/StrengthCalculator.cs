@@ -2,10 +2,7 @@
 {
     public class StrengthCalculator : BaseStatCalculator
     {
-        public static double Calculate(SimulationState state)
-        {
-            return Calculate<StrengthCalculator>(state);
-        }
+        public static double Calculate(SimulationState state) => Calculate<StrengthCalculator>(state);
 
         protected override double InstanceCalculate(SimulationState state)
         {

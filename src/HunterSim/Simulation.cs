@@ -7,10 +7,7 @@ namespace HunterSim
     {
         private readonly SimulationState _state = new SimulationState();
 
-        public Simulation(SimulationConfig config)
-        {
-            _state.Config = config;
-        }
+        public Simulation(SimulationConfig config) => _state.Config = config;
 
         public SimulationState Run()
         {
@@ -58,9 +55,6 @@ namespace HunterSim
             }
         }
 
-        private EventInfo GetNextEvent()
-        {
-            return _state.Events.OrderBy(e => e.Timestamp).FirstOrDefault();
-        }
+        private EventInfo GetNextEvent() => _state.Events.OrderBy(e => e.Timestamp).FirstOrDefault();
     }
 }

@@ -7,10 +7,7 @@ namespace HunterSim.Tests
     {
         private readonly IList<double> _values;
 
-        public FakeRandomGenerator(params double[] values)
-        {
-            _values = new List<double>(values);
-        }
+        public FakeRandomGenerator(params double[] values) => _values = new List<double>(values);
 
         protected override double RollImplementation()
         {

@@ -2,10 +2,7 @@
 {
     public class MovementSpeedCalculator : BaseStatCalculator
     {
-        public static double Calculate(SimulationState state)
-        {
-            return Calculate<MovementSpeedCalculator>(state);
-        }
+        public static double Calculate(SimulationState state) => Calculate<MovementSpeedCalculator>(state);
 
         protected override double InstanceCalculate(SimulationState state)
         {

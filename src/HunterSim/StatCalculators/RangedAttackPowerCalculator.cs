@@ -2,10 +2,7 @@
 {
     public class RangedAttackPowerCalculator : BaseStatCalculator
     {
-        public static double Calculate(SimulationState state)
-        {
-            return Calculate<RangedAttackPowerCalculator>(state);
-        }
+        public static double Calculate(SimulationState state) => Calculate<RangedAttackPowerCalculator>(state);
 
         protected override double InstanceCalculate(SimulationState state)
         {

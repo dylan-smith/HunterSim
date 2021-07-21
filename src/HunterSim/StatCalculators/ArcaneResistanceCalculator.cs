@@ -2,10 +2,7 @@
 {
     public class ArcaneResistanceCalculator : BaseStatCalculator
     {
-        public static double Calculate(SimulationState state)
-        {
-            return Calculate<ArcaneResistanceCalculator>(state);
-        }
+        public static double Calculate(SimulationState state) => Calculate<ArcaneResistanceCalculator>(state);
 
         protected override double InstanceCalculate(SimulationState state)
         {

@@ -2,10 +2,7 @@
 {
     public class RangedCritDamageMultiplierCalculator : BaseStatCalculator
     {
-        public static double Calculate(SimulationState state)
-        {
-            return Calculate<RangedCritDamageMultiplierCalculator>(state);
-        }
+        public static double Calculate(SimulationState state) => Calculate<RangedCritDamageMultiplierCalculator>(state);
 
         protected override double InstanceCalculate(SimulationState state)
         {

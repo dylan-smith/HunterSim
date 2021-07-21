@@ -2,10 +2,7 @@
 {
     public class MeleeHasteCalculator : BaseStatCalculator
     {
-        public static double Calculate(SimulationState state)
-        {
-            return Calculate<MeleeHasteCalculator>(state);
-        }
+        public static double Calculate(SimulationState state) => Calculate<MeleeHasteCalculator>(state);
 
         protected override double InstanceCalculate(SimulationState state)
         {

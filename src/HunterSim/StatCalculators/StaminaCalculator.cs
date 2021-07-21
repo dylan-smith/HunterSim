@@ -2,10 +2,7 @@
 {
     public class StaminaCalculator : BaseStatCalculator
     {
-        public static double Calculate(SimulationState state)
-        {
-            return Calculate<StaminaCalculator>(state);
-        }
+        public static double Calculate(SimulationState state) => Calculate<StaminaCalculator>(state);
 
         protected override double InstanceCalculate(SimulationState state)
         {

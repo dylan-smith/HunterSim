@@ -8,25 +8,33 @@ namespace HunterSim.Tests
         [TestMethod]
         public void StrengthCalculatorWithGemsAndSocketBonus()
         {
-            var gear = new GearItem();
-            gear.Strength = 7;
+            var gear = new GearItem
+            {
+                Strength = 7
+            };
 
-            var gem1 = new GearItem();
-            gem1.Strength = 3;
-            gem1.Agility = 27;
-            gem1.Color = GemColor.Red;
+            var gem1 = new GearItem
+            {
+                Strength = 3,
+                Agility = 27,
+                Color = GemColor.Red
+            };
 
-            var gem2 = new GearItem();
-            gem2.Strength = 6;
-            gem2.Defense = 12;
-            gem2.Color = GemColor.Blue;
+            var gem2 = new GearItem
+            {
+                Strength = 6,
+                Defense = 12,
+                Color = GemColor.Blue
+            };
 
             gear.Sockets.Add(new Socket() { Color = SocketColor.Red, Gem = gem1 });
             gear.Sockets.Add(new Socket() { Color = SocketColor.Blue, Gem = gem2 });
 
-            var bonus = new GearItem();
-            bonus.Agility = 11;
-            bonus.Strength = 33;
+            var bonus = new GearItem
+            {
+                Agility = 11,
+                Strength = 33
+            };
 
             gear.SocketBonus = bonus;
 

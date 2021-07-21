@@ -2,10 +2,7 @@
 {
     public class HealthCalculator : BaseStatCalculator
     {
-        public static double Calculate(SimulationState state)
-        {
-            return Calculate<HealthCalculator>(state);
-        }
+        public static double Calculate(SimulationState state) => Calculate<HealthCalculator>(state);
 
         protected override double InstanceCalculate(SimulationState state)
         {

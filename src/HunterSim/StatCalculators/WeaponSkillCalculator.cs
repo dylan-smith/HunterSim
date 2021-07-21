@@ -2,10 +2,7 @@
 {
     public class WeaponSkillCalculator : BaseStatCalculator
     {
-        public static double Calculate(GearItem weapon, SimulationState state)
-        {
-            return Calculate<WeaponSkillCalculator>(weapon, state);
-        }
+        public static double Calculate(GearItem weapon, SimulationState state) => Calculate<WeaponSkillCalculator>(weapon, state);
 
         protected override double InstanceCalculate(GearItem weapon, SimulationState state)
         {
@@ -14,7 +11,7 @@
             var weaponType = weapon.WeaponType;
 
             // TODO: Need to test this
-            skill += (int)state.Config.Gear.GetStatTotal(x => x.WeaponSkill.ContainsKey(weaponType) ? (double)x.WeaponSkill[weaponType] : 0.0);
+            skill += (int)state.Config.Gear.GetStatTotal(x => x.WeaponSkill.ContainsKey(weaponType) ? x.WeaponSkill[weaponType] : 0.0);
 
             if (weaponType == WeaponType.Gun && state.Config.PlayerSettings.Race == Race.Dwarf)
             {

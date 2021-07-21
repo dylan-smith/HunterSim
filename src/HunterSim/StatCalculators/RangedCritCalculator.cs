@@ -4,10 +4,7 @@ namespace HunterSim
 {
     public class RangedCritCalculator : BaseStatCalculator
     {
-        public static double Calculate(SimulationState state)
-        {
-            return Calculate<RangedCritCalculator>(state);
-        }
+        public static double Calculate(SimulationState state) => Calculate<RangedCritCalculator>(state);
 
         protected override double InstanceCalculate(SimulationState state)
         {
@@ -42,16 +39,10 @@ namespace HunterSim
             return critChance;
         }
 
-        private double GetCritSuppressionAura()
-        {
-            // https://classic.wowhead.com/news/berserker-stance-and-modifiers-to-critical-strike-clarifications-293749
-            return -0.018;
-        }
+        // https://classic.wowhead.com/news/berserker-stance-and-modifiers-to-critical-strike-clarifications-293749
+        private double GetCritSuppressionAura() => -0.018;
 
-        private double GetCritSuppressionBasedOnBossLevel(SimulationState state)
-        {
-            // TODO: Include link to details
-            return -0.01 * (state.Config.BossSettings.Level - state.Config.PlayerSettings.Level);
-        }
+        // TODO: Include link to details
+        private double GetCritSuppressionBasedOnBossLevel(SimulationState state) => -0.01 * (state.Config.BossSettings.Level - state.Config.PlayerSettings.Level);
     }
 }

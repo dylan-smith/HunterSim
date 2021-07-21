@@ -2,10 +2,7 @@
 {
     public class NatureResistanceCalculator : BaseStatCalculator
     {
-        public static double Calculate(SimulationState state)
-        {
-            return Calculate<NatureResistanceCalculator>(state);
-        }
+        public static double Calculate(SimulationState state) => Calculate<NatureResistanceCalculator>(state);
 
         protected override double InstanceCalculate(SimulationState state)
         {

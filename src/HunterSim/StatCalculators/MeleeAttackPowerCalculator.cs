@@ -2,10 +2,7 @@
 {
     public class MeleeAttackPowerCalculator : BaseStatCalculator
     {
-        public static double Calculate(SimulationState state)
-        {
-            return Calculate<MeleeAttackPowerCalculator>(state);
-        }
+        public static double Calculate(SimulationState state) => Calculate<MeleeAttackPowerCalculator>(state);
 
         protected override double InstanceCalculate(SimulationState state)
         {

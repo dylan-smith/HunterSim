@@ -89,371 +89,119 @@ namespace HunterSim
             }
         }
 
-        public static IEnumerable<GearItem> AllAmmo
-        {
-            get
-            {
-                return GetGearByType(GearType.Ammo);
-            }
-        }
+        public static IEnumerable<GearItem> AllAmmo => GetGearByType(GearType.Ammo);
 
-        public static IEnumerable<GearItem> AllBack
-        {
-            get
-            {
-                return GetGearByType(GearType.Back);
-            }
-        }
+        public static IEnumerable<GearItem> AllBack => GetGearByType(GearType.Back);
 
-        public static IEnumerable<GearItem> AllChest
-        {
-            get
-            {
-                return GetGearByType(GearType.Chest);
-            }
-        }
+        public static IEnumerable<GearItem> AllChest => GetGearByType(GearType.Chest);
 
-        public static IEnumerable<GearItem> AllFeet
-        {
-            get
-            {
-                return GetGearByType(GearType.Feet);
-            }
-        }
+        public static IEnumerable<GearItem> AllFeet => GetGearByType(GearType.Feet);
 
-        public static IEnumerable<GearItem> AllFinger
-        {
-            get
-            {
-                return GetGearByType(GearType.Finger);
-            }
-        }
+        public static IEnumerable<GearItem> AllFinger => GetGearByType(GearType.Finger);
 
-        public static IEnumerable<GearItem> AllHands
-        {
-            get
-            {
-                return GetGearByType(GearType.Hands);
-            }
-        }
+        public static IEnumerable<GearItem> AllHands => GetGearByType(GearType.Hands);
 
-        public static IEnumerable<GearItem> AllHead
-        {
-            get
-            {
-                return GetGearByType(GearType.Head);
-            }
-        }
+        public static IEnumerable<GearItem> AllHead => GetGearByType(GearType.Head);
 
-        public static IEnumerable<GearItem> AllLegs
-        {
-            get
-            {
-                return GetGearByType(GearType.Legs);
-            }
-        }
+        public static IEnumerable<GearItem> AllLegs => GetGearByType(GearType.Legs);
 
-        public static IEnumerable<GearItem> AllMainHand
-        {
-            get
-            {
-                return GetGearByType(GearType.MainHand);
-            }
-        }
+        public static IEnumerable<GearItem> AllMainHand => GetGearByType(GearType.MainHand);
 
-        public static IEnumerable<GearItem> AllNeck
-        {
-            get
-            {
-                return GetGearByType(GearType.Neck);
-            }
-        }
+        public static IEnumerable<GearItem> AllNeck => GetGearByType(GearType.Neck);
 
-        public static IEnumerable<GearItem> AllOffHand
-        {
-            get
-            {
-                return GetGearByType(GearType.OffHand);
-            }
-        }
+        public static IEnumerable<GearItem> AllOffHand => GetGearByType(GearType.OffHand);
 
-        public static IEnumerable<GearItem> AllQuiver
-        {
-            get
-            {
-                return GetGearByType(GearType.Quiver);
-            }
-        }
+        public static IEnumerable<GearItem> AllQuiver => GetGearByType(GearType.Quiver);
 
-        public static IEnumerable<GearItem> AllRanged
-        {
-            get
-            {
-                return GetGearByType(GearType.Ranged);
-            }
-        }
+        public static IEnumerable<GearItem> AllRanged => GetGearByType(GearType.Ranged);
 
-        public static IEnumerable<GearItem> AllShoulder
-        {
-            get
-            {
-                return GetGearByType(GearType.Shoulder);
-            }
-        }
+        public static IEnumerable<GearItem> AllShoulder => GetGearByType(GearType.Shoulder);
 
-        public static IEnumerable<GearItem> AllTrinket
-        {
-            get
-            {
-                return GetGearByType(GearType.Trinket);
-            }
-        }
+        public static IEnumerable<GearItem> AllTrinket => GetGearByType(GearType.Trinket);
 
-        public static IEnumerable<GearItem> AllWaist
-        {
-            get
-            {
-                return GetGearByType(GearType.Waist);
-            }
-        }
+        public static IEnumerable<GearItem> AllWaist => GetGearByType(GearType.Waist);
 
-        public static IEnumerable<GearItem> AllWrist
-        {
-            get
-            {
-                return GetGearByType(GearType.Wrist);
-            }
-        }
+        public static IEnumerable<GearItem> AllWrist => GetGearByType(GearType.Wrist);
 
-        public static IEnumerable<GearItem> AllBackEnchants
-        {
-            get
-            {
-                return GetEnchantsByType(GearType.Back);
-            }
-        }
+        public static IEnumerable<GearItem> AllBackEnchants => GetEnchantsByType(GearType.Back);
 
-        public static IEnumerable<GearItem> AllChestEnchants
-        {
-            get
-            {
-                return GetEnchantsByType(GearType.Chest);
-            }
-        }
+        public static IEnumerable<GearItem> AllChestEnchants => GetEnchantsByType(GearType.Chest);
 
-        public static IEnumerable<GearItem> AllFeetEnchants
-        {
-            get
-            {
-                return GetEnchantsByType(GearType.Feet);
-            }
-        }
+        public static IEnumerable<GearItem> AllFeetEnchants => GetEnchantsByType(GearType.Feet);
 
-        public static IEnumerable<GearItem> AllHandEnchants
-        {
-            get
-            {
-                return GetEnchantsByType(GearType.Hands);
-            }
-        }
+        public static IEnumerable<GearItem> AllHandEnchants => GetEnchantsByType(GearType.Hands);
 
-        public static IEnumerable<GearItem> AllHeadEnchants
-        {
-            get
-            {
-                return GetEnchantsByType(GearType.Head);
-            }
-        }
+        public static IEnumerable<GearItem> AllHeadEnchants => GetEnchantsByType(GearType.Head);
 
-        public static IEnumerable<GearItem> AllLegEnchants
-        {
-            get
-            {
-                return GetEnchantsByType(GearType.Legs);
-            }
-        }
+        public static IEnumerable<GearItem> AllLegEnchants => GetEnchantsByType(GearType.Legs);
 
-        public static IEnumerable<GearItem> AllOneHandEnchants
-        {
-            get
-            {
-                return GetEnchantsByType(GearType.OneHand);
-            }
-        }
+        public static IEnumerable<GearItem> AllOneHandEnchants => GetEnchantsByType(GearType.OneHand);
 
-        public static IEnumerable<GearItem> AllRangedEnchants
-        {
-            get
-            {
-                return GetEnchantsByType(GearType.Ranged);
-            }
-        }
+        public static IEnumerable<GearItem> AllRangedEnchants => GetEnchantsByType(GearType.Ranged);
 
-        public static IEnumerable<GearItem> AllShoulderEnchants
-        {
-            get
-            {
-                return GetEnchantsByType(GearType.Shoulder);
-            }
-        }
+        public static IEnumerable<GearItem> AllShoulderEnchants => GetEnchantsByType(GearType.Shoulder);
 
-        public static IEnumerable<GearItem> AllWristEnchants
-        {
-            get
-            {
-                return GetEnchantsByType(GearType.Wrist);
-            }
-        }
+        public static IEnumerable<GearItem> AllWristEnchants => GetEnchantsByType(GearType.Wrist);
 
-        public static GearItem Load(string itemName)
-        {
-            return AllGear.Single(x => x.Name == itemName);
-        }
+        public static GearItem Load(string itemName) => AllGear.Single(x => x.Name == itemName);
 
-        public static GearItem LoadAmmo(string itemName)
-        {
-            return AllAmmo.Single(x => x.Name == itemName);
-        }
+        public static GearItem LoadAmmo(string itemName) => AllAmmo.Single(x => x.Name == itemName);
 
-        public static GearItem LoadBack(string itemName)
-        {
-            return AllBack.Single(x => x.Name == itemName);
-        }
+        public static GearItem LoadBack(string itemName) => AllBack.Single(x => x.Name == itemName);
 
-        public static GearItem LoadChest(string itemName)
-        {
-            return AllChest.Single(x => x.Name == itemName);
-        }
+        public static GearItem LoadChest(string itemName) => AllChest.Single(x => x.Name == itemName);
 
-        public static GearItem LoadFeet(string itemName)
-        {
-            return AllFeet.Single(x => x.Name == itemName);
-        }
+        public static GearItem LoadFeet(string itemName) => AllFeet.Single(x => x.Name == itemName);
 
-        public static GearItem LoadFinger(string itemName)
-        {
-            return AllFinger.Single(x => x.Name == itemName);
-        }
+        public static GearItem LoadFinger(string itemName) => AllFinger.Single(x => x.Name == itemName);
 
-        public static GearItem LoadHands(string itemName)
-        {
-            return AllHands.Single(x => x.Name == itemName);
-        }
+        public static GearItem LoadHands(string itemName) => AllHands.Single(x => x.Name == itemName);
 
-        public static GearItem LoadHead(string itemName)
-        {
-            return AllHead.Single(x => x.Name == itemName);
-        }
+        public static GearItem LoadHead(string itemName) => AllHead.Single(x => x.Name == itemName);
 
-        public static GearItem LoadLegs(string itemName)
-        {
-            return AllLegs.Single(x => x.Name == itemName);
-        }
+        public static GearItem LoadLegs(string itemName) => AllLegs.Single(x => x.Name == itemName);
 
-        public static GearItem LoadMainHand(string itemName)
-        {
-            return AllEquippableMainHands.Single(x => x.Name == itemName);
-        }
+        public static GearItem LoadMainHand(string itemName) => AllEquippableMainHands.Single(x => x.Name == itemName);
 
-        public static GearItem LoadNeck(string itemName)
-        {
-            return AllNeck.Single(x => x.Name == itemName);
-        }
+        public static GearItem LoadNeck(string itemName) => AllNeck.Single(x => x.Name == itemName);
 
-        public static GearItem LoadOffHand(string itemName)
-        {
-            return AllEquippableOffHands.Single(x => x.Name == itemName);
-        }
+        public static GearItem LoadOffHand(string itemName) => AllEquippableOffHands.Single(x => x.Name == itemName);
 
-        public static GearItem LoadQuiver(string itemName)
-        {
-            return AllQuiver.Single(x => x.Name == itemName);
-        }
+        public static GearItem LoadQuiver(string itemName) => AllQuiver.Single(x => x.Name == itemName);
 
-        public static GearItem LoadRanged(string itemName)
-        {
-            return AllRanged.Single(x => x.Name == itemName);
-        }
+        public static GearItem LoadRanged(string itemName) => AllRanged.Single(x => x.Name == itemName);
 
-        public static GearItem LoadShoulder(string itemName)
-        {
-            return AllShoulder.Single(x => x.Name == itemName);
-        }
+        public static GearItem LoadShoulder(string itemName) => AllShoulder.Single(x => x.Name == itemName);
 
-        public static GearItem LoadTrinket(string itemName)
-        {
-            return AllTrinket.Single(x => x.Name == itemName);
-        }
+        public static GearItem LoadTrinket(string itemName) => AllTrinket.Single(x => x.Name == itemName);
 
-        public static GearItem LoadWaist(string itemName)
-        {
-            return AllWaist.Single(x => x.Name == itemName);
-        }
+        public static GearItem LoadWaist(string itemName) => AllWaist.Single(x => x.Name == itemName);
 
-        public static GearItem LoadWrist(string itemName)
-        {
-            return AllWrist.Single(x => x.Name == itemName);
-        }
+        public static GearItem LoadWrist(string itemName) => AllWrist.Single(x => x.Name == itemName);
 
-        public static GearItem LoadEnchant(string enchantName)
-        {
-            return AllEnchants.Single(x => x.Name == enchantName);
-        }
+        public static GearItem LoadEnchant(string enchantName) => AllEnchants.Single(x => x.Name == enchantName);
 
-        public static GearItem LoadBackEnchant(string enchantName)
-        {
-            return AllBackEnchants.Single(x => x.Name == enchantName);
-        }
+        public static GearItem LoadBackEnchant(string enchantName) => AllBackEnchants.Single(x => x.Name == enchantName);
 
-        public static GearItem LoadChestEnchant(string enchantName)
-        {
-            return AllChestEnchants.Single(x => x.Name == enchantName);
-        }
+        public static GearItem LoadChestEnchant(string enchantName) => AllChestEnchants.Single(x => x.Name == enchantName);
 
-        public static GearItem LoadFeetEnchant(string enchantName)
-        {
-            return AllFeetEnchants.Single(x => x.Name == enchantName);
-        }
+        public static GearItem LoadFeetEnchant(string enchantName) => AllFeetEnchants.Single(x => x.Name == enchantName);
 
-        public static GearItem LoadHandEnchant(string enchantName)
-        {
-            return AllHandEnchants.Single(x => x.Name == enchantName);
-        }
+        public static GearItem LoadHandEnchant(string enchantName) => AllHandEnchants.Single(x => x.Name == enchantName);
 
-        public static GearItem LoadHeadEnchant(string enchantName)
-        {
-            return AllHeadEnchants.Single(x => x.Name == enchantName);
-        }
+        public static GearItem LoadHeadEnchant(string enchantName) => AllHeadEnchants.Single(x => x.Name == enchantName);
 
-        public static GearItem LoadLegEnchant(string enchantName)
-        {
-            return AllLegEnchants.Single(x => x.Name == enchantName);
-        }
+        public static GearItem LoadLegEnchant(string enchantName) => AllLegEnchants.Single(x => x.Name == enchantName);
 
-        public static GearItem LoadOneHandEnchant(string enchantName)
-        {
-            return AllOneHandEnchants.Single(x => x.Name == enchantName);
-        }
+        public static GearItem LoadOneHandEnchant(string enchantName) => AllOneHandEnchants.Single(x => x.Name == enchantName);
 
-        public static GearItem LoadTwoHandEnchant(string enchantName)
-        {
-            return AllTwoHandEnchants.Single(x => x.Name == enchantName);
-        }
+        public static GearItem LoadTwoHandEnchant(string enchantName) => AllTwoHandEnchants.Single(x => x.Name == enchantName);
 
-        public static GearItem LoadRangedEnchant(string enchantName)
-        {
-            return AllRangedEnchants.Single(x => x.Name == enchantName);
-        }
+        public static GearItem LoadRangedEnchant(string enchantName) => AllRangedEnchants.Single(x => x.Name == enchantName);
 
-        public static GearItem LoadShoulderEnchant(string enchantName)
-        {
-            return AllShoulderEnchants.Single(x => x.Name == enchantName);
-        }
+        public static GearItem LoadShoulderEnchant(string enchantName) => AllShoulderEnchants.Single(x => x.Name == enchantName);
 
-        public static GearItem LoadWristEnchant(string enchantName)
-        {
-            return AllWristEnchants.Single(x => x.Name == enchantName);
-        }
+        public static GearItem LoadWristEnchant(string enchantName) => AllWristEnchants.Single(x => x.Name == enchantName);
 
         private static IEnumerable<GearItem> GetGearByType(GearType gearType)
         {

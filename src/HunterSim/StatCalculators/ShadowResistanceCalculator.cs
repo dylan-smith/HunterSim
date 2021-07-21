@@ -2,10 +2,7 @@
 {
     public class ShadowResistanceCalculator : BaseStatCalculator
     {
-        public static double Calculate(SimulationState state)
-        {
-            return Calculate<ShadowResistanceCalculator>(state);
-        }
+        public static double Calculate(SimulationState state) => Calculate<ShadowResistanceCalculator>(state);
 
         protected override double InstanceCalculate(SimulationState state)
         {

@@ -2,10 +2,7 @@
 {
     public class ArmorCalculator : BaseStatCalculator
     {
-        public static double Calculate(SimulationState state)
-        {
-            return Calculate<ArmorCalculator>(state);
-        }
+        public static double Calculate(SimulationState state) => Calculate<ArmorCalculator>(state);
 
         protected override double InstanceCalculate(SimulationState state)
         {

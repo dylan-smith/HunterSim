@@ -2,10 +2,7 @@
 {
     public class ManaCalculator : BaseStatCalculator
     {
-        public static double Calculate(SimulationState state)
-        {
-            return Calculate<ManaCalculator>(state);
-        }
+        public static double Calculate(SimulationState state) => Calculate<ManaCalculator>(state);
 
         protected override double InstanceCalculate(SimulationState state)
         {

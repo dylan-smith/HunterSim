@@ -55,20 +55,11 @@ namespace HunterSim
             return (warnings, errors);
         }
 
-        private bool ValidateMissingRangedWeapon()
-        {
-            return Gear.Ranged != null;
-        }
+        private bool ValidateMissingRangedWeapon() => Gear.Ranged != null;
 
-        private bool ValidatePlayerMaxLevel()
-        {
-            return PlayerSettings.Level == 70;
-        }
+        private bool ValidatePlayerMaxLevel() => PlayerSettings.Level == 70;
 
-        private bool ValidateAllGearSelected()
-        {
-            return Gear.GetAllGear().Count() == 19;
-        }
+        private bool ValidateAllGearSelected() => Gear.GetAllGear().Count() == 19;
 
         private bool ValidateTooManyTalentPoints()
         {
@@ -84,10 +75,7 @@ namespace HunterSim
             return Talents.Values.Sum() >= points;
         }
 
-        private bool ValidateRace()
-        {
-            return PlayerSettings.Race != Race.NotSet;
-        }
+        private bool ValidateRace() => PlayerSettings.Race != Race.NotSet;
 
         private bool ValidateFoodBuffs()
         {

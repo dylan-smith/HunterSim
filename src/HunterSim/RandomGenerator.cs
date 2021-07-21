@@ -7,10 +7,7 @@ namespace HunterSim
         private static RandomGenerator _instance;
         private readonly Random _random;
 
-        public static void Seed(int seed)
-        {
-            _instance = new RandomGenerator(seed);
-        }
+        public static void Seed(int seed) => _instance = new RandomGenerator(seed);
 
         public static double Roll()
         {
@@ -22,29 +19,14 @@ namespace HunterSim
             return _instance.RollImplementation();
         }
 
-        public RandomGenerator()
-        {
-            _random = new Random();
-        }
+        public RandomGenerator() => _random = new Random();
 
-        public RandomGenerator(int seed)
-        {
-            _random = new Random(seed);
-        }
+        public RandomGenerator(int seed) => _random = new Random(seed);
 
-        public static void InjectMock(RandomGenerator mock)
-        {
-            _instance = mock;
-        }
+        public static void InjectMock(RandomGenerator mock) => _instance = mock;
 
-        public static void ClearMock()
-        {
-            _instance = null;
-        }
+        public static void ClearMock() => _instance = null;
 
-        protected virtual double RollImplementation()
-        {
-            return _random.NextDouble();
-        }
+        protected virtual double RollImplementation() => _random.NextDouble();
     }
 }

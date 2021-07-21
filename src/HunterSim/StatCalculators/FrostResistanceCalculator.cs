@@ -2,10 +2,7 @@
 {
     public class FrostResistanceCalculator : BaseStatCalculator
     {
-        public static double Calculate(SimulationState state)
-        {
-            return Calculate<FrostResistanceCalculator>(state);
-        }
+        public static double Calculate(SimulationState state) => Calculate<FrostResistanceCalculator>(state);
 
         protected override double InstanceCalculate(SimulationState state)
         {

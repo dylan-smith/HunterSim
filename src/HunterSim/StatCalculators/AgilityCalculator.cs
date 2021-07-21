@@ -2,10 +2,7 @@
 {
     public class AgilityCalculator : BaseStatCalculator
     {
-        public static double Calculate(SimulationState state)
-        {
-            return Calculate<AgilityCalculator>(state);
-        }
+        public static double Calculate(SimulationState state) => Calculate<AgilityCalculator>(state);
 
         protected override double InstanceCalculate(SimulationState state)
         {

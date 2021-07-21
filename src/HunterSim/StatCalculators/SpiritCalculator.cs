@@ -2,10 +2,7 @@
 {
     public class SpiritCalculator : BaseStatCalculator
     {
-        public static double Calculate(SimulationState state)
-        {
-            return Calculate<SpiritCalculator>(state);
-        }
+        public static double Calculate(SimulationState state) => Calculate<SpiritCalculator>(state);
 
         protected override double InstanceCalculate(SimulationState state)
         {

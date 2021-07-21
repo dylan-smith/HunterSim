@@ -5,10 +5,7 @@ namespace HunterSim
 {
     public static class ExtensionMethods
     {
-        public static void AddRange<T>(this IList<T> list, IEnumerable<T> range)
-        {
-            range.ForEach(x => list.Add(x));
-        }
+        public static void AddRange<T>(this IList<T> list, IEnumerable<T> range) => range.ForEach(x => list.Add(x));
 
         public static void ForEach<T>(this IEnumerable<T> list, Action<T> action)
         {
@@ -18,10 +15,7 @@ namespace HunterSim
             }
         }
 
-        public static string ShaveLeft(this string a, int characters)
-        {
-            return a.Substring(characters);
-        }
+        public static string ShaveLeft(this string a, int characters) => a.Substring(characters);
 
         public static string ShaveLeft(this string a, string shave)
         {
@@ -35,10 +29,7 @@ namespace HunterSim
             return result;
         }
 
-        public static string ShaveRight(this string a, int characters)
-        {
-            return a.Substring(0, a.Length - characters);
-        }
+        public static string ShaveRight(this string a, int characters) => a.Substring(0, a.Length - characters);
 
         public static string ShaveRight(this string a, string shave)
         {
@@ -52,10 +43,7 @@ namespace HunterSim
             return result;
         }
 
-        public static string Shave(this string a, int characters)
-        {
-            return a.Substring(characters, a.Length - (characters * 2));
-        }
+        public static string Shave(this string a, int characters) => a.Substring(characters, a.Length - (characters * 2));
 
         public static string Shave(this string a, string shave)
         {

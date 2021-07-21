@@ -8,10 +8,7 @@ namespace HunterSim.Tests
     public class AutoShotTests
     {
         [TestInitialize]
-        public void TestInitialize()
-        {
-            InjectZeroMocks();
-        }
+        public void TestInitialize() => InjectZeroMocks();
 
         [TestCleanup]
         public void TestCleanup()

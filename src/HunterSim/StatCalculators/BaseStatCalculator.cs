@@ -37,19 +37,10 @@ namespace HunterSim
             _instances.Add(type, mock);
         }
 
-        public static void ClearMocks()
-        {
-            _instances = new Dictionary<Type, BaseStatCalculator>();
-        }
+        public static void ClearMocks() => _instances = new Dictionary<Type, BaseStatCalculator>();
 
-        protected virtual double InstanceCalculate(SimulationState state)
-        {
-            return 0.0;
-        }
+        protected virtual double InstanceCalculate(SimulationState state) => 0.0;
 
-        protected virtual double InstanceCalculate(GearItem weapon, SimulationState state)
-        {
-            return 0.0;
-        }
+        protected virtual double InstanceCalculate(GearItem weapon, SimulationState state) => 0.0;
     }
 }

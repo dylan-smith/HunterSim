@@ -2,10 +2,7 @@
 {
     public class IntellectCalculator : BaseStatCalculator
     {
-        public static double Calculate(SimulationState state)
-        {
-            return Calculate<IntellectCalculator>(state);
-        }
+        public static double Calculate(SimulationState state) => Calculate<IntellectCalculator>(state);
 
         protected override double InstanceCalculate(SimulationState state)
         {

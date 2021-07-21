@@ -5,10 +5,7 @@ namespace HunterSim
 {
     public class MissChanceCalculator : BaseStatCalculator
     {
-        public static double Calculate(GearItem weapon, SimulationState state)
-        {
-            return Calculate<MissChanceCalculator>(weapon, state);
-        }
+        public static double Calculate(GearItem weapon, SimulationState state) => Calculate<MissChanceCalculator>(weapon, state);
 
         protected override double InstanceCalculate(GearItem weapon, SimulationState state)
         {

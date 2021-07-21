@@ -5,12 +5,6 @@
         public int Level { get; set; }
         public BossType BossType { get; set; }
 
-        public int Defense
-        {
-            get
-            {
-                return Level * 5;
-            }
-        }
+        public int Defense => Level * 5;
     }
 }

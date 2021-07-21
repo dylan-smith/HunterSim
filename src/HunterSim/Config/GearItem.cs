@@ -9,10 +9,7 @@ namespace HunterSim
     {
         public string PropertyName { get; set; }
 
-        public YamlProperty(string propertyName)
-        {
-            PropertyName = propertyName;
-        }
+        public YamlProperty(string propertyName) => PropertyName = propertyName;
     }
 
     public class GearItem
@@ -89,10 +86,7 @@ namespace HunterSim
         [YamlProperty("phase")]
         public int Phase { get; set; }
 
-        public bool IsSocketBonusActive()
-        {
-            return Sockets.All(x => x.IsColorMatch());
-        }
+        public bool IsSocketBonusActive() => Sockets.All(x => x.IsColorMatch());
 
         public double GetStatWithSockets(Func<GearItem, double> statFunc)
         {

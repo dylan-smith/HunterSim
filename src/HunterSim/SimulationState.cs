@@ -13,13 +13,7 @@ namespace HunterSim
         public readonly IList<string> Warnings = new List<string>();
         public readonly IList<string> Errors = new List<string>();
 
-        public IEnumerable<DamageEvent> DamageEvents
-        {
-            get
-            {
-                return ProcessedEvents.Where(e => e is DamageEvent).Cast<DamageEvent>();
-            }
-        }
+        public IEnumerable<DamageEvent> DamageEvents => ProcessedEvents.Where(e => e is DamageEvent).Cast<DamageEvent>();
 
         public bool Validate()
         {

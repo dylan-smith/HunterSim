@@ -2,10 +2,7 @@
 {
     public class RangedHasteCalculator : BaseStatCalculator
     {
-        public static double Calculate(SimulationState state)
-        {
-            return Calculate<RangedHasteCalculator>(state);
-        }
+        public static double Calculate(SimulationState state) => Calculate<RangedHasteCalculator>(state);
 
         protected override double InstanceCalculate(SimulationState state)
         {

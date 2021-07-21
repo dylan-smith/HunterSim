@@ -2,10 +2,7 @@
 {
     public class BonusDamageCalculator : BaseStatCalculator
     {
-        public static double Calculate(GearItem weapon, SimulationState state)
-        {
-            return Calculate<BonusDamageCalculator>(weapon, state);
-        }
+        public static double Calculate(GearItem weapon, SimulationState state) => Calculate<BonusDamageCalculator>(weapon, state);
 
         protected override double InstanceCalculate(GearItem weapon, SimulationState state)
         {

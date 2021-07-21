@@ -2,10 +2,7 @@
 {
     public class SpellCritCalculator : BaseStatCalculator
     {
-        public static double Calculate(SimulationState state)
-        {
-            return Calculate<SpellCritCalculator>(state);
-        }
+        public static double Calculate(SimulationState state) => Calculate<SpellCritCalculator>(state);
 
         protected override double InstanceCalculate(SimulationState state)
         {

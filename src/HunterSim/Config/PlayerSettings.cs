@@ -145,20 +145,8 @@ namespace HunterSim
             }
         }
 
-        public double Health
-        {
-            get
-            {
-                return 3488.0;
-            }
-        }
+        public double Health => 3488.0;
 
-        public double Mana
-        {
-            get
-            {
-                return 3253.0;
-            }
-        }
+        public double Mana => 3253.0;
     }
 }
