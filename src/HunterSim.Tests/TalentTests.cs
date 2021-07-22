@@ -21,7 +21,23 @@ namespace HunterSim.Tests
             Assert.AreEqual(0.15, RangedHasteCalculator.Calculate(state), 0.0001);
         }
 
+        [TestMethod]
+        public void EnduranceTraining()
+        {
+            var state = new SimulationState();
+            state.Config.PlayerSettings.Race = Race.Draenei;
+            state.Config.Talents.Add(Talent.EnduranceTraining, 5);
+
+            // 3488 base health + 107 stam + 5% talent
+            Assert.AreEqual((3488 + 1070) * 1.05, HealthCalculator.Calculate(state));
+            // TODO: Test pet health increase
+        }
+
         // TODO: Test the proc and the 10% chance for improved aspect of the hawk once we have rotations modelled (could probably do now with just auto-shot, assuming hawk is the default aspect)
+        // TODO: Focused Fire (need to know if pet is active, and have kill command modelled)
+
+
+
 
         // TODO: Test Unleashed Fury once we have pet damage modelled
         // TODO: Test Ferocity once we have pet damage modelled

@@ -7,6 +7,7 @@
         AspectOfTheHawk,
         AspectOfTheCheetah,
         AspectOfThePack,
+        AspectOfTheMonkey,
         ImprovedAspectOfTheHawk,
         // TODO: Other aspects
     }
