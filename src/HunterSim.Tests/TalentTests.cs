@@ -1,4 +1,5 @@
 ﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
+using System.Linq;
 
 namespace HunterSim.Tests
 {
@@ -6,20 +7,116 @@ namespace HunterSim.Tests
     public class TalentTests
     {
         // Beast Mastery Talents
-
         [TestMethod]
-        public void ImprovedAspectOfTheHawk()
+        public void ImprovedAspectOfTheHawkProcOnHit()
         {
             var state = new SimulationState();
-            state.Config.PlayerSettings.Race = Race.Draenei;
             state.Config.Talents.Add(Talent.ImprovedAspectOfTheHawk, 5);
-            state.Auras.Add(Aura.AspectOfTheHawk);
-            state.Auras.Add(Aura.ImprovedAspectOfTheHawk);
+            state.Config.Gear.Ranged = new GearItem
+            {
+                Speed = 2.9,
+                WeaponType = WeaponType.Bow,
+                MinDamage = 100,
+                MaxDamage = 200,
+            };
 
-            // 148 base agi + 155 talent
-            Assert.AreEqual(148 + 155, RangedAttackPowerCalculator.Calculate(state));
-            Assert.AreEqual(0.15, RangedHasteCalculator.Calculate(state), 0.0001);
+            InjectZeroMocks();
+
+            var fakeRolls = new FakeRandomGenerator();
+            fakeRolls.SetRolls(RollType.AutoShotMiss, 1.0);
+            fakeRolls.SetRolls(RollType.AutoShotCrit, 1.0);
+            fakeRolls.SetRolls(RollType.ImprovedAspectOfTheHawkProc, 0.1);
+            RandomGenerator.InjectMock(fakeRolls);
+
+            var e = new AutoShotCompletedEvent(2.0);
+            e.ProcessEvent(state);
+
+            Assert.AreEqual(1, state.Events.Count(x => x.GetType() == typeof(ImprovedAspectOfTheHawkProc)));
+            Assert.AreEqual(2.0, state.Events.First(x => x.GetType() == typeof(ImprovedAspectOfTheHawkProc)).Timestamp);
         }
+
+        [TestMethod]
+        public void ImprovedAspectOfTheHawkDoesNotProcOnMiss()
+        {
+            var state = new SimulationState();
+            state.Config.Talents.Add(Talent.ImprovedAspectOfTheHawk, 5);
+            state.Config.Gear.Ranged = new GearItem
+            {
+                Speed = 2.9,
+                WeaponType = WeaponType.Bow,
+                MinDamage = 100,
+                MaxDamage = 200,
+            };
+
+            InjectZeroMocks();
+
+            var fakeRolls = new FakeRandomGenerator();
+            fakeRolls.SetRolls(RollType.AutoShotMiss, 0.0);
+            fakeRolls.SetRolls(RollType.ImprovedAspectOfTheHawkProc, 0.1);
+            RandomGenerator.InjectMock(fakeRolls);
+
+            var e = new AutoShotCompletedEvent(2.0);
+            e.ProcessEvent(state);
+
+            Assert.AreEqual(0, state.Events.Count(x => x.GetType() == typeof(ImprovedAspectOfTheHawkProc)));
+        }
+
+        [TestMethod]
+        public void ImprovedAspectOfTheHawkProcOnCrit()
+        {
+            var state = new SimulationState();
+            state.Config.Talents.Add(Talent.ImprovedAspectOfTheHawk, 5);
+            state.Config.Gear.Ranged = new GearItem
+            {
+                Speed = 2.9,
+                WeaponType = WeaponType.Bow,
+                MinDamage = 100,
+                MaxDamage = 200,
+            };
+
+            InjectZeroMocks();
+
+            var fakeRolls = new FakeRandomGenerator();
+            fakeRolls.SetRolls(RollType.AutoShotMiss, 1.0);
+            fakeRolls.SetRolls(RollType.AutoShotCrit, 0.0);
+            fakeRolls.SetRolls(RollType.ImprovedAspectOfTheHawkProc, 0.1);
+            RandomGenerator.InjectMock(fakeRolls);
+
+            var e = new AutoShotCompletedEvent(2.0);
+            e.ProcessEvent(state);
+
+            Assert.AreEqual(1, state.Events.Count(x => x.GetType() == typeof(ImprovedAspectOfTheHawkProc)));
+            Assert.AreEqual(2.0, state.Events.First(x => x.GetType() == typeof(ImprovedAspectOfTheHawkProc)).Timestamp);
+        }
+
+        [TestMethod]
+        public void ImprovedAspectOfTheHawkProcChance()
+        {
+            var state = new SimulationState();
+            state.Config.Talents.Add(Talent.ImprovedAspectOfTheHawk, 5);
+            state.Config.Gear.Ranged = new GearItem
+            {
+                Speed = 2.9,
+                WeaponType = WeaponType.Bow,
+                MinDamage = 100,
+                MaxDamage = 200,
+            };
+
+            InjectZeroMocks();
+
+            var fakeRolls = new FakeRandomGenerator();
+            fakeRolls.SetRolls(RollType.AutoShotMiss, 1.0);
+            fakeRolls.SetRolls(RollType.AutoShotCrit, 1.0);
+            fakeRolls.SetRolls(RollType.ImprovedAspectOfTheHawkProc, 0.11);
+            RandomGenerator.InjectMock(fakeRolls);
+
+            var e = new AutoShotCompletedEvent(2.0);
+            e.ProcessEvent(state);
+
+            Assert.AreEqual(0, state.Events.Count(x => x.GetType() == typeof(ImprovedAspectOfTheHawkProc)));
+        }
+
+        // TODO: Tests for the IAotH Events
 
         [TestMethod]
         public void EnduranceTraining()
@@ -268,6 +365,41 @@ namespace HunterSim.Tests
 
             // 121 base agi + 15% talent
             Assert.AreEqual(121 * 1.15, AgilityCalculator.Calculate(state), 0.001);
+        }
+
+        // TODO: move this somewhere so we can reuse it between test classes and not copy-paste
+        private void InjectZeroMocks()
+        {
+            var zeroMock = new FakeStatCalculator(0.0);
+
+            BaseStatCalculator.InjectMock(typeof(AgilityCalculator), zeroMock);
+            BaseStatCalculator.InjectMock(typeof(ArcaneResistanceCalculator), zeroMock);
+            BaseStatCalculator.InjectMock(typeof(ArmorCalculator), zeroMock);
+            BaseStatCalculator.InjectMock(typeof(BonusDamageCalculator), zeroMock);
+            BaseStatCalculator.InjectMock(typeof(DamageMultiplierCalculator), new FakeStatCalculator(1.0));
+            BaseStatCalculator.InjectMock(typeof(FireResistanceCalculator), zeroMock);
+            BaseStatCalculator.InjectMock(typeof(FrostResistanceCalculator), zeroMock);
+            BaseStatCalculator.InjectMock(typeof(HealthCalculator), zeroMock);
+            BaseStatCalculator.InjectMock(typeof(IntellectCalculator), zeroMock);
+            BaseStatCalculator.InjectMock(typeof(ManaCalculator), zeroMock);
+            BaseStatCalculator.InjectMock(typeof(MeleeAttackPowerCalculator), zeroMock);
+            BaseStatCalculator.InjectMock(typeof(MeleeCritCalculator), zeroMock);
+            BaseStatCalculator.InjectMock(typeof(MeleeCritDamageMultiplierCalculator), new FakeStatCalculator(1.0));
+            BaseStatCalculator.InjectMock(typeof(MeleeHasteCalculator), zeroMock);
+            BaseStatCalculator.InjectMock(typeof(MissChanceCalculator), zeroMock);
+            BaseStatCalculator.InjectMock(typeof(MovementSpeedCalculator), zeroMock);
+            BaseStatCalculator.InjectMock(typeof(MP5Calculator), zeroMock);
+            BaseStatCalculator.InjectMock(typeof(NatureResistanceCalculator), zeroMock);
+            BaseStatCalculator.InjectMock(typeof(RangedAttackPowerCalculator), zeroMock);
+            BaseStatCalculator.InjectMock(typeof(RangedCritCalculator), zeroMock);
+            BaseStatCalculator.InjectMock(typeof(RangedCritDamageMultiplierCalculator), new FakeStatCalculator(1.0));
+            BaseStatCalculator.InjectMock(typeof(RangedHasteCalculator), zeroMock);
+            BaseStatCalculator.InjectMock(typeof(ShadowResistanceCalculator), zeroMock);
+            BaseStatCalculator.InjectMock(typeof(SpellCritCalculator), zeroMock);
+            BaseStatCalculator.InjectMock(typeof(SpiritCalculator), zeroMock);
+            BaseStatCalculator.InjectMock(typeof(StaminaCalculator), zeroMock);
+            BaseStatCalculator.InjectMock(typeof(StrengthCalculator), zeroMock);
+            BaseStatCalculator.InjectMock(typeof(WeaponSkillCalculator), new FakeStatCalculator(300));
         }
     }
 }

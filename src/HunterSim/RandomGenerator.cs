@@ -9,14 +9,14 @@ namespace HunterSim
 
         public static void Seed(int seed) => _instance = new RandomGenerator(seed);
 
-        public static double Roll()
+        public static double Roll(RollType type)
         {
             if (_instance == null)
             {
                 _instance = new RandomGenerator();
             }
 
-            return _instance.RollImplementation();
+            return _instance.RollImplementation(type);
         }
 
         public RandomGenerator() => _random = new Random();
@@ -27,6 +27,6 @@ namespace HunterSim
 
         public static void ClearMock() => _instance = null;
 
-        protected virtual double RollImplementation() => _random.NextDouble();
+        protected virtual double RollImplementation(RollType _) => _random.NextDouble();
     }
 }

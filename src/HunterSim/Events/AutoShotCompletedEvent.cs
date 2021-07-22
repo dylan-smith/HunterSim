@@ -13,7 +13,7 @@
             var missChance = MissChanceCalculator.Calculate(state.Config.Gear.Ranged, state);
             var critChance = RangedCritCalculator.Calculate(state);
 
-            var missRoll = RandomGenerator.Roll();
+            var missRoll = RandomGenerator.Roll(RollType.AutoShotMiss);
 
             if (missRoll <= missChance)
             {
@@ -33,7 +33,7 @@
 
                 // Assuming crit uses a 2-roll system as per this article:
                 // https://wowwiki-archive.fandom.com/wiki/Attack_table#Ranged_attacks
-                var critRoll = RandomGenerator.Roll();
+                var critRoll = RandomGenerator.Roll(RollType.AutoShotCrit);
 
                 if (critRoll <= critChance)
                 {
@@ -42,6 +42,8 @@
                     autoShotDamage *= MeleeCritDamageMultiplierCalculator.Calculate(state);
                     damageType = DamageType.Crit;
                 }
+
+                ImprovedAspectOfTheHawk.ProcessEvent(this, state);
             }
 
             // TODO: Boss armor reduction
