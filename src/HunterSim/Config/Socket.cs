@@ -7,6 +7,11 @@
 
         public bool IsColorMatch()
         {
+            if (Gem == null)
+            {
+                return false;
+            }
+
             if (Color == SocketColor.Blue && (Gem.Color == GemColor.Blue || Gem.Color == GemColor.Purple || Gem.Color == GemColor.Green))
             {
                 return true;
