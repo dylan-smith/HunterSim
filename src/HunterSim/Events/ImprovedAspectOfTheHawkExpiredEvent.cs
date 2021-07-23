@@ -1,8 +1,8 @@
 ﻿namespace HunterSim
 {
-    public class ImprovedAspectOfTheHawkExpired : EventInfo
+    public class ImprovedAspectOfTheHawkExpiredEvent : EventInfo
     {
-        public ImprovedAspectOfTheHawkExpired(double timestamp) : base(timestamp)
+        public ImprovedAspectOfTheHawkExpiredEvent(double timestamp) : base(timestamp)
         { }
 
         public override void ProcessEvent(SimulationState state)

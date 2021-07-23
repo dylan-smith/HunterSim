@@ -22,7 +22,7 @@
 
                 if (roll <= procChance)
                 {
-                    state.Events.Add(new ImprovedAspectOfTheHawkProc(e.Timestamp));
+                    state.Events.Add(new ImprovedAspectOfTheHawkProcEvent(e.Timestamp));
                 }
             }
         }

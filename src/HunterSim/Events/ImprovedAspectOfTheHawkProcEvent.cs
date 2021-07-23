@@ -2,9 +2,9 @@
 
 namespace HunterSim
 {
-    public class ImprovedAspectOfTheHawkProc : EventInfo
+    public class ImprovedAspectOfTheHawkProcEvent : EventInfo
     {
-        public ImprovedAspectOfTheHawkProc(double timestamp) : base(timestamp)
+        public ImprovedAspectOfTheHawkProcEvent(double timestamp) : base(timestamp)
         { }
 
         public override void ProcessEvent(SimulationState state)
@@ -12,11 +12,11 @@ namespace HunterSim
             if (state.Auras.Contains(Aura.ImprovedAspectOfTheHawk))
             {
                 state.Auras.Remove(Aura.ImprovedAspectOfTheHawk);
-                state.Events.Where(x => x.GetType() == typeof(ImprovedAspectOfTheHawkExpired)).ForEach(x => state.Events.Remove(x));
+                state.Events.Where(x => x.GetType() == typeof(ImprovedAspectOfTheHawkExpiredEvent)).ForEach(x => state.Events.Remove(x));
             }
 
             state.Auras.Add(Aura.ImprovedAspectOfTheHawk);
-            state.Events.Add(new ImprovedAspectOfTheHawkExpired(this.Timestamp + 12));
+            state.Events.Add(new ImprovedAspectOfTheHawkExpiredEvent(this.Timestamp + 12));
         }
     }
 }

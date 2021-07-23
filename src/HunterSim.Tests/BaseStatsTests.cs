@@ -131,7 +131,7 @@ namespace HunterSim.Tests
         {
             var state = new SimulationState();
 
-            var agility = AgilityCalculator.Calculate(state);
+            AgilityCalculator.Calculate(state);
         }
 
         [TestMethod]
