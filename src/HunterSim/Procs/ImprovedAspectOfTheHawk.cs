@@ -9,6 +9,11 @@
                 return;
             }
 
+            if (!state.Auras.Contains(Aura.AspectOfTheHawk))
+            {
+                return;
+            }
+
             if (state.Config.Talents.ContainsKey(Talent.ImprovedAspectOfTheHawk))
             {
                 var procChance = 0.1;

@@ -12,6 +12,7 @@ namespace HunterSim.Tests
         {
             var state = new SimulationState();
             state.Config.Talents.Add(Talent.ImprovedAspectOfTheHawk, 5);
+            state.Auras.Add(Aura.AspectOfTheHawk);
 
             var fakeRolls = new FakeRandomGenerator();
             fakeRolls.SetRolls(RollType.ImprovedAspectOfTheHawkProc, 0.1);
@@ -29,6 +30,7 @@ namespace HunterSim.Tests
         {
             var state = new SimulationState();
             state.Config.Talents.Add(Talent.ImprovedAspectOfTheHawk, 5);
+            state.Auras.Add(Aura.AspectOfTheHawk);
 
             var e = new AutoShotCompletedEvent(2.0) { DamageEvent = new DamageEvent(2.0, 0.0, DamageType.Miss, 0.0, 0.0, 0.0) };
             EventPublisher.PublishEvent(e, state);
@@ -41,6 +43,7 @@ namespace HunterSim.Tests
         {
             var state = new SimulationState();
             state.Config.Talents.Add(Talent.ImprovedAspectOfTheHawk, 5);
+            state.Auras.Add(Aura.AspectOfTheHawk);
 
             var fakeRolls = new FakeRandomGenerator();
             fakeRolls.SetRolls(RollType.ImprovedAspectOfTheHawkProc, 0.1);
@@ -58,12 +61,29 @@ namespace HunterSim.Tests
         {
             var state = new SimulationState();
             state.Config.Talents.Add(Talent.ImprovedAspectOfTheHawk, 5);
+            state.Auras.Add(Aura.AspectOfTheHawk);
 
             var fakeRolls = new FakeRandomGenerator();
             fakeRolls.SetRolls(RollType.ImprovedAspectOfTheHawkProc, 0.11);
             RandomGenerator.InjectMock(fakeRolls);
 
             var e = new AutoShotCompletedEvent(2.0) { DamageEvent = new DamageEvent(2.0, 0.0, DamageType.Crit, 0.0, 0.0, 0.0) };
+            EventPublisher.PublishEvent(e, state);
+
+            Assert.AreEqual(0, state.Events.Count(x => x.GetType() == typeof(ImprovedAspectOfTheHawkProc)));
+        }
+
+        [TestMethod]
+        public void ImprovedAspectOfTheHawkOnlyProcsIfAspectIsActive()
+        {
+            var state = new SimulationState();
+            state.Config.Talents.Add(Talent.ImprovedAspectOfTheHawk, 5);
+
+            var fakeRolls = new FakeRandomGenerator();
+            fakeRolls.SetRolls(RollType.ImprovedAspectOfTheHawkProc, 0.1);
+            RandomGenerator.InjectMock(fakeRolls);
+
+            var e = new AutoShotCompletedEvent(2.0) { DamageEvent = new DamageEvent(2.0, 0.0, DamageType.Hit, 0.0, 0.0, 0.0) };
             EventPublisher.PublishEvent(e, state);
 
             Assert.AreEqual(0, state.Events.Count(x => x.GetType() == typeof(ImprovedAspectOfTheHawkProc)));

@@ -10,5 +10,6 @@
         public const string BattleShoutAndEnhancedBattleShoutDoNotStack = "Battle Shout and Enhanced Battle Shout do not stack, you should pick one or the other";
         // TODO: Check only battle/guardian elixir or flask active
         // TODO: Can't have Battle Shout and Improved Battle Shout at same time
+        // TODO: You ran out of mana during the fight
     }
 }
