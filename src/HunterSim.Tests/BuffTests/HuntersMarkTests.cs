@@ -12,10 +12,9 @@ namespace HunterSim.Tests.Buffs
             state.Config.PlayerSettings.Race = Race.Draenei;
             state.Config.Buffs.Add(Buff.HuntersMark);
 
-            // 148 base agi + 440 buff
-            Assert.AreEqual(148 + 440, RangedAttackPowerCalculator.Calculate(state));
-            // 65 base str (buff shouldn't affect melee ap)
-            Assert.AreEqual(65, MeleeAttackPowerCalculator.Calculate(state));
+            Assert.AreEqual(Constants.DRAENEI_AGI + 440, RangedAttackPowerCalculator.Calculate(state));
+            // buff shouldn't affect melee ap
+            Assert.AreEqual(Constants.DRAENEI_STR, MeleeAttackPowerCalculator.Calculate(state));
         }
     }
 }

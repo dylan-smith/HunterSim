@@ -13,10 +13,8 @@ namespace HunterSim.Tests.TalentTests
             state.Config.Buffs.Add(Buff.HuntersMark);
             state.Config.Talents.Add(Talent.ImprovedHuntersMark, 3);
 
-            // 148 base agi + 440 hunters mark
-            Assert.AreEqual(148 + 440, RangedAttackPowerCalculator.Calculate(state));
-            // 65 base str + 110 * 60% improved hunters mark
-            Assert.AreEqual(65 + (110 * 0.6), MeleeAttackPowerCalculator.Calculate(state));
+            Assert.AreEqual(Constants.DRAENEI_AGI + 440, RangedAttackPowerCalculator.Calculate(state));
+            Assert.AreEqual(Constants.DRAENEI_STR + (110 * 0.6), MeleeAttackPowerCalculator.Calculate(state));
         }
 
         // TODO: Isn't this identical to the above test?
@@ -28,10 +26,8 @@ namespace HunterSim.Tests.TalentTests
             state.Config.Talents.Add(Talent.ImprovedHuntersMark, 3);
             state.Config.Buffs.Add(Buff.ImprovedHuntersMark);
 
-            // 148 base agi + 440 hunters mark
-            Assert.AreEqual(148 + 440, RangedAttackPowerCalculator.Calculate(state));
-            // 65 base str + 110 improved hunters mark
-            Assert.AreEqual(65 + 110, MeleeAttackPowerCalculator.Calculate(state));
+            Assert.AreEqual(Constants.DRAENEI_AGI + 440, RangedAttackPowerCalculator.Calculate(state));
+            Assert.AreEqual(Constants.DRAENEI_STR + 110, MeleeAttackPowerCalculator.Calculate(state));
         }
     }
 }

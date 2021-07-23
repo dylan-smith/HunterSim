@@ -48,8 +48,7 @@ namespace HunterSim.Tests
             state.Config.PlayerSettings.Race = Race.Draenei;
             state.Config.Gear.Head = gear;
 
-            // 65 base strength + 49 from gear
-            Assert.AreEqual(114, StrengthCalculator.Calculate(state));
+            Assert.AreEqual(Constants.DRAENEI_STR + 49, StrengthCalculator.Calculate(state));
         }
 
         [TestMethod]
@@ -58,8 +57,7 @@ namespace HunterSim.Tests
             var state = new SimulationState();
             state.Config.PlayerSettings.Race = Race.Draenei;
 
-            // 148 base agi / 25
-            Assert.AreEqual(0.0592, DodgeCalculator.Calculate(state), 0.000001);
+            Assert.AreEqual(Constants.DRAENEI_AGI / 2500, DodgeCalculator.Calculate(state), 0.000001);
         }
 
         [TestMethod]

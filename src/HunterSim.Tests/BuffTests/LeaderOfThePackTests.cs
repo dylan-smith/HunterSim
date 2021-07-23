@@ -17,7 +17,7 @@ namespace HunterSim.Tests.Buffs
             // base crit is -1.53% and there's a 4.8% crit suppression on raid bosses
             var baseCrit = -0.0153 - 0.048;
             // 40 agi per 1% crit
-            baseCrit += 148.0 / 4000.0;
+            baseCrit += Constants.DRAENEI_AGI / 4000.0;
 
             Assert.AreEqual(baseCrit + 0.05, MeleeCritCalculator.Calculate(state), 0.0001);
             Assert.AreEqual(baseCrit + 0.05, RangedCritCalculator.Calculate(state), 0.0001);

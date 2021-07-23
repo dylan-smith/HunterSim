@@ -12,8 +12,7 @@ namespace HunterSim.Tests.Buffs
             state.Config.PlayerSettings.Race = Race.Draenei;
             state.Config.Buffs.Add(Buff.ImprovedBattleShout);
 
-            // 65 base str + 381 buff
-            Assert.AreEqual(65 + 381, MeleeAttackPowerCalculator.Calculate(state));
+            Assert.AreEqual(Constants.DRAENEI_STR + 381, MeleeAttackPowerCalculator.Calculate(state));
         }
     }
 }

@@ -12,10 +12,8 @@ namespace HunterSim.Tests.Buffs
             state.Config.PlayerSettings.Race = Race.Draenei;
             state.Config.Buffs.Add(Buff.TrueshotAura);
 
-            // 65 base str + 125 buff
-            Assert.AreEqual(65 + 125, MeleeAttackPowerCalculator.Calculate(state));
-            // 148 base agi + 125 buff
-            Assert.AreEqual(148 + 125, RangedAttackPowerCalculator.Calculate(state));
+            Assert.AreEqual(Constants.DRAENEI_STR + 125, MeleeAttackPowerCalculator.Calculate(state));
+            Assert.AreEqual(Constants.DRAENEI_AGI + 125, RangedAttackPowerCalculator.Calculate(state));
         }
 
         [TestMethod]
@@ -25,10 +23,8 @@ namespace HunterSim.Tests.Buffs
             state.Config.PlayerSettings.Race = Race.Draenei;
             state.Config.Talents.Add(Talent.TrueshotAura, 1);
 
-            // 65 base str + 125 buff
-            Assert.AreEqual(65 + 125, MeleeAttackPowerCalculator.Calculate(state));
-            // 148 base agi + 125 buff
-            Assert.AreEqual(148 + 125, RangedAttackPowerCalculator.Calculate(state));
+            Assert.AreEqual(Constants.DRAENEI_STR + 125, MeleeAttackPowerCalculator.Calculate(state));
+            Assert.AreEqual(Constants.DRAENEI_AGI + 125, RangedAttackPowerCalculator.Calculate(state));
         }
 
         [TestMethod]
@@ -39,10 +35,8 @@ namespace HunterSim.Tests.Buffs
             state.Config.Talents.Add(Talent.TrueshotAura, 1);
             state.Config.Buffs.Add(Buff.TrueshotAura);
 
-            // 65 base str + 125 buff
-            Assert.AreEqual(65 + 125, MeleeAttackPowerCalculator.Calculate(state));
-            // 148 base agi + 125 buff
-            Assert.AreEqual(148 + 125, RangedAttackPowerCalculator.Calculate(state));
+            Assert.AreEqual(Constants.DRAENEI_STR + 125, MeleeAttackPowerCalculator.Calculate(state));
+            Assert.AreEqual(Constants.DRAENEI_AGI + 125, RangedAttackPowerCalculator.Calculate(state));
         }
     }
 }
