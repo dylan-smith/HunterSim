@@ -30,6 +30,11 @@
                 }
             }
 
+            if (state.Config.Talents.ContainsKey(Talent.FocusedFire))
+            {
+                damageMultiplier *= 1 + (0.01 * state.Config.Talents[Talent.FocusedFire]);
+            }
+
             return damageMultiplier;
         }
     }

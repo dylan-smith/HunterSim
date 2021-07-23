@@ -10,8 +10,8 @@ namespace HunterSim.Tests.TalentTests
         {
             var state = new SimulationState();
             state.Config.PlayerSettings.Race = Race.Draenei;
-            state.Config.PlayerSettings.Level = 60;
-            state.Config.BossSettings.Level = 63;
+            state.Config.PlayerSettings.Level = 70;
+            state.Config.BossSettings.Level = 73;
             state.Config.Talents.Add(Talent.Surefooted, 3);
 
             // 9% base chance to miss - 3% from talent
