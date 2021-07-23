@@ -9,7 +9,6 @@ namespace HunterSim.Tests.TalentTests
         public void PathfindingCheetah()
         {
             var state = new SimulationState();
-            state.Config.PlayerSettings.Race = Race.Draenei;
             state.Config.Talents.Add(Talent.Pathfinding, 2);
             state.Auras.Add(Aura.AspectOfTheCheetah);
 
@@ -20,11 +19,10 @@ namespace HunterSim.Tests.TalentTests
         public void PathfindingPack()
         {
             var state = new SimulationState();
-            state.Config.PlayerSettings.Race = Race.Draenei;
             state.Config.Talents.Add(Talent.Pathfinding, 1);
             state.Auras.Add(Aura.AspectOfThePack);
 
-            Assert.AreEqual(1.34, MovementSpeedCalculator.Calculate(state), 0.001);
+            Assert.AreEqual(1.34, MovementSpeedCalculator.Calculate(state), 0.00001);
         }
     }
 }
