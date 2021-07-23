@@ -5,6 +5,12 @@ namespace HunterSim.Tests
     [TestClass]
     public class StatCalculatorTests
     {
+        [TestCleanup]
+        public void TestCleanup()
+        {
+            BaseStatCalculator.ClearMocks();
+        }
+
         [TestMethod]
         public void StrengthCalculatorWithGemsAndSocketBonus()
         {
@@ -64,8 +70,54 @@ namespace HunterSim.Tests
             state.Config.PlayerSettings.Level = 70;
             state.Config.BossSettings.Level = 73;
 
-            // 148 base agi / 25
             Assert.AreEqual(0.0, RangedCritCalculator.Calculate(state), 0.000001);
+            Assert.AreEqual(0.0, MeleeCritCalculator.Calculate(state), 0.000001);
+        }
+
+        [TestMethod]
+        public void CritCalculatorSuppressionAmount()
+        {
+            var state = new SimulationState();
+            state.Config.PlayerSettings.Level = 70;
+            state.Config.BossSettings.Level = 73;
+
+            BaseStatCalculator.InjectMock(typeof(AgilityCalculator), new FakeStatCalculator(Constants.AGI_FOR_ZERO_CRIT));
+            Assert.AreEqual(0.0, RangedCritCalculator.Calculate(state));
+            Assert.AreEqual(0.0, MeleeCritCalculator.Calculate(state));
+
+            BaseStatCalculator.InjectMock(typeof(AgilityCalculator), new FakeStatCalculator(Constants.AGI_FOR_ZERO_CRIT + 1));
+            Assert.IsTrue(RangedCritCalculator.Calculate(state) > 0.0);
+            Assert.IsTrue(MeleeCritCalculator.Calculate(state) > 0.0);
+        }
+
+        [TestMethod]
+        public void CritCalculatorAgilityToCrit()
+        {
+            var state = new SimulationState();
+            state.Config.PlayerSettings.Level = 70;
+            state.Config.BossSettings.Level = 73;
+
+            BaseStatCalculator.InjectMock(typeof(AgilityCalculator), new FakeStatCalculator(Constants.AGI_FOR_ZERO_CRIT + 80));
+
+            // https://tbc.wowhead.com/guides/classic-the-burning-crusade-stats-overview
+            Assert.AreEqual(0.02, RangedCritCalculator.Calculate(state), 0.00001);
+            Assert.AreEqual(0.02, MeleeCritCalculator.Calculate(state), 0.00001);
+        }
+
+        [TestMethod]
+        public void CritCalculatorRatingToCrit()
+        {
+            var state = new SimulationState();
+            state.Config.PlayerSettings.Level = 70;
+            state.Config.BossSettings.Level = 73;
+
+            BaseStatCalculator.InjectMock(typeof(AgilityCalculator), new FakeStatCalculator(Constants.AGI_FOR_ZERO_CRIT));
+
+            state.Config.Gear.Head = new GearItem() { CritRating = 44.16 };
+
+            // https://tbc.wowhead.com/guides/classic-the-burning-crusade-stats-overview
+            Assert.AreEqual(0.02, RangedCritCalculator.Calculate(state), 0.00001);
+            Assert.AreEqual(0.02, MeleeCritCalculator.Calculate(state), 0.00001);
         }
 
         // TODO: Tests for all calculators that need to convert between rating and %
