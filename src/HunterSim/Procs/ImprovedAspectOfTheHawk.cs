@@ -4,6 +4,11 @@
     {
         public static void ProcessEvent(AutoShotCompletedEvent e, SimulationState state)
         {
+            if (e.DamageEvent.DamageType == DamageType.Miss)
+            {
+                return;
+            }
+
             if (state.Config.Talents.ContainsKey(Talent.ImprovedAspectOfTheHawk))
             {
                 var procChance = 0.1;

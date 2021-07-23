@@ -12,24 +12,13 @@ namespace HunterSim.Tests
         {
             var state = new SimulationState();
             state.Config.Talents.Add(Talent.ImprovedAspectOfTheHawk, 5);
-            state.Config.Gear.Ranged = new GearItem
-            {
-                Speed = 2.9,
-                WeaponType = WeaponType.Bow,
-                MinDamage = 100,
-                MaxDamage = 200,
-            };
-
-            InjectZeroMocks();
 
             var fakeRolls = new FakeRandomGenerator();
-            fakeRolls.SetRolls(RollType.AutoShotMiss, 1.0);
-            fakeRolls.SetRolls(RollType.AutoShotCrit, 1.0);
             fakeRolls.SetRolls(RollType.ImprovedAspectOfTheHawkProc, 0.1);
             RandomGenerator.InjectMock(fakeRolls);
 
-            var e = new AutoShotCompletedEvent(2.0);
-            e.ProcessEvent(state);
+            var e = new AutoShotCompletedEvent(2.0) { DamageEvent = new DamageEvent(2.0, 0.0, DamageType.Hit, 0.0, 0.0, 0.0) };
+            EventPublisher.PublishEvent(e, state);
 
             Assert.AreEqual(1, state.Events.Count(x => x.GetType() == typeof(ImprovedAspectOfTheHawkProc)));
             Assert.AreEqual(2.0, state.Events.First(x => x.GetType() == typeof(ImprovedAspectOfTheHawkProc)).Timestamp);
@@ -40,23 +29,9 @@ namespace HunterSim.Tests
         {
             var state = new SimulationState();
             state.Config.Talents.Add(Talent.ImprovedAspectOfTheHawk, 5);
-            state.Config.Gear.Ranged = new GearItem
-            {
-                Speed = 2.9,
-                WeaponType = WeaponType.Bow,
-                MinDamage = 100,
-                MaxDamage = 200,
-            };
 
-            InjectZeroMocks();
-
-            var fakeRolls = new FakeRandomGenerator();
-            fakeRolls.SetRolls(RollType.AutoShotMiss, 0.0);
-            fakeRolls.SetRolls(RollType.ImprovedAspectOfTheHawkProc, 0.1);
-            RandomGenerator.InjectMock(fakeRolls);
-
-            var e = new AutoShotCompletedEvent(2.0);
-            e.ProcessEvent(state);
+            var e = new AutoShotCompletedEvent(2.0) { DamageEvent = new DamageEvent(2.0, 0.0, DamageType.Miss, 0.0, 0.0, 0.0) };
+            EventPublisher.PublishEvent(e, state);
 
             Assert.AreEqual(0, state.Events.Count(x => x.GetType() == typeof(ImprovedAspectOfTheHawkProc)));
         }
@@ -66,24 +41,13 @@ namespace HunterSim.Tests
         {
             var state = new SimulationState();
             state.Config.Talents.Add(Talent.ImprovedAspectOfTheHawk, 5);
-            state.Config.Gear.Ranged = new GearItem
-            {
-                Speed = 2.9,
-                WeaponType = WeaponType.Bow,
-                MinDamage = 100,
-                MaxDamage = 200,
-            };
-
-            InjectZeroMocks();
 
             var fakeRolls = new FakeRandomGenerator();
-            fakeRolls.SetRolls(RollType.AutoShotMiss, 1.0);
-            fakeRolls.SetRolls(RollType.AutoShotCrit, 0.0);
             fakeRolls.SetRolls(RollType.ImprovedAspectOfTheHawkProc, 0.1);
             RandomGenerator.InjectMock(fakeRolls);
 
-            var e = new AutoShotCompletedEvent(2.0);
-            e.ProcessEvent(state);
+            var e = new AutoShotCompletedEvent(2.0) { DamageEvent = new DamageEvent(2.0, 0.0, DamageType.Crit, 0.0, 0.0, 0.0) };
+            EventPublisher.PublishEvent(e, state);
 
             Assert.AreEqual(1, state.Events.Count(x => x.GetType() == typeof(ImprovedAspectOfTheHawkProc)));
             Assert.AreEqual(2.0, state.Events.First(x => x.GetType() == typeof(ImprovedAspectOfTheHawkProc)).Timestamp);
@@ -94,29 +58,16 @@ namespace HunterSim.Tests
         {
             var state = new SimulationState();
             state.Config.Talents.Add(Talent.ImprovedAspectOfTheHawk, 5);
-            state.Config.Gear.Ranged = new GearItem
-            {
-                Speed = 2.9,
-                WeaponType = WeaponType.Bow,
-                MinDamage = 100,
-                MaxDamage = 200,
-            };
-
-            InjectZeroMocks();
 
             var fakeRolls = new FakeRandomGenerator();
-            fakeRolls.SetRolls(RollType.AutoShotMiss, 1.0);
-            fakeRolls.SetRolls(RollType.AutoShotCrit, 1.0);
             fakeRolls.SetRolls(RollType.ImprovedAspectOfTheHawkProc, 0.11);
             RandomGenerator.InjectMock(fakeRolls);
 
-            var e = new AutoShotCompletedEvent(2.0);
-            e.ProcessEvent(state);
+            var e = new AutoShotCompletedEvent(2.0) { DamageEvent = new DamageEvent(2.0, 0.0, DamageType.Crit, 0.0, 0.0, 0.0) };
+            EventPublisher.PublishEvent(e, state);
 
             Assert.AreEqual(0, state.Events.Count(x => x.GetType() == typeof(ImprovedAspectOfTheHawkProc)));
         }
-
-        // TODO: Tests for the IAotH Events
 
         [TestMethod]
         public void EnduranceTraining()

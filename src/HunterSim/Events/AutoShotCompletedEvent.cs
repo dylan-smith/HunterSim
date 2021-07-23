@@ -2,6 +2,8 @@
 {
     public class AutoShotCompletedEvent : EventInfo
     {
+        public DamageEvent DamageEvent { get; set; }
+
         public AutoShotCompletedEvent(double timestamp) : base(timestamp)
         { }
 
@@ -42,8 +44,6 @@
                     autoShotDamage *= MeleeCritDamageMultiplierCalculator.Calculate(state);
                     damageType = DamageType.Crit;
                 }
-
-                ImprovedAspectOfTheHawk.ProcessEvent(this, state);
             }
 
             // TODO: Boss armor reduction
@@ -52,7 +52,8 @@
             critChance *= (1 - missChance);
             var hitChance = 1 - missChance - critChance;
 
-            state.Events.Add(new DamageEvent(Timestamp, autoShotDamage, damageType, missChance, critChance, hitChance));
+            DamageEvent = new DamageEvent(Timestamp, autoShotDamage, damageType, missChance, critChance, hitChance);
+            state.Events.Add(DamageEvent);
         }
     }
 }
