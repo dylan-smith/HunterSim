@@ -38,7 +38,7 @@ namespace HunterSim
                 {
                     _state.Events.Remove(nextEvent);
                     nextEvent.ProcessEvent(_state);
-                    
+
                     EventPublisher.PublishEvent(nextEvent, _state);
 
                     nextEvent = GetNextEvent();

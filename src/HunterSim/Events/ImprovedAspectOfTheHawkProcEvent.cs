@@ -16,7 +16,7 @@ namespace HunterSim
             }
 
             state.Auras.Add(Aura.ImprovedAspectOfTheHawk);
-            state.Events.Add(new ImprovedAspectOfTheHawkExpiredEvent(this.Timestamp + 12));
+            state.Events.Add(new ImprovedAspectOfTheHawkExpiredEvent(Timestamp + 12));
         }
     }
 }
