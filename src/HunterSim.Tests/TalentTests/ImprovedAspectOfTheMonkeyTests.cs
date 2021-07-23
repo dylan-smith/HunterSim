@@ -1,9 +1,9 @@
 ﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
 
-namespace HunterSim.Tests.AuraTests
+namespace HunterSim.Tests.TalentTests
 {
     [TestClass]
-    public class AspectOfTheMonkeyTests
+    public class ImprovedAspectOfTheMonkeyTests
     {
         [TestCleanup]
         public void TestCleanup()
@@ -12,15 +12,16 @@ namespace HunterSim.Tests.AuraTests
         }
 
         [TestMethod]
-        public void AspectOfTheMonkey()
+        public void ImprovedAspectOfTheMonkey()
         {
             var state = new SimulationState();
             state.Config.PlayerSettings.Race = Race.Draenei;
             state.Auras.Add(Aura.AspectOfTheMonkey);
+            state.Config.Talents.Add(Talent.ImprovedAspectOfTheMonkey, 3);
 
-            BaseStatCalculator.InjectMock(typeof(AgilityCalculator), new FakeStatCalculator(0));
+            BaseStatCalculator.InjectMock(typeof(AgilityCalculator), new FakeStatCalculator(0.0));
 
-            Assert.AreEqual(0.08, DodgeCalculator.Calculate(state));
+            Assert.AreEqual(0.08 + 0.06, DodgeCalculator.Calculate(state), 0.00001);
         }
     }
 }

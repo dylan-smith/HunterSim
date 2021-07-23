@@ -16,6 +16,7 @@ namespace HunterSim
             // TODO: Raid DPS
             // TODO: Generate Report/Analysis
             // TODO: Pet DPS
+            // TODO: Apply aspect of the hawk
 
             if (!_state.Validate())
             {
