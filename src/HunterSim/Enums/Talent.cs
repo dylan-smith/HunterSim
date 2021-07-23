@@ -42,7 +42,7 @@
         CombatExperience, // Increases your total Agility by 1% and your total Intellect by 3%
         RangedWeaponSpecialization, // Increases the damage you deal with ranged weapons by 1%
         CarefulAim, // Increases your ranged attack power by an amount equal to 15% of your total Intellect
-        TrueshotAura, // Increases the attack power of party members within 45 yards by 50. Lasts until cancelled
+        TrueshotAura, // Increases the attack power of party members within 45 yards by 125 (Rank 4). Lasts until cancelled
         ImprovedBarrage, // Increases the critical strike chance of your Multi-Shot ability by 4% and gives you a 33% chance to avoid interruption caused by damage while channeling Volley
         MasterMarksman, // Increases your ranged attack power by 2%
         SilencingShot, // A shot that deals 50% weapon damage and Silences the target for 3 sec (20 sec CD)

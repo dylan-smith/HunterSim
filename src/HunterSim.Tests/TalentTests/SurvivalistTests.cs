@@ -13,7 +13,7 @@ namespace HunterSim.Tests.TalentTests
             state.Config.Talents.Add(Talent.Survivalist, 5);
 
             // Base Health + Stamina * 10 * 1.1
-            Assert.AreEqual((1467 + 930) * 1.1, HealthCalculator.Calculate(state));
+            Assert.AreEqual((3488 + 1070) * 1.1, HealthCalculator.Calculate(state));
         }
     }
 }
