@@ -60,7 +60,7 @@
         Deterrence, // When activated, increases your Dodge and Parry chance by 25% for 10 sec (5 min CD)
         TrapMastery, // Decreases the chance enemies will resist trap effects by 5%
         Surefooted, // Increases hit chance by 1% and increases the chance movement impairing effects will be resisted by an additional 5%
-        ImprovedFeignDeath, // Reduces teh chance your Feign Death ability will be resisted by 2%
+        ImprovedFeignDeath, // Reduces the chance your Feign Death ability will be resisted by 2%
         SurvivalInstincts, // Reduces all damage taken by 2% and increases attack power by 2%
         KillerInstinct, // Increases your critical strike chance with all attacks by 1%
         Counterattack, // A strike that becomes active after parrying an opponent's attack. This attack deals 40 damage and immobilizes the target for 5 sec. Counterattack cannot be blocked, dodged or parried (5 sec CD)

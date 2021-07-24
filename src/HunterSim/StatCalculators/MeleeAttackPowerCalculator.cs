@@ -10,6 +10,8 @@
             meleeAP += state.Config.Gear.GetStatTotal(x => x.MeleeAttackPower);
             meleeAP += StrengthCalculator.Calculate(state);
 
+            // TODO: Hunters also get melee AP per point of agility
+
             if (state.Config.Buffs.Contains(Buff.ImprovedHuntersMark))
             {
                 meleeAP += 110;
@@ -38,6 +40,11 @@
             if (state.Config.Buffs.Contains(Buff.BlessingOfMight))
             {
                 meleeAP += 220;
+            }
+
+            if (state.Config.Talents.ContainsKey(Talent.SurvivalInstincts))
+            {
+                meleeAP *= 1 + (0.02 * state.Config.Talents[Talent.SurvivalInstincts]);
             }
 
             return meleeAP;

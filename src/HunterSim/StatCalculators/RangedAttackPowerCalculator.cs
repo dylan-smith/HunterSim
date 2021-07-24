@@ -10,6 +10,8 @@
             rangedAP += state.Config.Gear.GetStatTotal(x => x.RangedAttackPower);
             rangedAP += AgilityCalculator.Calculate(state);
 
+            // TODO: should probably have an AttackPowerCalculator that both rangedap/meleeap call
+
             if (state.Config.Buffs.Contains(Buff.HuntersMark) || state.Config.Buffs.Contains(Buff.ImprovedHuntersMark))
             {
                 rangedAP += 440;
@@ -39,6 +41,11 @@
             if (state.Config.Talents.ContainsKey(Talent.MasterMarksman))
             {
                 rangedAP *= 1 + (0.02 * state.Config.Talents[Talent.MasterMarksman]);
+            }
+
+            if (state.Config.Talents.ContainsKey(Talent.SurvivalInstincts))
+            {
+                rangedAP *= 1 + (0.02 * state.Config.Talents[Talent.SurvivalInstincts]);
             }
 
             // TODO: Orc Bloodfury
