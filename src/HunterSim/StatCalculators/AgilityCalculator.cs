@@ -29,6 +29,11 @@
                 agility *= 1 + (state.Config.Talents[Talent.LightningReflexes] * 0.03);
             }
 
+            if (state.Config.Talents.ContainsKey(Talent.CombatExperience))
+            {
+                agility *= 1 + (0.01 * state.Config.Talents[Talent.CombatExperience]);
+            }
+
             return agility;
         }
     }

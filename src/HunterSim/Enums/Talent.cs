@@ -37,7 +37,7 @@
         ImprovedStings, // Increases the damage done by your Serpent Sting and Wyvern Sting by 6% and the mana drained by your Viper Sting by 6%. In addition, reduces the chance your Stings will be dispelled by 6%
         MortalShots, // Increases your ranged weapon critical strike damage bonus by 6%
         ConcussiveBarrage, // Your successful Auto Shot attacks have a 2% chance to Daze the target for 4 sec (2% proc chance)
-        ScatterShot, // A short-range shot that deals 50% weapon damaage and disorients the target for 4 sec. Any damage caused will remove the effect. Turns off your attack when used (30 sec CD)
+        ScatterShot, // A short-range shot that deals 50% weapon damage and disorients the target for 4 sec. Any damage caused will remove the effect. Turns off your attack when used (30 sec CD)
         Barrage, // Increases the damage done by your Multi-Shot and Volley spells by 4%
         CombatExperience, // Increases your total Agility by 1% and your total Intellect by 3%
         RangedWeaponSpecialization, // Increases the damage you deal with ranged weapons by 1%

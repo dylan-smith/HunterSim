@@ -19,6 +19,11 @@
                 intellect *= 1.1;
             }
 
+            if (state.Config.Talents.ContainsKey(Talent.CombatExperience))
+            {
+                intellect *= 1 + (0.03 * state.Config.Talents[Talent.CombatExperience]);
+            }
+
             return intellect;
         }
     }
