@@ -36,6 +36,11 @@
                 rangedAP += intellect * (0.15 * state.Config.Talents[Talent.CarefulAim]);
             }
 
+            if (state.Config.Talents.ContainsKey(Talent.MasterMarksman))
+            {
+                rangedAP *= 1 + (0.02 * state.Config.Talents[Talent.MasterMarksman]);
+            }
+
             // TODO: Orc Bloodfury
 
             return rangedAP;
