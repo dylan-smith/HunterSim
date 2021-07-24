@@ -30,6 +30,12 @@
                 rangedAP += 220;
             }
 
+            if (state.Config.Talents.ContainsKey(Talent.CarefulAim))
+            {
+                var intellect = IntellectCalculator.Calculate(state);
+                rangedAP += intellect * (0.15 * state.Config.Talents[Talent.CarefulAim]);
+            }
+
             // TODO: Orc Bloodfury
 
             return rangedAP;
