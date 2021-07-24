@@ -9,10 +9,9 @@ namespace HunterSim.Tests.TalentTests
         public void RangedWeaponSpecialization()
         {
             var state = new SimulationState();
-            state.Config.PlayerSettings.Race = Race.Draenei;
             state.Config.Talents.Add(Talent.RangedWeaponSpecialization, 5);
 
-            Assert.AreEqual(1.05, DamageMultiplierCalculator.Calculate(state), 0.001);
+            Assert.AreEqual(1.05, RangedDamageMultiplierCalculator.Calculate(state), 0.00001);
         }
     }
 }
