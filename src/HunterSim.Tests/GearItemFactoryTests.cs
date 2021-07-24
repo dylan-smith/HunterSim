@@ -173,8 +173,8 @@ source: gruul
 
             Assert.AreEqual(-0.24, result.ThreatDecrease);
             Assert.AreEqual(25.0, result.Stealth);
-            Assert.AreEqual(26.0, result.BonusDPS);
-            Assert.AreEqual(27.0, result.BonusDamage);
+            Assert.AreEqual(26.0, result.RangedBonusDPS);
+            Assert.AreEqual(27.0, result.RangedBonusDamage);
             Assert.AreEqual(WeaponType.Dagger, result.WeaponType);
             Assert.AreEqual(28.0, result.WeaponSkill[WeaponType.Bow]);
             Assert.AreEqual(29.0, result.WeaponSkill[WeaponType.Crossbow]);
@@ -203,7 +203,7 @@ source: gruul
 
             Assert.AreEqual(3, result.SocketBonus.WeaponSkill[WeaponType.Gun]);
             Assert.AreEqual(7, result.SocketBonus.Spirit);
-            Assert.AreEqual(17, result.SocketBonus.BonusDamage);
+            Assert.AreEqual(17, result.SocketBonus.RangedBonusDamage);
         }
     }
 }

@@ -67,10 +67,10 @@ namespace HunterSim
         public double ThreatDecrease { get; set; }
         [YamlProperty("stealth")]
         public double Stealth { get; set; }
-        [YamlProperty("bonusdps")]
-        public double BonusDPS { get; set; } // Ammo
-        [YamlProperty("bonusdmg")]
-        public double BonusDamage { get; set; } // E.g. Might of Cenarius
+        [YamlProperty("rangedbonusdps")]
+        public double RangedBonusDPS { get; set; } // Ammo
+        [YamlProperty("rangedbonusdmg")]
+        public double RangedBonusDamage { get; set; } // E.g. Sniper Scope
         [YamlProperty("color")]
         public GemColor Color { get; set; } // used by gems
         [YamlProperty("type")]

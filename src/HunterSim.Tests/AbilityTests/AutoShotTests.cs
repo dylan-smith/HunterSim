@@ -197,7 +197,7 @@ namespace HunterSim.Tests.AbilityTests
             BaseStatCalculator.InjectMock(typeof(AgilityCalculator), zeroMock);
             BaseStatCalculator.InjectMock(typeof(ArcaneResistanceCalculator), zeroMock);
             BaseStatCalculator.InjectMock(typeof(ArmorCalculator), zeroMock);
-            BaseStatCalculator.InjectMock(typeof(BonusDamageCalculator), zeroMock);
+            BaseStatCalculator.InjectMock(typeof(RangedBonusDamageCalculator), zeroMock);
             BaseStatCalculator.InjectMock(typeof(DamageMultiplierCalculator), new FakeStatCalculator(1.0));
             BaseStatCalculator.InjectMock(typeof(FireResistanceCalculator), zeroMock);
             BaseStatCalculator.InjectMock(typeof(FrostResistanceCalculator), zeroMock);

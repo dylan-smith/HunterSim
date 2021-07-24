@@ -87,10 +87,10 @@
     "stealth": {
       "type": "integer"
     },
-    "bonusdps": {
+    "rangedbonusdps": {
       "type": "number"
     },
-    "bonusdmg": {
+    "rangedbonusdmg": {
       "type": "integer"
     },
     "type": {

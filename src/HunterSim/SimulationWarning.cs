@@ -11,5 +11,18 @@
         // TODO: Check only battle/guardian elixir or flask active
         // TODO: Can't have Battle Shout and Improved Battle Shout at same time
         // TODO: You ran out of mana during the fight
+        // TODO: weapon stone on wrong type of weapon
+        // TODO: sniper scope not on a ranged weapon
+        // TODO: missing enchants
+        // TODO: missing gems
+        // TODO: meta not active
+        // TODO: missing battle elixir (or flask)
+        // TODO: missing food buff
+        // TODO: missing guardian elixir (or flask)
+        // TODO: missing weapon stones
+        // TODO: 2H but not melee weaving
+        // TODO: can't have grace of air and improved grace of air at same time
+        // TODO: can't have strength of earth and improved soe at same time
+        // TODO: can't have blessing of might and improved blessing of might at same time
     }
 }

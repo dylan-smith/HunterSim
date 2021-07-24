@@ -27,7 +27,7 @@
                 var rangedAP = RangedAttackPowerCalculator.Calculate(state);
 
                 autoShotDamage = (state.Config.Gear.Ranged.MinDamage + state.Config.Gear.Ranged.MaxDamage) / 2;
-                autoShotDamage += BonusDamageCalculator.Calculate(state.Config.Gear.Ranged, state);
+                autoShotDamage += RangedBonusDamageCalculator.Calculate(state.Config.Gear.Ranged, state);
                 autoShotDamage += (rangedAP / 14) * state.Config.Gear.Ranged.Speed; // 14 RAP = 1 DPS
                 autoShotDamage *= DamageMultiplierCalculator.Calculate(state);
 

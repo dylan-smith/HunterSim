@@ -147,7 +147,7 @@ namespace HunterSim.Tests
             Assert.AreEqual(0.0, ArcaneResistanceCalculator.Calculate(state));
             // Base Agility * 2
             Assert.AreEqual(296.0, ArmorCalculator.Calculate(state));
-            Assert.AreEqual(0.0, BonusDamageCalculator.Calculate(testWeapon, state));
+            Assert.AreEqual(0.0, RangedBonusDamageCalculator.Calculate(testWeapon, state));
             Assert.AreEqual(1.0, DamageMultiplierCalculator.Calculate(state));
             Assert.AreEqual(0.0, FireResistanceCalculator.Calculate(state));
             Assert.AreEqual(0.0, FrostResistanceCalculator.Calculate(state));

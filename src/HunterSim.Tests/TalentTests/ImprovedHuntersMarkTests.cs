@@ -17,9 +17,8 @@ namespace HunterSim.Tests.TalentTests
             Assert.AreEqual(Constants.DRAENEI_STR + (110 * 0.6), MeleeAttackPowerCalculator.Calculate(state));
         }
 
-        // TODO: Isn't this identical to the above test?
         [TestMethod]
-        public void ImprovedHuntersMarkTalentAndBuff()
+        public void ImprovedHuntersMarkBuffOverridesTalent()
         {
             var state = new SimulationState();
             state.Config.PlayerSettings.Race = Race.Draenei;
