@@ -9,8 +9,7 @@
             var meleeAP = state.Config.Gear.GetStatTotal(x => x.AttackPower);
             meleeAP += state.Config.Gear.GetStatTotal(x => x.MeleeAttackPower);
             meleeAP += StrengthCalculator.Calculate(state);
-
-            // TODO: Hunters also get melee AP per point of agility
+            meleeAP += AgilityCalculator.Calculate(state);
 
             if (state.Config.Buffs.Contains(Buff.ImprovedHuntersMark))
             {

@@ -14,7 +14,7 @@ namespace HunterSim.Tests.TalentTests
             state.Config.Talents.Add(Talent.ImprovedHuntersMark, 3);
 
             Assert.AreEqual(Constants.DRAENEI_AGI + 440, RangedAttackPowerCalculator.Calculate(state));
-            Assert.AreEqual(Constants.DRAENEI_STR + (110 * 0.6), MeleeAttackPowerCalculator.Calculate(state));
+            Assert.AreEqual(Constants.DRAENEI_STR + Constants.DRAENEI_AGI + (110 * 0.6), MeleeAttackPowerCalculator.Calculate(state));
         }
 
         [TestMethod]
@@ -26,7 +26,7 @@ namespace HunterSim.Tests.TalentTests
             state.Config.Buffs.Add(Buff.ImprovedHuntersMark);
 
             Assert.AreEqual(Constants.DRAENEI_AGI + 440, RangedAttackPowerCalculator.Calculate(state));
-            Assert.AreEqual(Constants.DRAENEI_STR + 110, MeleeAttackPowerCalculator.Calculate(state));
+            Assert.AreEqual(Constants.DRAENEI_STR + Constants.DRAENEI_AGI + 110, MeleeAttackPowerCalculator.Calculate(state));
         }
     }
 }

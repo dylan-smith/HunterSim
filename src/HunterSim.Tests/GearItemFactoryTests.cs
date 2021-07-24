@@ -111,8 +111,8 @@ defense: 23
 
 threat: 24
 stealth: 25
-bonusdps: 26
-bonusdmg: 27
+rangedbonusdps: 26
+rangedbonusdmg: 27
 type: dagger
 bow-skill: 28
 crossbow-skill: 29
@@ -138,7 +138,7 @@ sockets:
   bonus:
     gun-skill: 3
     spirit: 7
-    bonusdmg: 17
+    rangedbonusdmg: 17
 wowhead: 123987
 phase: 1
 source: gruul

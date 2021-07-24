@@ -14,7 +14,7 @@ namespace HunterSim.Tests.Buffs
 
             Assert.AreEqual(Constants.DRAENEI_AGI + 440, RangedAttackPowerCalculator.Calculate(state));
             // buff shouldn't affect melee ap
-            Assert.AreEqual(Constants.DRAENEI_STR, MeleeAttackPowerCalculator.Calculate(state));
+            Assert.AreEqual(Constants.DRAENEI_STR + Constants.DRAENEI_AGI, MeleeAttackPowerCalculator.Calculate(state));
         }
     }
 }

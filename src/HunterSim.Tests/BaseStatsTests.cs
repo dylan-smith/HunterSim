@@ -153,7 +153,7 @@ namespace HunterSim.Tests
             Assert.AreEqual(0.0, FireResistanceCalculator.Calculate(state));
             Assert.AreEqual(0.0, FrostResistanceCalculator.Calculate(state));
             // Base Strength
-            Assert.AreEqual(65.0, MeleeAttackPowerCalculator.Calculate(state));
+            Assert.AreEqual(65.0 + 148, MeleeAttackPowerCalculator.Calculate(state));
             // TODO: Not sure this is right, is melee base crit the same as base ranged crit?
             Assert.AreEqual(0.00, MeleeCritCalculator.Calculate(state));
             Assert.AreEqual(1.0, MeleeCritDamageMultiplierCalculator.Calculate(state));
