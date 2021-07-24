@@ -26,6 +26,7 @@ namespace HunterSim.Tests.TalentTests
             Assert.AreEqual(0.03, MeleeCritCalculator.Calculate(state), 0.0001);
             Assert.AreEqual(0.03, RangedCritCalculator.Calculate(state), 0.0001);
             Assert.AreEqual(0.03, SpellCritCalculator.Calculate(state), 0.001);
+            // TODO: does this affect pet crit also??
         }
     }
 }

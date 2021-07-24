@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 
 namespace HunterSim
 {
@@ -13,6 +14,11 @@ namespace HunterSim
             {
                 action(item);
             }
+        }
+
+        public static void RemoveAll<T>(this IList<T> list, Func<T, bool> predicate)
+        {
+            list.Where(predicate).ToList().ForEach(x => list.Remove(x));
         }
 
         public static string ShaveLeft(this string a, int characters) => a.Substring(characters);

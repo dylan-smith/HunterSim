@@ -82,7 +82,7 @@
         // TODO: Judgement of the Crusader
         // TODO: Curse of Elements
         // TODO: Improved Curse of Elements
-        // TODO: Expose Weakness (Not You)
+        // TODO: Expose Weakness (Not You), need to also specify AP and uptime
         // TODO: Sunder Armor
         // TODO: Improved Expose Armor
         // TODO: Curse of Recklessness
@@ -91,7 +91,7 @@
         // TODO: Misery
         // TODO: Blood Frenzy
         // === Party Proc Buffs ===
-        // TODO: Unleased Rage
+        // TODO: Unleashed Rage
         // TODO: Ferocious Inspiration (Not You)
     }
 }

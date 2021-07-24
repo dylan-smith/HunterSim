@@ -12,7 +12,7 @@ namespace HunterSim
             if (state.Auras.Contains(Aura.ImprovedAspectOfTheHawk))
             {
                 state.Auras.Remove(Aura.ImprovedAspectOfTheHawk);
-                state.Events.Where(x => x.GetType() == typeof(ImprovedAspectOfTheHawkExpiredEvent)).ForEach(x => state.Events.Remove(x));
+                state.Events.RemoveAll(x => x is ImprovedAspectOfTheHawkExpiredEvent);
             }
 
             state.Auras.Add(Aura.ImprovedAspectOfTheHawk);

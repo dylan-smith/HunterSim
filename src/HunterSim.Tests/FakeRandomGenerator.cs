@@ -11,6 +11,8 @@ namespace HunterSim.Tests
 
         public FakeRandomGenerator(params double[] values) => _values = new List<double>(values);
 
+        public FakeRandomGenerator(RollType type, double value) => SetRolls(type, value);
+
         public void SetRolls(RollType type, params double[] values)
         {
             if (_typeValues.ContainsKey(type))

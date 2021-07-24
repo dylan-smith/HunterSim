@@ -4,6 +4,7 @@
     {
         AutoShotMiss,
         AutoShotCrit,
-        ImprovedAspectOfTheHawkProc
+        ImprovedAspectOfTheHawkProc,
+        ExposeWeaknessProc
     }
 }

@@ -10,7 +10,8 @@
         AspectOfTheMonkey,
         ImprovedAspectOfTheHawk,
         TheBeastWithin,
-        AimedShot
+        AimedShot,
+        ExposeWeakness
         // TODO: Other aspects
     }
 }
