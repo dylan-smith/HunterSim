@@ -35,6 +35,11 @@
                 damageMultiplier *= 1 + (0.01 * state.Config.Talents[Talent.FocusedFire]);
             }
 
+            if (state.Auras.Contains(Aura.TheBeastWithin))
+            {
+                damageMultiplier *= 1.1;
+            }
+
             return damageMultiplier;
         }
     }

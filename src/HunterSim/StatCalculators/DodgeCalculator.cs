@@ -26,6 +26,11 @@
                 }
             }
 
+            if (state.Config.Talents.ContainsKey(Talent.CatlikeReflexes))
+            {
+                dodge += 0.01 * state.Config.Talents[Talent.CatlikeReflexes];
+            }
+
             // TODO: Defense increases dodge also (25 def == 1% dodge)
 
             return dodge;

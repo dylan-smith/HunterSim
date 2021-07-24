@@ -3,8 +3,10 @@
 namespace HunterSim.Tests.TalentTests
 {
     [TestClass]
-    public class ImprovedAspectOfTheMonkeyTests
+    public class CatlikeReflexesTests
     {
+        // TODO: test the additional pet dodge
+
         [TestCleanup]
         public void TestCleanup()
         {
@@ -12,15 +14,14 @@ namespace HunterSim.Tests.TalentTests
         }
 
         [TestMethod]
-        public void ImprovedAspectOfTheMonkey()
+        public void CatlikeReflexes()
         {
             var state = new SimulationState();
-            state.Auras.Add(Aura.AspectOfTheMonkey);
-            state.Config.Talents.Add(Talent.ImprovedAspectOfTheMonkey, 3);
+            state.Config.Talents.Add(Talent.CatlikeReflexes, 3);
 
             BaseStatCalculator.InjectMock(typeof(AgilityCalculator), new FakeStatCalculator(0.0));
 
-            Assert.AreEqual(0.08 + 0.06, DodgeCalculator.Calculate(state), 0.00001);
+            Assert.AreEqual(0.03, DodgeCalculator.Calculate(state), 0.00001);
         }
     }
 }

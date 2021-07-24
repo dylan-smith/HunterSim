@@ -9,6 +9,7 @@
         AspectOfThePack,
         AspectOfTheMonkey,
         ImprovedAspectOfTheHawk,
+        TheBeastWithin
         // TODO: Other aspects
     }
 }
