@@ -1,7 +1,4 @@
-﻿using System;
-using System.Linq;
-
-namespace HunterSim
+﻿namespace HunterSim
 {
     public class MasterTacticianProcEvent : EventInfo
     {
