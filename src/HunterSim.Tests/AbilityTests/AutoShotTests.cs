@@ -71,6 +71,33 @@ namespace HunterSim.Tests.AbilityTests
         }
 
         // TODO: Test that AutoShot takes haste into account
+        [TestMethod]
+        public void AutoShotCastWithHaste()
+        {
+            var state = new SimulationState();
+            state.Config.Gear.Ranged = new GearItem
+            {
+                Speed = 2.9,
+            };
+
+            BaseStatCalculator.InjectMock(typeof(RangedHasteCalculator), new FakeStatCalculator(1.2));
+
+            var e = new AutoShotCastEvent(7.2);
+
+            e.ProcessEvent(state);
+
+            Assert.IsTrue(state.Auras.Contains(Aura.AutoShotOnCooldown));
+            Assert.AreEqual(2, state.Events.Count);
+
+            var firstEvent = state.Events.OrderBy(x => x.Timestamp).First();
+            var secondEvent = state.Events.OrderBy(x => x.Timestamp).Last();
+
+            Assert.AreEqual(typeof(AutoShotCompletedEvent), firstEvent.GetType());
+            Assert.AreEqual(typeof(AutoShotCooldownCompletedEvent), secondEvent.GetType());
+
+            Assert.AreEqual(7.2 + (0.5 / 1.2), firstEvent.Timestamp, 0.001);
+            Assert.AreEqual(7.2 + (2.9 / 1.2), secondEvent.Timestamp, 0.001);
+        }
 
         [TestMethod]
         public void AutoShotCooldownCompletedEvent()
@@ -207,7 +234,7 @@ namespace HunterSim.Tests.AbilityTests
             BaseStatCalculator.InjectMock(typeof(MeleeAttackPowerCalculator), zeroMock);
             BaseStatCalculator.InjectMock(typeof(MeleeCritCalculator), zeroMock);
             BaseStatCalculator.InjectMock(typeof(MeleeCritDamageMultiplierCalculator), new FakeStatCalculator(1.0));
-            BaseStatCalculator.InjectMock(typeof(MeleeHasteCalculator), zeroMock);
+            BaseStatCalculator.InjectMock(typeof(MeleeHasteCalculator), new FakeStatCalculator(1.0));
             BaseStatCalculator.InjectMock(typeof(MissChanceCalculator), zeroMock);
             BaseStatCalculator.InjectMock(typeof(MovementSpeedCalculator), zeroMock);
             BaseStatCalculator.InjectMock(typeof(MP5Calculator), zeroMock);
@@ -215,7 +242,7 @@ namespace HunterSim.Tests.AbilityTests
             BaseStatCalculator.InjectMock(typeof(RangedAttackPowerCalculator), zeroMock);
             BaseStatCalculator.InjectMock(typeof(RangedCritCalculator), zeroMock);
             BaseStatCalculator.InjectMock(typeof(RangedCritDamageMultiplierCalculator), new FakeStatCalculator(1.0));
-            BaseStatCalculator.InjectMock(typeof(RangedHasteCalculator), zeroMock);
+            BaseStatCalculator.InjectMock(typeof(RangedHasteCalculator), new FakeStatCalculator(1.0));
             BaseStatCalculator.InjectMock(typeof(ShadowResistanceCalculator), zeroMock);
             BaseStatCalculator.InjectMock(typeof(SpellCritCalculator), zeroMock);
             BaseStatCalculator.InjectMock(typeof(SpiritCalculator), zeroMock);
