@@ -54,6 +54,7 @@ namespace HunterSim
             // TODO: config setting for whether we are responsible for refreshing hunters mark
             // TODO: config setting for if/when we cast feign death
             // TODO: config settings for potion usage
+            // TODO: configurable reaction time delays for all abilities
             if (AutoShot.CanUse(_state))
             {
                 AutoShot.Use(_state);
