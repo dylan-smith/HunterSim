@@ -26,6 +26,11 @@ namespace HunterSim
                 critChance += state.Config.Talents[Talent.KillerInstinct] * 0.01;
             }
 
+            if (state.Auras.Contains(Aura.MasterTactician))
+            {
+                critChance += 0.02 * state.Config.Talents[Talent.MasterTactician];
+            }
+
             critChance = Math.Max(critChance, 0);
             critChance = Math.Min(critChance, 1.0);
 

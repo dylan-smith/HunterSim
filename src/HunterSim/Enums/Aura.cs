@@ -11,7 +11,8 @@
         ImprovedAspectOfTheHawk,
         TheBeastWithin,
         AimedShot,
-        ExposeWeakness
+        ExposeWeakness,
+        MasterTactician
         // TODO: Other aspects
     }
 }

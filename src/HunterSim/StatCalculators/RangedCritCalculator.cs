@@ -31,6 +31,11 @@ namespace HunterSim
                 critChance += state.Config.Talents[Talent.KillerInstinct] * 0.01;
             }
 
+            if (state.Auras.Contains(Aura.MasterTactician))
+            {
+                critChance += 0.02 * state.Config.Talents[Talent.MasterTactician];
+            }
+
             // TODO: Trolls get 1% crit with bow racial
 
             critChance = Math.Max(critChance, 0);

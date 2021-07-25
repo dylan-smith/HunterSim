@@ -14,6 +14,7 @@ namespace HunterSim
                 case AutoShotCompletedEvent ev:
                     ImprovedAspectOfTheHawk.ProcessEvent(ev, state);
                     ExposeWeakness.ProcessEvent(ev, state);
+                    MasterTactician.ProcessEvent(ev, state);
                     break;
             }
         }

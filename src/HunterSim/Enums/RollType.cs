@@ -5,6 +5,7 @@
         AutoShotMiss,
         AutoShotCrit,
         ImprovedAspectOfTheHawkProc,
-        ExposeWeaknessProc
+        ExposeWeaknessProc,
+        MasterTacticianProc
     }
 }
