@@ -143,6 +143,7 @@ namespace HunterSim
 
         public static IEnumerable<GearItem> AllWristEnchants => GetEnchantsByType(GearType.Wrist);
 
+        // TODO: The error message if you pass an invalid itemName is not very good
         public static GearItem Load(string itemName) => AllGear.Single(x => x.Name == itemName);
 
         public static GearItem LoadAmmo(string itemName) => AllAmmo.Single(x => x.Name == itemName);
