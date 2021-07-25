@@ -93,5 +93,17 @@ namespace HunterSim.Tests.TalentTests
 
             Assert.IsFalse(state.Auras.Contains(Aura.ExposeWeakness));
         }
+
+        [TestMethod]
+        public void ExposeWeaknessAttackPowerBuff()
+        {
+            var state = new SimulationState();
+            state.Config.PlayerSettings.Race = Race.Draenei;
+            state.Auras.Add(Aura.ExposeWeakness);
+            ExposeWeakness.AttackPower = 198;
+
+            Assert.AreEqual(Constants.DRAENEI_AGI + 198, RangedAttackPowerCalculator.Calculate(state));
+            Assert.AreEqual(Constants.DRAENEI_AGI + Constants.DRAENEI_STR + 198, MeleeAttackPowerCalculator.Calculate(state));
+        }
     }
 }

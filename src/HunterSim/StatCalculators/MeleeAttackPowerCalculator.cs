@@ -41,6 +41,11 @@
                 meleeAP += 220;
             }
 
+            if (state.Auras.Contains(Aura.ExposeWeakness))
+            {
+                meleeAP += ExposeWeakness.AttackPower;
+            }
+
             if (state.Config.Talents.ContainsKey(Talent.SurvivalInstincts))
             {
                 meleeAP *= 1 + (0.02 * state.Config.Talents[Talent.SurvivalInstincts]);
