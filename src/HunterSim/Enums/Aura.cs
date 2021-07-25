@@ -12,7 +12,9 @@
         TheBeastWithin,
         AimedShot,
         ExposeWeakness,
-        MasterTactician
+        MasterTactician,
+        TrapCooldown, // TODO
+        ImprovedKillCommand, // TODO
         // TODO: Other aspects
     }
 }

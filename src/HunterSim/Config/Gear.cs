@@ -25,6 +25,7 @@ namespace HunterSim
         public GearItem Ranged { get; set; }
         public GearItem Ammo { get; set; }
         public GearItem Quiver { get; set; }
+        public ICollection<GearItem> Other { get; } = new List<GearItem>();
 
         public IEnumerable<GearItem> GetAllGear()
         {
@@ -47,6 +48,11 @@ namespace HunterSim
             if (Ranged != null) yield return Ranged;
             if (Ammo != null) yield return Ammo;
             if (Quiver != null) yield return Quiver;
+
+            foreach (var x in Other)
+            {
+                yield return x;
+            }
         }
 
         public IEnumerable<GearItem> GetAllEnchants()
@@ -59,10 +65,14 @@ namespace HunterSim
             var result = GetAllGear().Sum(g => g.GetStatWithSockets(stat));
             result += GetAllEnchants().Sum(e => e.GetStatWithSockets(stat));
 
-            // TODO: Gear set bonuses
             // TODO: Meta gems
 
             return result;
+        }
+
+        public int GetGearCount(params int[] ids)
+        {
+            return ids.Count(id => GetAllGear().Any(g => g.Wowhead == id));
         }
     }
 }

@@ -1,13 +1,14 @@
-﻿using System;
+﻿using HunterSim.GearSets;
+using System;
 using System.Linq;
 
 namespace HunterSim
 {
     public class Simulation
     {
-        private readonly SimulationState _state = new SimulationState();
+        public readonly SimulationState State = new SimulationState();
 
-        public Simulation(SimulationConfig config) => _state.Config = config;
+        public Simulation(SimulationConfig config) => State.Config = config;
 
         public SimulationState Run()
         {
@@ -18,9 +19,11 @@ namespace HunterSim
             // TODO: Pet DPS
             // TODO: Apply aspect of the hawk
 
-            if (!_state.Validate())
+            Initialize();
+
+            if (!State.Validate())
             {
-                return _state;
+                return State;
             }
 
             while (true)
@@ -28,19 +31,19 @@ namespace HunterSim
                 ExecuteRotation();
                 var nextEvent = GetNextEvent();
 
-                _state.CurrentTime = nextEvent.Timestamp;
+                State.CurrentTime = nextEvent.Timestamp;
 
-                if (_state.CurrentTime > _state.Config.SimulationSettings.FightLength)
+                if (State.CurrentTime > State.Config.SimulationSettings.FightLength)
                 {
-                    return _state;
+                    return State;
                 }
 
-                while (nextEvent != null && nextEvent.Timestamp == _state.CurrentTime)
+                while (nextEvent != null && nextEvent.Timestamp == State.CurrentTime)
                 {
-                    _state.Events.Remove(nextEvent);
-                    nextEvent.ProcessEvent(_state);
+                    State.Events.Remove(nextEvent);
+                    nextEvent.ProcessEvent(State);
 
-                    EventPublisher.PublishEvent(nextEvent, _state);
+                    EventPublisher.PublishEvent(nextEvent, State);
 
                     nextEvent = GetNextEvent();
                 }
@@ -49,18 +52,36 @@ namespace HunterSim
             throw new Exception("This should never happen");
         }
 
+        public void Initialize()
+        {
+            ApplyGearSetBonuses();
+            // TODO: Apply meta gems
+        }
+
+        private void ApplyGearSetBonuses()
+        {
+            var gearSetTypes = typeof(IGearSet).Assembly.GetTypes().Where(t => t.IsClass && typeof(IGearSet).IsAssignableFrom(t)).ToList();
+
+            foreach (var gearSetType in gearSetTypes)
+            {
+                var gearSet = (IGearSet)Activator.CreateInstance(gearSetType);
+
+                gearSet.Apply(State);
+            }
+        }
+
         private void ExecuteRotation()
         {
             // TODO: config setting for whether we are responsible for refreshing hunters mark
             // TODO: config setting for if/when we cast feign death
             // TODO: config settings for potion usage
             // TODO: configurable reaction time delays for all abilities
-            if (AutoShot.CanUse(_state))
+            if (AutoShot.CanUse(State))
             {
-                AutoShot.Use(_state);
+                AutoShot.Use(State);
             }
         }
 
-        private EventInfo GetNextEvent() => _state.Events.OrderBy(e => e.Timestamp).FirstOrDefault();
+        private EventInfo GetNextEvent() => State.Events.OrderBy(e => e.Timestamp).FirstOrDefault();
     }
 }

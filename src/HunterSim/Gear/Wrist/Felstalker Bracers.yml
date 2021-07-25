@@ -2,6 +2,7 @@
 armor: 283
 agility: 18
 intellect: 11
+ap: 38
 sockets:
   blue: 1
   bonus:
@@ -9,3 +10,4 @@ sockets:
 wowhead: 25697
 source: crafting
 phase: 1
+# Part of Felstalker Armor set

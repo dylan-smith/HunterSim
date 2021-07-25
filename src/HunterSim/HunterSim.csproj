@@ -19,6 +19,7 @@
     <None Remove="Gear\Ammo\Wardens Arrow.yml" />
     <None Remove="Gear\Back\Blood Knight War Cloak.yml" />
     <None Remove="Gear\Chest\Beast Lord Cuirass.yml" />
+    <None Remove="Gear\Chest\Felstalker Breastplate.yml" />
     <None Remove="Gear\Feet\The Masters Treads.yml" />
     <None Remove="Gear\Finger\Garonas Signet Ring.yml" />
     <None Remove="Gear\Finger\Ring of the Recalcitrant.yml" />
@@ -35,6 +36,7 @@
     <None Remove="Gear\Trinket\Abacus of Violent Odds.yml" />
     <None Remove="Gear\Trinket\Bloodlust Brooch.yml" />
     <None Remove="Gear\TwoHand\Legacy.yml" />
+    <None Remove="Gear\Waist\Felstalker Belt.yml" />
     <None Remove="Gear\Waist\Girdle of the Prowler.yml" />
     <None Remove="Gear\Wrist\Felstalker Bracers.yml" />
   </ItemGroup>

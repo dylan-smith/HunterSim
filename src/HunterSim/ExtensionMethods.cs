@@ -6,7 +6,7 @@ namespace HunterSim
 {
     public static class ExtensionMethods
     {
-        public static void AddRange<T>(this IList<T> list, IEnumerable<T> range) => range.ForEach(x => list.Add(x));
+        public static void AddRange<T>(this ICollection<T> list, IEnumerable<T> range) => range.ForEach(x => list.Add(x));
 
         public static void ForEach<T>(this IEnumerable<T> list, Action<T> action)
         {
@@ -16,7 +16,7 @@ namespace HunterSim
             }
         }
 
-        public static void RemoveAll<T>(this IList<T> list, Func<T, bool> predicate)
+        public static void RemoveAll<T>(this ICollection<T> list, Func<T, bool> predicate)
         {
             list.Where(predicate).ToList().ForEach(x => list.Remove(x));
         }
