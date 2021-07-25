@@ -157,7 +157,7 @@ namespace HunterSim.Tests
             // TODO: Not sure this is right, is melee base crit the same as base ranged crit?
             Assert.AreEqual(0.00, MeleeCritCalculator.Calculate(state));
             Assert.AreEqual(1.0, MeleeCritDamageMultiplierCalculator.Calculate(state));
-            Assert.AreEqual(0.0, MeleeHasteCalculator.Calculate(state));
+            Assert.AreEqual(1.0, MeleeHasteCalculator.Calculate(state));
             Assert.AreEqual(0.09, MissChanceCalculator.Calculate(new GearItem() { WeaponType = WeaponType.Gun }, state), 0.0001);
             Assert.AreEqual(0.09, MissChanceCalculator.Calculate(new GearItem() { WeaponType = WeaponType.OneHandedSword }, state), 0.0001);
             Assert.AreEqual(1.0, MovementSpeedCalculator.Calculate(state));
@@ -167,7 +167,7 @@ namespace HunterSim.Tests
             Assert.AreEqual(148, RangedAttackPowerCalculator.Calculate(state));
             Assert.AreEqual(0.0, RangedCritCalculator.Calculate(state));
             Assert.AreEqual(1.0, RangedCritDamageMultiplierCalculator.Calculate(state));
-            Assert.AreEqual(0.0, RangedHasteCalculator.Calculate(state));
+            Assert.AreEqual(1.0, RangedHasteCalculator.Calculate(state));
             Assert.AreEqual(0.0, ShadowResistanceCalculator.Calculate(state));
             Assert.AreEqual(0.0, SpellCritCalculator.Calculate(state));
             Assert.AreEqual(350, WeaponSkillCalculator.Calculate(new GearItem() { WeaponType = WeaponType.Gun }, state));

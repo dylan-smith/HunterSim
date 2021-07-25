@@ -13,7 +13,7 @@ namespace HunterSim.Tests.AuraTests
             state.Config.Talents.Add(Talent.ImprovedAspectOfTheHawk, 5);
             state.Auras.Add(Aura.ImprovedAspectOfTheHawk);
 
-            Assert.AreEqual(0.15, RangedHasteCalculator.Calculate(state), 0.0001);
+            Assert.AreEqual(1.15, RangedHasteCalculator.Calculate(state), 0.0001);
         }
     }
 }

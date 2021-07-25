@@ -118,6 +118,18 @@ namespace HunterSim.Tests
             Assert.AreEqual(0.02, MeleeCritCalculator.Calculate(state), 0.00001);
         }
 
+        [TestMethod]
+        public void RangedHasteCalculatorRatingToPercent()
+        {
+            var state = new SimulationState();
+
+            state.Config.Gear.Head = new GearItem() { HasteRating = 300 };
+
+            // https://tbc.wowhead.com/guides/classic-the-burning-crusade-stats-overview
+            Assert.AreEqual(1.1899, RangedHasteCalculator.Calculate(state), 0.0001);
+            Assert.AreEqual(1.1899, MeleeHasteCalculator.Calculate(state), 0.0001);
+        }
+
         // TODO: Tests for all calculators that need to convert between rating and %
         // TODO: Should probably have a test for each calculator for base stats
         // TODO: Test for enchants
