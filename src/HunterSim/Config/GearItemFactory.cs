@@ -143,66 +143,67 @@ namespace HunterSim
 
         public static IEnumerable<GearItem> AllWristEnchants => GetEnchantsByType(GearType.Wrist);
 
-        // TODO: The error message if you pass an invalid itemName is not very good
-        public static GearItem Load(string itemName) => AllGear.Single(x => x.Name == itemName);
+        public static GearItem Load(string itemName) => GetItem(AllGear, itemName);
 
-        public static GearItem LoadAmmo(string itemName) => AllAmmo.Single(x => x.Name == itemName);
+        public static GearItem LoadAmmo(string itemName) => GetItem(AllAmmo, itemName);
+        
+        public static GearItem LoadBack(string itemName) => GetItem(AllBack, itemName);
 
-        public static GearItem LoadBack(string itemName) => AllBack.Single(x => x.Name == itemName);
+        public static GearItem LoadChest(string itemName) => GetItem(AllChest, itemName);
 
-        public static GearItem LoadChest(string itemName) => AllChest.Single(x => x.Name == itemName);
+        public static GearItem LoadFeet(string itemName) => GetItem(AllFeet, itemName);
 
-        public static GearItem LoadFeet(string itemName) => AllFeet.Single(x => x.Name == itemName);
+        public static GearItem LoadFinger(string itemName) => GetItem(AllFinger, itemName);
 
-        public static GearItem LoadFinger(string itemName) => AllFinger.Single(x => x.Name == itemName);
+        public static GearItem LoadHands(string itemName) => GetItem(AllHands, itemName);
 
-        public static GearItem LoadHands(string itemName) => AllHands.Single(x => x.Name == itemName);
+        public static GearItem LoadHead(string itemName) => GetItem(AllHead, itemName);
 
-        public static GearItem LoadHead(string itemName) => AllHead.Single(x => x.Name == itemName);
+        public static GearItem LoadLegs(string itemName) => GetItem(AllLegs, itemName);
 
-        public static GearItem LoadLegs(string itemName) => AllLegs.Single(x => x.Name == itemName);
+        public static GearItem LoadMainHand(string itemName) => GetItem(AllEquippableMainHands, itemName);
 
-        public static GearItem LoadMainHand(string itemName) => AllEquippableMainHands.Single(x => x.Name == itemName);
+        public static GearItem LoadNeck(string itemName) => GetItem(AllNeck, itemName);
 
-        public static GearItem LoadNeck(string itemName) => AllNeck.Single(x => x.Name == itemName);
+        public static GearItem LoadOffHand(string itemName) => GetItem(AllEquippableOffHands, itemName);
 
-        public static GearItem LoadOffHand(string itemName) => AllEquippableOffHands.Single(x => x.Name == itemName);
+        public static GearItem LoadQuiver(string itemName) => GetItem(AllQuiver, itemName);
 
-        public static GearItem LoadQuiver(string itemName) => AllQuiver.Single(x => x.Name == itemName);
+        public static GearItem LoadRanged(string itemName) => GetItem(AllRanged, itemName);
 
-        public static GearItem LoadRanged(string itemName) => AllRanged.Single(x => x.Name == itemName);
+        public static GearItem LoadShoulder(string itemName) => GetItem(AllShoulder, itemName);
 
-        public static GearItem LoadShoulder(string itemName) => AllShoulder.Single(x => x.Name == itemName);
+        public static GearItem LoadTrinket(string itemName) => GetItem(AllTrinket, itemName);
 
-        public static GearItem LoadTrinket(string itemName) => AllTrinket.Single(x => x.Name == itemName);
+        public static GearItem LoadWaist(string itemName) => GetItem(AllWaist, itemName);
 
-        public static GearItem LoadWaist(string itemName) => AllWaist.Single(x => x.Name == itemName);
+        public static GearItem LoadWrist(string itemName) => GetItem(AllWrist, itemName);
 
-        public static GearItem LoadWrist(string itemName) => AllWrist.Single(x => x.Name == itemName);
+        public static GearItem LoadEnchant(string enchantName) => GetItem(AllEnchants, enchantName);
 
-        public static GearItem LoadEnchant(string enchantName) => AllEnchants.Single(x => x.Name == enchantName);
+        public static GearItem LoadBackEnchant(string enchantName) => GetItem(AllBackEnchants, enchantName);
 
-        public static GearItem LoadBackEnchant(string enchantName) => AllBackEnchants.Single(x => x.Name == enchantName);
+        public static GearItem LoadChestEnchant(string enchantName) => GetItem(AllChestEnchants, enchantName);
 
-        public static GearItem LoadChestEnchant(string enchantName) => AllChestEnchants.Single(x => x.Name == enchantName);
+        public static GearItem LoadFeetEnchant(string enchantName) => GetItem(AllFeetEnchants, enchantName);
 
-        public static GearItem LoadFeetEnchant(string enchantName) => AllFeetEnchants.Single(x => x.Name == enchantName);
+        public static GearItem LoadHandEnchant(string enchantName) => GetItem(AllHandEnchants, enchantName);
 
-        public static GearItem LoadHandEnchant(string enchantName) => AllHandEnchants.Single(x => x.Name == enchantName);
+        public static GearItem LoadHeadEnchant(string enchantName) => GetItem(AllHeadEnchants, enchantName);
 
-        public static GearItem LoadHeadEnchant(string enchantName) => AllHeadEnchants.Single(x => x.Name == enchantName);
+        public static GearItem LoadLegEnchant(string enchantName) => GetItem(AllLegEnchants, enchantName);
 
-        public static GearItem LoadLegEnchant(string enchantName) => AllLegEnchants.Single(x => x.Name == enchantName);
+        public static GearItem LoadOneHandEnchant(string enchantName) => GetItem(AllOneHandEnchants, enchantName);
 
-        public static GearItem LoadOneHandEnchant(string enchantName) => AllOneHandEnchants.Single(x => x.Name == enchantName);
+        public static GearItem LoadTwoHandEnchant(string enchantName) => GetItem(AllTwoHandEnchants, enchantName);
 
-        public static GearItem LoadTwoHandEnchant(string enchantName) => AllTwoHandEnchants.Single(x => x.Name == enchantName);
+        public static GearItem LoadRangedEnchant(string enchantName) => GetItem(AllRangedEnchants, enchantName);
 
-        public static GearItem LoadRangedEnchant(string enchantName) => AllRangedEnchants.Single(x => x.Name == enchantName);
+        public static GearItem LoadShoulderEnchant(string enchantName) => GetItem(AllShoulderEnchants, enchantName);
 
-        public static GearItem LoadShoulderEnchant(string enchantName) => AllShoulderEnchants.Single(x => x.Name == enchantName);
+        public static GearItem LoadWristEnchant(string enchantName) => GetItem(AllWristEnchants, enchantName);
 
-        public static GearItem LoadWristEnchant(string enchantName) => AllWristEnchants.Single(x => x.Name == enchantName);
+        private static GearItem GetItem(IEnumerable<GearItem> gearList, string itemName) => gearList.Any(x => x.Name == itemName) ? gearList.Single(x => x.Name == itemName) : throw new ArgumentException($"Unrecognized item name [{itemName}]", nameof(itemName));
 
         private static IEnumerable<GearItem> GetGearByType(GearType gearType)
         {
