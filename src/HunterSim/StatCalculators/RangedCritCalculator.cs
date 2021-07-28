@@ -6,6 +6,8 @@ namespace HunterSim
     {
         public static double Calculate(SimulationState state) => Calculate<RangedCritCalculator>(state);
 
+        // TODO: refactor out common stuff from ranged/melee crit calculators into a CritCalculator
+
         protected override double InstanceCalculate(SimulationState state)
         {
             // base crit for hunters is oddly -1.53%
