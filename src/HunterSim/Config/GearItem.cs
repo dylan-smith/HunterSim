@@ -92,7 +92,7 @@ namespace HunterSim
         {
             var result = statFunc(this);
 
-            result += Sockets.Where(x => x.Gem != null && x.Gem.Color != GemColor.Meta).Sum(x => statFunc(x.Gem));
+            result += Sockets.Where(x => x.Gem != null).Sum(x => statFunc(x.Gem));
 
             if (SocketBonus != null && IsSocketBonusActive())
             {

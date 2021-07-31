@@ -13,6 +13,7 @@
         AimedShot,
         ExposeWeakness,
         MasterTactician,
+        RelentlessEarthstormDiamond,
         TrapCooldown, // TODO
         ImprovedKillCommand, // TODO
         // TODO: Other aspects

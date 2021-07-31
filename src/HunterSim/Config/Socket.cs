@@ -5,6 +5,11 @@
         public SocketColor Color { get; set; }
         public GearItem Gem { get; set; }
 
+        public Socket(SocketColor color)
+        {
+            Color = color;
+        }
+
         public bool IsColorMatch()
         {
             if (Gem == null)

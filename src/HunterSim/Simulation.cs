@@ -19,8 +19,6 @@ namespace HunterSim
             // TODO: Pet DPS
             // TODO: Apply aspect of the hawk
 
-            Initialize();
-
             if (!State.Validate())
             {
                 return State;
@@ -50,24 +48,6 @@ namespace HunterSim
             }
 
             throw new Exception("This should never happen");
-        }
-
-        public void Initialize()
-        {
-            ApplyGearSetBonuses();
-            // TODO: Apply meta gems
-        }
-
-        private void ApplyGearSetBonuses()
-        {
-            var gearSetTypes = typeof(IGearSet).Assembly.GetTypes().Where(t => t.IsClass && typeof(IGearSet).IsAssignableFrom(t)).ToList();
-
-            foreach (var gearSetType in gearSetTypes)
-            {
-                var gearSet = (IGearSet)Activator.CreateInstance(gearSetType);
-
-                gearSet.Apply(State);
-            }
         }
 
         private void ExecuteRotation()

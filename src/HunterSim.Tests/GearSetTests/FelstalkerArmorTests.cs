@@ -8,29 +8,25 @@ namespace HunterSim.Tests.GearSetTests
         [TestMethod]
         public void NoSetBonus()
         {
-            var config = new SimulationConfig();
+            var state = new SimulationState();
 
-            var sim = new Simulation(config);
+            state.ApplyGearSetBonuses();
 
-            sim.Initialize();
-
-            Assert.AreEqual(0, config.Gear.GetStatTotal(x => x.AttackPower));
+            Assert.AreEqual(0, state.Config.Gear.GetStatTotal(x => x.AttackPower));
         }
 
         [TestMethod]
         public void ThreePieces()
         {
-            var config = new SimulationConfig();
+            var state = new SimulationState();
 
-            config.Gear.Waist = GearItemFactory.LoadWaist("Felstalker Belt");
-            config.Gear.Wrist = GearItemFactory.LoadWrist("Felstalker Bracers");
-            config.Gear.Chest = GearItemFactory.LoadChest("Felstalker Breastplate");
+            state.Config.Gear.Waist = GearItemFactory.LoadWaist("Felstalker Belt");
+            state.Config.Gear.Wrist = GearItemFactory.LoadWrist("Felstalker Bracers");
+            state.Config.Gear.Chest = GearItemFactory.LoadChest("Felstalker Breastplate");
 
-            var sim = new Simulation(config);
+            state.ApplyGearSetBonuses();
 
-            sim.Initialize();
-
-            Assert.AreEqual(20, config.Gear.GetStatTotal(x => x.HitRating));
+            Assert.AreEqual(20, state.Config.Gear.GetStatTotal(x => x.HitRating));
         }
     }
 }

@@ -191,9 +191,10 @@ source: gruul
             Assert.AreEqual(40.0, result.WeaponSkill[WeaponType.TwoHandedMace]);
             Assert.AreEqual(41.0, result.WeaponSkill[WeaponType.TwoHandedSword]);
             Assert.AreEqual(42.0, result.WeaponSkill[WeaponType.Wand]);
-            // TODO: Wowhead
-            // TODO: Phase
-            // TODO: Source
+            
+            Assert.AreEqual(123987, result.Wowhead);
+            Assert.AreEqual(1, result.Phase);
+            Assert.AreEqual(GearSource.Gruul, result.Source);
 
             Assert.AreEqual(12, result.Sockets.Count);
             Assert.AreEqual(3, result.Sockets.Count(s => s.Color == SocketColor.Red));

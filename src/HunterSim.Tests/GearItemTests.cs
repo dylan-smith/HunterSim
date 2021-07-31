@@ -23,7 +23,7 @@ namespace HunterSim.Tests
             {
                 Strength = 7
             };
-            gear.Sockets.Add(new Socket() { Color = SocketColor.Red });
+            gear.Sockets.Add(new Socket(SocketColor.Red));
 
             Assert.AreEqual(7, gear.GetStatWithSockets(x => x.Strength));
         }
@@ -50,8 +50,8 @@ namespace HunterSim.Tests
                 Color = GemColor.Red
             };
 
-            gear.Sockets.Add(new Socket() { Color = SocketColor.Red, Gem = gem1 });
-            gear.Sockets.Add(new Socket() { Color = SocketColor.Red, Gem = gem2 });
+            gear.Sockets.Add(new Socket(SocketColor.Red) { Gem = gem1 });
+            gear.Sockets.Add(new Socket(SocketColor.Red) { Gem = gem2 });
 
             Assert.AreEqual(16, gear.GetStatWithSockets(x => x.Strength));
         }
@@ -78,8 +78,8 @@ namespace HunterSim.Tests
                 Color = GemColor.Blue
             };
 
-            gear.Sockets.Add(new Socket() { Color = SocketColor.Red, Gem = gem1 });
-            gear.Sockets.Add(new Socket() { Color = SocketColor.Blue, Gem = gem2 });
+            gear.Sockets.Add(new Socket(SocketColor.Red) { Gem = gem1 });
+            gear.Sockets.Add(new Socket(SocketColor.Blue) { Gem = gem2 });
 
             var bonus = new GearItem
             {
@@ -114,8 +114,8 @@ namespace HunterSim.Tests
                 Color = GemColor.Yellow
             };
 
-            gear.Sockets.Add(new Socket() { Color = SocketColor.Red, Gem = gem1 });
-            gear.Sockets.Add(new Socket() { Color = SocketColor.Blue, Gem = gem2 });
+            gear.Sockets.Add(new Socket(SocketColor.Red) { Gem = gem1 });
+            gear.Sockets.Add(new Socket(SocketColor.Blue) { Gem = gem2 });
 
             var bonus = new GearItem
             {

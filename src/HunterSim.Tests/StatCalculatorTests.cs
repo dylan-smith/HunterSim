@@ -33,8 +33,8 @@ namespace HunterSim.Tests
                 Color = GemColor.Blue
             };
 
-            gear.Sockets.Add(new Socket() { Color = SocketColor.Red, Gem = gem1 });
-            gear.Sockets.Add(new Socket() { Color = SocketColor.Blue, Gem = gem2 });
+            gear.Sockets.Add(new Socket(SocketColor.Red) { Gem = gem1 });
+            gear.Sockets.Add(new Socket(SocketColor.Blue) { Gem = gem2 });
 
             var bonus = new GearItem
             {

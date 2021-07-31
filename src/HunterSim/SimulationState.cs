@@ -1,4 +1,6 @@
-﻿using System.Collections.Generic;
+﻿using HunterSim.GearSets;
+using System;
+using System.Collections.Generic;
 using System.Linq;
 
 namespace HunterSim
@@ -17,12 +19,34 @@ namespace HunterSim
 
         public bool Validate()
         {
+            ApplyMetaGemBonuses();
+            ApplyGearSetBonuses();
+
             var (warnings, errors) = Config.Validate();
 
             Warnings.AddRange(warnings);
             Errors.AddRange(errors);
 
             return !Errors.Any();
+        }
+
+        public void ApplyMetaGemBonuses()
+        {
+            var meta = Config.Gear.GetAllGems().Where(g => g.Color == GemColor.Meta).Cast<MetaGem>().ToList();
+
+            meta.ForEach(m => m.Apply(this));
+        }
+
+        public void ApplyGearSetBonuses()
+        {
+            var gearSetTypes = typeof(IGearSet).Assembly.GetTypes().Where(t => t.IsClass && typeof(IGearSet).IsAssignableFrom(t)).ToList();
+
+            foreach (var gearSetType in gearSetTypes)
+            {
+                var gearSet = (IGearSet)Activator.CreateInstance(gearSetType);
+
+                gearSet.Apply(this);
+            }
         }
     }
 }

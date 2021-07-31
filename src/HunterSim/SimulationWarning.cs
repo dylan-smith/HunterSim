@@ -8,6 +8,10 @@
         public const string MissingGear = "One or more gear slots have no item selected";
         public const string PlayerNotMaxLevel = "The player level is below max level, this simulator likely will not produce correct results";
         public const string BattleShoutAndEnhancedBattleShoutDoNotStack = "Battle Shout and Enhanced Battle Shout do not stack, you should pick one or the other";
+        public const string MetaGemInactive = "Meta gem is not activated";
+        public const string TooManyMetaGems = "More than one meta gem equipped";
+        public const string CantPutMetaGemInNonMetaSocket = "There is a meta gem in a non-meta socket";
+        public const string CantPutNonMetaGemInMetaSocket = "There is a non-meta gem in a meta socket";
         // TODO: Check only battle/guardian elixir or flask active
         // TODO: Can't have Battle Shout and Improved Battle Shout at same time
         // TODO: You ran out of mana during the fight

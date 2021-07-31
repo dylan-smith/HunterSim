@@ -291,6 +291,8 @@ namespace HunterSim
                 throw new Exception("Empty YAML file");
             }
 
+            DisableLicenseCheck();
+
             var assemblyPath = Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location);
             var schemaPath = Path.Join(assemblyPath, "Config", "GearItem-Schema.json");
             var schemaJson = File.ReadAllText(schemaPath);
@@ -308,6 +310,15 @@ namespace HunterSim
             serializer.Serialize(sw, data);
 
             JObject.Parse(sb.ToString()).Validate(schema);
+        }
+
+        private static void DisableLicenseCheck()
+        {
+            var licenseHelperType = typeof(Newtonsoft.Json.Schema.License).Assembly.GetType("Newtonsoft.Json.Schema.Infrastructure.Licensing.LicenseHelpers");
+            var field = licenseHelperType.GetField("_registeredLicense", BindingFlags.Static | BindingFlags.NonPublic);
+
+            var licenseType = typeof(Newtonsoft.Json.Schema.License).Assembly.GetType("Newtonsoft.Json.Schema.Infrastructure.Licensing.LicenseDetails");
+            field.SetValue(null, Activator.CreateInstance(licenseType));
         }
 
         private class InferTypeFromValue : INodeTypeResolver
@@ -384,7 +395,7 @@ namespace HunterSim
 
                         for (var i = 0; i < socketCount; i++)
                         {
-                            result.Sockets.Add(new Socket() { Color = socketColor });
+                            result.Sockets.Add(new Socket(socketColor));
                         }
                     }
 
@@ -412,6 +423,12 @@ namespace HunterSim
                 {
                     var typeValue = ((YamlScalarNode)statItem.Value).Value;
                     prop.SetValue(result, typeValue.ToWeaponType());
+                }
+
+                if (prop.PropertyType == typeof(GearSource))
+                {
+                    var typeValue = ((YamlScalarNode)statItem.Value).Value;
+                    prop.SetValue(result, typeValue.ToGearSource());
                 }
 
                 // TODO: in schema specify allowed values for type, source, phase, color, etc
