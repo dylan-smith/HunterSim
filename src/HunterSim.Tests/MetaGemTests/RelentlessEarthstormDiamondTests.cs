@@ -33,6 +33,7 @@ namespace HunterSim.Tests.MetaGemTests
             Assert.AreEqual(1, state.Auras.Count);
             Assert.AreEqual(Aura.RelentlessEarthstormDiamond, state.Auras.First());
             Assert.AreEqual(1.03, RangedCritDamageMultiplierCalculator.Calculate(state));
+            Assert.AreEqual(1.03, MeleeCritDamageMultiplierCalculator.Calculate(state));
         }
 
         [TestMethod]
