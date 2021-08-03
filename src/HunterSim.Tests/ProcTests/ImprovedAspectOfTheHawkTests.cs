@@ -25,6 +25,31 @@ namespace HunterSim.Tests.ProcTests
         }
 
         [TestMethod]
+        public void ImprovedAspectOfTheHawkProcEvent()
+        {
+            var state = new SimulationState();
+            var e = new ImprovedAspectOfTheHawkProcEvent(3.0);
+
+            e.ProcessEvent(state);
+
+            Assert.IsTrue(state.Auras.Contains(Aura.ImprovedAspectOfTheHawk));
+            Assert.AreEqual(1, state.Events.Count(x => x.GetType() == typeof(ImprovedAspectOfTheHawkExpiredEvent)));
+            Assert.AreEqual(15.0, state.Events.First().Timestamp);
+        }
+
+        [TestMethod]
+        public void ImprovedAspectOfTheHawkExpiredEvent()
+        {
+            var state = new SimulationState();
+            state.Auras.Add(Aura.ImprovedAspectOfTheHawk);
+            var e = new ImprovedAspectOfTheHawkExpiredEvent(15.0);
+
+            e.ProcessEvent(state);
+
+            Assert.IsFalse(state.Auras.Contains(Aura.ImprovedAspectOfTheHawk));
+        }
+
+        [TestMethod]
         public void ImprovedAspectOfTheHawkDoesNotProcOnMiss()
         {
             var state = new SimulationState();
