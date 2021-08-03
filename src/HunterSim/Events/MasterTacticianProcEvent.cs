@@ -2,8 +2,6 @@
 {
     public class MasterTacticianProcEvent : EventInfo
     {
-        public int AttackPower { get; set; }
-
         public MasterTacticianProcEvent(double timestamp) : base(timestamp)
         { }
 
