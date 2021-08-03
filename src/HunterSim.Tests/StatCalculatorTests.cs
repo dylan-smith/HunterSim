@@ -130,6 +130,27 @@ namespace HunterSim.Tests
             Assert.AreEqual(1.1899, MeleeHasteCalculator.Calculate(state), 0.0001);
         }
 
+        [TestMethod]
+        public void DefaultConfigStats()
+        {
+            var state = new SimulationState
+            {
+                Config = new DefaultConfig()
+            };
+
+            state.Validate();
+
+            Assert.AreEqual(214, StrengthCalculator.Calculate(state));
+            Assert.AreEqual(1075, AgilityCalculator.Calculate(state));
+            Assert.AreEqual(446, StaminaCalculator.Calculate(state));
+            Assert.AreEqual(275, IntellectCalculator.Calculate(state));
+            Assert.AreEqual(141, SpiritCalculator.Calculate(state));
+            Assert.AreEqual(2533, MeleeAttackPowerCalculator.Calculate(state));
+            Assert.AreEqual(2484, RangedAttackPowerCalculator.Calculate(state));
+            Assert.AreEqual(124, RangedCritCalculator.Calculate(state));
+            Assert.AreEqual(97, MP5Calculator.Calculate(state));
+        }
+
         // TODO: Tests for all calculators that need to convert between rating and %
         // TODO: Should probably have a test for each calculator for base stats
         // TODO: Test for enchants

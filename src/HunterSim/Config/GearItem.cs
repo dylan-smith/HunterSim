@@ -73,6 +73,8 @@ namespace HunterSim
         public double RangedBonusDamage { get; set; } // E.g. Sniper Scope
         [YamlProperty("color")]
         public GemColor Color { get; set; } // used by gems
+        [YamlProperty("unique")]
+        public bool Unique { get; set; }
         [YamlProperty("type")]
         public WeaponType WeaponType { get; set; }
         public IDictionary<WeaponType, int> WeaponSkill = new Dictionary<WeaponType, int>();

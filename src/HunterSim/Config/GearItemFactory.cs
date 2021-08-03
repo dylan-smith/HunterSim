@@ -20,6 +20,7 @@ namespace HunterSim
         private static IEnumerable<GearItem> _equippableOffHand;
         private static IEnumerable<GearItem> _allEnchants;
         private static IEnumerable<GearItem> _twoHandEnchants;
+        private static IEnumerable<GearItem> _allGems;
 
         private static IDictionary<GearType, IEnumerable<GearItem>> _gearByType;
         private static IDictionary<GearType, IEnumerable<GearItem>> _enchantsByType;
@@ -73,6 +74,19 @@ namespace HunterSim
                 }
 
                 return _allEnchants;
+            }
+        }
+
+        public static IEnumerable<GearItem> AllGems
+        {
+            get
+            {
+                if (_allGems == null)
+                {
+                    LoadAllGear();
+                }
+
+                return _allGems;
             }
         }
 
@@ -203,6 +217,8 @@ namespace HunterSim
 
         public static GearItem LoadWristEnchant(string enchantName) => GetItem(AllWristEnchants, enchantName);
 
+        public static GearItem LoadGem(string gemName) => GetItem(AllGems, gemName);
+
         private static GearItem GetItem(IEnumerable<GearItem> gearList, string itemName) => gearList.Any(x => x.Name == itemName) ? gearList.Single(x => x.Name == itemName) : throw new ArgumentException($"Unrecognized item name [{itemName}]", nameof(itemName));
 
         private static IEnumerable<GearItem> GetGearByType(GearType gearType)
@@ -230,6 +246,7 @@ namespace HunterSim
             var assemblyPath = Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location);
             var gearPath = Path.Join(assemblyPath, "Gear");
             var enchantsPath = Path.Join(assemblyPath, "Enchants");
+            var gemsPath = Path.Join(assemblyPath, "Gems");
 
             _gearByType = new Dictionary<GearType, IEnumerable<GearItem>>();
             _allGear = new List<GearItem>();
@@ -238,17 +255,21 @@ namespace HunterSim
 
             foreach (var gearType in Enum.GetValues(typeof(GearType)).Cast<GearType>())
             {
-                var gear = LoadAllFromDir(gearPath, gearType);
+                var gear = LoadAllFromDir(Path.Join(gearPath, gearType.ToString()), gearType);
                 _gearByType.Add(gearType, gear);
                 _allGear = _allGear.Union(gear);
 
-                var enchants = LoadAllFromDir(enchantsPath, gearType);
+                var enchants = LoadAllFromDir(Path.Join(enchantsPath, gearType.ToString()), gearType);
                 _enchantsByType.Add(gearType, enchants);
                 _allEnchants = _allEnchants.Union(enchants);
             }
 
             _allGear = _allGear.ToList();
             _allEnchants = _allEnchants.ToList();
+            
+            var gems = LoadAllFromDir(gemsPath, GearType.Gem).ToList();
+            gems.AddRange(LoadAllMetaGems());
+            _allGems = gems;
 
             _equippableMainHand = _gearByType[GearType.MainHand].Union(_gearByType[GearType.OneHand]).ToList();
             _equippableOffHand = _gearByType[GearType.OffHand].Union(_gearByType[GearType.OneHand]).ToList();
@@ -256,13 +277,21 @@ namespace HunterSim
             _twoHandEnchants = _enchantsByType[GearType.TwoHand].Union(_enchantsByType[GearType.OneHand]).ToList();
         }
 
+        private static IEnumerable<MetaGem> LoadAllMetaGems()
+        {
+            var metaTypes = typeof(MetaGem).Assembly.GetTypes().Where(t => t.IsClass && t.IsSubclassOf(typeof(MetaGem))).ToList();
+
+            foreach (var metaType in metaTypes)
+            {
+                yield return (MetaGem)Activator.CreateInstance(metaType);
+            }
+        }
+
         private static IEnumerable<GearItem> LoadAllFromDir(string gearPath, GearType gearType)
         {
-            var path = Path.Join(gearPath, gearType.ToString());
-
-            if (Directory.Exists(path))
+            if (Directory.Exists(gearPath))
             {
-                var files = Directory.GetFiles(path, "*.yml");
+                var files = Directory.GetFiles(gearPath, "*.yml");
 
                 foreach (var file in files)
                 {
@@ -419,6 +448,11 @@ namespace HunterSim
                     prop.SetValue(result, int.Parse(((YamlScalarNode)statItem.Value).Value));
                 }
 
+                if (prop.PropertyType == typeof(bool))
+                {
+                    prop.SetValue(result, bool.Parse(((YamlScalarNode)statItem.Value).Value));
+                }
+
                 if (prop.PropertyType == typeof(WeaponType))
                 {
                     var typeValue = ((YamlScalarNode)statItem.Value).Value;
@@ -429,6 +463,12 @@ namespace HunterSim
                 {
                     var typeValue = ((YamlScalarNode)statItem.Value).Value;
                     prop.SetValue(result, typeValue.ToGearSource());
+                }
+
+                if (prop.PropertyType == typeof(GemColor))
+                {
+                    var typeValue = ((YamlScalarNode)statItem.Value).Value;
+                    prop.SetValue(result, typeValue.ToGemColor());
                 }
 
                 // TODO: in schema specify allowed values for type, source, phase, color, etc

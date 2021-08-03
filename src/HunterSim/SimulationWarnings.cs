@@ -28,5 +28,6 @@
         // TODO: can't have grace of air and improved grace of air at same time
         // TODO: can't have strength of earth and improved soe at same time
         // TODO: can't have blessing of might and improved blessing of might at same time
+        // TODO: multiple unique gems
     }
 }

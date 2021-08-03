@@ -63,6 +63,31 @@ phase: 1
         }
 
         [TestMethod]
+        public void DeadlyFireOpal()
+        {
+            var yaml = @"
+name: Deadly Fire Opal
+color: orange
+ap: 8
+crit: 5
+unique: true
+wowhead: 30582
+source: heroic
+phase: 1";
+
+            var result = GearItemFactory.LoadGearItem(yaml, GearType.Gem);
+            Assert.AreEqual(GearType.Gem, result.GearType);
+            Assert.AreEqual("Deadly Fire Opal", result.Name);
+            Assert.AreEqual(GemColor.Orange, result.Color);
+            Assert.AreEqual(8, result.AttackPower);
+            Assert.AreEqual(5, result.CritRating);
+            Assert.IsTrue(result.Unique);
+            Assert.AreEqual(30582, result.Wowhead);
+            Assert.AreEqual(GearSource.Heroic, result.Source);
+            Assert.AreEqual(1, result.Phase);
+        }
+
+        [TestMethod]
         [ExpectedException(typeof(JSchemaValidationException))]
         public void InvalidPropertyInYaml()
         {
