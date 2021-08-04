@@ -31,6 +31,11 @@ namespace HunterSim
                 critChance += 0.02 * state.Config.Talents[Talent.MasterTactician];
             }
 
+            if (state.Config.Buffs.Contains(Buff.ElixirOfMajorAgility))
+            {
+                critChance += 20.0 / 2208;
+            }
+
             critChance = Math.Max(critChance, 0);
             critChance = Math.Min(critChance, 1.0);
 

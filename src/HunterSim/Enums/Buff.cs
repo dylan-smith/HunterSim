@@ -36,7 +36,7 @@
         // TODO: Warp Burger
         // === Battle Elixirs ===
         // TODO: Elixir of Demonslaying
-        // TODO: Elixir of Major Agility
+        ElixirOfMajorAgility, // 35 agi, 20 crit
         // TODO: Elixir of the Mongoose
         // TODO: Fel Strength Elixir
         // TODO: Onslaught Elixir

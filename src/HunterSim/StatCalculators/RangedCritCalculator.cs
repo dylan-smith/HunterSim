@@ -38,6 +38,11 @@ namespace HunterSim
                 critChance += 0.02 * state.Config.Talents[Talent.MasterTactician];
             }
 
+            if (state.Config.Buffs.Contains(Buff.ElixirOfMajorAgility))
+            {
+                critChance += 20.0 / 2208;
+            }
+
             // TODO: Trolls get 1% crit with bow racial
 
             critChance = Math.Max(critChance, 0);
