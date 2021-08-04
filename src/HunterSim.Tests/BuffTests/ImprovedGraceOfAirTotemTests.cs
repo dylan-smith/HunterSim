@@ -12,7 +12,7 @@ namespace HunterSim.Tests.Buffs
             state.Config.PlayerSettings.Race = Race.Draenei;
             state.Config.Buffs.Add(Buff.ImprovedGraceOfAirTotem);
 
-            Assert.AreEqual(Constants.DRAENEI_AGI + 88.55, AgilityCalculator.Calculate(state), 0.00001);
+            Assert.AreEqual(Constants.DRAENEI_AGI + 88, AgilityCalculator.Calculate(state));
         }
     }
 }

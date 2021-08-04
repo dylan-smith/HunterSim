@@ -41,6 +41,7 @@
             {
                 var intellect = IntellectCalculator.Calculate(state);
                 rangedAP += intellect * (0.15 * state.Config.Talents[Talent.CarefulAim]);
+                rangedAP = rangedAP.Floor();
             }
 
             if (state.Auras.Contains(Aura.ExposeWeakness))
@@ -51,11 +52,13 @@
             if (state.Config.Talents.ContainsKey(Talent.MasterMarksman))
             {
                 rangedAP *= 1 + (0.02 * state.Config.Talents[Talent.MasterMarksman]);
+                rangedAP = rangedAP.Floor();
             }
 
             if (state.Config.Talents.ContainsKey(Talent.SurvivalInstincts))
             {
                 rangedAP *= 1 + (0.02 * state.Config.Talents[Talent.SurvivalInstincts]);
+                rangedAP = rangedAP.Floor();
             }
 
             // TODO: Orc Bloodfury

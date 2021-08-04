@@ -6,6 +6,8 @@ namespace HunterSim
 {
     public static class ExtensionMethods
     {
+        public static double Floor(this double value) => Math.Floor(value + 0.00000001);
+
         public static void AddRange<T>(this ICollection<T> list, IEnumerable<T> range) => range.ForEach(x => list.Add(x));
 
         public static void ForEach<T>(this IEnumerable<T> list, Action<T> action)

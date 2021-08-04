@@ -16,7 +16,7 @@
 
             if (state.Config.Buffs.Contains(Buff.ImprovedMarkOfTheWild))
             {
-                spirit += 14 * 1.35;
+                spirit += (14 * 1.35).Floor();
             }
 
             if (state.Config.Buffs.Contains(Buff.GrilledMudfish))
@@ -27,6 +27,7 @@
             if (state.Config.Buffs.Contains(Buff.BlessingOfKings))
             {
                 spirit *= 1.1;
+                spirit = spirit.Floor();
             }
 
             return spirit;

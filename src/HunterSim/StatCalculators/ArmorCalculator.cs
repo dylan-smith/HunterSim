@@ -17,7 +17,7 @@
 
             if (state.Config.Buffs.Contains(Buff.ImprovedMarkOfTheWild))
             {
-                armor += 340 * 1.35;
+                armor += (340 * 1.35).Floor();
             }
 
             return armor;

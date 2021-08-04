@@ -12,7 +12,7 @@ namespace HunterSim.Tests.Buffs
             state.Config.PlayerSettings.Race = Race.Draenei;
             state.Config.Buffs.Add(Buff.ImprovedStrengthOfEarthTotem);
 
-            Assert.AreEqual(Constants.DRAENEI_STR + 98.9, StrengthCalculator.Calculate(state), 0.00001);
+            Assert.AreEqual(Constants.DRAENEI_STR + 98, StrengthCalculator.Calculate(state));
         }
     }
 }

@@ -12,8 +12,10 @@ namespace HunterSim.Tests.TalentTests
             state.Config.PlayerSettings.Race = Race.Draenei;
             state.Config.Talents.Add(Talent.CombatExperience, 2);
 
-            Assert.AreEqual(Constants.DRAENEI_AGI * 1.02, AgilityCalculator.Calculate(state), 0.00001);
-            Assert.AreEqual(Constants.DRAENEI_INT * 1.06, IntellectCalculator.Calculate(state), 0.00001);
+            // 148 * 1.02
+            Assert.AreEqual(150, AgilityCalculator.Calculate(state));
+            // 78 * 1.06
+            Assert.AreEqual(82, IntellectCalculator.Calculate(state));
         }
     }
 }

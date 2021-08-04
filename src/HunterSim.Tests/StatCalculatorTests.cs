@@ -1,4 +1,5 @@
 ﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
+using System;
 
 namespace HunterSim.Tests
 {
@@ -140,7 +141,7 @@ namespace HunterSim.Tests
 
             state.Validate();
 
-            Assert.AreEqual(214, StrengthCalculator.Calculate(state));
+            Assert.AreEqual(227, StrengthCalculator.Calculate(state));
             Assert.AreEqual(1075, AgilityCalculator.Calculate(state));
             Assert.AreEqual(446, StaminaCalculator.Calculate(state));
             Assert.AreEqual(275, IntellectCalculator.Calculate(state));

@@ -16,7 +16,7 @@
 
             if (state.Config.Buffs.Contains(Buff.ImprovedMarkOfTheWild))
             {
-                strength += 14 * 1.35;
+                strength += (14 * 1.35).Floor();
             }
 
             if (state.Config.Buffs.Contains(Buff.StrengthOfEarthTotem))
@@ -26,7 +26,7 @@
 
             if (state.Config.Buffs.Contains(Buff.ImprovedStrengthOfEarthTotem))
             {
-                strength += 86 * 1.15;
+                strength += (86 * 1.15).Floor();
             }
 
             if (state.Config.Buffs.Contains(Buff.ScrollOfStrengthV))
@@ -37,6 +37,7 @@
             if (state.Config.Buffs.Contains(Buff.BlessingOfKings))
             {
                 strength *= 1.1;
+                strength = strength.Floor();
             }
 
             return strength;

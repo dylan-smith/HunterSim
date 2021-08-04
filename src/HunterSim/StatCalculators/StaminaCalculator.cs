@@ -16,12 +16,13 @@
 
             if (state.Config.Buffs.Contains(Buff.ImprovedMarkOfTheWild))
             {
-                stamina += 14 * 1.35;
+                stamina += (14 * 1.35).Floor();
             }
 
             if (state.Config.Buffs.Contains(Buff.BlessingOfKings))
             {
                 stamina *= 1.1;
+                stamina = stamina.Floor();
             }
 
             return stamina;

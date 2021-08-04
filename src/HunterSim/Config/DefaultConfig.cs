@@ -71,7 +71,7 @@ namespace HunterSim
             BossSettings.Level = 73;
             BossSettings.BossType = BossType.Demon;
 
-            PlayerSettings.Race = Race.NightElf;
+            PlayerSettings.Race = Race.Draenei;
             PlayerSettings.Level = 70;
 
             Buffs.Add(Buff.BlessingOfKings);

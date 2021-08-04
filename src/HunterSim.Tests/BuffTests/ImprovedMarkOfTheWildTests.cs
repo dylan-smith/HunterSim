@@ -12,19 +12,19 @@ namespace HunterSim.Tests.Buffs
             state.Config.PlayerSettings.Race = Race.Draenei;
             state.Config.Buffs.Add(Buff.ImprovedMarkOfTheWild);
 
-            Assert.AreEqual(((Constants.DRAENEI_AGI + 18.9) * 2) + 459, ArmorCalculator.Calculate(state), 0.0001);
+            Assert.AreEqual(((Constants.DRAENEI_AGI + 18) * 2) + 459, ArmorCalculator.Calculate(state));
 
-            Assert.AreEqual(Constants.DRAENEI_AGI + 18.9, AgilityCalculator.Calculate(state), 0.001);
-            Assert.AreEqual(Constants.DRAENEI_STR + 18.9, StrengthCalculator.Calculate(state), 0.001);
-            Assert.AreEqual(Constants.DRAENEI_STA + 18.9, StaminaCalculator.Calculate(state), 0.001);
-            Assert.AreEqual(Constants.DRAENEI_INT + 18.9, IntellectCalculator.Calculate(state), 0.001);
-            Assert.AreEqual(Constants.DRAENEI_SPI + 18.9, SpiritCalculator.Calculate(state), 0.001);
+            Assert.AreEqual(Constants.DRAENEI_AGI + 18, AgilityCalculator.Calculate(state));
+            Assert.AreEqual(Constants.DRAENEI_STR + 18, StrengthCalculator.Calculate(state));
+            Assert.AreEqual(Constants.DRAENEI_STA + 18, StaminaCalculator.Calculate(state));
+            Assert.AreEqual(Constants.DRAENEI_INT + 18, IntellectCalculator.Calculate(state));
+            Assert.AreEqual(Constants.DRAENEI_SPI + 18, SpiritCalculator.Calculate(state));
 
-            Assert.AreEqual(33.75, ArcaneResistanceCalculator.Calculate(state));
-            Assert.AreEqual(33.75, FireResistanceCalculator.Calculate(state));
-            Assert.AreEqual(33.75, FrostResistanceCalculator.Calculate(state));
-            Assert.AreEqual(33.75, NatureResistanceCalculator.Calculate(state));
-            Assert.AreEqual(33.75, ShadowResistanceCalculator.Calculate(state));
+            Assert.AreEqual(33, ArcaneResistanceCalculator.Calculate(state));
+            Assert.AreEqual(33, FireResistanceCalculator.Calculate(state));
+            Assert.AreEqual(33, FrostResistanceCalculator.Calculate(state));
+            Assert.AreEqual(33, NatureResistanceCalculator.Calculate(state));
+            Assert.AreEqual(33, ShadowResistanceCalculator.Calculate(state));
         }
     }
 }

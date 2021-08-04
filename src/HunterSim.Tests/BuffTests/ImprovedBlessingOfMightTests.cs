@@ -5,6 +5,13 @@ namespace HunterSim.Tests.Buffs
     [TestClass]
     public class ImprovedBlessingOfMightTests
     {
+        [TestCleanup]
+        public void TestCleanup()
+        {
+            BaseStatCalculator.ClearMocks();
+            RandomGenerator.ClearMock();
+        }
+
         [TestMethod]
         public void ImprovedBlessingOfMight()
         {

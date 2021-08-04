@@ -12,7 +12,8 @@ namespace HunterSim.Tests.TalentTests
             state.Config.PlayerSettings.Race = Race.Draenei;
             state.Config.Talents.Add(Talent.LightningReflexes, 5);
 
-            Assert.AreEqual(Constants.DRAENEI_AGI * 1.15, AgilityCalculator.Calculate(state), 0.001);
+            // 148 * 1.15
+            Assert.AreEqual(170, AgilityCalculator.Calculate(state), 0.001);
         }
     }
 }

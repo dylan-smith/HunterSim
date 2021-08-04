@@ -15,7 +15,7 @@
 
             if (state.Config.Buffs.Contains(Buff.ImprovedMarkOfTheWild))
             {
-                resist += 25 * 1.35;
+                resist += (25 * 1.35).Floor();
             }
 
             return resist;

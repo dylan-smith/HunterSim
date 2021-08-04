@@ -17,7 +17,7 @@
             }
             else if (state.Config.Talents.ContainsKey(Talent.ImprovedHuntersMark))
             {
-                meleeAP += 110 * (0.2 * state.Config.Talents[Talent.ImprovedHuntersMark]);
+                meleeAP += (110 * (0.2 * state.Config.Talents[Talent.ImprovedHuntersMark])).Floor();
             }
 
             if (state.Config.Talents.ContainsKey(Talent.TrueshotAura) || state.Config.Buffs.Contains(Buff.TrueshotAura))
@@ -54,6 +54,7 @@
             if (state.Config.Talents.ContainsKey(Talent.SurvivalInstincts))
             {
                 meleeAP *= 1 + (0.02 * state.Config.Talents[Talent.SurvivalInstincts]);
+                meleeAP = meleeAP.Floor();
             }
 
             return meleeAP;

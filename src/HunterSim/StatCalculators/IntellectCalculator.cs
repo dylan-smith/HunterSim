@@ -16,17 +16,19 @@
 
             if (state.Config.Buffs.Contains(Buff.ImprovedMarkOfTheWild))
             {
-                intellect += 14 * 1.35;
-            }
-
-            if (state.Config.Buffs.Contains(Buff.BlessingOfKings))
-            {
-                intellect *= 1.1;
+                intellect += (14 * 1.35).Floor();
             }
 
             if (state.Config.Talents.ContainsKey(Talent.CombatExperience))
             {
                 intellect *= 1 + (0.03 * state.Config.Talents[Talent.CombatExperience]);
+                intellect = intellect.Floor();
+            }
+
+            if (state.Config.Buffs.Contains(Buff.BlessingOfKings))
+            {
+                intellect *= 1.1;
+                intellect = intellect.Floor();
             }
 
             return intellect;
