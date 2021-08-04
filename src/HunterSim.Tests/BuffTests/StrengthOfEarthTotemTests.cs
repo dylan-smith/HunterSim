@@ -14,7 +14,5 @@ namespace HunterSim.Tests.Buffs
 
             Assert.AreEqual(Constants.DRAENEI_STR + 86, StrengthCalculator.Calculate(state));
         }
-
-        // TODO: Improved Strength of Earth
     }
 }
