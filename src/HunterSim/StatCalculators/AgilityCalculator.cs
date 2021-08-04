@@ -44,6 +44,11 @@
                 agility += 35;
             }
 
+            if (state.Config.Buffs.Contains(Buff.ScrollOfAgilityV))
+            {
+                agility += 20;
+            }
+
             if (state.Config.Talents.ContainsKey(Talent.LightningReflexes))
             {
                 agility *= 1 + (state.Config.Talents[Talent.LightningReflexes] * 0.03);

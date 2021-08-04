@@ -83,7 +83,7 @@ namespace HunterSim
             Buffs.Add(Buff.ImprovedMarkOfTheWild);
             Buffs.Add(Buff.GrilledMudfish);
             Buffs.Add(Buff.ElixirOfMajorAgility);
-            // Buffs.Add(Buff.ScrollOfAgilityV);
+            Buffs.Add(Buff.ScrollOfAgilityV);
             // Buffs.Add(Buff.ScrollOfStrengthV);
 
             // Marksmanship (20)

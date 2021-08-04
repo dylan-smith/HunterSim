@@ -57,7 +57,7 @@
         // TODO: Flask of the Titans
         // TODO: Unstable Flask of the Bandit
         // === Scrolls ===
-        // TODO: Scroll of Agility V
+        ScrollOfAgilityV, // 20 agi
         // TODO: Scroll of Agility IV
         // TODO: Scroll of Strength V
         // TODO: Scroll of Strength IV
