@@ -15,6 +15,11 @@
                 armor += 340;
             }
 
+            if (state.Config.Buffs.Contains(Buff.ImprovedMarkOfTheWild))
+            {
+                armor += 340 * 1.35;
+            }
+
             return armor;
         }
     }

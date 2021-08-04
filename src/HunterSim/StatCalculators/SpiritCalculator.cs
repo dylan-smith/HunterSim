@@ -14,6 +14,11 @@
                 spirit += 14;
             }
 
+            if (state.Config.Buffs.Contains(Buff.ImprovedMarkOfTheWild))
+            {
+                spirit += 14 * 1.35;
+            }
+
             if (state.Config.Buffs.Contains(Buff.BlessingOfKings))
             {
                 spirit *= 1.1;

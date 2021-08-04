@@ -14,6 +14,11 @@
                 intellect += 14;
             }
 
+            if (state.Config.Buffs.Contains(Buff.ImprovedMarkOfTheWild))
+            {
+                intellect += 14 * 1.35;
+            }
+
             if (state.Config.Buffs.Contains(Buff.BlessingOfKings))
             {
                 intellect *= 1.1;

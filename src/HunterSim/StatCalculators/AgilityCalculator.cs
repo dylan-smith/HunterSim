@@ -14,6 +14,11 @@
                 agility += 14;
             }
 
+            if (state.Config.Buffs.Contains(Buff.ImprovedMarkOfTheWild))
+            {
+                agility += 14 * 1.35;
+            }
+
             if (state.Config.Buffs.Contains(Buff.BlessingOfKings))
             {
                 agility *= 1.1;

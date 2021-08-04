@@ -14,6 +14,11 @@
                 stamina += 14;
             }
 
+            if (state.Config.Buffs.Contains(Buff.ImprovedMarkOfTheWild))
+            {
+                stamina += 14 * 1.35;
+            }
+
             if (state.Config.Buffs.Contains(Buff.BlessingOfKings))
             {
                 stamina *= 1.1;

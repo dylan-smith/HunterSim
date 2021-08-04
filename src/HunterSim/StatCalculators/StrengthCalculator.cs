@@ -14,14 +14,19 @@
                 strength += 14;
             }
 
-            if (state.Config.Buffs.Contains(Buff.BlessingOfKings))
+            if (state.Config.Buffs.Contains(Buff.ImprovedMarkOfTheWild))
             {
-                strength *= 1.1;
+                strength += 14 * 1.35;
             }
 
             if (state.Config.Buffs.Contains(Buff.StrengthOfEarthTotem))
             {
                 strength += 86;
+            }
+
+            if (state.Config.Buffs.Contains(Buff.BlessingOfKings))
+            {
+                strength *= 1.1;
             }
 
             return strength;

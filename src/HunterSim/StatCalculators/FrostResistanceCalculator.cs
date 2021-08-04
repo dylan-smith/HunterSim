@@ -13,6 +13,11 @@
                 resist += 25;
             }
 
+            if (state.Config.Buffs.Contains(Buff.ImprovedMarkOfTheWild))
+            {
+                resist += 25 * 1.35;
+            }
+
             return resist;
         }
     }

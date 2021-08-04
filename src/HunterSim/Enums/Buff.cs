@@ -7,6 +7,7 @@
         TrueshotAura, // 125 AP
         LeaderOfThePack, // Ranged + Melee Crit 5%
         MarkOfTheWild, // 340 Armor, all attributes by 14, all resistances by 25 (gift of the wild is the same)
+        ImprovedMarkOfTheWild, // 35% more than regular MotW
         BlessingOfKings, // All stats by 10%
         BlessingOfMight, // 220 AP
         ImprovedBlessingOfMight, // 264 AP
