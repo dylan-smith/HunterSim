@@ -59,7 +59,7 @@
         // === Scrolls ===
         ScrollOfAgilityV, // 20 agi
         // TODO: Scroll of Agility IV
-        // TODO: Scroll of Strength V
+        ScrollOfStrengthV, // 20 str
         // TODO: Scroll of Strength IV
         // === Potions === [These probably don't belong as buffs, but in the rotation code]
         // TODO: Haste Potion

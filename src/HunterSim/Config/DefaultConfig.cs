@@ -84,7 +84,7 @@ namespace HunterSim
             Buffs.Add(Buff.GrilledMudfish);
             Buffs.Add(Buff.ElixirOfMajorAgility);
             Buffs.Add(Buff.ScrollOfAgilityV);
-            // Buffs.Add(Buff.ScrollOfStrengthV);
+            Buffs.Add(Buff.ScrollOfStrengthV);
 
             // Marksmanship (20)
             Talents.Add(Talent.LethalShots, 5);

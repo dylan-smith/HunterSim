@@ -29,6 +29,11 @@
                 strength += 86 * 1.15;
             }
 
+            if (state.Config.Buffs.Contains(Buff.ScrollOfStrengthV))
+            {
+                strength += 20;
+            }
+
             if (state.Config.Buffs.Contains(Buff.BlessingOfKings))
             {
                 strength *= 1.1;
