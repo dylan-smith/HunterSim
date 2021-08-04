@@ -37,6 +37,7 @@
     <None Remove="Gear\Legs\Skulkers Greaves.yml" />
     <None Remove="Gear\MainHand\Big Bad Wolfs Paw.yml" />
     <None Remove="Gear\Neck\Jagged Bark Pendant.yml" />
+    <None Remove="Gear\Neck\Worgen Claw Necklace.yml" />
     <None Remove="Gear\OffHand\Void-Talon.yml" />
     <None Remove="Gear\OneHand\Emerald Ripper.yml" />
     <None Remove="Gear\OneHand\Stellaris.yml" />
