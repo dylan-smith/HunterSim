@@ -149,6 +149,9 @@ namespace HunterSim.Tests
             Assert.AreEqual(446, StaminaCalculator.Calculate(state));
             Assert.AreEqual(275, IntellectCalculator.Calculate(state));
             Assert.AreEqual(141, SpiritCalculator.Calculate(state));
+            // TODO: Why does Sixx spreadsheet add in a flat 120 when calculating tooltip mAP?
+            // Sixx also doesn't appear to take into account the talent Survival Instincts anywhere
+            // Diff from Sixx: -1 agi, 110 imp hunters mark, 101 survival instincts, -120 
             Assert.AreEqual(2533, MeleeAttackPowerCalculator.Calculate(state));
             Assert.AreEqual(2484, RangedAttackPowerCalculator.Calculate(state));
             Assert.AreEqual(124, RangedCritCalculator.Calculate(state));
