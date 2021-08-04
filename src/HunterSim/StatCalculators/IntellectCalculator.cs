@@ -19,6 +19,11 @@
                 intellect += (14 * 1.35).Floor();
             }
 
+            if (state.Config.Buffs.Contains(Buff.ArcaneBrilliance))
+            {
+                intellect += 40;
+            }
+
             if (state.Config.Talents.ContainsKey(Talent.CombatExperience))
             {
                 intellect *= 1 + (0.03 * state.Config.Talents[Talent.CombatExperience]);

@@ -17,7 +17,7 @@
         ImprovedGraceOfAirTotem, // 88 Agility
         StrengthOfEarthTotem, // 86 Strength
         ImprovedStrengthOfEarthTotem, // 98 Strength
-        // TODO: Arcane Brilliance
+        ArcaneBrilliance, // 40 int
         // TODO: Heroism (how many times) (called Bloodlust for horde)
         // TODO: Drums (Battle and /or War)
         // TODO: Heroic Presence (not yours)
