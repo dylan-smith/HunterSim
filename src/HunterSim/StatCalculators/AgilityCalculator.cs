@@ -29,6 +29,11 @@
                 agility += 77;
             }
 
+            if (state.Config.Buffs.Contains(Buff.ImprovedGraceOfAirTotem))
+            {
+                agility += 77 * 1.15;
+            }
+
             if (state.Config.Talents.ContainsKey(Talent.LightningReflexes))
             {
                 agility *= 1 + (state.Config.Talents[Talent.LightningReflexes] * 0.03);

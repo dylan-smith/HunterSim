@@ -3,16 +3,16 @@
 namespace HunterSim.Tests.Buffs
 {
     [TestClass]
-    public class GraceOfAirTotemTests
+    public class ImprovedGraceOfAirTotemTests
     {
         [TestMethod]
-        public void GraceOfAirTotem()
+        public void ImprovedGraceOfAirTotem()
         {
             var state = new SimulationState();
             state.Config.PlayerSettings.Race = Race.Draenei;
-            state.Config.Buffs.Add(Buff.GraceOfAirTotem);
+            state.Config.Buffs.Add(Buff.ImprovedGraceOfAirTotem);
 
-            Assert.AreEqual(Constants.DRAENEI_AGI + 77, AgilityCalculator.Calculate(state));
+            Assert.AreEqual(Constants.DRAENEI_AGI + 88.55, AgilityCalculator.Calculate(state), 0.00001);
         }
     }
 }
