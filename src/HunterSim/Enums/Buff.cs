@@ -27,7 +27,7 @@
         // TODO: Improved Blood Pact (30% bonus)
         // === Food ===
         // TODO: Blackened Sporefish
-        // TODO: Grilled Mudfish
+        GrilledMudfish, // 20 agi, 20 spi
         // TODO: Grilled Squid
         // TODO: Ravager Dog
         // TODO: Spicy Crawdad

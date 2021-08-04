@@ -81,7 +81,7 @@ namespace HunterSim
             Buffs.Add(Buff.ImprovedStrengthOfEarthTotem);
             // Buffs.Add(Buff.ArcaneBrilliance);
             Buffs.Add(Buff.ImprovedMarkOfTheWild);
-            // Buffs.Add(Buff.GrilledMudfish);
+            Buffs.Add(Buff.GrilledMudfish);
             // Buffs.Add(Buff.ElixirOfMajorAgility);
             // Buffs.Add(Buff.ScrollOfAgilityV);
             // Buffs.Add(Buff.ScrollOfStrengthV);
