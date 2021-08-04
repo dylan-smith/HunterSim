@@ -32,6 +32,11 @@
                 rangedAP += 220;
             }
 
+            if (state.Config.Buffs.Contains(Buff.ImprovedBlessingOfMight))
+            {
+                rangedAP += 264;
+            }
+
             if (state.Config.Talents.ContainsKey(Talent.CarefulAim))
             {
                 var intellect = IntellectCalculator.Calculate(state);

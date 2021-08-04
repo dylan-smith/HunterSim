@@ -41,6 +41,11 @@
                 meleeAP += 220;
             }
 
+            if (state.Config.Buffs.Contains(Buff.ImprovedBlessingOfMight))
+            {
+                meleeAP += 264;
+            }
+
             if (state.Auras.Contains(Aura.ExposeWeakness))
             {
                 meleeAP += ExposeWeakness.AttackPower;

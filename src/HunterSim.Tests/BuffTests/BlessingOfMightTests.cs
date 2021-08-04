@@ -15,7 +15,5 @@ namespace HunterSim.Tests.Buffs
             Assert.AreEqual(Constants.DRAENEI_AGI + 220, RangedAttackPowerCalculator.Calculate(state));
             Assert.AreEqual(Constants.DRAENEI_STR + Constants.DRAENEI_AGI + 220, MeleeAttackPowerCalculator.Calculate(state));
         }
-
-        // TODO: Improved Blessing of Might
     }
 }
