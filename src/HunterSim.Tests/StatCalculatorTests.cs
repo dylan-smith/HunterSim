@@ -141,8 +141,11 @@ namespace HunterSim.Tests
 
             state.Validate();
 
+            // Sixx has a bug with improved strength of earth totem
             Assert.AreEqual(227, StrengthCalculator.Calculate(state));
-            Assert.AreEqual(1075, AgilityCalculator.Calculate(state));
+            // Sixx doesn't round down aggressively enough, difference of 1
+            Assert.AreEqual(1074, AgilityCalculator.Calculate(state));
+            // exact match with Sixx
             Assert.AreEqual(446, StaminaCalculator.Calculate(state));
             Assert.AreEqual(275, IntellectCalculator.Calculate(state));
             Assert.AreEqual(141, SpiritCalculator.Calculate(state));
