@@ -131,32 +131,90 @@ namespace HunterSim.Tests
             Assert.AreEqual(1.1899, MeleeHasteCalculator.Calculate(state), 0.0001);
         }
 
+        // Strength - Sixx has a bug with improved strength of earth totem
+        // Agility - Sixx doesn't round down aggressively enough, difference of 1
+        // Sixx also doesn't appear to take into account the talent Survival Instincts anywhere
+
         [TestMethod]
-        public void DefaultConfigStats()
+        public void DefaultConfigNoBuffs()
         {
             var state = new SimulationState
             {
                 Config = new DefaultConfig()
             };
 
+            state.Config.Buffs.Clear();
+            // the mark debuff isn't included in the in-game state sheet (obv)
+            state.Config.Talents[Talent.ImprovedHuntersMark] = 0;
+
             state.Validate();
 
-            // Sixx has a bug with improved strength of earth totem
-            Assert.AreEqual(227, StrengthCalculator.Calculate(state));
-            // Sixx doesn't round down aggressively enough, difference of 1
-            Assert.AreEqual(1074, AgilityCalculator.Calculate(state));
-            // exact match with Sixx
-            Assert.AreEqual(446, StaminaCalculator.Calculate(state));
-            Assert.AreEqual(275, IntellectCalculator.Calculate(state));
-            Assert.AreEqual(141, SpiritCalculator.Calculate(state));
-            // TODO: Why does Sixx spreadsheet add in a flat 120 when calculating tooltip mAP?
-            // Sixx also doesn't appear to take into account the talent Survival Instincts anywhere
-            // Diff from Sixx: -1 agi, 110 imp hunters mark, 101 survival instincts, -120 
-            Assert.AreEqual(2533, MeleeAttackPowerCalculator.Calculate(state));
-            Assert.AreEqual(2484, RangedAttackPowerCalculator.Calculate(state));
-            Assert.AreEqual(124, RangedCritCalculator.Calculate(state));
-            Assert.AreEqual(97, MP5Calculator.Calculate(state));
+            Assert.AreEqual(71, StrengthCalculator.Calculate(state));
+            Assert.AreEqual(769, AgilityCalculator.Calculate(state));
+            Assert.AreEqual(421, StaminaCalculator.Calculate(state));
+            Assert.AreEqual(159, IntellectCalculator.Calculate(state));
+            Assert.AreEqual(91, SpiritCalculator.Calculate(state));
+            Assert.AreEqual(4636, ArmorCalculator.Calculate(state));
+            Assert.AreEqual(1875, RangedAttackPowerCalculator.Calculate(state));
+            Assert.AreEqual(1938, MeleeAttackPowerCalculator.Calculate(state));
+            // subtracting out the crit suppression that the sim includes but the stat page in game doesn't
+            Assert.AreEqual(0.3009 - 0.048, RangedCritCalculator.Calculate(state), 0.0001);
+            Assert.AreEqual(0.2382 - 0.048, MeleeCritCalculator.Calculate(state), 0.0001);
         }
+
+        [TestMethod]
+        public void DefaultConfigNoBuffsNoTalents()
+        {
+            var state = new SimulationState
+            {
+                Config = new DefaultConfig()
+            };
+
+            state.Config.Buffs.Clear();
+            state.Config.Talents.Clear();
+
+            state.Validate();
+
+            Assert.AreEqual(71, StrengthCalculator.Calculate(state));
+            Assert.AreEqual(669, AgilityCalculator.Calculate(state));
+            Assert.AreEqual(421, StaminaCalculator.Calculate(state));
+            Assert.AreEqual(159, IntellectCalculator.Calculate(state));
+            Assert.AreEqual(91, SpiritCalculator.Calculate(state));
+            Assert.AreEqual(4436, ArmorCalculator.Calculate(state));
+            Assert.AreEqual(1703, RangedAttackPowerCalculator.Calculate(state));
+            Assert.AreEqual(1764, MeleeAttackPowerCalculator.Calculate(state));
+            // subtracting out the crit suppression that the sim includes but the stat page in game doesn't
+            Assert.AreEqual(0.1959 - 0.048, RangedCritCalculator.Calculate(state), 0.0001);
+            Assert.AreEqual(0.1832 - 0.048, MeleeCritCalculator.Calculate(state), 0.0001);
+
+            
+        }
+
+        [TestMethod]
+        public void NoGearNoBuffsNoTalents()
+        {
+            var state = new SimulationState();
+            state.Config.PlayerSettings.Race = Race.Draenei;
+            state.Config.PlayerSettings.Level = 70;
+            // intentionally setting boss to 70 to avoid the 3% crit suppression on raid bosses
+            state.Config.BossSettings.Level = 70;
+
+            // numbers taken from in game stat page with no gear and no talents
+            Assert.AreEqual(278, RangedAttackPowerCalculator.Calculate(state));
+            Assert.AreEqual(333, MeleeAttackPowerCalculator.Calculate(state));
+            // in-game it says 2.17% but the sim subtracts 1.8% for crit suppression aura
+            Assert.AreEqual(0.0217 - 0.018, RangedCritCalculator.Calculate(state), 0.000001);
+            Assert.AreEqual(0.0217 - 0.018, MeleeCritCalculator.Calculate(state), 0.000001);
+            Assert.AreEqual(65, StrengthCalculator.Calculate(state));
+            Assert.AreEqual(148, AgilityCalculator.Calculate(state));
+            Assert.AreEqual(107, StaminaCalculator.Calculate(state));
+            Assert.AreEqual(78, IntellectCalculator.Calculate(state));
+            Assert.AreEqual(85, SpiritCalculator.Calculate(state));
+            Assert.AreEqual(296, ArmorCalculator.Calculate(state));
+        }
+
+        // 155 RAP for aspect of the hawk
+        // 130 base RAP ???
 
         // TODO: Tests for all calculators that need to convert between rating and %
         // TODO: Should probably have a test for each calculator for base stats

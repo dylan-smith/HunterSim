@@ -21,8 +21,8 @@ namespace HunterSim.Tests.Buffs
             BaseStatCalculator.InjectMock(typeof(AgilityCalculator), new FakeStatCalculator(0.0));
             BaseStatCalculator.InjectMock(typeof(StrengthCalculator), new FakeStatCalculator(0.0));
 
-            Assert.AreEqual(264, RangedAttackPowerCalculator.Calculate(state));
-            Assert.AreEqual(264, MeleeAttackPowerCalculator.Calculate(state));
+            Assert.AreEqual(Constants.BASE_RAP + 264, RangedAttackPowerCalculator.Calculate(state));
+            Assert.AreEqual(Constants.BASE_MAP + 264, MeleeAttackPowerCalculator.Calculate(state));
         }
     }
 }

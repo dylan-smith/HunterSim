@@ -12,10 +12,8 @@ namespace HunterSim.Tests.TalentTests
             state.Config.PlayerSettings.Race = Race.Draenei;
             state.Config.Talents.Add(Talent.SurvivalInstincts, 2);
 
-            // 148 * 1.04
-            Assert.AreEqual(153, RangedAttackPowerCalculator.Calculate(state));
-            // (65 + 148) * 1.04
-            Assert.AreEqual(221, MeleeAttackPowerCalculator.Calculate(state));
+            Assert.AreEqual(((Constants.BASE_RAP + Constants.DRAENEI_AGI) * 1.04).Floor(), RangedAttackPowerCalculator.Calculate(state));
+            Assert.AreEqual(((Constants.BASE_MAP + Constants.DRAENEI_STR + Constants.DRAENEI_AGI) * 1.04).Floor(), MeleeAttackPowerCalculator.Calculate(state));
         }
     }
 }

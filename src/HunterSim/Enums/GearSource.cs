@@ -16,7 +16,8 @@ namespace HunterSim
         Heroic,
         WorldBoss,
         ZulGurub,
-        Naxxramas
+        Naxxramas,
+        Honor
     }
 
     public static class GearSourceExtensions
@@ -38,6 +39,7 @@ namespace HunterSim
                 "worldboss" => GearSource.WorldBoss,
                 "zg" => GearSource.ZulGurub,
                 "naxx" => GearSource.Naxxramas,
+                "honor" => GearSource.Honor,
                 _ => throw new ArgumentException($"Unrecognized gear source {value}"),
             };
         }

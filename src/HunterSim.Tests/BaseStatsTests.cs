@@ -152,8 +152,8 @@ namespace HunterSim.Tests
             Assert.AreEqual(1.0, RangedDamageMultiplierCalculator.Calculate(state));
             Assert.AreEqual(0.0, FireResistanceCalculator.Calculate(state));
             Assert.AreEqual(0.0, FrostResistanceCalculator.Calculate(state));
-            // Base Strength
-            Assert.AreEqual(65.0 + 148, MeleeAttackPowerCalculator.Calculate(state));
+            // Base Strength + Agi + 120 base MAP
+            Assert.AreEqual(65 + 148 + 120, MeleeAttackPowerCalculator.Calculate(state));
             // TODO: Not sure this is right, is melee base crit the same as base ranged crit?
             Assert.AreEqual(0.00, MeleeCritCalculator.Calculate(state));
             Assert.AreEqual(1.0, MeleeCritDamageMultiplierCalculator.Calculate(state));
@@ -163,8 +163,8 @@ namespace HunterSim.Tests
             Assert.AreEqual(1.0, MovementSpeedCalculator.Calculate(state));
             Assert.AreEqual(0.0, MP5Calculator.Calculate(state));
             Assert.AreEqual(0.0, NatureResistanceCalculator.Calculate(state));
-            // Base Agility
-            Assert.AreEqual(148, RangedAttackPowerCalculator.Calculate(state));
+            // Base Agility + 130 base RAP
+            Assert.AreEqual(148 + 130, RangedAttackPowerCalculator.Calculate(state));
             Assert.AreEqual(0.0, RangedCritCalculator.Calculate(state));
             Assert.AreEqual(1.0, RangedCritDamageMultiplierCalculator.Calculate(state));
             Assert.AreEqual(1.0, RangedHasteCalculator.Calculate(state));

@@ -12,7 +12,7 @@ namespace HunterSim.Tests.AuraTests
             state.Config.PlayerSettings.Race = Race.Draenei;
             state.Auras.Add(Aura.AspectOfTheHawk);
 
-            Assert.AreEqual(Constants.DRAENEI_AGI + 155, RangedAttackPowerCalculator.Calculate(state));
+            Assert.AreEqual(Constants.DRAENEI_AGI + Constants.BASE_RAP + 155, RangedAttackPowerCalculator.Calculate(state));
         }
     }
 }

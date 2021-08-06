@@ -12,8 +12,8 @@ namespace HunterSim.Tests.Buffs
             state.Config.PlayerSettings.Race = Race.Draenei;
             state.Config.Buffs.Add(Buff.TrueshotAura);
 
-            Assert.AreEqual(Constants.DRAENEI_STR + Constants.DRAENEI_AGI + 125, MeleeAttackPowerCalculator.Calculate(state));
-            Assert.AreEqual(Constants.DRAENEI_AGI + 125, RangedAttackPowerCalculator.Calculate(state));
+            Assert.AreEqual(Constants.DRAENEI_STR + Constants.DRAENEI_AGI + Constants.BASE_MAP + 125, MeleeAttackPowerCalculator.Calculate(state));
+            Assert.AreEqual(Constants.DRAENEI_AGI + Constants.BASE_RAP + 125, RangedAttackPowerCalculator.Calculate(state));
         }
 
         [TestMethod]
@@ -23,8 +23,8 @@ namespace HunterSim.Tests.Buffs
             state.Config.PlayerSettings.Race = Race.Draenei;
             state.Config.Talents.Add(Talent.TrueshotAura, 1);
 
-            Assert.AreEqual(Constants.DRAENEI_STR + Constants.DRAENEI_AGI + 125, MeleeAttackPowerCalculator.Calculate(state));
-            Assert.AreEqual(Constants.DRAENEI_AGI + 125, RangedAttackPowerCalculator.Calculate(state));
+            Assert.AreEqual(Constants.DRAENEI_STR + Constants.DRAENEI_AGI + Constants.BASE_MAP + 125, MeleeAttackPowerCalculator.Calculate(state));
+            Assert.AreEqual(Constants.DRAENEI_AGI + Constants.BASE_RAP + 125, RangedAttackPowerCalculator.Calculate(state));
         }
 
         [TestMethod]
@@ -35,8 +35,8 @@ namespace HunterSim.Tests.Buffs
             state.Config.Talents.Add(Talent.TrueshotAura, 1);
             state.Config.Buffs.Add(Buff.TrueshotAura);
 
-            Assert.AreEqual(Constants.DRAENEI_STR + Constants.DRAENEI_AGI + 125, MeleeAttackPowerCalculator.Calculate(state));
-            Assert.AreEqual(Constants.DRAENEI_AGI + 125, RangedAttackPowerCalculator.Calculate(state));
+            Assert.AreEqual(Constants.DRAENEI_STR + Constants.DRAENEI_AGI + Constants.BASE_MAP + 125, MeleeAttackPowerCalculator.Calculate(state));
+            Assert.AreEqual(Constants.DRAENEI_AGI + Constants.BASE_RAP + 125, RangedAttackPowerCalculator.Calculate(state));
         }
     }
 }

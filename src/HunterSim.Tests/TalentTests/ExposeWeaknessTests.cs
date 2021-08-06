@@ -102,8 +102,8 @@ namespace HunterSim.Tests.TalentTests
             state.Auras.Add(Aura.ExposeWeakness);
             ExposeWeakness.AttackPower = 198;
 
-            Assert.AreEqual(Constants.DRAENEI_AGI + 198, RangedAttackPowerCalculator.Calculate(state));
-            Assert.AreEqual(Constants.DRAENEI_AGI + Constants.DRAENEI_STR + 198, MeleeAttackPowerCalculator.Calculate(state));
+            Assert.AreEqual(Constants.DRAENEI_AGI + Constants.BASE_RAP + 198, RangedAttackPowerCalculator.Calculate(state));
+            Assert.AreEqual(Constants.DRAENEI_AGI + Constants.DRAENEI_STR + Constants.BASE_MAP + 198, MeleeAttackPowerCalculator.Calculate(state));
         }
     }
 }

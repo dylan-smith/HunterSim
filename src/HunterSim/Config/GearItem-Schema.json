@@ -51,6 +51,12 @@
     "crit": {
       "type": "integer"
     },
+    "rangedcrit": {
+      "type": "integer"
+    },
+    "meleecrit": {
+      "type": "integer"
+    },
     "hit": {
       "type": "integer"
     },
@@ -159,7 +165,7 @@
     },
     "source": {
       "type": "string",
-      "enum": [ "dungeon", "gruul", "magtheridon", "karazhan", "badges", "crafting", "rep", "ah", "vendor", "heroic", "worldboss", "zg", "naxx" ]
+      "enum": [ "dungeon", "gruul", "magtheridon", "karazhan", "badges", "crafting", "rep", "ah", "vendor", "heroic", "worldboss", "zg", "naxx", "honor" ]
     },
     "sockets": {
       "type": "object",

@@ -6,24 +6,12 @@
 
         protected override double InstanceCalculate(SimulationState state)
         {
-            var meleeAP = state.Config.Gear.GetStatTotal(x => x.AttackPower);
+            var meleeAP = AttackPowerCalculator.Calculate(state);
             meleeAP += state.Config.Gear.GetStatTotal(x => x.MeleeAttackPower);
             meleeAP += StrengthCalculator.Calculate(state);
-            meleeAP += AgilityCalculator.Calculate(state);
 
-            if (state.Config.Buffs.Contains(Buff.ImprovedHuntersMark))
-            {
-                meleeAP += 110;
-            }
-            else if (state.Config.Talents.ContainsKey(Talent.ImprovedHuntersMark))
-            {
-                meleeAP += (110 * (0.2 * state.Config.Talents[Talent.ImprovedHuntersMark])).Floor();
-            }
-
-            if (state.Config.Talents.ContainsKey(Talent.TrueshotAura) || state.Config.Buffs.Contains(Buff.TrueshotAura))
-            {
-                meleeAP += 125;
-            }
+            // Base MAP seems to be 120, tested this by removing all gear/talents
+            meleeAP += 120;
 
             if (state.Config.Buffs.Contains(Buff.BattleShout))
             {
@@ -36,25 +24,19 @@
                 meleeAP += 381;
             }
 
-            if (state.Config.Buffs.Contains(Buff.BlessingOfMight))
-            {
-                meleeAP += 220;
-            }
-
-            if (state.Config.Buffs.Contains(Buff.ImprovedBlessingOfMight))
-            {
-                meleeAP += 264;
-            }
-
-            if (state.Auras.Contains(Aura.ExposeWeakness))
-            {
-                meleeAP += ExposeWeakness.AttackPower;
-            }
-
             if (state.Config.Talents.ContainsKey(Talent.SurvivalInstincts))
             {
                 meleeAP *= 1 + (0.02 * state.Config.Talents[Talent.SurvivalInstincts]);
                 meleeAP = meleeAP.Floor();
+            }
+
+            if (state.Config.Buffs.Contains(Buff.ImprovedHuntersMark))
+            {
+                meleeAP += 110;
+            }
+            else if (state.Config.Talents.ContainsKey(Talent.ImprovedHuntersMark))
+            {
+                meleeAP += (110 * (0.2 * state.Config.Talents[Talent.ImprovedHuntersMark])).Floor();
             }
 
             return meleeAP;

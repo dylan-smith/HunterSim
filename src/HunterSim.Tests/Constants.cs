@@ -9,5 +9,8 @@
         public static double DRAENEI_SPI = 85.0;
 
         public static double AGI_FOR_ZERO_CRIT = 253.2;
+
+        public static double BASE_MAP = 120;
+        public static double BASE_RAP = 130;
     }
 }

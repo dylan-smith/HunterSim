@@ -12,7 +12,7 @@ namespace HunterSim.Tests.Buffs
             state.Config.PlayerSettings.Race = Race.Draenei;
             state.Config.Buffs.Add(Buff.ImprovedBattleShout);
 
-            Assert.AreEqual(Constants.DRAENEI_STR + Constants.DRAENEI_AGI + 381, MeleeAttackPowerCalculator.Calculate(state));
+            Assert.AreEqual(Constants.DRAENEI_STR + Constants.DRAENEI_AGI + Constants.BASE_MAP + 381, MeleeAttackPowerCalculator.Calculate(state));
         }
     }
 }

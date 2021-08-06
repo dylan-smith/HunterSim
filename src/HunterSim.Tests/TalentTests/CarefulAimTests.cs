@@ -20,7 +20,7 @@ namespace HunterSim.Tests.TalentTests
             BaseStatCalculator.InjectMock(typeof(IntellectCalculator), new FakeStatCalculator(100.0));
             BaseStatCalculator.InjectMock(typeof(AgilityCalculator), new FakeStatCalculator(0.0));
 
-            Assert.AreEqual(45, RangedAttackPowerCalculator.Calculate(state));
+            Assert.AreEqual(Constants.BASE_RAP + 45, RangedAttackPowerCalculator.Calculate(state));
         }
     }
 }

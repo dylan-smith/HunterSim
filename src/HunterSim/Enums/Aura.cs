@@ -17,5 +17,6 @@
         TrapCooldown, // TODO
         ImprovedKillCommand, // TODO
         // TODO: Other aspects
+        // TODO: Aspects should really be buffs and not aura's
     }
 }
