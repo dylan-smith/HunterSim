@@ -1,15 +1,16 @@
-﻿namespace HunterSim
+﻿namespace HunterSim.Events
 {
-    public class AutoShotCompletedEvent : EventInfo
+    public class SteadyShotCompletedEvent : EventInfo
     {
+        public CastCompletedEvent CastCompletedEvent { get; private set; }
         public DamageEvent DamageEvent { get; private set; }
 
-        public AutoShotCompletedEvent(double timestamp) : base(timestamp)
+        public SteadyShotCompletedEvent(double timestamp) : base(timestamp)
         { }
 
         public override void ProcessEvent(SimulationState state)
         {
-            double autoShotDamage;
+            double shotDamage;
             DamageType damageType;
 
             var missChance = MissChanceCalculator.Calculate(state.Config.Gear.Ranged, state);
@@ -19,17 +20,20 @@
 
             if (missRoll <= missChance)
             {
-                autoShotDamage = 0.0;
+                shotDamage = 0.0;
                 damageType = DamageType.Miss;
             }
             else
             {
                 var rangedAP = RangedAttackPowerCalculator.Calculate(state);
 
-                autoShotDamage = (state.Config.Gear.Ranged.MinDamage + state.Config.Gear.Ranged.MaxDamage) / 2;
-                autoShotDamage += RangedBonusDamageCalculator.Calculate(state.Config.Gear.Ranged, state);
-                autoShotDamage += (rangedAP / 14) * state.Config.Gear.Ranged.Speed; // 14 RAP = 1 DPS
-                autoShotDamage *= RangedDamageMultiplierCalculator.Calculate(state);
+                // TODO: Normalize weapon speed
+                shotDamage = (state.Config.Gear.Ranged.MinDamage + state.Config.Gear.Ranged.MaxDamage) / 2;
+                // does sniper scope, ammo bonus, etc apply to steady shots?
+                shotDamage += RangedBonusDamageCalculator.Calculate(state.Config.Gear.Ranged, state);
+                shotDamage += rangedAP * 0.2;
+                shotDamage += 150;
+                shotDamage *= RangedDamageMultiplierCalculator.Calculate(state);
 
                 damageType = DamageType.Hit;
 
@@ -41,8 +45,7 @@
                 {
                     // TODO: is bonus damage (scope) and bonus dps (ammo) doubled when you crit? This assumes yes
                     autoShotDamage *= 2;
-                    // TODO: this is a bug, this should be ranged not melee - why isn't this caught by tests?
-                    autoShotDamage *= MeleeCritDamageMultiplierCalculator.Calculate(state);
+                    autoShotDamage *= RangedCritDamageMultiplierCalculator.Calculate(state);
                     damageType = DamageType.Crit;
                 }
             }
@@ -55,6 +58,10 @@
 
             DamageEvent = new DamageEvent(Timestamp, autoShotDamage, damageType, missChance, critChance, hitChance);
             state.Events.Add(DamageEvent);
+
+
+            CastCompletedEvent = new CastCompletedEvent(Timestamp);
+            state.Events.Add(CastCompletedEvent);
         }
     }
 }

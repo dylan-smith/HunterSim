@@ -4,6 +4,7 @@
     {
         AutoShotOnCooldown,
         GlobalCooldown,
+        CastInProgress,
         AspectOfTheHawk,
         AspectOfTheCheetah,
         AspectOfThePack,

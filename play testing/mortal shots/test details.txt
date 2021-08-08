@@ -1,0 +1,45 @@
+worgen claw necklace
+beast lord mantle (15 crit 20 ap enchant) (10 ap + 5 crit gem) (8 agi gem)
+blood knight war cloak (12 agi enchant)
+beast lord cuirass (6 stats enchant) (2x 8 agi gems) (8ap + 2 mp5 gem) (4 agi socket bonus)
+nightfall wristguards (24 ap enchant)
+beast lord handguards (15 agi enchant) (8 agi gem) (8 ap + 2 mp5 gem) (3 hit socket bonus)
+girdle of treachery (2x 8 agi gems) (3 agi socket bonus)
+scaled greaves of the marksman (50 ap 12 crit enchant) (3x 8 agi gems) (4 agi socket bonus)
+edgewalker longboots (12 agi enchant) (8 agi gem) (4 crit + 8 ap gem) (3 hit socket bonus)
+ring of the recalcitrant (4 stat enchant)
+garona's signet ring (4 stat enchant)
+bloodlust brooch
+big bad wolfs paw (20 agi enchant)
+blade of the unrequited (20 agi enchant) (8 agi gem) (4 crit 8 ap gem) (8 ap 2 mp5 gem) (8 ap socket bonus)
+barrel-blade longrifle (28 crit scope) (2x 8 agi gems) (3 crit socket bonus)
+felbane slugs (37 dps)
+15% haste ammo pouch
+
+no helm/1 trinket only
+
+
+round 1 - only talents are:
+	5 - lethal shots
+	5 - efficiency
+	1 - aimed shot
+
+
+	Level 63 Boss Dummy (outside SW)
+	Hits: 1110
+	Crits: 366
+	Avg Hit: 587.545945945946
+	Avg Crit: 1171.6693989071039
+	Crit Bonus: 99.41749355800968%
+
+
+
+round 2 - added 5 points of mortal shots (and 4 points of improved arcane shot)
+	Level 63 Boss Dummy (outside SW)
+	Hits: 769
+	Crits: 275
+	Avg Hit: 585.8088426527959
+	Avg Crit: 1353.8945454545456
+	Crit Bonus: 131.11541630603003%
+	
+	

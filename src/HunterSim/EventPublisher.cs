@@ -1,4 +1,5 @@
-﻿using System;
+﻿using HunterSim.Events;
+using System;
 
 namespace HunterSim
 {
@@ -15,6 +16,9 @@ namespace HunterSim
                     ImprovedAspectOfTheHawk.ProcessEvent(ev, state);
                     ExposeWeakness.ProcessEvent(ev, state);
                     MasterTactician.ProcessEvent(ev, state);
+                    break;
+                case CastStartedEvent ev:
+                    AutoShot.ProcessEvent(ev, state);
                     break;
             }
         }
