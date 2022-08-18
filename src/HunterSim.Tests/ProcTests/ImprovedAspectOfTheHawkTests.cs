@@ -6,6 +6,7 @@ namespace HunterSim.Tests.ProcTests
     [TestClass]
     public class ImprovedAspectOfTheHawkTests
     {
+        // TODO: this only procs on white ("normal") attacks
         [TestMethod]
         public void ImprovedAspectOfTheHawkProcOnHit()
         {

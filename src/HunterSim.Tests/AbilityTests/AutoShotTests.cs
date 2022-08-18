@@ -70,7 +70,6 @@ namespace HunterSim.Tests.AbilityTests
             Assert.AreEqual(10.1, secondEvent.Timestamp, 0.001); // 2.9 sec weapon speed
         }
 
-        // TODO: Test that AutoShot takes haste into account
         [TestMethod]
         public void AutoShotCastWithHaste()
         {
@@ -216,6 +215,8 @@ namespace HunterSim.Tests.AbilityTests
             Assert.AreEqual(0.182, dmg.CritChance, 0.0001);
             Assert.AreEqual(0.728, dmg.HitChance, 0.0001);
         }
+
+        // TODO: Need to test the rest of the damage calcs. E.g. it's taking AP into account properly
 
         private void InjectZeroMocks()
         {

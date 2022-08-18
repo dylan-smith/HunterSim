@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Linq;
 
 namespace HunterSim
 {
@@ -22,13 +21,15 @@ namespace HunterSim
                 missChance = 0.05 + ((bossDefense - weaponSkill) * 0.001);
             }
 
-            missChance -= state.Config.Gear.GetAllGear().Sum(x => x.HitRating);
-            missChance -= state.Config.Gear.GetAllEnchants().Sum(x => x.HitRating);
+            // https://tbc.wowhead.com/guides/classic-the-burning-crusade-stats-overview
+            missChance -= state.Config.Gear.GetStatTotal(x => x.HitRating) / 1580;
 
             if (state.Config.Talents.ContainsKey(Talent.Surefooted))
             {
                 missChance -= state.Config.Talents[Talent.Surefooted] * 0.01;
             }
+
+            // TODO: Draenai 1% hit
 
             missChance = Math.Max(missChance, 0.0);
 

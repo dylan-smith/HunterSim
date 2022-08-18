@@ -120,6 +120,21 @@ namespace HunterSim.Tests
         }
 
         [TestMethod]
+        public void MissChanceCalculatorRatingToHit()
+        {
+            var state = new SimulationState();
+            state.Config.PlayerSettings.Level = 70;
+            state.Config.BossSettings.Level = 73;
+
+            BaseStatCalculator.InjectMock(typeof(WeaponSkillCalculator), new FakeStatCalculator(350));
+
+            state.Config.Gear.Head = new GearItem() { HitRating = 46 };
+
+            // https://tbc.wowhead.com/guides/classic-the-burning-crusade-stats-overview
+            Assert.AreEqual(0.09 - 0.02911392, MissChanceCalculator.Calculate(null, state), 0.00001);
+        }
+
+        [TestMethod]
         public void RangedHasteCalculatorRatingToPercent()
         {
             var state = new SimulationState();

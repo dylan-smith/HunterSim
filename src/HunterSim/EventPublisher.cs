@@ -8,8 +8,8 @@ namespace HunterSim
         public static void PublishEvent(EventInfo e, SimulationState state)
         {
             state.ProcessedEvents.Add(e);
-            Console.WriteLine(e.ToString());
 
+            // TODO: Can we use reflection to wire this up dynamically
             switch (e)
             {
                 case AutoShotCompletedEvent ev:

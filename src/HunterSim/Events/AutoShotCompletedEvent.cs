@@ -2,7 +2,7 @@
 {
     public class AutoShotCompletedEvent : EventInfo
     {
-        public DamageEvent DamageEvent { get; private set; }
+        public DamageEvent DamageEvent { get; set; }
 
         public AutoShotCompletedEvent(double timestamp) : base(timestamp)
         { }
@@ -41,8 +41,7 @@
                 {
                     // TODO: is bonus damage (scope) and bonus dps (ammo) doubled when you crit? This assumes yes
                     autoShotDamage *= 2;
-                    // TODO: this is a bug, this should be ranged not melee - why isn't this caught by tests?
-                    autoShotDamage *= MeleeCritDamageMultiplierCalculator.Calculate(state);
+                    autoShotDamage *= RangedCritDamageMultiplierCalculator.Calculate(state);
                     damageType = DamageType.Crit;
                 }
             }

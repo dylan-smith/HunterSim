@@ -1,0 +1,15 @@
+Auto Shot Damage
+
+((Ammo + Scope + RangedDmg + Striking + AdamantiteBonusDmg) + (BJ38 + RangedAttackPower + BK38) * RangedWeaponSpeed / 14) * BX38 * (1 - Crit% - Miss%) + ((Ammo + Scope + RangedDmg + Striking + AdamantiteBonusDmg) + RangedAttackPower * RangedWeaponSpeed / 14) * BX38 * BW38 * RangeCritDamage
+
+
+BJ38 = (IF(AA38 > 0, H19, 0) + IF(AB38 > 0, H20, 0) + IF(AC38 > 0, H21, 0) + EF38 + EN38 + IF(AH38 > 0, H25, 0) + IF(AJ38 > 0, H14, 0) + IF(AK38 > 0, H13, 0) + IF(AL38 > 0, BW27, 0)) * Z10 * Z11
+BJ38 = (Racial + Trinket1 + Trinket2 + Blackened Naaru Sliver + Darkmoon Card Crusade + Drums + Band of the Eternal Champion + Santos' Blessing + Mongoose) * MasterTactician * SurvivalInstincts
+
+
+BK38 = (110 + Z18 + EP38 + ExposeWeakness * MasterTactician * SurvivalInstincts
+	Z18 = Mark of the Champion or Elixir of Demonslaying
+	EP38 = MIN(IF(OR(P38 = 1, P38 = 2), 33 * NumberOfHunters, 0) + MadnessOfTheBetrayer, 330)  // Hunters Mark (not sure why madness is included in the MIN 330)
+
+BX38 = RangeBaseDmgMod * TheBeastWithin * FerociousInspiration * BloodFrenzy  // I think these are applied twice because one of them is self-applied, and the other is by other raid members
+	RangeBaseDmgMod = RangedWeaponSpec * FocusedFire * Slaying * TheBeastWitin * FerociousInspiration * BloodFrenzy
